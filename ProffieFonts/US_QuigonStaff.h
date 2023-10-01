@@ -106,7 +106,9 @@ YELLOW
 #include "master/Common_Colors.h" // Color / color blend defines
 #include "master/Common_Misc.h" // Misc common code and effects
 
-#include "master/Common_Blade.h" // Blade effects, for STYLE_OPTION_ARG, STYLE_OPTION2_ARG, STYLE_OPTION3_ARG
+#include "master/Common_Blade.h" // Blade effects, for STYLE_OPTION_ARG
+#include "master/Common_Blade2.h" // Blade effects, for STYLE_OPTION2_ARG
+#include "master/Common_Blade3.h" // Blade effects, for STYLE_OPTION3_ARG
 #include "master/Common_Swing.h" // Swing effects for SWING_OPTION_ARG
 #include "master/Common_Blast.h" // Blaster Effects
 #include "master/Common_Lockup.h" // Lockup, Clash, Drag, Stab, Melt
@@ -263,6 +265,9 @@ using MasterStyle = Layers<
 		// Option 2: Random LED Flicker (2 Color)
 		Style2_RandomPerLEDFlicker,
 
+		// Option 3: Pusling Rotate
+		Style2_Pulsing_Rotate,
+
 
 
 		// TODO: Lightning flash? Random timed / positioned flashes of ALTCOLOR2 ??
@@ -293,6 +298,15 @@ using MasterStyle = Layers<
 
 		// Option 4: Random LED Flicker (2 Color)
 		Style3_RandomPerLEDFlicker,
+
+
+		Style3_AudioFilter,
+
+		Style3_RandomFlicker,
+
+		Style3_AudioFilter_Rotate,
+
+		Style3_Pulsing_Rotate,
 
 
 		// Option 1: Emitter Flare
@@ -490,7 +504,7 @@ using MasterStyle = Layers<
 			// Option 5, Glitch off
 			Retraction_Glitch_Off
 		>, 
-		TRANSPARENT //Black
+		Black
 	>,
 
 	// Pre On
