@@ -1,0 +1,66 @@
+// ===================== POST OFF STYLES =======================
+
+// Emitter cool off.
+using PostOff_EmitterCoolOff = TrConcat<
+	TrInstant,
+	AlphaL<
+		POSTOFFCOLOR,
+		SmoothStep<
+			IntArg<EMITTER_SIZE_ARG,2000>,
+			Int<-4000>
+		>
+	>,
+	TrFadeX<
+		Mult<
+			Scale<
+				IsLessThan<
+					WavLen<EFFECT_POSTOFF>,
+					Int<200>
+				>,
+				WavLen<EFFECT_POSTOFF>,
+				Int<4000>
+			>,
+			Int<10923>
+		>
+	>,
+	AlphaL<
+		Orange,
+		SmoothStep<
+			IntArg<EMITTER_SIZE_ARG,2000>,
+			Int<-4000>
+		>
+	>,
+	TrFadeX<
+		Mult<
+			Scale<
+				IsLessThan<
+					WavLen<EFFECT_POSTOFF>,
+					Int<200>
+				>,
+				WavLen<EFFECT_POSTOFF>,
+				Int<4000>
+			>,
+			Int<10923>
+		>
+	>,
+	AlphaL<
+		Red,
+		SmoothStep<
+			IntArg<EMITTER_SIZE_ARG,2000>,
+			Int<-2000>
+		>
+	>,
+	TrFadeX<
+		Mult<
+			Scale<
+				IsLessThan<
+					WavLen<EFFECT_POSTOFF>,
+					Int<200>
+				>,
+				WavLen<EFFECT_POSTOFF>,
+				Int<4000>
+			>,
+			Int<10923>
+		>
+	>
+>;
