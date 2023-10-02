@@ -5,12 +5,6 @@ using Ignition_Standard = TrWipeX<
 	IgnitionTime<300>
 >;
 
-// Spark Tip
-using Ignition_SparkTip = TrWipeSparkTipX<
-	IGNITIONCOLOR,
-	IgnitionTime<300>
->;
-
 // Dual Mode Wipe (up = fast)
 using Ignition_DualMode = TrWipeX<
 	Scale<
@@ -25,6 +19,13 @@ using Ignition_DualMode = TrWipeX<
 		IgnitionTime<300>
 	>
 >;
+
+// Spark Tip
+using Ignition_SparkTip = TrWipeSparkTipX<
+	IGNITIONCOLOR,
+	IgnitionTime<300>
+>;
+
 
 // Center Wipe
 using Ignition_CenterWipe = TrCenterWipeInX<

@@ -27,8 +27,7 @@ using Clash_EffectA = TransitionEffectL<
 >;
 
 // Clash Effect B
-using Clash_EffectB = // Mix B
-TransitionEffectL<
+using Clash_EffectB = TransitionEffectL<
 	TrWaveX<
 		CLASHCOLOR, 
 		Scale<
@@ -104,115 +103,171 @@ using Lockup_Color_Style = AlphaMixL<
 	>
 >;
 
-// TODO: Add more styles using TrRandom?
-// Lockup Start
-using Lockup_Start = TrConcat<
-	TrExtend<
-		50, 
-		TrInstant
-	>, 
-	Mix<
-		IsLessThan<
-			ClashImpactF<>, 
-			Int<26000>
-		>, 
-		LOCKUPCOLOR, 
-		AlphaL<
-			LOCKUPCOLOR, 
-			Bump<
-				LockupScale,
-				Scale<
-					ClashImpactF<>, 
-					Int<20000>, 
-					Int<60000>
-				>
-			>
-		>
-	>, 
-	TrExtend<
-		3000, 
-		TrFade<300>
-	>, 
+// Lockup Color 2
+using Lockup_Color_Style2 = TransitionEffect<
+	Lockup_Color_Style,
 	AlphaL<
 		AudioFlicker<
-			LOCKUPCOLOR, 
+			LOCKUPCOLOR,
 			Mix<
-				Int<10280>, 
-				Black, 
+				Int<10280>,
+				Black,
 				LOCKUPCOLOR
 			>
-		>, 
+		>,
 		Bump<
 			LockupScale,
 			Int<13000>
 		>
-	>, 
-	TrFade<3000>
+	>,
+	TrJoin<
+		TrDelay<8000>,
+		TrInstant
+	>,
+	TrFade<3000>,
+	EFFECT_LOCKUP_BEGIN
+>;
+
+// TODO: Add more styles using TrRandom?
+// Lockup Start
+using Lockup_Start = TrRandom<
+	// Effect A
+	TrConcat<
+		TrExtend<
+			50, 
+			TrInstant
+		>, 
+		LockupClashColor,
+		TrExtend<
+			3000, 
+			TrFade<300>
+		>, 
+		AlphaL<
+			AudioFlicker<
+				LOCKUPCOLOR, 
+				Mix<
+					Int<10280>, 
+					Black, 
+					LOCKUPCOLOR
+				>
+			>, 
+			Bump<
+				LockupScale,
+				Int<13000>
+			>
+		>, 
+		TrFade<3000>
+	>,
+	// Effect B
+	TrConcat<
+		TrJoin<
+			TrDelay<50>,
+			TrInstant
+		>,
+		LockupClashColor,
+		TrFade<300>
+	>
 >;
 
 // TODO: Add more styles via TrRandom?
 // Lockup End
-using Lockup_End = TrConcat<
-	TrInstant, 
-	AlphaL<
-		LOCKUPCOLOR, 
-		Int<0>
-	>, 
-	TrSelect<
-		Scale<
-			IsLessThan<
-				ClashImpactF<>, 
-				Int<20000>
-			>, 
-			Int<1>, 
+using Lockup_End = TrRandom<
+	// Effect A
+	TrConcat<
+		TrInstant, 
+		AlphaL<
+			LOCKUPCOLOR, 
 			Int<0>
 		>, 
-		TrWaveX<
-			LOCKUPCOLOR, 
+		TrSelect<
 			Scale<
-				ClashImpactF<>, 
-				Int<50>, 
-				Int<400>
-			>, 
-			Int<100>, 
-			Scale<
-				ClashImpactF<>, 
-				Int<500>, 
-				Int<300>
-			>, 
-			LockupScale
-		>, 
-		TrSparkX<
-			Remap<
-				CenterDistF<
-					LockupScale
-				>, 
-				Stripes<
-					1200, 
-					-3600, 
-					Mix<
-						Int<6425>, 
-						Black, 
-						LOCKUPCOLOR
-					>, 
-					LOCKUPCOLOR, 
-					Mix<
-						Int<12850>, 
-						Black, 
-						LOCKUPCOLOR
-					>
-				>
-			>, 
-			Int<30>, 
-			Scale<
-				Sum<
+				IsLessThan<
 					ClashImpactF<>, 
-					SwingSpeed<600>
+					Int<20000>
+				>, 
+				Int<1>, 
+				Int<0>
+			>, 
+			TrWaveX<
+				LOCKUPCOLOR, 
+				Scale<
+					ClashImpactF<>, 
+					Int<50>, 
+					Int<400>
 				>, 
 				Int<100>, 
-				Int<400>
+				Scale<
+					ClashImpactF<>, 
+					Int<500>, 
+					Int<300>
+				>, 
+				LockupScale
 			>, 
-			LockupScale
+			TrSparkX<
+				Remap<
+					CenterDistF<
+						LockupScale
+					>, 
+					Stripes<
+						1200, 
+						-3600, 
+						Mix<
+							Int<6425>, 
+							Black, 
+							LOCKUPCOLOR
+						>, 
+						LOCKUPCOLOR, 
+						Mix<
+							Int<12850>, 
+							Black, 
+							LOCKUPCOLOR
+						>
+					>
+				>, 
+				Int<30>, 
+				Scale<
+					Sum<
+						ClashImpactF<>, 
+						SwingSpeed<600>
+					>, 
+					Int<100>, 
+					Int<400>
+				>, 
+				LockupScale
+			>
+		>
+	>,
+	// Effect B: Wave
+	TrConcat<
+		TrInstant,
+		AlphaL<
+			LOCKUPCOLOR,
+			Int<0>
+		>,
+		TrWaveX<
+			LOCKUPCOLOR,
+			Int<300>,
+			Int<100>,
+			Int<400>,
+			Scale<
+				BladeAngle<>,
+				Scale<
+					BladeAngle<0,16000>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG,16000>,
+						Int<-12000>
+					>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG,16000>,
+						Int<10000>
+					>
+				>,
+				Scale<
+					SwingSpeed<100>,
+					Int<14000>,
+					Int<18000>
+				>
+			>
 		>
 	>
 >;

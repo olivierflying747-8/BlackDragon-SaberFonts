@@ -103,8 +103,6 @@ using PreOn_Broken_Ignition = TrConcat<
 
 // Emitter Warmup
 using PreOn_Emitter_Warmup = TrConcat<
-	//	TrWipe<300>,
-	//TrFade<2000>,
 	TrFadeX<
 		Mult<
 			Int<10923>,
@@ -113,9 +111,15 @@ using PreOn_Emitter_Warmup = TrConcat<
 	>,
 	AlphaL<
 		HumpFlickerL<Red, 10>,
+		/*
 		Bump<
 			Int<0>,
 			IntArg<PREON_SIZE_ARG, 2000>
+		>
+		*/
+		SmoothStep<
+			IntArg<PREON_SIZE_ARG, 2000>,
+			Int<-2000>
 		>
 	>,
 	//TrFade<2950>,
@@ -127,6 +131,7 @@ using PreOn_Emitter_Warmup = TrConcat<
 	>,
 	AlphaL<
 		HumpFlickerL<Orange, 15>,
+		/*
 		Bump<
 			Int<0>, 
 			//Int<10000>
@@ -134,6 +139,11 @@ using PreOn_Emitter_Warmup = TrConcat<
 				Int<2000>,
 				IntArg<PREON_SIZE_ARG, 2000>
 			>
+		>
+		*/
+		SmoothStep<
+			IntArg<PREON_SIZE_ARG, 2000>,
+			Int<-3000>
 		>
 	>,
 	//TrFade<3000>,
@@ -145,6 +155,7 @@ using PreOn_Emitter_Warmup = TrConcat<
 	>,
 	AlphaL<
 		HumpFlickerL<PREONCOLOR, 20>,
+		/*
 		Bump<
 			Int<0>, 
 			//Int<20000>
@@ -152,6 +163,11 @@ using PreOn_Emitter_Warmup = TrConcat<
 				Int<4000>,
 				IntArg<PREON_SIZE_ARG, 2000>
 			>
+		>
+		*/
+		SmoothStep<
+			IntArg<PREON_SIZE_ARG, 2000>,
+			Int<-4000>
 		>
 	>,
 	TrBoing<1000,3>

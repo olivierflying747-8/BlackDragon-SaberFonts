@@ -1,11 +1,42 @@
 // ===================== BLADE STYLES 2 =======================
 // Using ALTCOLOR and ALTCOLOR2
 
+// AudioFlicker
+using Style2_AudioFilter = AudioFlicker<
+	TRANSPARENT,
+	ALTCOLOR2
+>;
+
+// Random Flicker, BASE / ALT color
+using Style2_RandomFlicker = RandomFlicker<
+	TRANSPARENT,
+	ALTCOLOR2
+>;
+
+// AudioFlicker with RotateColors (2 color)
+using Style2_AudioFilter_Rotate = AudioFlicker<
+	TRANSPARENT,
+	RotateColorsX<Variation, ALTCOLOR2>
+>;
+
 // Pusling Blade
 using Style2_Pulsing_Rotate = Pulsing<
 	TRANSPARENT,
 	RotateColorsX<Variation, ALTCOLOR2>,
 	1200
+>;
+
+// RandomPerLEDFlicker (2 Color)
+using Style2_RandomPerLEDFlicker = AlphaL<
+	RandomPerLEDFlicker<
+		Black,
+		Mix<
+			Int<3855>,
+			Black,
+			ALTCOLOR2
+		>
+	>,
+	Int<16384>
 >;
 
 // Hump Waves (2 Color)
@@ -30,66 +61,10 @@ using Style2_HumpWave = Layers <
 	>
 >;
 
-// RandomPerLEDFlicker (2 Color)
-using Style2_RandomPerLEDFlicker = RandomPerLEDFlicker<
-	Mix<
-		Int<10280>, 
-		Black, 
-		ALTCOLOR
-	>, 
-	Mix<
-		Int<3855>, 
-		Black, 
-		ALTCOLOR2
-	>
+// Sparkle
+using Style2_Sparkle = SparkleL<
+	ALTCOLOR2
 >;
-
-// Fett263 Smoke Blade Fire layer, ALT Color
-using Style2_FireBlade = AlphaL <
-	StyleFire<
-		RotateColorsX<Variation, ALTCOLOR2>,
-		RotateColorsX<
-			Variation,
-			//Rgb<2,2,0> // ALT / 127.5
-			Mix<
-				Int<257>,
-				Black,
-				ALTCOLOR2
-			>
-		>,
-		0,
-		1,
-		FireConfig<10,2000,2>,
-		FireConfig<10,2000,2>,
-		FireConfig<10,2000,2>,
-		FireConfig<0,0,25>
-	>,
-	Int<10000>
->;
-
-// StripesX Slownoise
-using Style2_StripesX_SlowNoise = StripesX<
-	Int<1500>,
-	Scale<
-		SlowNoise<Int<2500>>,
-		Int<-3000>,
-		Int<-5000>
-	>,
-	Black,
-	Mix<
-		Int<10280>,
-		Black,
-		ALTCOLOR2
-	>,
-	Black,
-	Mix<
-		Int<2570>,
-		Black,
-		ALTCOLOR2
-	>,
-	Black
->;
-
 
 // Brown Noise with Stripes, ALTCOLOR2
 using Style2_BrownNoiseFlicker = BrownNoiseFlicker<
@@ -121,24 +96,113 @@ using Style2_BrownNoiseFlicker = BrownNoiseFlicker<
 	200
 >;
 
-// Thunderstorm ???
-using Style2_LightningFlash = TransitionLoop<
-	RotateColorsX<
-		Variation,
-		ALTCOLOR2
+// StripesX Slownoise
+using Style2_StripesX_SlowNoise = AlphaL<
+	StripesX<
+		Int<1500>,
+		Scale<
+			SlowNoise<Int<2500>>,
+			Int<-3000>,
+			Int<-5000>
+		>,
+		Black,
+		Mix<
+			Int<10280>,
+			Black,
+			ALTCOLOR2
+		>,
+		Black,
+		Mix<
+			Int<2570>,
+			Black,
+			ALTCOLOR2
+		>,
+		Black
 	>,
+	Int<16384>
+>;
+
+// Fett263 Smoke Blade Fire layer, ALT Color
+using Style2_FireBlade = AlphaL <
+	StyleFire<
+		RotateColorsX<Variation, ALTCOLOR2>,
+		RotateColorsX<
+			Variation,
+			//Rgb<2,2,0> // ALT / 127.5
+			Mix<
+				Int<257>,
+				Black,
+				ALTCOLOR2
+			>
+		>,
+		0,
+		1,
+		FireConfig<10,2000,2>,
+		FireConfig<10,2000,2>,
+		FireConfig<10,2000,2>,
+		FireConfig<0,0,25>
+	>,
+	Int<10000>
+>;
+
+// Style Fire
+using Style2_Fire = AlphaL< 
+	StyleFire<
+		ALTCOLOR,
+		ALTCOLOR2,
+		0,
+		2
+	>,
+	Int<16384>
+>;
+
+// Cylon
+using Style2_Cylon = AlphaL<
+	Cylon<
+		ALTCOLOR2,
+		5,
+		20
+	>,
+	Int<16384>
+>;
+
+// Thunderstorm ???
+using Style2_LightningFlash = TransitionLoopL<
+	//TRANSPARENT,
 	TrConcat<
-		TrBoing<500,3>,
-		TRANSPARENT,
+		TrDelayX< // Random Timer
+			Scale<
+				SlowNoise<Int<3000>>,
+				Int<100>,
+				Int<2000>
+			>
+		>,
+		AlphaL< // Invisible color
+			ALTCOLOR,
+			Int<0>
+		>,
+		TrConcat<
+			TrInstant,
+			AlphaL<
+				HumpFlickerL<Black, 16384>,
+				Bump<
+					Int<0>,
+					Int<32768>
+				>
+			>,
+			TrInstant
+		>,
+
+		TrBoing<500, 3>
+	
 		/*
+		TrBoing<500,3>,
+		Black,
 		Layers<
 			Stripes<
 				10000,
 				100,
-				RotateColorsX<
-					Variation,
-					BASECOLOR_50
-				>,
+				RotateColorsX<Variation, BASECOLOR_50>,
 				RotateColorsX<
 					Variation,
 					Mix<
@@ -147,28 +211,18 @@ using Style2_LightningFlash = TransitionLoop<
 						BASECOLOR
 					>
 				>,
-				RotateColorsX<
-					Variation,
-					ALTCOLOR3
-				>
+				RotateColorsX<Variation, ALTCOLOR3>
 			>,
 			AlphaL<
 				Stripes<
 					8000,
 					-200,
-					RotateColorsX<
-						Variation,
-						BASECOLOR
-					>,
-					RotateColorsX<
-						Variation,
-						ALTCOLOR_25
-					>
+					RotateColorsX<Variation, BASECOLOR>,
+					RotateColorsX<Variation, ALTCOLOR_25>
 				>,
 				Int<16384> //50%
 			>
 		>,
-		*/
 		TrDelayX< // Random Timer
 			Scale<
 				SlowNoise<Int<3000>>,
@@ -176,5 +230,6 @@ using Style2_LightningFlash = TransitionLoop<
 				Int<2000>
 			>
 		>
+	//	*/
 	>
 >;

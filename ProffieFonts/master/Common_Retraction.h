@@ -5,12 +5,6 @@ using Retraction_Standard = TrWipeInX<
 	RetractionTime<0>
 >;
 
-// Spark Tip
-using Retraction_SparkTip = TrWipeInSparkTipX<
-	RETRACTIONCOLOR,
-	RetractionTime<0>
->;
-
 // Dual Mode Wipe (up = fast)
 using Retraction_DualMode = TrWipeInX<
 	Scale<
@@ -24,6 +18,12 @@ using Retraction_DualMode = TrWipeInX<
 		>, 
 		RetractionTime<0>
 	>
+>;
+
+// Spark Tip
+using Retraction_SparkTip = TrWipeInSparkTipX<
+	RETRACTIONCOLOR,
+	RetractionTime<0>
 >;
 
 // Center Wipe

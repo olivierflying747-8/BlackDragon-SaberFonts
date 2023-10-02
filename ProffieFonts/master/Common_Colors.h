@@ -64,6 +64,34 @@ using ALTCOLOR_25 = Mix<
 	ALTCOLOR
 >;
 
+// Alt Color 50%
+using ALTCOLOR2_50 = Mix<
+	Int<16448>, //50%
+	Black,
+	ALTCOLOR2
+>;
+
+// Alt Color 25%
+using ALTCOLOR2_25 = Mix<
+	Int<8192>, //25%
+	Black,
+	ALTCOLOR2
+>;
+
+// Alt Color 50%
+using ALTCOLOR3_50 = Mix<
+	Int<16448>, //50%
+	Black,
+	ALTCOLOR3
+>;
+
+// Alt Color 25%
+using ALTCOLOR3_25 = Mix<
+	Int<8192>, //25%
+	Black,
+	ALTCOLOR3
+>;
+
 // Gradiant Base Color 33%
 using Gradiant_Base_33 = Gradient<
 	BASECOLOR,

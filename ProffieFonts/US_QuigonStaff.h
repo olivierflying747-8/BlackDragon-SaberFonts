@@ -255,35 +255,33 @@ using MasterStyle = Layers<
 		// Option 0 Off
 		TRANSPARENT,
 
-		// WIP:
-		// Option 4: StripesX_SlowNoise
-		Style2_StripesX_SlowNoise,
-
 		// Option 5: Lightning flash?
 		Style2_LightningFlash,
 
-		// Option 2: Random LED Flicker (2 Color)
-		Style2_RandomPerLEDFlicker,
-
-		// Option 3: Pusling Rotate
+		// Option 1: AudiFlicker ALTCOLOR3
+		Style2_AudioFilter,
+		// Option 2: AudioFlicker using Rotate
+		Style2_AudioFilter_Rotate,
+		// Option 3: RandomFlicker ALTCOLOR3
+		Style2_RandomFlicker,
+		// Option 4: Pusling
 		Style2_Pulsing_Rotate,
-
-
-
-		// TODO: Lightning flash? Random timed / positioned flashes of ALTCOLOR2 ??
-
-		// Option 1: Hump Waves (2 color)
+		// Option 5: Random LED Flicker (2 Color)
+		Style2_RandomPerLEDFlicker,
+		// Option 2: StripesX Slownoise
+		Style2_StripesX_SlowNoise,
+		// Option 6: Hump Waves (2 color)
 		Style2_HumpWave,
-
-		// Option 2: BrownNoise Stripes (ALT COLOR)
+		// Option 7: BrownNoise Stripes (ALT COLOR)
 		Style2_BrownNoiseFlicker,
-
-		// Option 4: Underlying Fett263 Smoke Blade Fire layer (Alt color)
-		Style2_FireBlade
-
-		// TODO: Make some simple secondary styles that use ALT COLOR2 or ALT COLOR 3?
-
-
+		// Option 8: Sparkles (ALTCOLOR3)
+		Style2_Sparkle,
+		// Option 9: Underlying Fett263 Smoke Blade Fire layer (Alt color)
+		Style2_FireBlade,
+		// Option 10: Fire
+		Style2_Fire,
+		// Option 11: Cylon
+		Style2_Cylon
 	>,
 
 	// Tirtiary blade Styles
@@ -292,35 +290,37 @@ using MasterStyle = Layers<
 		TrInstant,
 		// Option 0 Off
 		TRANSPARENT,
-
-		// Option 6: Cylon
-		Style3_Cylon,
-
-		// Option 4: Random LED Flicker (2 Color)
-		Style3_RandomPerLEDFlicker,
-
-
+	
+		// Option 1: AudiFlicker ALTCOLOR3
 		Style3_AudioFilter,
-
-		Style3_RandomFlicker,
-
+		// Option 2: AudioFlicker using Rotate
 		Style3_AudioFilter_Rotate,
-
+		// Option 3: RandomFlicker ALTCOLOR3
+		Style3_RandomFlicker,
+		// Option 4: Pusling
 		Style3_Pulsing_Rotate,
-
-
-		// Option 1: Emitter Flare
-		Style3_EmitterFlare,
-		// Option 2: Timed "breathing" emitter flare 
-		Style3_EmitterBreathe,
-		// Option 3: Hump Waves (2 color)
+		// Option 5: Random LED Flicker (2 Color)
+		Style3_RandomPerLEDFlicker,
+		// Option 2: StripesX Slownoise
+		Style3_StripesX_SlowNoise,
+		// Option 6: Hump Waves (2 color)
 		Style3_HumpWave,
-
-		// Option 5: Sparkles (ALTCOLOR3)
+		// Option 7: BrownNoise Stripes (ALT COLOR)
+		Style3_BrownNoiseFlicker,
+		// Option 8: Sparkles (ALTCOLOR3)
 		Style3_Sparkle,
-
-		// Option 7: Underlying Fett263 Smoke Blade Fire layer (Alt color)
-		Style3_FireBlade
+		// Option 9: Underlying Fett263 Smoke Blade Fire layer (Alt color)
+		Style3_FireBlade,
+		// Option 10: Fire
+		Style3_Fire,
+		// Option 11: Cylon
+		Style3_Cylon,
+		// Option 12: Emitter Flare
+		Style3_EmitterFlare,
+		// Option 13: Timed "breathing" emitter flare 
+		Style3_EmitterBreathe,
+		// Option 14: Emitter Pulse
+		Style3_Emitter_Pulse
 	>,
 	
 	// Swing Options/Force Effect options
@@ -356,10 +356,8 @@ using MasterStyle = Layers<
 			// Option 1: Blast Wave (Random)
 			/*
 			Blast_Wave_Random,
-			*/
 			// Option 3: Blast Wave (Sound Based)
-			Blast_Wave_Sound
-			/*
+			Blast_Wave_Sound,
 			// Option 4: Blast Ripple
 			Blast_Ripple,
 			// Option 2: Blast Ripple Fade
@@ -379,6 +377,7 @@ using MasterStyle = Layers<
 			// Option 11: Responsive Blast (Swing based)
 			Blast_Responsive_Swing
 			// */
+			Blast_Ripple
 		>, 
 		EFFECT_BLAST
 	>, 
@@ -407,7 +406,11 @@ using MasterStyle = Layers<
 	
 	// Lockup
 	LockupTrL<
-		Lockup_Color_Style,
+		EffectSequence<
+			EFFECT_LOCKUP_BEGIN,
+			Lockup_Color_Style,
+			Lockup_Color_Style2
+		>,
 		Lockup_Start, // EFFECT_LOCKUP_BEGIN
 		Lockup_End, // EFFECT_LOCKUP_END
 		SaberBase::LOCKUP_NORMAL
@@ -477,10 +480,10 @@ using MasterStyle = Layers<
 			IntArg<IGNITION_OPTION_ARG, 0>, 
 			// Option 0: Standard
 			Ignition_Standard,
-			// Option 1: Spark Tip
-			Ignition_SparkTip, 
-			// Option 2: Dual Mode wip (up = fast)
+			// Option 1: Dual Mode wip (up = fast)
 			Ignition_DualMode,
+			// Option 2: Spark Tip
+			Ignition_SparkTip, 
 			// Option 3: Center Wipe
 			Ignition_CenterWipe,
 			// Option 4: Color Cycle
@@ -493,10 +496,10 @@ using MasterStyle = Layers<
 			IntArg<RETRACTION_OPTION_ARG, 0>, 
 			// Option 0: Standard
 			Retraction_Standard,
-			// Option 1: Spark tip.
-			Retraction_SparkTip,
-			// Option 2: Dual Mode
+			// Option 1: Dual Mode
 			Retraction_DualMode,
+			// Option 2: Spark tip.
+			Retraction_SparkTip,
 			// Option 3: Center Wipe
 			Retraction_CenterWipe,
 			// Option 4, Color cycle
@@ -532,6 +535,30 @@ using MasterStyle = Layers<
 	TransitionEffectL<
 		TrSelect<
 			IntArg<IGNITION_POWER_UP_ARG, 0>,
+			// Option 0: None
+			TrInstant, 
+			// Option 1: Power Flash
+			Powerup_Flash,
+			// Option 2: Power Surge (Stable)
+			Powerup_Surge,
+			// Option 3: Flash on
+			Powerup_Flash_Fade,
+			// Option 4: Power Burst Forward
+			Powerup_Burst_Forward,
+			// Option 5: Unstable Power Up Forward
+			Powerup_Unstable_Forward,
+			// Option 6: //Fett263 Unstable bright ignition effect
+			Powerup_Unstable_Bright_Forward,
+			// Option 7: Stabilize ignition
+			Powerup_Stabalize
+		>,
+		EFFECT_IGNITION
+	>,
+
+	// Ignition Effect
+	TransitionEffectL<
+		TrSelect<
+			IntArg<IGNITION_OPTION2_ARG, 0>,
 			// Option 0: None
 			TrInstant, 
 			// Option 1: Power Flash

@@ -27,6 +27,26 @@ using LockupScale = Scale<
 	*/
 >;
 
+// Lockup Clash Impact Color
+using LockupClashColor = Mix<
+	IsLessThan<
+		ClashImpactF<>, 
+		Int<26000>
+	>, 
+	LOCKUPCOLOR, 
+	AlphaL<
+		LOCKUPCOLOR, 
+		Bump<
+			LockupScale,
+			Scale<
+				ClashImpactF<>, 
+				Int<20000>, 
+				Int<60000>
+			>
+		>
+	>
+>;
+
 // Ignition Flicker Stripes, used in Stabalize Ignition.
 using Ignition_FlickerStripes = Stripes<
 	3000,
