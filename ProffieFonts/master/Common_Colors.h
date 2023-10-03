@@ -93,7 +93,7 @@ using ALTCOLOR3_25 = Mix<
 >;
 
 // Gradiant Base Color 33%
-using Gradiant_Base_33 = Gradient<
+using BASECOLOR_GRADIENT_33 = Gradient<
 	BASECOLOR,
 	BASECOLOR_33
 >;

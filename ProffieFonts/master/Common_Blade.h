@@ -6,10 +6,12 @@ using Style1_AudioFilter = AudioFlicker<
 	BASECOLOR_50 // 50%
 >;*/
 
+using Style1_Static = BASECOLOR;
+
 // Basic Audio Filter, BASE / ALT color.
 using Style1_AudioFilter = AudioFlicker<
-	BASECOLOR,
-	ALTCOLOR
+	RotateColorsX<Variation, BASECOLOR>,
+	RotateColorsX<Variation, ALTCOLOR>
 >;
 
 // Random Flicker, BASE / ALT color
@@ -18,14 +20,8 @@ using Style1_RandomFlicker = RandomFlicker<
 	ALTCOLOR
 >;
 
-// AudioFlicker with RotateColors (2 color)
-using Style1_AudioFilter_Rotate = AudioFlicker<
-	RotateColorsX<Variation, BASECOLOR>,
-	RotateColorsX<Variation, ALTCOLOR>
->;
-
 // Pusling Blade
-using Style1_Pulsing_Rotate = Pulsing<
+using Style1_Pulsing = Pulsing<
 	RotateColorsX<Variation, BASECOLOR>,
 	RotateColorsX<Variation, ALTCOLOR>,
 	1200
@@ -33,13 +29,13 @@ using Style1_Pulsing_Rotate = Pulsing<
 
 // Brownnoise BASE color
 using Style1_BrownNoiseFlicker = BrownNoiseFlicker<
-	BASECOLOR,
+	RotateColorsX<Variation, BASECOLOR>,
 	Black,
 	300
 >;
 
 // Stripes (single color)
-using Style1_Stripes_Rotate = Stripes<
+using Style1_Stripes = Stripes<
 	10000,
 	-1700,
 	RotateColorsX<
@@ -74,13 +70,13 @@ using Style1_StripesX_SlowNoise = StripesX<
 	>,
 	BASECOLOR,
 	Mix<
-		Int<10280>,
+		Int<10280>, //33%
 		Black,
 		BASECOLOR
 	>,
 	BASECOLOR,
 	Mix<
-		Int<2570>,
+		Int<2570>, //8%
 		Black,
 		BASECOLOR
 	>,
@@ -170,40 +166,6 @@ using CalKestisStyle = StripesX<
 	BASECOLOR
 >;
 */
-
-// BrownNoiseFlicker 2 color
-using Style1_BrownNoiseFlicker_2Color = BrownNoiseFlicker<
-	BrownNoiseFlicker<
-		BASECOLOR, 
-		Black, 
-		300
-	>,
-	Stripes<
-		3000, 
-		-4000, 
-		//Rgb<50, 50, 75>, // ALT COLOR / 3.4
-		Mix<
-			Int<9638>,
-			Black, 
-			ALTCOLOR
-		>,
-		//Rgb<100, 100, 150>, // ALT COLOR / 1.7
-		Mix<
-			Int<19275>,
-			Black, 
-			ALTCOLOR
-		>,
-		//Rgb<10, 10, 15>, // ALT COLOR / 17
-		Mix<
-			Int<1928>,
-			Black, 
-			ALTCOLOR
-		>,
-		//Rgb<150, 150, 225> // ALT COLOR
-		ALTCOLOR
-	>, 
-	200
->;
 
 // Thunderstorm
 using Style1_ThunderstormBlade = TransitionLoop<
@@ -430,22 +392,22 @@ using Style1_FlickerBlade = Mix<
 		Int<0>, 
 		Int<32768>
 	>, 
-	Gradiant_Base_33,
+	BASECOLOR_GRADIENT_33,
 	Stripes<
 		12000, 
 		-800, 
-		Gradiant_Base_33,
-		Gradiant_Base_33,
+		BASECOLOR_GRADIENT_33,
+		BASECOLOR_GRADIENT_33,
 		Mix<
 			Int<7710>, 
 			Black, 
-			Gradiant_Base_33
+			BASECOLOR_GRADIENT_33
 		>, 
-		Gradiant_Base_33,
+		BASECOLOR_GRADIENT_33,
 		Mix<
 			Int<16448>, 
 			Black, 
-			Gradiant_Base_33
+			BASECOLOR_GRADIENT_33
 		>
 	>
 >;
@@ -574,22 +536,22 @@ using DarkSaberStyle = AudioFlicker<
 			5000, 
 			-300, 
 			Mix<
-				Int<7710>, 
+				Int<7710>, //23%
 				Black, 
 				BASECOLOR
 			>,
 			Mix<
-				Int<25700>, 
+				Int<25700>, //80%
 				Black, 
 				BASECOLOR
 			>, 
 			Mix<
-				Int<1285>,
+				Int<1285>, //4%
 				Black, 
 				BASECOLOR
 			>, 
 			Mix<
-				Int<16384>, 
+				Int<16384>, //50%
 				Black, 
 				BASECOLOR
 			>
@@ -699,7 +661,6 @@ using Style1_FirePulseInteractive = Layers<
 	>
 >;
 
-/*
 // Smash Blade
 using Style1_SmashBlade = Layers<
 	StripesX<
@@ -944,9 +905,8 @@ using Style1_SmashBlade = Layers<
 			>
 		>,
 		Int<10000>
-	>,
+	>
 >;
-*/
 
 // Party Blade
 using Style1_PartyBlade = StyleFire<

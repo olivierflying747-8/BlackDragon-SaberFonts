@@ -79,3 +79,10 @@ using Ignition_LightningStrike = TrConcat<
 	>,
 	TrWipe<175>
 >;
+
+// Flash On
+using Ignition_Flash = TrConcat <
+	TrFade<300>, //TrInstant,
+	StrobeL<IGNITIONCOLOR, Int<0>, IgnitionTime<300>>,
+	TrFade<300>
+>;

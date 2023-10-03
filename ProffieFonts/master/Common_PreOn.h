@@ -214,3 +214,59 @@ using PreOn_Dim_Blade = TrConcat<
 	>,
 	TrInstant
 >;
+
+// Faulty Ignition
+using PreOn_Faulty_Ignition = TrConcat<
+	TrInstant,
+	AlphaL<
+		Mix<
+			Trigger<
+				EFFECT_PREON,
+				Mult<
+					Int<16384>,
+					WavLen<EFFECT_PREON>
+				>,
+				Mult<
+					Int<10922>,
+					WavLen<EFFECT_PREON>
+				>,
+				Mult<
+					Int<5462>,
+					WavLen<EFFECT_PREON>
+				>
+			>,
+			BrownNoiseFlicker<
+				Black,
+				PREONCOLOR,
+				100
+			>,
+			RandomPerLEDFlicker<
+				PREONCOLOR,
+				Rgb<50,50,50>
+			>,
+			BrownNoiseFlicker<
+				Mix<
+					NoisySoundLevel,
+					PREONCOLOR,
+					RotateColorsX<
+						Int<4000>,
+						PREONCOLOR
+					>
+				>,
+				White,
+				50
+			>
+		>,
+		SmoothStep<
+			Scale<
+				NoisySoundLevel,
+				Int<-10000>,
+				Int<36000>
+			>,
+			Int<-4000>
+		>
+	>,
+	TrDelayX<
+		WavLen<EFFECT_PREON>
+	>
+>;

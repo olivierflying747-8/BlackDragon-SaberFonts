@@ -4,7 +4,7 @@
 // AudioFlicker
 using Style2_AudioFilter = AudioFlicker<
 	TRANSPARENT,
-	ALTCOLOR2
+	RotateColorsX<Variation, ALTCOLOR2>
 >;
 
 // Random Flicker, BASE / ALT color
@@ -13,14 +13,8 @@ using Style2_RandomFlicker = RandomFlicker<
 	ALTCOLOR2
 >;
 
-// AudioFlicker with RotateColors (2 color)
-using Style2_AudioFilter_Rotate = AudioFlicker<
-	TRANSPARENT,
-	RotateColorsX<Variation, ALTCOLOR2>
->;
-
 // Pusling Blade
-using Style2_Pulsing_Rotate = Pulsing<
+using Style2_Pulsing = Pulsing<
 	TRANSPARENT,
 	RotateColorsX<Variation, ALTCOLOR2>,
 	1200
@@ -107,7 +101,7 @@ using Style2_StripesX_SlowNoise = AlphaL<
 		>,
 		Black,
 		Mix<
-			Int<10280>,
+			Int<10280>, //33%
 			Black,
 			ALTCOLOR2
 		>,
@@ -168,7 +162,6 @@ using Style2_Cylon = AlphaL<
 
 // Thunderstorm ???
 using Style2_LightningFlash = TransitionLoopL<
-	//TRANSPARENT,
 	TrConcat<
 		TrDelayX< // Random Timer
 			Scale<
@@ -182,19 +175,17 @@ using Style2_LightningFlash = TransitionLoopL<
 			Int<0>
 		>,
 		TrConcat<
-			TrInstant,
+			TrFade<100>,
 			AlphaL<
-				HumpFlickerL<Black, 16384>,
-				Bump<
-					Int<0>,
-					Int<32768>
+				HumpFlickerL<ALTCOLOR2, 16000>,
+				SmoothStep<
+					RandomF,
+					Int<16000>
 				>
 			>,
-			TrInstant
-		>,
+			TrFade<100>
+		>
 
-		TrBoing<500, 3>
-	
 		/*
 		TrBoing<500,3>,
 		Black,

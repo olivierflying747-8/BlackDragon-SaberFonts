@@ -1,7 +1,7 @@
 // ================================ COMMON CODE ===========================
 
 // Blade Angle / Lockup Position scale.
-using LockupScale = Scale<
+using LOCKUPSCALE = Scale<
 	BladeAngle<>, 
 	Scale<
 		BladeAngle<0, 16000>, 
@@ -27,8 +27,29 @@ using LockupScale = Scale<
 	*/
 >;
 
+// Blade Angle / Lockup Position Scale with SwingSpeed.
+using LOCKUPSCALESWING = Scale<
+	BladeAngle<>,
+	Scale<
+		BladeAngle<0,16000>,
+		Sum<
+			IntArg<LOCKUP_POSITION_ARG,16000>,
+			Int<-12000>
+		>,
+		Sum<
+			IntArg<LOCKUP_POSITION_ARG,16000>,
+			Int<10000>
+		>
+	>,
+	Scale<
+		SwingSpeed<100>,
+		Int<14000>,
+		Int<18000>
+	>
+>;
+
 // Lockup Clash Impact Color
-using LockupClashColor = Mix<
+using LOCKUPCLASHCOLOR = Mix<
 	IsLessThan<
 		ClashImpactF<>, 
 		Int<26000>
@@ -37,7 +58,7 @@ using LockupClashColor = Mix<
 	AlphaL<
 		LOCKUPCOLOR, 
 		Bump<
-			LockupScale,
+			LOCKUPSCALE,
 			Scale<
 				ClashImpactF<>, 
 				Int<20000>, 
@@ -119,9 +140,8 @@ using ShowBatteryLevelHilt = TrConcat<
 			Green
 		>,
 		Bump<
-			//Int<0>, //BatteryLevel
-			IntArg<EMITTER_SIZE_ARG, 2000>, //Int<12000>
-			Int<-1000>
+			Int<0>, //BatteryLevel
+			IntArg<EMITTER_SIZE_ARG, 2000> //Int<12000>
 		>
 	>,
 	TrFade<3000>

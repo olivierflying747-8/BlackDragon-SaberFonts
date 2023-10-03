@@ -31,7 +31,7 @@ using PostOff_EmitterCoolOff = TrConcat<
 		>
 	>,
 	TrFadeX<
-		Mult<
+		Mult<	
 			Scale<
 				IsLessThan<
 					WavLen<EFFECT_POSTOFF>,

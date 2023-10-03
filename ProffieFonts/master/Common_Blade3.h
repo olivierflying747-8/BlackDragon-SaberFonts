@@ -4,7 +4,7 @@
 // AudioFlicker
 using Style3_AudioFilter = AudioFlicker<
 	TRANSPARENT,
-	ALTCOLOR3
+	RotateColorsX<Variation, ALTCOLOR3>
 >;
 
 // Random Flicker, BASE / ALT color
@@ -13,14 +13,8 @@ using Style3_RandomFlicker = RandomFlicker<
 	ALTCOLOR3
 >;
 
-// AudioFlicker with RotateColors (2 color)
-using Style3_AudioFilter_Rotate = AudioFlicker<
-	TRANSPARENT,
-	RotateColorsX<Variation, ALTCOLOR3>
->;
-
 // Pusling Blade
-using Style3_Pulsing_Rotate = Pulsing<
+using Style3_Pulsing = Pulsing<
 	TRANSPARENT,
 	RotateColorsX<Variation, ALTCOLOR3>,
 	1200
@@ -232,5 +226,23 @@ using Style3_Emitter_Pulse = TransitionLoopL<
 			Int<250>,
 			Int<0>
 		>
+	>
+>;
+
+// Spark moving with BladeAngle
+using Style3_Spark_BladeAngle = AlphaL<
+	Mix<
+		BladeAngle<>,
+		AudioFlickerL<
+			RotateColorsX<Variation, ALTCOLOR3>
+		>,
+		PulsingL<
+			RotateColorsX<Variation, ALTCOLOR3>,
+			Int<100>
+		>
+	>,
+	Bump<
+		BladeAngle<0, 32000>,
+		Int<4000>
 	>
 >;
