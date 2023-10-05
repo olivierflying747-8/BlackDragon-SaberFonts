@@ -1,3 +1,62 @@
+// Hyper Rotoscope Intensity (Swing slows down speed param of stripes)
+
+	Mix<
+		HoldPeakF<
+			SwingSpeed<250>,
+			Scale<
+				SwingAcceleration<100>,
+				Int<50>,
+				Int<500>
+			>,
+			Scale<
+				SwingAcceleration<>,
+				Int<20000>,
+				Int<10000>
+			>
+		>,
+		RandomFlicker<
+			StripesX<
+				Int<15000>,
+				Scale<
+					HoldPeakF<
+						SwingSpeed<200>,
+						Scale<
+							SwingAcceleration<100>,
+							Int<50>,
+							Int<300>
+						>,
+						Scale<
+							SwingAcceleration<100>,
+							Int<24000>,
+							Int<16000>
+						>
+					>,
+					Int<-3200>,
+					Int<-200>
+				>,
+				RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>,
+				RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>,
+				Mix<
+					Int<7710>,
+					Black,
+					RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>
+				>,
+				RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>,
+				Mix<
+					Int<19276>,
+					Black,
+					RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>
+				>
+			>,
+			RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>
+		>,
+		RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>
+	>,
+
+
+
+
+
 			
 /*
 // Basic blade style, default color White.

@@ -1,7 +1,7 @@
 // ================================ COMMON CODE ===========================
 
-// Blade Angle / Lockup Position scale.
-using LOCKUPSCALE = Scale<
+// Blade Angle / Lockup Position.
+using LOCKUPPOSITION = Scale<
 	BladeAngle<>, 
 	Scale<
 		BladeAngle<0, 16000>, 
@@ -28,7 +28,7 @@ using LOCKUPSCALE = Scale<
 >;
 
 // Blade Angle / Lockup Position Scale with SwingSpeed.
-using LOCKUPSCALESWING = Scale<
+using LOCKUPPOSITIONSWING = Scale<
 	BladeAngle<>,
 	Scale<
 		BladeAngle<0,16000>,
@@ -58,7 +58,7 @@ using LOCKUPCLASHCOLOR = Mix<
 	AlphaL<
 		LOCKUPCOLOR, 
 		Bump<
-			LOCKUPSCALE,
+			LOCKUPPOSITION,
 			Scale<
 				ClashImpactF<>, 
 				Int<20000>, 

@@ -7,7 +7,7 @@ using Clash_EffectA = TransitionEffectL<
 		AlphaL<
 			CLASHCOLOR, 
 			Bump<
-				LOCKUPSCALE, 
+				LOCKUPPOSITION, 
 				Scale<
 					ClashImpactF<>, 
 					Int<12000>, 
@@ -41,7 +41,7 @@ using Clash_EffectB = TransitionEffectL<
 			Int<100>, 
 			Int<400>
 		>, 
-		LOCKUPSCALE
+		LOCKUPPOSITION
 	>, 
 	EFFECT_CLASH
 >;
@@ -60,7 +60,7 @@ using Clash_Update = TrWaveX<
 		Int<100>, 
 		Int<400>
 	>, 
-	LOCKUPSCALE
+	LOCKUPPOSITION
 >;
 
 // ================================ LOCKUP ================================
@@ -69,7 +69,7 @@ using Clash_Update = TrWaveX<
 using Lockup_Color_Style = AlphaMixL<
 	// Mix method
 	Bump<
-		LOCKUPSCALE,
+		LOCKUPPOSITION,
 		Scale<
 			SwingSpeed<100>, 
 			Int<14000>, 
@@ -116,7 +116,7 @@ using Lockup_Color_Style2 = TransitionEffect<
 			>
 		>,
 		Bump<
-			LOCKUPSCALE,
+			LOCKUPPOSITION,
 			Int<13000>
 		>
 	>,
@@ -124,6 +124,165 @@ using Lockup_Color_Style2 = TransitionEffect<
 		TrDelay<8000>,
 		TrInstant
 	>,
+	TrFade<3000>,
+	EFFECT_LOCKUP_BEGIN
+>;
+
+// Dual Lockup Style
+using Lockup_Color_Style3 = TransitionEffect<
+	Layers<
+		// Color Hump 1
+		AlphaMixL<
+			//Mix Method
+			Bump<
+				// Position (Move up/down with blade, min/max at middle)
+				Scale<
+					BladeAngle<>,
+					Scale<
+						BladeAngle<0,16000>,
+						Sum<
+							IntArg<LOCKUP_POSITION_ARG, 16000>,
+							Int<-12000>
+						>,
+						Sum<
+							IntArg<LOCKUP_POSITION_ARG, 16000>,
+							Int<10000>
+						>
+					>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG, 16000>,
+						Int<-10000>
+					>
+				>,
+				// Size
+				Scale<
+					//SwingSpeed<100>,
+					TwistAngle<>,
+					Int<14000>,
+					Int<18000>
+				>
+			>,
+			// Color A
+			BrownNoiseFlickerL<
+				LOCKUPCOLOR,
+				Int<200>
+			>,
+			// Color B
+			StripesX<
+				Int<1800>,
+				Scale<
+					NoisySoundLevel,
+					Int<-3500>,
+					Int<-5000>
+				>,
+				Mix<
+					Int<6425>,
+					Black,
+					LOCKUPCOLOR
+				>,
+				LOCKUPCOLOR,
+				Mix<
+					Int<12850>,
+					Black,
+					LOCKUPCOLOR
+				>
+			>
+		>,
+	// Color Hump 2
+		AlphaMixL<
+			//Mix Method
+			Bump<
+				// Position
+				Scale<
+					InvertF<BladeAngle<>>,
+					Scale<
+						InvertF<BladeAngle<16000, 32000>>,
+						Sum<
+							IntArg<LOCKUP_POSITION_ARG, 16000>,
+							Int<-12000>
+						>,
+						Sum<
+							IntArg<LOCKUP_POSITION_ARG, 16000>,
+							Int<10000>
+						>
+					>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG, 16000>,
+						Int<-10000>
+					>
+				>,
+				// Size
+				Scale<
+					TwistAngle<>, //SwingSpeed<100>,
+					Int<14000>,
+					Int<18000>
+				>
+			>,
+			// Color A
+			BrownNoiseFlickerL<
+				LOCKUPCOLOR,
+				Int<200>
+			>,
+			// Color B
+			StripesX<
+				Int<1800>,
+				Scale<
+					NoisySoundLevel,
+					Int<-3500>,
+					Int<-5000>
+				>,
+				Mix<
+					Int<6425>,
+					Black,
+					LOCKUPCOLOR
+				>,
+				LOCKUPCOLOR,
+				Mix<
+					Int<12850>,
+					Black,
+					LOCKUPCOLOR
+				>
+			>
+		>
+	>,
+	// Effect Color
+	AlphaL<
+		AudioFlicker<
+			LOCKUPCOLOR,
+			Mix<
+				Int<10280>,
+				Black,
+				LOCKUPCOLOR
+			>
+		>,
+		Bump<
+			Scale<
+				BladeAngle<>,
+				Scale<
+					BladeAngle<0,16000>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG,16000>,
+						Int<-12000>
+					>,
+					Sum<
+						IntArg<LOCKUP_POSITION_ARG,16000>,
+						Int<10000>
+					>
+				>,
+				Sum<
+					IntArg<LOCKUP_POSITION_ARG,16000>,
+					Int<-10000>
+				>
+			>,
+			Int<13000>
+		>
+	>,
+	// Transition 1
+	TrJoin<
+		TrDelay<8000>,
+		TrInstant
+	>,
+	// Transition 2
 	TrFade<3000>,
 	EFFECT_LOCKUP_BEGIN
 >;
@@ -152,7 +311,7 @@ using Lockup_Start = TrRandom<
 				>
 			>, 
 			Bump<
-				LOCKUPSCALE,
+				LOCKUPPOSITION,
 				Int<13000>
 			>
 		>, 
@@ -204,12 +363,12 @@ using Lockup_End = TrRandom<
 					Int<500>, 
 					Int<300>
 				>, 
-				LOCKUPSCALE
+				LOCKUPPOSITION
 			>, 
 			// Ripple
 			TrSparkX<
 				Remap<
-					CenterDistF<LOCKUPSCALE>, 
+					CenterDistF<LOCKUPPOSITION>,
 					Stripes<
 						1200, 
 						-3600, 
@@ -235,7 +394,7 @@ using Lockup_End = TrRandom<
 					Int<100>, 
 					Int<400>
 				>, 
-				LOCKUPSCALE
+				LOCKUPPOSITION
 			>
 		>
 	>,
@@ -252,13 +411,13 @@ using Lockup_End = TrRandom<
 			Int<300>,
 			Int<100>,
 			Int<400>,
-			LOCKUPSCALESWING
+			LOCKUPPOSITIONSWING
 		>
 	>,
 	// Effect C: Ripple
 	TrSparkX<
 		Remap<
-			CenterDistF<LOCKUPSCALE>,
+			CenterDistF<LOCKUPPOSITION>,
 			Stripes<
 				1200,
 				-3600,
@@ -284,19 +443,19 @@ using Lockup_End = TrRandom<
 			Int<50>,
 			Int<200>
 		>,
-		LOCKUPSCALE
+		LOCKUPPOSITION
 	>*/
 	// Power Burst
 	TrConcat<
 		TrCenterWipeX<
 			Int<150>,
-			LOCKUPSCALE
+			LOCKUPPOSITION
 		>,
 		LOCKUPCOLOR,
 		TrJoin<
 			TrCenterWipeX<
 				Int<150>,
-				LOCKUPSCALE
+				LOCKUPPOSITION
 			>,
 			TrSmoothFade<150>
 		>
@@ -480,7 +639,7 @@ using Stab_End = TrConcat <
 	TrWipe<200>
 >;
 
-// ===================================== Melt ==================================
+// ===================================== MELT ==================================
 
 // Melt Color Style (Responsive normal)
 using Melt_Color_Style = AlphaL<
