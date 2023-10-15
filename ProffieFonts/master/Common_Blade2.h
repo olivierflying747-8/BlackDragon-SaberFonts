@@ -103,13 +103,13 @@ using Style2_StripesX_SlowNoise = AlphaL<
 		Mix<
 			Int<10280>, //33%
 			Black,
-			ALTCOLOR2
+			RotateColorsX<Variation, ALTCOLOR2>
 		>,
 		Black,
 		Mix<
 			Int<2570>,
 			Black,
-			ALTCOLOR2
+			RotateColorsX<Variation, ALTCOLOR2>
 		>,
 		Black
 	>,

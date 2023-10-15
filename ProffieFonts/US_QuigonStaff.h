@@ -103,7 +103,7 @@ YELLOW
 #ifdef CONFIG_PRESETS
 
 // Master Font for Edit mode, create /customize your own blade styles using StylePtr<MasterStyle>() and Fett263's Edit Menu.
-#include "master/Master.h"
+#include "master/Master_v2.h"
 
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {

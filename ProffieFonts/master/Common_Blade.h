@@ -944,3 +944,81 @@ using Style1_PartyBlade = StyleFire<
 	FireConfig<0,2000,5>,
 	FireConfig<0,2000,5>
 >;
+
+// Ghost Buster
+using Style1_GhostBusterBlade = StaticFire<
+	Mix<
+		SmoothStep<
+			Int<2000>,
+			Int<-2000>
+		>,
+		Stripes<
+			16000,
+			-3900,
+			BASECOLOR,
+			Mix<
+				Int<8172>,
+				Black,
+				BASECOLOR
+			>,
+			Mix<
+				Int<16384>,
+				Black,
+				BASECOLOR
+			>,
+			Stripes<
+				2500,
+				-3500,
+				BASECOLOR,
+				BASECOLOR,
+				ALTCOLOR, // Blue
+				Mix<
+					Int<16000>,
+					Black,
+					BASECOLOR
+				>,
+				ALTCOLOR2 // DodgerBlue
+			>
+		>,
+		White // White
+	>,
+	ALTCOLOR, // Blue
+	0,
+	6,
+	1,
+	2000,
+	3
+>;
+
+// ElectroStaff Blade
+using Style1_StaffBlade = StyleFire<
+	Strobe<
+		RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
+		Strobe<
+			ALTCOLOR, //Rgb<100,100,150>
+			RandomPerLEDFlicker<
+				RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
+				Black
+			>,
+			50,
+			1
+		>,
+		100,
+		1
+	>,
+	RotateColorsX<
+		Variation,
+		//Rgb<23,0,65> // BASECOLOR / 0.3
+		Mix<
+			Int<16000>,
+			Black,
+			BASECOLOR
+		>
+	>,
+	0,
+	5,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>
+>;

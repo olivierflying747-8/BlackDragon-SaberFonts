@@ -1,7 +1,7 @@
 // ================================ SWING EFFECTS ===========================
 
-// Force Slow?
-using Swing_ForceSlow = TransitionEffectL<
+// Force Pulse
+using Swing_Force_Pulse = TransitionEffectL<
 	TrConcat<
 		TrExtend<
 			30000, 
@@ -19,6 +19,69 @@ using Swing_ForceSlow = TransitionEffectL<
 		TrFade<300>
 	>, 
 	EFFECT_FORCE
+>;
+
+// Force Aura
+using Swing_Force_Aura = TransitionEffectL<
+	TrConcat<
+		TrJoin<
+			TrDelay<30000>,
+			TrFade<300>
+		>,
+		AudioFlickerL<
+			SWINGCOLOR
+		>,
+		TrFade<300>
+	>,
+	EFFECT_FORCE
+>;
+
+// AudioFlicker Swing
+using Swing_AudioFlicker = AlphaL<
+	AudioFlickerL<SWINGCOLOR>,
+	Scale<
+		IsLessThan<
+			SwingSpeed<600>,
+			Int<13600>
+		>,
+		Scale<
+			SwingSpeed<600>,
+			Int<-19300>,
+			Int<32768>
+		>,
+		Int<0>
+	>
+>;
+
+// Fire Swing
+using Swing_Fire = AlphaL<
+	Stripes<
+		2800,
+		-3000,
+		RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>,
+		Mix<
+			Int<2096>,
+			Black,
+			RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>
+		>,
+		Mix<
+			Int<16384>,
+			Black,
+			RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>
+		>
+	>,
+	Scale<
+		IsLessThan<
+			SwingSpeed<600>,
+			Int<13600>
+		>,
+		Scale<
+			SwingSpeed<600>,
+			Int<-19300>,
+			Int<32768>
+		>,
+		Int<0>
+	>
 >;
 
 //Fett263 Ripple swing effect
@@ -86,7 +149,7 @@ using Swing_FettHard = AlphaL<
 		Mix<
 			Int<24576>, //75% white
 			SWINGCOLOR,
-			Rgb<255, 255, 255>
+			White
 		>
 	>,
 	Scale<
@@ -114,4 +177,379 @@ using Swing_Unstable = AlphaL<
 		300
 	>, 
 	SwingSpeed<400>
+>;
+
+//Interactive Power Build-up
+using Swing_Interactive_Power_Buildup = AlphaL<
+	StripesX<
+		Int<10000>,
+		Scale<
+			IncrementWithReset<
+				ThresholdPulseF<
+					Ifon<
+						StrobeF<
+							Int<12>,
+							Int<1>
+						>,
+						Int<0>
+					>,
+					Int<32000>
+				>,
+				ThresholdPulseF<
+					Ifon<
+						InvertF<
+							HoldPeakF<
+								SwingSpeed<400>,
+								Int<100>,
+								Int<33000>
+							>
+						>,
+						Int<0>
+					>,
+					Int<24000>
+				>,
+				Int<10000>,
+				Int<100>
+			>,
+			Int<-50>,
+			Int<-8000>
+		>,
+		Mix<
+			Int<10000>,
+			Black,
+			SWINGCOLOR
+		>,
+		Mix<
+			Int<20000>,
+			Black,
+			SWINGCOLOR
+		>,
+		SWINGCOLOR
+	>,
+	SmoothStep<
+		Sum<
+			IncrementWithReset<
+				ThresholdPulseF<
+					StrobeF<
+						Int<10>,
+						Int<1>
+					>,
+					Int<30000>
+				>,
+				ThresholdPulseF<
+					Ifon<
+						InvertF<
+							HoldPeakF<
+								SwingSpeed<400>,
+								Int<100>,
+								Int<38000>
+							>
+						>,
+						Int<0>
+					>,
+					Int<16000>
+				>,
+				Int<4000>,
+				Int<100>
+			>,
+			IncrementWithReset<
+				ThresholdPulseF<
+					Ifon<
+						HoldPeakF<
+							SwingSpeed<400>,
+							Int<100>,
+							Int<33000>
+						>,
+						Int<0>
+					>,
+					Int<16000>
+				>,
+				ThresholdPulseF<
+					Ifon<
+						InvertF<
+							HoldPeakF<
+								SwingSpeed<400>,
+								Int<100>,
+								Int<38000>
+							>
+						>,
+						Int<0>
+					>,
+					Int<16000>
+				>,
+				Int<38000>,
+				Int<38000>
+			>
+		>,
+		Int<-2000>
+	>
+>;
+		
+// Fireball Swing
+using Swing_Fireball = AlphaL<
+	AlphaMixL<
+		SmoothStep<
+			IncrementWithReset<
+				Scale<
+					IsGreaterThan<
+						HoldPeakF<
+							Ifon<
+								SwingSpeed<400>,
+								Int<0>
+							>,
+							Int<150>,
+							Int<32000>
+						>,
+						Int<18000>
+					>,
+					Int<0>,
+					ThresholdPulseF<
+						StrobeF<
+							Scale<
+								HoldPeakF<
+									Ifon<
+										SwingAcceleration<>,
+										Int<0>
+									>,
+									Int<150>,
+									Int<32000>
+								>,
+								Int<40>,
+								Int<400>
+							>,
+							Int<1>
+						>,
+						Int<32000>
+					>
+				>,
+				ThresholdPulseF<
+					IsLessThan<
+						HoldPeakF<
+							Ifon<
+								SwingSpeed<400>,
+								Int<0>
+							>,
+							Int<150>,
+							Int<32000>
+						>,
+						Int<8000>
+					>,
+					Int<32000>
+				>,
+				Int<42000>,
+				Int<1500>
+			>,
+			Scale<
+				HoldPeakF<
+					Ifon<
+						SwingSpeed<400>,
+						Int<0>
+					>,
+					Int<150>,
+					Int<32000>
+				>,
+				Int<3000>,
+				Int<10000>
+			>
+		>,
+		HumpFlicker<
+			RotateColorsX<
+				Int<1400>,
+				SWINGCOLOR
+			>,
+			RotateColorsX<
+				Int<3200>,
+				SWINGCOLOR
+			>,
+			20
+		>,
+		HumpFlicker<
+			RotateColorsX<
+				Int<1000>,
+				SWINGCOLOR
+			>,
+			RotateColorsX<
+				Int<400>,
+				SWINGCOLOR
+			>,
+			60
+		>,
+		RandomFlicker<
+			Mix<
+				Int<16384>,
+				Black,
+				SWINGCOLOR
+			>,
+			SWINGCOLOR
+		>
+	>,
+	LinearSectionF<
+		IncrementWithReset<
+			Scale<
+				IsGreaterThan<
+					HoldPeakF<
+						Ifon<
+							SwingSpeed<400>,
+							Int<0>
+						>,
+						Int<150>,
+						Int<32000>
+					>,
+					Int<18000>
+				>,
+				Int<0>,
+				ThresholdPulseF<
+					StrobeF<
+						Scale<
+							HoldPeakF<
+								Ifon<
+									SwingAcceleration<>,
+									Int<0>
+								>,
+								Int<150>,
+								Int<32000>
+							>,
+							Int<40>,
+							Int<400>
+						>,
+						Int<1>
+					>,
+					Int<32000>
+				>
+			>,
+			ThresholdPulseF<
+				IsLessThan<
+					HoldPeakF<
+						Ifon<
+							SwingSpeed<400>,
+							Int<0>
+						>,
+						Int<150>,
+						Int<32000>
+					>,
+					Int<8000>
+				>,
+				Int<32000>
+			>,
+			Int<42000>,
+			Int<1500>
+		>,
+		Scale<
+			HoldPeakF<
+				Ifon<
+					SwingSpeed<400>,
+					Int<0>
+				>,
+				Int<150>,
+				Int<32000>
+			>,
+			Int<3000>,
+			Int<10000>
+		>
+	>
+>;
+		
+// Lightning Swing
+using Swing_Lightning = AlphaL<
+	BrownNoiseFlickerL<
+		StripesX<
+			Int<2600>,
+			Scale<
+				IncrementWithReset<
+					ThresholdPulseF<
+						StrobeF<
+							Int<6>,
+							Int<1>
+						>,
+						Int<32000>
+					>,
+					ThresholdPulseF<
+						ThresholdPulseF<
+							IsLessThan<
+								HoldPeakF<
+									Ifon<
+										SwingSpeed<400>,
+										Int<0>
+									>,
+									Int<150>,
+									Int<32000>
+								>,
+								Int<8000>
+							>,
+							Int<32000>
+						>
+					>,
+					Int<30000>,
+					Int<3000>
+				>,
+				Int<-1200>,
+				Int<-4000>
+			>,
+			SWINGCOLOR,
+			Mix<
+				Int<16384>,
+				Black,
+				SWINGCOLOR
+			>,
+			Mix<
+				Int<16384>,
+				SWINGCOLOR,
+				White
+			>
+		>,
+		Int<50>
+	>,
+	SmoothStep<
+		IncrementWithReset<
+			Scale<
+				IsGreaterThan<
+					HoldPeakF<
+						Ifon<
+							SwingSpeed<400>,
+							Int<0>
+						>,
+						Int<150>,
+						Int<32000>
+					>,
+					Int<18000>
+				>,
+				Int<0>,
+				ThresholdPulseF<
+					StrobeF<
+						Scale<
+							HoldPeakF<
+								Ifon<
+									SwingAcceleration<>,
+									Int<0>
+								>,
+								Int<150>,
+								Int<32000>
+							>,
+							Int<20>,
+							Int<200>
+						>,
+						Int<1>
+					>,
+					Int<32000>
+				>
+			>,
+			ThresholdPulseF<
+				IsLessThan<
+					HoldPeakF<
+						Ifon<
+							SwingSpeed<400>,
+							Int<0>
+						>,
+						Int<150>,
+						Int<32000>
+					>,
+					Int<8000>
+				>,
+				Int<32000>
+			>,
+			Int<42000>,
+			Int<1500>
+		>,
+		Int<-8000>
+	>
 >;

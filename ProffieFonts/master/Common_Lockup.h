@@ -128,8 +128,30 @@ using Lockup_Color_Style2 = TransitionEffect<
 	EFFECT_LOCKUP_BEGIN
 >;
 
+// Lockup Color 3
+using Lockup_Color_Style3 = Layers<
+	AlphaL<
+		AudioFlickerL<LOCKUPCOLOR>,
+		Bump<
+			LOCKUPPOSITION,
+			Scale<
+				SwingSpeed<100>,
+				Int<14000>,
+				Int<18000>
+			>
+		>
+	>,
+	AlphaL<
+		LOCKUPCOLOR,
+		Bump<
+			LOCKUPPOSITION,
+			Int<10000>
+		>
+	>
+>;
+
 // Dual Lockup Style
-using Lockup_Color_Style3 = TransitionEffect<
+using Lockup_Color_Style4 = TransitionEffect<
 	Layers<
 		// Color Hump 1
 		AlphaMixL<

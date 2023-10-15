@@ -72,9 +72,15 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 
 Swing Effect Options:
 0: Disabled
-1: Force Slow
-2: Fett263's Swing Effect
-3: Unstable Swing effect
+1: Force Pulse
+2: Force Aura
+3: AudioFlicker
+4: Fire
+5: Fett263's Swing Effect
+6: Unstable Swing effect
+7: Power Buildup
+8: Fireball
+9: Lightning
 
 Preon Effect Options: 
 0: Disabled
@@ -171,6 +177,10 @@ using MasterStyle = Layers<
 		Style1_FirePulseInteractive,
 		// Option 15: Smash Blade
 		//Style1_SmashBlade,
+		// Option 16: ElectroStaff
+		//Style1_StaffBlade,
+		// Option 17: Ghostbuster
+		//Style1_GhostBusterBlade,
 
 		// Option 15: Party Blade
 		Style1_PartyBlade
@@ -257,9 +267,15 @@ using MasterStyle = Layers<
 		TrInstant, 
 		// Option 0: Disabled
 		TRANSPARENT,
-		// Option 1: Force Slow?
-		Swing_ForceSlow,
-		// Option 2: Fett263's Swing Effect
+		// Option 1: Force Pulse
+		Swing_Force_Pulse,
+		// Option 2: Force Aura
+		Swing_Force_Aura,
+		// Option 3: AudioFlicker
+		Swing_AudioFlicker,
+		// Option 4: Fire
+		Swing_Fire,
+		// Option 5: Fett263's Swing Effect
 		Layers <
 			//Fett263 Ripple swing effect
 			Swing_FettRipple,
@@ -267,13 +283,19 @@ using MasterStyle = Layers<
 			//Fett263 Bright hard swing effect
 			Swing_FettHard
 		>,
-		// Option 3: Unstable Swing
+		// Option 6: Unstable Swing
 		Layers <
 			//Unstable swing
 			Swing_Unstable,
 			//Unstable ripple swing
 			Swing_UnstableRippple
-		>
+		>,
+		// Option 7: Interactive Power Buildup
+		Swing_Interactive_Power_Buildup,
+		// Option 8: Fireball
+		Swing_Fireball,
+		// Option 9: Lightning
+		Swing_Lightning
 	>,
 	
 	// Multi blast effect
@@ -281,7 +303,7 @@ using MasterStyle = Layers<
 
 	MultiTransitionEffectL<
 		TrRandom<
-			/*
+		//	/*
 			// Option 1: Blast Wave (Random)
 			Blast_Wave_Random,
 			// Option 3: Blast Wave (Sound Based)
@@ -305,7 +327,7 @@ using MasterStyle = Layers<
 			// Option 11: Responsive Blast (Swing based)
 			Blast_Responsive_Swing
 			// */
-			Blast_Responsive_Wave
+		//	Blast_Responsive_Wave
 		>, 
 		EFFECT_BLAST
 	>, 
@@ -337,7 +359,9 @@ using MasterStyle = Layers<
 		EffectSequence<
 			EFFECT_LOCKUP_BEGIN,
 			Lockup_Color_Style,
-			Lockup_Color_Style2
+			Lockup_Color_Style2,
+			Lockup_Color_Style3,
+			Lockup_Color_Style4
 		>,
 		Lockup_Start, // EFFECT_LOCKUP_BEGIN
 		Lockup_End, // EFFECT_LOCKUP_END
@@ -504,11 +528,11 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_IGNITION
 	>,
-
+	/*
 	// Ignition Effect2?
 	TransitionEffectL<
 		TrSelect<
-			IntArg<IGNITION_OPTION2_ARG, 0>,
+			IntArg<IGNITION_OPTION2_ARG, 0>, // IGNITION_OPTION2_ARG increments in values of *1000, meant to be used for timing.
 			// Option 0: None
 			TrInstant, 
 			// Option 1: Power Flash
@@ -528,6 +552,7 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_IGNITION
 	>,
+	*/
 
 	// Retraction effect
 	TransitionEffectL<
@@ -550,11 +575,11 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_RETRACTION
 	>,
-
+	/*
 	// Retraction Effect 2?
 	TransitionEffectL<
 		TrSelect<
-			IntArg<RETRACTION_OPTION2_ARG, 0>,
+			IntArg<RETRACTION_OPTION2_ARG, 0>,  // RETRACTION_OPTION2_ARG increments in values of *1000, meant to be used for timing.
 			// Option 0: None
 			TrInstant, 
 			// Option 1: Power Flash
@@ -570,6 +595,7 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_RETRACTION
 	>,
+	*/
 
 	// Post Off
 	TransitionEffectL<
