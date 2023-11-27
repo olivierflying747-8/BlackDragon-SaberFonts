@@ -176,13 +176,13 @@ using MasterStyle = Layers<
 		// Option 14: Fireblade Interactive Pulse
 		Style1_FirePulseInteractive,
 		// Option 15: Smash Blade
-		//Style1_SmashBlade,
+		Style1_SmashBlade,
 		// Option 16: ElectroStaff
-		//Style1_StaffBlade,
+		Style1_StaffBlade,
 		// Option 17: Ghostbuster
-		//Style1_GhostBusterBlade,
+		Style1_GhostBusterBlade,
 
-		// Option 15: Party Blade
+		// Option 18: Party Blade
 		Style1_PartyBlade
 	>,
 
@@ -195,8 +195,6 @@ using MasterStyle = Layers<
 
 		// Option 5: Lightning flash?
 		Style2_LightningFlash,
-		// Option 2: StripesX Slownoise
-		Style2_StripesX_SlowNoise,
 
 		// Option 1: AudiFlicker ALTCOLOR3
 		Style2_AudioFilter,
@@ -206,18 +204,19 @@ using MasterStyle = Layers<
 		Style2_Pulsing,
 		// Option 4: Random LED Flicker (2 Color)
 		Style2_RandomPerLEDFlicker,
-
-		// Option 5: Hump Waves (2 color)
+		// Option 5: StripesX Slownoise
+		Style2_StripesX_SlowNoise,
+		// Option 6: Hump Waves (2 color)
 		Style2_HumpWave,
-		// Option 6: BrownNoise Stripes (ALT COLOR)
+		// Option 7: BrownNoise Stripes (ALT COLOR)
 		Style2_BrownNoiseFlicker,
-		// Option 7: Sparkles (ALTCOLOR3)
+		// Option 8: Sparkles (ALTCOLOR3)
 		Style2_Sparkle,
-		// Option 8: Underlying Fett263 Smoke Blade Fire layer (Alt color)
+		// Option 9: Underlying Fett263 Smoke Blade Fire layer (Alt color)
 		Style2_FireBlade,
-		// Option 9: Fire
+		// Option 10: Fire
 		Style2_Fire,
-		// Option 10: Cylon
+		// Option 11: Cylon
 		Style2_Cylon
 	>,
 
@@ -273,9 +272,11 @@ using MasterStyle = Layers<
 		Swing_Force_Aura,
 		// Option 3: AudioFlicker
 		Swing_AudioFlicker,
-		// Option 4: Fire
+		// Option 4: Sparkle
+		Swing_Sparkle,
+		// Option 5: Fire
 		Swing_Fire,
-		// Option 5: Fett263's Swing Effect
+		// Option 6: Fett263's Swing Effect
 		Layers <
 			//Fett263 Ripple swing effect
 			Swing_FettRipple,
@@ -283,18 +284,18 @@ using MasterStyle = Layers<
 			//Fett263 Bright hard swing effect
 			Swing_FettHard
 		>,
-		// Option 6: Unstable Swing
+		// Option 7: Unstable Swing
 		Layers <
 			//Unstable swing
 			Swing_Unstable,
 			//Unstable ripple swing
 			Swing_UnstableRippple
 		>,
-		// Option 7: Interactive Power Buildup
+		// Option 8: Interactive Power Buildup
 		Swing_Interactive_Power_Buildup,
-		// Option 8: Fireball
+		// Option 9: Fireball
 		Swing_Fireball,
-		// Option 9: Lightning
+		// Option 10: Lightning
 		Swing_Lightning
 	>,
 	
@@ -356,6 +357,8 @@ using MasterStyle = Layers<
 	
 	// Lockup
 	LockupTrL<
+		Lockup_Color_Style4,
+		/*
 		EffectSequence<
 			EFFECT_LOCKUP_BEGIN,
 			Lockup_Color_Style,
@@ -363,6 +366,7 @@ using MasterStyle = Layers<
 			Lockup_Color_Style3,
 			Lockup_Color_Style4
 		>,
+		*/
 		Lockup_Start, // EFFECT_LOCKUP_BEGIN
 		Lockup_End, // EFFECT_LOCKUP_END
 		SaberBase::LOCKUP_NORMAL
@@ -448,35 +452,39 @@ using MasterStyle = Layers<
 		// Ignition Options
 		TrSelect<
 			IntArg<IGNITION_OPTION_ARG, 0>, 
-			// Option 0: Standard
+			// Option 0: Instant, for letting the PreOn do the work
+			TrInstant,
+			// Option 1: Standard
 			Ignition_Standard,
-			// Option 1: Dual Mode wip (up = fast)
+			// Option 2: Dual Mode wip (up = fast)
 			Ignition_DualMode,
-			// Option 2: Spark Tip
+			// Option 3: Spark Tip
 			Ignition_SparkTip, 
-			// Option 3: Center Wipe
+			// Option 4: Center Wipe
 			Ignition_CenterWipe,
-			// Option 4: Color Cycle
+			// Option 5: Color Cycle
 			Ignition_ColorCycle,
-			// Option 5: Lightning Strike
+			// Option 6: Lightning Strike
 			Ignition_LightningStrike,
-			// Option 6: Flash On
+			// Option 7: Flash On
 			Ignition_Flash
 		>, 
 		// Retraction Options
 		TrSelect<
 			IntArg<RETRACTION_OPTION_ARG, 0>, 
-			// Option 0: Standard
+			// Option 0: Instant, for letting PostOff do the work
+			TrInstant, 
+			// Option 1: Standard
 			Retraction_Standard,
-			// Option 1: Dual Mode
+			// Option 2: Dual Mode
 			Retraction_DualMode,
-			// Option 2: Spark tip.
+			// Option 3: Spark tip.
 			Retraction_SparkTip,
-			// Option 3: Center Wipe
+			// Option 4: Center Wipe
 			Retraction_CenterWipe,
-			// Option 4, Color cycle
+			// Option 5, Color cycle
 			Retraction_ColorCycle,
-			// Option 5, Glitch off
+			// Option 6, Glitch off
 			Retraction_Glitch_Off
 		>, 
 		Black

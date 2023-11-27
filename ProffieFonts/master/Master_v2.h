@@ -273,9 +273,11 @@ using MasterStyle = Layers<
 		Swing_Force_Aura,
 		// Option 3: AudioFlicker
 		Swing_AudioFlicker,
-		// Option 4: Fire
+		// Option 4: Sparkle
+		Swing_Sparkle,
+		// Option 5: Fire
 		Swing_Fire,
-		// Option 5: Fett263's Swing Effect
+		// Option 6: Fett263's Swing Effect
 		Layers <
 			//Fett263 Ripple swing effect
 			Swing_FettRipple,
@@ -283,18 +285,18 @@ using MasterStyle = Layers<
 			//Fett263 Bright hard swing effect
 			Swing_FettHard
 		>,
-		// Option 6: Unstable Swing
+		// Option 7: Unstable Swing
 		Layers <
 			//Unstable swing
 			Swing_Unstable,
 			//Unstable ripple swing
 			Swing_UnstableRippple
 		>,
-		// Option 7: Interactive Power Buildup
+		// Option 8: Interactive Power Buildup
 		Swing_Interactive_Power_Buildup,
-		// Option 8: Fireball
+		// Option 9: Fireball
 		Swing_Fireball,
-		// Option 9: Lightning
+		// Option 10: Lightning
 		Swing_Lightning
 	>,
 	
@@ -451,35 +453,39 @@ using MasterStyle = Layers<
 		// Ignition Options
 		TrSelect<
 			IntArg<IGNITION_OPTION_ARG, 0>, 
-			// Option 0: Standard
+			// Option 0: Instant, for letting the PreOn do the work
+			TrInstant,
+			// Option 1: Standard
 			Ignition_Standard,
-			// Option 1: Dual Mode wip (up = fast)
+			// Option 2: Dual Mode wip (up = fast)
 			Ignition_DualMode,
-			// Option 2: Spark Tip
+			// Option 3: Spark Tip
 			Ignition_SparkTip, 
-			// Option 3: Center Wipe
+			// Option 4: Center Wipe
 			Ignition_CenterWipe,
-			// Option 4: Color Cycle
+			// Option 5: Color Cycle
 			Ignition_ColorCycle,
-			// Option 5: Lightning Strike
+			// Option 6: Lightning Strike
 			Ignition_LightningStrike,
-			// Option 6: Flash On
+			// Option 7: Flash On
 			Ignition_Flash
 		>, 
 		// Retraction Options
 		TrSelect<
 			IntArg<RETRACTION_OPTION_ARG, 0>, 
-			// Option 0: Standard
+			// Option 0: Instant, for letting the PostOff do the work
+			TrInstant,
+			// Option 1: Standard
 			Retraction_Standard,
-			// Option 1: Dual Mode
+			// Option 2: Dual Mode
 			Retraction_DualMode,
-			// Option 2: Spark tip.
+			// Option 3: Spark tip.
 			Retraction_SparkTip,
-			// Option 3: Center Wipe
+			// Option 4: Center Wipe
 			Retraction_CenterWipe,
-			// Option 4, Color cycle
+			// Option 5, Color cycle
 			Retraction_ColorCycle,
-			// Option 5, Glitch off
+			// Option 6, Glitch off
 			Retraction_Glitch_Off
 		>, 
 		Black

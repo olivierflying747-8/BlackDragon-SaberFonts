@@ -53,6 +53,23 @@ using Swing_AudioFlicker = AlphaL<
 	>
 >;
 
+// Sparkle Swing
+using Swing_Sparkle = AlphaL<
+	SparkleL<SWINGCOLOR>,
+	Scale<
+		IsLessThan<
+			SwingSpeed<600>,
+			Int<13600>
+		>,
+		Scale<
+			SwingSpeed<600>,
+			Int<-19300>,
+			Int<32768>
+		>,
+		Int<0>
+	>
+>;
+
 // Fire Swing
 using Swing_Fire = AlphaL<
 	Stripes<

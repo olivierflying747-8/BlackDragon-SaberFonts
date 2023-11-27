@@ -5,6 +5,8 @@
 #define VOLUME 1700
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 17.0
+#define MOTION_TIMEOUT 60 * 10 * 1000
+#define IDLE_OFF_TIME 60 * 10 * 1000
 #define ENABLE_AUDIO
 #define ENABLE_MOTION
 #define ENABLE_WS2811
@@ -15,12 +17,12 @@ const unsigned int maxLedsPerStrip = 144;
 //#define SAVE_PRESET
 //#define SAVE_STATE
 //#define NO_LOCKUP_HOLD
-#define COLOR_CHANGE_DIRECT
+#define COLOR_CHANGE_DIRECT // this enables "click to change"
+// this disables some diagnostic commands to save memory
 #define DISABLE_DIAGNOSTIC_COMMANDS
-//#define COLOR_CHANGE_DIRECT
-   // this enables "click to change"
-#define DISABLE_DIAGNOSTIC_COMMANDS
-   // this disables some diagnostic commands to save memory
+//#define DISABLE_TALKIE // Changes talky to simple beeps
+#define FEMALE_TALKIE_VOICE
+#define NO_REPEAT_RANDOM
 //#define FETT263_TWIST_ON
 //#define FETT263_TWIST_ON_NO_BM
 //#define FETT263_TWIST_OFF
@@ -31,15 +33,12 @@ const unsigned int maxLedsPerStrip = 144;
 #define FETT263_THRUST_ON_NO_BM
 #define FETT263_STAB_ON
 #define FETT263_STAB_ON_NO_BM
-#define FETT263_MULTI_PHASE
 #define FETT263_BATTLE_MODE
 #define FETT263_LOCKUP_DELAY 200
 #define FETT263_FORCE_PUSH
 #define FETT263_SAY_BATTERY_PERCENT
-#define MOTION_TIMEOUT 60 * 15 * 1000
-#define IDLE_OFF_TIME 60 * 10 * 1000
-#define NO_REPEAT_RANDOM
-
+#define FETT263_SPECIAL_ABILITIES //#define FETT263_MULTI_PHASE
+// Edit Mode
 #define FETT263_EDIT_MODE_MENU
 #define ENABLE_ALL_EDIT_OPTIONS
 #define DISABLE_BASIC_PARSER_STYLES
@@ -103,7 +102,7 @@ YELLOW
 #ifdef CONFIG_PRESETS
 
 // Master Font for Edit mode, create /customize your own blade styles using StylePtr<MasterStyle>() and Fett263's Edit Menu.
-#include "master/Master_v2.h"
+#include "master/Master_v3.h"
 
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {

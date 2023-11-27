@@ -163,13 +163,8 @@ using Style2_Cylon = AlphaL<
 // Thunderstorm ???
 using Style2_LightningFlash = TransitionLoopL<
 	TrConcat<
-		TrDelayX< // Random Timer
-			Scale<
-				SlowNoise<Int<3000>>,
-				Int<100>,
-				Int<2000>
-			>
-		>,
+		TrBoing<500, 3>,
+
 		AlphaL< // Invisible color
 			ALTCOLOR,
 			Int<0>
@@ -184,6 +179,14 @@ using Style2_LightningFlash = TransitionLoopL<
 				>
 			>,
 			TrFade<100>
+		>,
+
+		TrDelayX< // Random Timer
+			Scale<
+				SlowNoise<Int<3000>>,
+				Int<100>,
+				Int<2000>
+			>
 		>
 
 		/*

@@ -178,8 +178,7 @@ using Lockup_Color_Style4 = TransitionEffect<
 				>,
 				// Size
 				Scale<
-					//SwingSpeed<100>,
-					TwistAngle<>,
+					TwistAngle<>, //SwingSpeed<100>,
 					Int<14000>,
 					Int<18000>
 				>
@@ -221,16 +220,16 @@ using Lockup_Color_Style4 = TransitionEffect<
 						InvertF<BladeAngle<16000, 32000>>,
 						Sum<
 							IntArg<LOCKUP_POSITION_ARG, 16000>,
-							Int<-12000>
+							Int<12000>
 						>,
 						Sum<
 							IntArg<LOCKUP_POSITION_ARG, 16000>,
-							Int<10000>
+							Int<-10000>
 						>
 					>,
 					Sum<
 						IntArg<LOCKUP_POSITION_ARG, 16000>,
-						Int<-10000>
+						Int<10000>
 					>
 				>,
 				// Size
