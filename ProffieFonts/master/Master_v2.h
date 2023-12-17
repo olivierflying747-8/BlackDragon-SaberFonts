@@ -25,18 +25,18 @@ Style Options:
 2: RandomFlicker (Base Color, Alt Color)
 3: Pulsing (Base Color, Alt Color)
 4: Stripes blade (Base Color)
-
-5: Unstable Blade (Base Color)
-6: Fire Blade (Base Color)
-7: Flicker Blade (Base Color)
-8: Thunderstorm blade (Base Color, Alt Color)
-9: Fett263 Smoke Blade style. (Base Color)
-10: Glitchy / Broken blade. (Base Color)
-11: Coda blade style w/ swing effects. (Base Color, Alt Color, Alt Color 2)
+5: Stripes SlowNoise (Base Color)
+6: Stripes Unstable (Base Color)
+7: Fire Blade (Base Color)
+8: Flicker Blade (Base Color)
+9: Thunderstorm blade (Base Color, Alt Color)
+10: Fett263 Smoke Blade style. (Base Color)
+11: Glitchy / Broken blade. (Base Color)
 12: DarkSaber (Base Color, Alt Color)
-13: Fire Pulse Blade (Interactive)
-14: 
-15: Party Blade (No Colors, Rainbow)
+13: Smash Blade
+14: Electro Staff Blade
+15: Ghost Buster blade
+16: Party Blade (No Colors, Rainbow)
 
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
@@ -45,12 +45,13 @@ STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
 2: RandomFlicker (Alt Color 2)
 3: Pulsing (Alt Color 2)
 4: Unstable (Alt Color 2)
-5: Waves (Alt Color, Alt Color 2)
-6: Flicker Blade (Alt Color 2)
-7: Sparkles (Alt Color 2)
-8: Fett263 FireBlade (Alt Color 2)
-9: Fire (Alt Color, Alt Color 2)
-10: Cylon (Alt Color 2)
+5: Stripes (Slow Noise) (Alt Color 2)
+6: Waves (Alt Color, Alt Color 2)
+7: Flicker Blade (Alt Color 2)
+8: Sparkles (Alt Color 2)
+9: Fett263 FireBlade (Alt Color 2)
+10: Fire (Alt Color, Alt Color 2)
+11: Cylon (Alt Color 2)
 
 STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 0: Disabled
@@ -66,21 +67,21 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 10: Cylon (Alt Color 3)
 11: Emitter Flare (Emiter Color)
 12: Emitter Flare (pulsing) (Emitter Color)
-13: Spark Tip (Alt Color 3)
-14: Emitter Pulse (Alt Color 3)
-15: Blade Spark (Interactive, Alt Color 3)
+13: Emitter Pulse (Alt Color 3)
+14: Blade Spark (Interactive, Alt Color 3)
 
 Swing Effect Options:
 0: Disabled
 1: Force Pulse
 2: Force Aura
 3: AudioFlicker
-4: Fire
-5: Fett263's Swing Effect
-6: Unstable Swing effect
-7: Power Buildup
-8: Fireball
-9: Lightning
+4: Sparkle
+5: Fire
+6: Fett263's Swing Effect
+7: Unstable Swing effect
+8: Power Buildup
+9: Fireball
+10: Lightning
 
 Preon Effect Options: 
 0: Disabled
@@ -88,41 +89,50 @@ Preon Effect Options:
 2: Sparking (PreOn Color)
 3: Broken Ignition
 4: Emitter Warm up
-5: Blade Pre-Light up
+5: Faulty Ignition
+6: Blade Pre-Light up
 
 PostOff Effect Options:
 0: Disabled
 1: Emitter Cooldown (PostOff Color)
 
 Ignition Effect Options: 
-0: Standard Ignition 
-1: SparkTip Ignition 
+0: Instant
+1: Standard Ignition 
 2: Dual Mode Wipe (Up = Fast)
-3: Center Wipe
-4: Color Cycle
+3: SparkTip Ignition
+4: Center Wipe
+5: Color Cycle
+6: Lightning Strike
+7: Flash
 
 Retraction Effect Options:
-0: Standard Retraction
-1: SparkTip Retraction
-2: Dual Mode Wipe In (Up = Fast)
-3: Center Wipe
-4: Color Cycle
-5: Glitch off
+0: Instant
+1: Standard Retraction
+2: SparkTip Retraction
+3: Dual Mode Wipe In (Up = Fast)
+4: Center Wipe
+5: Color Cycle
+6: Glitch off
 
 PowerUp Effect Options:
 0: Disabled
-1: Glitch on
-2: Unstable Power Up Forward
-3: Power Burst Forward
-4: Unstable Bright
-5: Stabalize
+1: Glitch on (Power Flash)
+2: Power Surge
+3: Flash Fade
+4: Power Burst Forward
+5: Unstable Power Up Forward
+6: Unstable Bright
+7: Stabalize
 
 CoolDown Effect Options:
 0: Disabled
-1: Unstable Cool Down Reverse
+1: Glitch off (Flash)
 2: Power Burst Reverse
-3: Bright Humpflicker
-4: Smokeblade + Emitter Cooldown
+3: Unstable Cool Down Reverse
+4: Bright Humpflicker
+5: Smoke Blade Retraction
+6: Smokeblade + Emitter Cooldown
 
 Lockup Effect: Intensity Lockup V1
 
@@ -167,23 +177,22 @@ using MasterStyle = Layers<
 		Style1_SmokeBlade,
 		// Option 11: Flickery / Broken blade
 		Style1_FlickerBlade,
-
-
-		// Option 12: Coda
-//		CodaBladeStyle,
-		// Option 13: Darksaber blade
+		// Option 12: Darksaber blade
 		DarkSaberStyle,
-		// Option 14: Fireblade Interactive Pulse
-//		Style1_FirePulseInteractive,
-		// Option 15: Smash Blade
+		// Option 13: Smash Blade
 		Style1_SmashBlade,
-		// Option 16: ElectroStaff
+		// Option 14: ElectroStaff
 		Style1_StaffBlade,
-		// Option 17: Ghostbuster
+		// Option 15: Ghostbuster
 		Style1_GhostBusterBlade,
 
-		// Option 15: Party Blade
+		// Option 16: Party Blade
 		Style1_PartyBlade
+
+		// Option 17: Coda
+//		CodaBladeStyle,
+		// Option 18: Fireblade Interactive Pulse
+//		Style1_FirePulseInteractive,
 	>,
 
 	// Secondary blade Styles
@@ -195,8 +204,6 @@ using MasterStyle = Layers<
 
 		// Option 5: Lightning flash?
 //		Style2_LightningFlash,
-		// Option 2: StripesX Slownoise
-		Style2_StripesX_SlowNoise,
 
 		// Option 1: AudiFlicker ALTCOLOR3
 		Style2_AudioFilter,
@@ -206,18 +213,19 @@ using MasterStyle = Layers<
 		Style2_Pulsing,
 		// Option 4: Random LED Flicker (2 Color)
 		Style2_RandomPerLEDFlicker,
-
-		// Option 5: Hump Waves (2 color)
+		// Option 5: StripesX Slownoise
+		Style2_StripesX_SlowNoise,
+		// Option 6: Hump Waves (2 color)
 		Style2_HumpWave,
-		// Option 6: BrownNoise Stripes (ALT COLOR)
+		// Option 7: BrownNoise Stripes (ALT COLOR)
 		Style2_BrownNoiseFlicker,
-		// Option 7: Sparkles (ALTCOLOR3)
+		// Option 8: Sparkles (ALTCOLOR3)
 		Style2_Sparkle,
-		// Option 8: Underlying Fett263 Smoke Blade Fire layer (Alt color)
+		// Option 9: Underlying Fett263 Smoke Blade Fire layer (Alt color)
 		Style2_FireBlade,
-		// Option 9: Fire
+		// Option 10: Fire
 		Style2_Fire,
-		// Option 10: Cylon
+		// Option 11: Cylon
 		Style2_Cylon
 	>,
 
@@ -466,9 +474,9 @@ using MasterStyle = Layers<
 			// Option 5: Color Cycle
 			Ignition_ColorCycle,
 			// Option 6: Lightning Strike
-			Ignition_LightningStrike,
+			Ignition_LightningStrike
 			// Option 7: Flash On
-			Ignition_Flash
+//			Ignition_Flash // Causes board to lock up???
 		>, 
 		// Retraction Options
 		TrSelect<

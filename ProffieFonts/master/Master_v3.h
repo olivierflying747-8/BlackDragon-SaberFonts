@@ -168,7 +168,6 @@ using MasterStyle = Layers<
 		// Option 11: Flickery / Broken blade
 		Style1_FlickerBlade,
 
-
 		// Option 12: Coda
 		CodaBladeStyle,
 		// Option 13: Darksaber blade
@@ -465,9 +464,9 @@ using MasterStyle = Layers<
 			// Option 5: Color Cycle
 			Ignition_ColorCycle,
 			// Option 6: Lightning Strike
-			Ignition_LightningStrike,
+			Ignition_LightningStrike
 			// Option 7: Flash On
-			Ignition_Flash
+//			Ignition_Flash // Causes board to lock up???
 		>, 
 		// Retraction Options
 		TrSelect<
