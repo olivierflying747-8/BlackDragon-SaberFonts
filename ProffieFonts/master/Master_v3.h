@@ -512,7 +512,6 @@ using MasterStyle = Layers<
 		EFFECT_PREON
 	>,
 
-	// TODO: add IGNITION_OPTION2_ARG / RETRACTION_OPTION2_ARG options
 	// Ignition Effect
 	TransitionEffectL<
 		TrSelect<
@@ -536,31 +535,6 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_IGNITION
 	>,
-	/*
-	// Ignition Effect2?
-	TransitionEffectL<
-		TrSelect<
-			IntArg<IGNITION_OPTION2_ARG, 0>, // IGNITION_OPTION2_ARG increments in values of *1000, meant to be used for timing.
-			// Option 0: None
-			TrInstant, 
-			// Option 1: Power Flash
-			Powerup_Flash,
-			// Option 2: Power Surge (Stable)
-			Powerup_Surge,
-			// Option 3: Flash on
-			Powerup_Flash_Fade,
-			// Option 4: Power Burst Forward
-			Powerup_Burst_Forward,
-			// Option 5: Unstable Power Up Forward
-			Powerup_Unstable_Forward,
-			// Option 6: //Fett263 Unstable bright ignition effect
-			Powerup_Unstable_Bright_Forward,
-			// Option 7: Stabilize ignition
-			Powerup_Stabalize
-		>,
-		EFFECT_IGNITION
-	>,
-	*/
 
 	// Retraction effect
 	TransitionEffectL<
@@ -583,27 +557,6 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_RETRACTION
 	>,
-	/*
-	// Retraction Effect 2?
-	TransitionEffectL<
-		TrSelect<
-			IntArg<RETRACTION_OPTION2_ARG, 0>,  // RETRACTION_OPTION2_ARG increments in values of *1000, meant to be used for timing.
-			// Option 0: None
-			TrInstant, 
-			// Option 1: Power Flash
-			PowerDown_Flash,
-			// Option 2: Unstable Cool Down Reverse
-			PowerDown_Burst_Reverse,
-			// Option 3: Power Burst Reverse
-			PowerDown_Unstable_Reverse,
-			// Option 4: //Fett263 Bright Humpflicker retraction effect
-			PowerDown_Bright_Hump,
-			// Option 5: Smoke Blade Retraction, Emitter Cooldown
-			PowerDown_Smoke_Reverse
-		>,
-		EFFECT_RETRACTION
-	>,
-	*/
 
 	// Post Off
 	TransitionEffectL<
