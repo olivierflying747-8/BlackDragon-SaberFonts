@@ -192,8 +192,6 @@ using MasterStyle = Layers<
 		// Option 0 Off
 		TRANSPARENT,
 
-		// Option 5: Lightning flash?
-		Style2_LightningFlash,
 
 		// Option 1: AudiFlicker ALTCOLOR3
 		Style2_AudioFilter,
@@ -205,18 +203,22 @@ using MasterStyle = Layers<
 		Style2_RandomPerLEDFlicker,
 		// Option 5: StripesX Slownoise
 		Style2_StripesX_SlowNoise,
+		// Option 6: HumpFlicker Random (ALT COLOR 2)
+		Style2_HumpFlicker_Random,
 		// Option 6: Hump Waves (2 color)
 		Style2_HumpWave,
 		// Option 7: BrownNoise Stripes (ALT COLOR)
 		Style2_BrownNoiseFlicker,
-		// Option 8: Sparkles (ALTCOLOR3)
+		// Option 8: Sparkles (ALTCOLOR2)
 		Style2_Sparkle,
 		// Option 9: Underlying Fett263 Smoke Blade Fire layer (Alt color)
 		Style2_FireBlade,
 		// Option 10: Fire
 		Style2_Fire,
 		// Option 11: Cylon
-		Style2_Cylon
+		Style2_Cylon,
+		// Option 12: Lightning flash?
+		Style2_LightningFlash
 	>,
 
 	// Tirtiary blade Styles
@@ -237,6 +239,8 @@ using MasterStyle = Layers<
 		Style3_Pulsing,
 		// Option 4: Random LED Flicker (2 Color) (ALTCOLOR2, ALTCOLOR3)
 		Style3_RandomPerLEDFlicker,
+		// Option 5: HumpFlicker Random (ALT COLOR 2)
+		Style3_HumpFlicker_Random,
 		// Option 6: Hump Waves (2 color)
 		Style3_HumpWave,
 		// Option 7: BrownNoise Stripes (ALTCOLOR3)
@@ -256,7 +260,9 @@ using MasterStyle = Layers<
 		// Option 14: Emitter Pulse
 		Style3_Emitter_Pulse,
 		// Option 15: Blade Angle Flare
-		Style3_Spark_BladeAngle
+		Style3_Spark_BladeAngle,
+		// Option 16: Lightning Flash
+		Style3_LightningFlash
 	>,
 	
 	// Swing Options/Force Effect options
@@ -464,9 +470,9 @@ using MasterStyle = Layers<
 			// Option 5: Color Cycle
 			Ignition_ColorCycle,
 			// Option 6: Lightning Strike
-			Ignition_LightningStrike
+			Ignition_LightningStrike,
 			// Option 7: Flash On
-//			Ignition_Flash // Causes board to lock up???
+			Ignition_Flash // Causes board to lock up???
 		>, 
 		// Retraction Options
 		TrSelect<

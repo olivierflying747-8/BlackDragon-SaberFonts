@@ -168,7 +168,7 @@ using MasterStyle = Layers<
 		// Option 6: Unstable Stripes
 		Style1_Stripes_RandomPerLEDFlicker,
 		// Option 7: Fire blade
-		Style1_FireBlade,
+		//Style1_FireBlade, // Looks too similar to BrownNoiseFlicker
 		// Option 8: BrownNoise
 		Style1_BrownNoiseFlicker,
 		// Option 9: Thunderstorm
@@ -474,9 +474,9 @@ using MasterStyle = Layers<
 			// Option 5: Color Cycle
 			Ignition_ColorCycle,
 			// Option 6: Lightning Strike
-			Ignition_LightningStrike
+			Ignition_LightningStrike,
 			// Option 7: Flash On
-//			Ignition_Flash // Causes board to lock up???
+			Ignition_Flash // Causes board to lock up???
 		>, 
 		// Retraction Options
 		TrSelect<

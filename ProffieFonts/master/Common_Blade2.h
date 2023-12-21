@@ -33,6 +33,15 @@ using Style2_RandomPerLEDFlicker = AlphaL<
 	Int<16384>
 >;
 
+// Hump Flicker L (AltColor2, Random Position)
+using Style2_HumpFlicker_Random = AlphaL<
+	HumpFlickerL<ALTCOLOR2, 10>,
+	Bump<
+		RandomF,
+		Int<20000>
+	>
+>;
+
 // Hump Waves (2 Color)
 using Style2_HumpWave = Layers <
 	TransitionLoopL<
@@ -160,27 +169,25 @@ using Style2_Cylon = AlphaL<
 	Int<16384>
 >;
 
-// Thunderstorm ???
-using Style2_LightningFlash = TransitionLoopL<
+// Lightning Flash
+using Style2_LightningFlash = TransitionLoop<
+	AlphaL< // Invisible color
+		ALTCOLOR2,
+		Int<0>
+	>,
 	TrConcat<
 		TrBoing<500, 3>,
-
-		AlphaL< // Invisible color
-			ALTCOLOR,
-			Int<0>
-		>,
 		TrConcat<
 			TrFade<100>,
 			AlphaL<
-				HumpFlickerL<ALTCOLOR2, 16000>,
-				SmoothStep<
+				HumpFlickerL<ALTCOLOR2, 10>,
+				Bump<
 					RandomF,
-					Int<16000>
+					Int<20000>
 				>
 			>,
 			TrFade<100>
 		>,
-
 		TrDelayX< // Random Timer
 			Scale<
 				SlowNoise<Int<3000>>,
@@ -188,42 +195,5 @@ using Style2_LightningFlash = TransitionLoopL<
 				Int<2000>
 			>
 		>
-
-		/*
-		TrBoing<500,3>,
-		Black,
-		Layers<
-			Stripes<
-				10000,
-				100,
-				RotateColorsX<Variation, BASECOLOR_50>,
-				RotateColorsX<
-					Variation,
-					Mix<
-						Int<4096>, //12.5%
-						Black, 
-						BASECOLOR
-					>
-				>,
-				RotateColorsX<Variation, ALTCOLOR3>
-			>,
-			AlphaL<
-				Stripes<
-					8000,
-					-200,
-					RotateColorsX<Variation, BASECOLOR>,
-					RotateColorsX<Variation, ALTCOLOR_25>
-				>,
-				Int<16384> //50%
-			>
-		>,
-		TrDelayX< // Random Timer
-			Scale<
-				SlowNoise<Int<3000>>,
-				Int<100>,
-				Int<2000>
-			>
-		>
-	//	*/
 	>
 >;

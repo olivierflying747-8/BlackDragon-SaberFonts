@@ -33,6 +33,15 @@ using Style3_RandomPerLEDFlicker = AlphaL<
 	Int<16384>
 >;
 
+// Hump Flicker L (AltColor3, Random Position)
+using Style3_HumpFlicker_Random = AlphaL<
+	HumpFlickerL<ALTCOLOR3, 10>,
+	Bump<
+		RandomF,
+		Int<20000>
+	>
+>;
+
 // Hump Waves (2 Color)
 using Style3_HumpWave = Layers <
 	TransitionLoopL<
@@ -148,6 +157,35 @@ using Style3_Fire = AlphaL<
 		2
 	>,
 	Int<16384>
+>;
+
+// Lightning Flashes
+using Style3_LightningFlash = TransitionLoop<
+	AlphaL< // Invisible color
+		ALTCOLOR3,
+		Int<0>
+	>,
+	TrConcat<
+		TrBoing<500, 3>,
+		TrConcat<
+			TrFade<100>,
+			AlphaL<
+				HumpFlickerL<ALTCOLOR3, 10>,
+				Bump<
+					RandomF,
+					Int<20000>
+				>
+			>,
+			TrFade<100>
+		>,
+		TrDelayX< // Random Timer
+			Scale<
+				SlowNoise<Int<3000>>,
+				Int<100>,
+				Int<2000>
+			>
+		>
+	>
 >;
 
 // Cylon
