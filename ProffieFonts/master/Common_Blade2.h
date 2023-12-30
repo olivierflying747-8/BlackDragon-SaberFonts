@@ -7,7 +7,7 @@ using Style2_AudioFilter = AudioFlicker<
 	RotateColorsX<Variation, ALTCOLOR2>
 >;
 
-// Random Flicker, BASE / ALT color
+// Random Flicker
 using Style2_RandomFlicker = RandomFlicker<
 	TRANSPARENT,
 	ALTCOLOR2
@@ -20,17 +20,10 @@ using Style2_Pulsing = Pulsing<
 	1200
 >;
 
-// RandomPerLEDFlicker (2 Color)
-using Style2_RandomPerLEDFlicker = AlphaL<
-	RandomPerLEDFlicker<
-		Black,
-		Mix<
-			Int<3855>,
-			Black,
-			ALTCOLOR2
-		>
-	>,
-	Int<16384>
+// RandomPerLEDFlicker
+using Style2_RandomPerLEDFlicker = RandomPerLEDFlicker<
+		TRANSPARENT,
+		ALTCOLOR2
 >;
 
 // Hump Flicker L (AltColor2, Random Position)
@@ -99,6 +92,7 @@ using Style2_BrownNoiseFlicker = BrownNoiseFlicker<
 	200
 >;
 
+/* // Stripes doens't support Transparency, so it never looks good.
 // StripesX Slownoise
 using Style2_StripesX_SlowNoise = AlphaL<
 	StripesX<
@@ -124,6 +118,7 @@ using Style2_StripesX_SlowNoise = AlphaL<
 	>,
 	Int<16384>
 >;
+*/
 
 // Fett263 Smoke Blade Fire layer, ALT Color
 using Style2_FireBlade = AlphaL <
@@ -159,16 +154,6 @@ using Style2_Fire = AlphaL<
 	Int<16384>
 >;
 
-// Cylon
-using Style2_Cylon = AlphaL<
-	Cylon<
-		ALTCOLOR2,
-		5,
-		20
-	>,
-	Int<16384>
->;
-
 // Lightning Flash
 using Style2_LightningFlash = TransitionLoop<
 	AlphaL< // Invisible color
@@ -194,6 +179,46 @@ using Style2_LightningFlash = TransitionLoop<
 				Int<100>,
 				Int<2000>
 			>
+		>
+	>
+>;
+
+// Cylon
+using Style2_Cylon = AlphaL<
+	Cylon<
+		ALTCOLOR2,
+		5,
+		20
+	>,
+	Int<16384>
+>;
+
+// Emitter Tip Flame
+using Style2_EmitterTipFlame = AlphaL<
+	Layers <
+		Gradient<ALTCOLOR2, TRANSPARENT>,
+		HumpFlickerL<
+			Layers<
+				AudioFlickerL<ALTCOLOR2>, 
+				BrownNoiseFlicker<
+					TRANSPARENT,
+					ALTCOLOR2,
+					200
+				>
+			>,
+			10
+		>
+	>,
+	Bump<
+		Scale<
+			BladeAngle<>,
+			Int<28000>,
+			Int<32000>
+		>,
+		Scale<
+			BladeAngle<>,
+			Int<20000>,
+			Int<8000>
 		>
 	>
 >;

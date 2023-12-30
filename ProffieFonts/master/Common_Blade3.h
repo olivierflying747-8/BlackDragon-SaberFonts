@@ -21,16 +21,16 @@ using Style3_Pulsing = Pulsing<
 >;
 
 // RandomPerLEDFlicker (2 Color)
-using Style3_RandomPerLEDFlicker = AlphaL<
+using Style3_RandomPerLEDFlicker = //AlphaL<
 	RandomPerLEDFlicker<
-		Black,
-		Mix<
-			Int<3855>,
-			Black,
+		TRANSPARENT,
+//		Mix<
+//			Int<3855>,
+//			Black,
 			ALTCOLOR3
-		>
-	>,
-	Int<16384>
+//		>
+//	>,
+//	Int<16384>
 >;
 
 // Hump Flicker L (AltColor3, Random Position)
@@ -99,6 +99,7 @@ using Style3_BrownNoiseFlicker = BrownNoiseFlicker<
 	200
 >;
 
+/* // Stripes doesn't support Transparency, so it never looks good.
 // StripesX Slownoise
 using Style3_StripesX_SlowNoise = AlphaL<
 	StripesX<
@@ -124,8 +125,9 @@ using Style3_StripesX_SlowNoise = AlphaL<
 	>,
 	Int<16384>
 >;
+*/
 
-// Fett263 Smoke Blade Fire layer, ALT Color
+// Fett263 Smoke Blade Fire layer, ALTCOLOR3
 using Style3_FireBlade = AlphaL <
 	StyleFire<
 		RotateColorsX<Variation, ALTCOLOR3>,
@@ -200,11 +202,25 @@ using Style3_Cylon = AlphaL<
 
 // Emitter Flare
 using Style3_EmitterFlare = AlphaL<
-	AudioFlickerL<
-		EMITTERCOLOR
-	>, 
+	AudioFlickerL<EMITTERCOLOR>, 
 	SmoothStep<
 		IntArg<EMITTER_SIZE_ARG, 2000>, 
+		Int<-6000>
+	>
+>;
+
+// Emitter Random Flicker
+using Style3_EmitterFlicker = AlphaL<
+	RandomPerLEDFlickerL<EMITTERCOLOR>,
+	SmoothStep<
+		Scale<
+			NoisySoundLevel,
+			IntArg<EMITTER_SIZE_ARG,2000>,
+			Sum<
+				IntArg<EMITTER_SIZE_ARG,2000>,
+				Int<6000>
+			>
+		>,
 		Int<-6000>
 	>
 >;

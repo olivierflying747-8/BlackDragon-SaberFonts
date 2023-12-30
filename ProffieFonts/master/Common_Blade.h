@@ -60,7 +60,7 @@ using Style1_Stripes = Stripes<
 	>
 >;
 
-// StripesX Slow Noise
+// StripesX Slow Noise (2 color)
 using Style1_StripesX_SlowNoise = StripesX<
 	Int<1500>,
 	Scale<
@@ -72,13 +72,13 @@ using Style1_StripesX_SlowNoise = StripesX<
 	Mix<
 		Int<10280>, //33%
 		Black,
-		BASECOLOR
+		ALTCOLOR
 	>,
 	BASECOLOR,
 	Mix<
 		Int<2570>, //8%
 		Black,
-		BASECOLOR
+		ALTCOLOR
 	>,
 	BASECOLOR
 >;
@@ -594,22 +594,14 @@ using Style1_FirePulseInteractive = Layers<
 			>,
 			TrConcat<
 				TrInstant,
-				Mix<
-					Int<16384>,
-					RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>,
-					White
-				>,
+				BASECOLOR_WHITE_50,
 				TrSmoothFade<500>
 			>,
 			TrSmoothFade<600>
 		>,
 		AudioFlicker<
-			RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>,
-			Mix<
-				Int<18000>,
-				Black,
-				RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>
-			>
+			BASECOLOR,
+			BASECOLOR_50
 		>,
 		Layers<
 			StripesX<
@@ -630,17 +622,9 @@ using Style1_FirePulseInteractive = Layers<
 					Int<-100>,
 					Int<-3000>
 				>,
-				Mix<
-					Int<9000>,
-					Black,
-					RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>
-				>,
-				RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>,
-				Mix<
-					Int<18000>,
-					Black,
-					RgbArg<BASE_COLOR_ARG,Rgb<30,60,200>>
-				>
+				BASECOLOR_33,
+				BASECOLOR,
+				BASECOLOR_50
 			>,
 			AlphaL<
 				RandomPerLEDFlickerL<Black>,
@@ -660,6 +644,87 @@ using Style1_FirePulseInteractive = Layers<
 		>
 	>
 >;
+
+// Ghost Buster
+using Style1_GhostBusterBlade = StaticFire<
+	Mix<
+		SmoothStep<
+			Int<2000>,
+			Int<-2000>
+		>,
+		Stripes<
+			16000,
+			-3900,
+			BASECOLOR,
+			Mix<
+				Int<8172>,
+				Black,
+				BASECOLOR
+			>,
+			Mix<
+				Int<16384>,
+				Black,
+				BASECOLOR
+			>,
+			Stripes<
+				2500,
+				-3500,
+				BASECOLOR,
+				BASECOLOR,
+				ALTCOLOR, // Blue
+				Mix<
+					Int<16000>,
+					Black,
+					BASECOLOR
+				>,
+				ALTCOLOR2 // DodgerBlue
+			>
+		>,
+		White // White
+	>,
+	ALTCOLOR, // Blue
+	0,
+	6,
+	1,
+	2000,
+	3
+>;
+
+// ElectroStaff Blade
+using Style1_StaffBlade = StyleFire<
+	Strobe<
+		RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
+		Strobe<
+			ALTCOLOR, //Rgb<100,100,150>
+			RandomPerLEDFlicker<
+				RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
+				Black
+			>,
+			50,
+			1
+		>,
+		100,
+		1
+	>,
+	RotateColorsX<
+		Variation,
+		//Rgb<23,0,65> // BASECOLOR / 0.3
+		Mix<
+			Int<16000>,
+			Black,
+			BASECOLOR
+		>
+	>,
+	0,
+	5,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>,
+	FireConfig<2,1000,5>
+>;
+
+
+
 
 // Smash Blade
 using Style1_SmashBlade = Layers<
@@ -945,80 +1010,67 @@ using Style1_PartyBlade = StyleFire<
 	FireConfig<0,2000,5>
 >;
 
-// Ghost Buster
-using Style1_GhostBusterBlade = StaticFire<
-	Mix<
-		SmoothStep<
-			Int<2000>,
-			Int<-2000>
-		>,
-		Stripes<
-			16000,
-			-3900,
-			BASECOLOR,
-			Mix<
-				Int<8172>,
-				Black,
-				BASECOLOR
-			>,
-			Mix<
-				Int<16384>,
-				Black,
-				BASECOLOR
-			>,
-			Stripes<
-				2500,
-				-3500,
-				BASECOLOR,
-				BASECOLOR,
-				ALTCOLOR, // Blue
-				Mix<
-					Int<16000>,
-					Black,
-					BASECOLOR
+// Fire blade with bright tip? TODO: separate bright tip for secondary/tirtiary styles...
+using Style1_FireTipBlade =	Layers<
+	StaticFire<
+		Mix<
+			SmoothStep<
+				Scale<
+					BladeAngle<>,
+					Int<38000>,
+					Int<23000>
 				>,
-				ALTCOLOR2 // DodgerBlue
+				Int<8000>
+			>,
+			Mix<
+				Int<400>,
+				Black,
+				BASECOLOR
+			>,
+			Mix<
+				Int<6000>,
+				Black,
+				BASECOLOR
 			>
 		>,
-		White // White
-	>,
-	ALTCOLOR, // Blue
-	0,
-	6,
-	1,
-	2000,
-	3
+		TRANSPARENT,
+		0,
+		2,
+		4,
+		2000,
+		2
+	>
 >;
 
-// ElectroStaff Blade
-using Style1_StaffBlade = StyleFire<
-	Strobe<
-		RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
-		Strobe<
-			ALTCOLOR, //Rgb<100,100,150>
-			RandomPerLEDFlicker<
-				RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
-				Black
+using Style1_FireTipBase = Layers<
+	StaticFire <
+		StripesX<
+			Int<14000>,
+			Scale<
+				BladeAngle<>,
+				Int<-5>,
+				Int<-50>
 			>,
-			50,
-			1
+			BASECOLOR,
+			Mix<
+				Scale<
+					HoldPeakF<
+						SwingSpeed<250>,
+						Int<1000>,
+						Int<8000>
+					>,
+					Int<6000>,
+					Int<16000>
+				>,
+				Black,
+				BASECOLOR
+			>
 		>,
-		100,
-		1
-	>,
-	RotateColorsX<
-		Variation,
-		//Rgb<23,0,65> // BASECOLOR / 0.3
-		Mix<
-			Int<16000>,
-			Black,
-			BASECOLOR
-		>
-	>,
-	0,
-	5,
-	FireConfig<2,1000,5>,
-	FireConfig<2,1000,5>,
-	FireConfig<2,1000,5>,
-	FireConfig<2,1000,5>
+		TRANSPARENT,
+		0,
+		2,
+		4,
+		2000,
+		2
+	>
 >;
