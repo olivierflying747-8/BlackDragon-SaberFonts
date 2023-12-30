@@ -50,6 +50,19 @@ using BASECOLOR_33 = Mix<
 	BASECOLOR
 >;
 
+// Gradiant Base Color 33%
+using BASECOLOR_GRADIENT_33 = Gradient<
+	BASECOLOR,
+	BASECOLOR_33
+>;
+
+// White blend
+using BASECOLOR_WHITE_50 = Mix<
+	Int<16384>, //50%
+	BASECOLOR,
+	White
+>;
+
 // Alt Color 50%
 using ALTCOLOR_50 = Mix<
 	Int<16448>, //50%
@@ -92,21 +105,8 @@ using ALTCOLOR3_25 = Mix<
 	ALTCOLOR3
 >;
 
-// Gradiant Base Color 33%
-using BASECOLOR_GRADIENT_33 = Gradient<
-	BASECOLOR,
-	BASECOLOR_33
->;
-
-// White blend
-using BladeWhiteBlend = Mix<
-	Int<16384>, //50%
-	BASECOLOR,
-	Rgb<255, 255, 255>
->;
-
 // Blast Color blend
-using BladeBlastBlend = Mix<
+using BASECOLOR_BLASTCOLOR_50 = Mix<
 	Int <16384>, //50%
 	BLASTCOLOR,
 	BASECOLOR

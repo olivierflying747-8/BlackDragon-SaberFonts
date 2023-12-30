@@ -244,7 +244,7 @@ using Blast_Responsive_Fade = TrConcat <
 using ResponsiveEffectBlastStyle = EffectSequence<
 	EFFECT_BLAST,
 	ResponsiveBlastL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		Int<400>,
 		Scale<
 			SwingSpeed<200>,
@@ -254,13 +254,13 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		Int<400>
 	>,
 	LocalizedClashL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		80,
 		30,
 		EFFECT_BLAST
 	>,
 	ResponsiveBlastWaveL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		Scale<
 			SwingSpeed<400>,
 			Int<500>,
@@ -273,12 +273,12 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		>
 	>,
 	BlastL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		200,
 		200
 	>,
 	ResponsiveBlastFadeL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		Scale<
 			SwingSpeed<400>,
 			Int<6000>,
@@ -291,7 +291,7 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		>
 	>,
 	ResponsiveBlastL<
-		BladeBlastBlend,
+		BASECOLOR_BLASTCOLOR_50,
 		Scale<
 			SwingSpeed<400>,
 			Int<400>,
