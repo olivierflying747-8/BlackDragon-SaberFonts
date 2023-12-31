@@ -217,7 +217,7 @@ using MasterStyle = Layers<
 		// Option 5: Hump Waves (ALTCOLOR, ALTCOLOR2)
 		AltStyle_HumpWave<ALTCOLOR, ALTCOLOR2>,
 		// Option 6: BrownNoise Stripes (ALT COLOR)
-		AltStyle_BrownNoiseFlicker<ALTCOLOR2>,
+		AltStyle_BrownNoise_Stripes<ALTCOLOR2, Int<3000>, Int<-4500>>,
 		// Option 7: Sparkles (ALTCOLOR2)
 		AltStyle_Sparkle<ALTCOLOR2>,
 		// Option 8: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR2)
@@ -248,7 +248,7 @@ using MasterStyle = Layers<
 		// Option 3: Pusling ALTCOLOR3
 		AltStyle_Pulsing<ALTCOLOR3>,
 		// Option 4: BrownNoise Stripes (ALTCOLOR3)
-		AltStyle_BrownNoiseFlicker<ALTCOLOR3>,
+		AltStyle_BrownNoise_Stripes<ALTCOLOR3, Int<2500>, Int<-2500>>,
 		// Option 5: HumpFlicker Random (ALTCOLOR3)
 		AltStyle_HumpFlicker_Random<ALTCOLOR3>,
 		// Option 6: Hump Waves (ALTCOLOR2, ALTCOLOR3)

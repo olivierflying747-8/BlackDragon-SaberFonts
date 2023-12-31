@@ -223,7 +223,7 @@ using MasterStyle = Layers<
 		// Option 3: Pusling (ALTCOLOR2)
 		AltStyle_Pulsing<ALTCOLOR2, Int<1200>>,
 		// Option 4: BrownNoise Stripes (ALTCOLOR2)
-		AltStyle_BrownNoiseFlicker<ALTCOLOR2>,
+		AltStyle_BrownNoise_Stripes<ALTCOLOR2, Int<3000>, Int<-4000>>,
 		// Option 5: HumpFlicker Random (ALTCOLOR2)
 		AltStyle_HumpFlicker_Random<ALTCOLOR2>,
 		// Option 6: Hump Waves (ALTCOLOR, ALTCOLOR2)
@@ -260,7 +260,7 @@ using MasterStyle = Layers<
 		// Option 3: Pusling (ALTCOLOR3)
 		AltStyle_Pulsing<ALTCOLOR3, Int<1000>>,
 		// Option 4: BrownNoise Stripes (ALTCOLOR3)
-		AltStyle_BrownNoiseFlicker<ALTCOLOR3>,
+		AltStyle_BrownNoise_Stripes<ALTCOLOR3, Int<3500>, Int<-2500>>,
 		// Option 5: HumpFlicker Random (ALTCOLOR3)
 		AltStyle_HumpFlicker_Random<ALTCOLOR3>,
 		// Option 6: Hump Waves (ALTCOLOR3)

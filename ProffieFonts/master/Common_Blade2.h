@@ -78,12 +78,12 @@ using AltStyle_Fire = AlphaL<
 >;
 
 // Brown Noise with Stripes
-template<class COLOR>
-using AltStyle_BrownNoiseFlicker = BrownNoiseFlickerL<
+template<class COLOR, class WIDTH = Int<3000>, class SPEED = Int<-4000>>
+using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 	//TRANSPARENT,
-	Stripes<
-		3000, 
-		-4000, 
+	StripesX<
+		WIDTH, 
+		SPEED, 
 		COLOR_MIX<9638, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
 		COLOR_MIX<19275, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
 		COLOR_MIX<1928, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
