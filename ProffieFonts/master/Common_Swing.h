@@ -39,35 +39,13 @@ using Swing_Force_Aura = TransitionEffectL<
 // AudioFlicker Swing
 using Swing_AudioFlicker = AlphaL<
 	AudioFlickerL<SWINGCOLOR>,
-	Scale<
-		IsLessThan<
-			SwingSpeed<600>,
-			Int<13600>
-		>,
-		Scale<
-			SwingSpeed<600>,
-			Int<-19300>,
-			Int<32768>
-		>,
-		Int<0>
-	>
+	SWINGSPEEDSCALE<600>
 >;
 
 // Sparkle Swing
 using Swing_Sparkle = AlphaL<
 	SparkleL<SWINGCOLOR>,
-	Scale<
-		IsLessThan<
-			SwingSpeed<600>,
-			Int<13600>
-		>,
-		Scale<
-			SwingSpeed<600>,
-			Int<-19300>,
-			Int<32768>
-		>,
-		Int<0>
-	>
+	SWINGSPEEDSCALE<600>
 >;
 
 // Fire Swing
@@ -87,18 +65,7 @@ using Swing_Fire = AlphaL<
 			RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>
 		>
 	>,
-	Scale<
-		IsLessThan<
-			SwingSpeed<600>,
-			Int<13600>
-		>,
-		Scale<
-			SwingSpeed<600>,
-			Int<-19300>,
-			Int<32768>
-		>,
-		Int<0>
-	>
+	SWINGSPEEDSCALE<600>
 >;
 
 //Fett263 Ripple swing effect
@@ -169,18 +136,7 @@ using Swing_FettHard = AlphaL<
 			White
 		>
 	>,
-	Scale<
-		IsLessThan<
-			SwingSpeed<675>,
-			Int<13600>
-		>,
-		Scale<
-			SwingSpeed<750>,
-			Int<-17300>,
-			Int<32768>
-		>,
-		Int<0>
-	>
+	SWINGSPEEDSCALE<675, 13600, -17300>
 >;
 
 //Unstable swing

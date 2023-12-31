@@ -34,24 +34,28 @@ using Ignition_CenterWipe = TrCenterWipeInX<
 >;
 
 // Color Cycle
-using Ignition_ColorCycle = TrColorCycle<
-	3000,
+using Ignition_ColorCycle = TrColorCycleX<
+	Percentage<IgnitionTime<300>, 1000>, //3000,
 	3000,
 	0
 >;
 
 // Lighting Strike
 using Ignition_LightningStrike = TrConcat<
-	TrWipeIn<200>,
-	RandomBlink<
-		30000,
+	TrWipeInX<
+		Percentage<IgnitionTime<300>, 66>
+	>, //200>
+	RandomBlinkX<
+		Percentage<IgnitionTime<300>, 10000>, //30000,
 		RotateColorsX<
 			Variation,
 			//Rgb16<65535,13655,65535>
 			IGNITIONCOLOR
 		>
 	>,
-	TrWipeIn<200>,
+	TrWipeInX<
+		Percentage<IgnitionTime<300>, 66>
+	>, //200>,
 	Mix<
 		SmoothStep<
 			Scale<
@@ -68,7 +72,9 @@ using Ignition_LightningStrike = TrConcat<
 			IGNITIONCOLOR
 		>
 	>,
-	TrDelay<400>,
+	TrDelayX<
+		Percentage<IgnitionTime<300>, 130>
+	>, //400>,
 	Mix<
 		SmoothStep<
 			Int<4000>,
@@ -77,7 +83,10 @@ using Ignition_LightningStrike = TrConcat<
 		Black,
 		White
 	>,
-	TrWipe<175>
+	TrWipeSparkTipX<
+		IGNITIONCOLOR,
+		Percentage<IgnitionTime<300>, 58>
+	> //175>
 >;
 
 // Flash On
@@ -85,4 +94,42 @@ using Ignition_Flash = TrConcat <
 	TrWipeX<IgnitionTime<300>>,
 	StrobeL<IGNITIONCOLOR, Int<100>, IgnitionTime<300>>,
 	TrFadeX<IgnitionTime<300>>
+>;
+
+// Ignition Gravity
+using Ignition_Gravity = TrSelect<
+	Scale<
+		IsLessThan<
+			BladeAngle<>,
+			Int<18384>
+		>,
+		Scale<
+			IsGreaterThan<
+				SwingAcceleration<>,
+				Int<16384>
+			>,
+			Int<0>,
+			Int<2>
+		>,
+		Int<1>
+	>,
+	TrWipeInX<
+		BendTimePowInvX<
+			IgnitionTime<300>,
+			Mult<
+				IntArg<IGNITION_OPTION2_ARG,10992>,
+				Int<98304>
+			>
+		>
+	>,
+	TrWipeX<
+		BendTimePowInvX<
+			IgnitionTime<300>,
+			Mult<
+				IntArg<IGNITION_OPTION2_ARG,10992>,
+				Int<98304>
+			>
+		>
+	>,
+	TrWipe<100>
 >;

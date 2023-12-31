@@ -1,46 +1,32 @@
 // ================================ COMMON CODE ===========================
 
+// Basic Center position based on blade angle.
+using LOCKUPPOSITIONCENTER = Scale<
+	BladeAngle<0, 16000>, 
+	Sum<
+		IntArg<LOCKUP_POSITION_ARG, 16000>, 
+		Int<-12000>
+	>, 
+	Sum<
+		IntArg<LOCKUP_POSITION_ARG, 16000>, 
+		Int<10000>
+	>
+>;
+
 // Blade Angle / Lockup Position.
 using LOCKUPPOSITION = Scale<
 	BladeAngle<>, 
-	Scale<
-		BladeAngle<0, 16000>, 
-		Sum<
-			IntArg<LOCKUP_POSITION_ARG, 16000>, 
-			Int<-12000>
-		>, 
-		Sum<
-			IntArg<LOCKUP_POSITION_ARG, 16000>, 
-			Int<10000>
-		>
-	>, 
+	LOCKUPPOSITIONCENTER,
 	Sum<
 		IntArg<LOCKUP_POSITION_ARG, 16000>, 
 		Int<-10000>
 	>
-	/* // Alternate to the above Sum. Integrate it?
-	Scale<
-		SwingSpeed<100>, 
-		Int<14000>, 
-		Int<18000>
-	>
-	*/
 >;
 
 // Blade Angle / Lockup Position Scale with SwingSpeed.
 using LOCKUPPOSITIONSWING = Scale<
 	BladeAngle<>,
-	Scale<
-		BladeAngle<0,16000>,
-		Sum<
-			IntArg<LOCKUP_POSITION_ARG,16000>,
-			Int<-12000>
-		>,
-		Sum<
-			IntArg<LOCKUP_POSITION_ARG,16000>,
-			Int<10000>
-		>
-	>,
+	LOCKUPPOSITIONCENTER,
 	Scale<
 		SwingSpeed<100>,
 		Int<14000>,
@@ -66,6 +52,21 @@ using LOCKUPCLASHCOLOR = Mix<
 			>
 		>
 	>
+>;
+
+// Swing Speed Calculation, used in Swing Options.
+template<int LT_SPEED, int SCALE_SPEED = 600, int SCALE_MIN = -19300, int SCALE_MAX = 32768>
+using SWINGSPEEDSCALE = Scale<
+	IsLessThan<
+		SwingSpeed<LT_SPEED>,
+		Int<13600>
+	>,
+	Scale<
+		SwingSpeed<SCALE_SPEED>,
+		Int<SCALE_MIN>,
+		Int<SCALE_MAX>
+	>,
+	Int<0>
 >;
 
 // Ignition Flicker Stripes, used in Stabalize Ignition.

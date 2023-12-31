@@ -1,41 +1,41 @@
-// ===================== BLADE STYLES =======================
+// ===================== BASE BLADE STYLES =======================
 /*
 // Basic Audio Filter, BASE color, 50% BASE color (breathing)
-using Style1_AudioFilter = AudioFlicker<
+using BaseStyle_AudioFilter = AudioFlicker<
 	BASECOLOR,
 	BASECOLOR_50 // 50%
 >;*/
 
-using Style1_Static = BASECOLOR;
+using BaseStyle_Static = BASECOLOR;
 
 // Basic Audio Filter, BASE / ALT color.
-using Style1_AudioFilter = AudioFlicker<
+using BaseStyle_AudioFilter = AudioFlicker<
 	RotateColorsX<Variation, BASECOLOR>,
 	RotateColorsX<Variation, ALTCOLOR>
 >;
 
 // Random Flicker, BASE / ALT color
-using Style1_RandomFlicker = RandomFlicker<
+using BaseStyle_RandomFlicker = RandomFlicker<
 	BASECOLOR,
 	ALTCOLOR
 >;
 
 // Pusling Blade
-using Style1_Pulsing = Pulsing<
+using BaseStyle_Pulsing = Pulsing<
 	RotateColorsX<Variation, BASECOLOR>,
 	RotateColorsX<Variation, ALTCOLOR>,
 	1200
 >;
 
 // Brownnoise BASE color
-using Style1_BrownNoiseFlicker = BrownNoiseFlicker<
+using BaseStyle_BrownNoiseFlicker = BrownNoiseFlicker<
 	RotateColorsX<Variation, BASECOLOR>,
 	Black,
 	300
 >;
 
 // Stripes (single color)
-using Style1_Stripes = Stripes<
+using BaseStyle_Stripes = Stripes<
 	10000,
 	-1700,
 	RotateColorsX<
@@ -61,7 +61,7 @@ using Style1_Stripes = Stripes<
 >;
 
 // StripesX Slow Noise (2 color)
-using Style1_StripesX_SlowNoise = StripesX<
+using BaseStyle_StripesX_SlowNoise = StripesX<
 	Int<1500>,
 	Scale<
 		SlowNoise<Int<2500>>,
@@ -84,7 +84,7 @@ using Style1_StripesX_SlowNoise = StripesX<
 >;
 
 // Unstable Stripes
-using Style1_Stripes_RandomPerLEDFlicker = Stripes<
+using BaseStyle_Stripes_RandomPerLEDFlicker = Stripes<
 	3000, 
 	-3500, 
 	BASECOLOR, 
@@ -168,7 +168,7 @@ using CalKestisStyle = StripesX<
 */
 
 // Thunderstorm
-using Style1_ThunderstormBlade = TransitionLoop<
+using BaseStyle_ThunderstormBlade = TransitionLoop<
 	RotateColorsX<
 		Variation,
 		BASECOLOR //DeepSkyBlue // 0, 135,255
@@ -226,7 +226,7 @@ using Style1_ThunderstormBlade = TransitionLoop<
 >;
 
 // Fett263 Smoke Blade
-using Style1_SmokeBlade = StripesX<
+using BaseStyle_SmokeBlade = StripesX<
 	Sin<
 		Int<12>,
 		Int<3000>,
@@ -338,7 +338,7 @@ using Style1_SmokeBlade = StripesX<
 >;
 
 // Fire Blade
-using Style1_FireBlade = StyleFire<
+using BaseStyle_FireBlade = StyleFire<
 	BrownNoiseFlicker<
 		RotateColorsX<Variation, BASECOLOR>, //0, 135, 255
 		RandomPerLEDFlicker<
@@ -381,7 +381,7 @@ using Style1_FireBlade = StyleFire<
 >;
 
 // Flickery Blade style
-using Style1_FlickerBlade = Mix<
+using BaseStyle_FlickerBlade = Mix<
 	Scale<
 		IsLessThan<
 			SlowNoise<
@@ -566,7 +566,7 @@ using DarkSaberStyle = AudioFlicker<
 >;
 
 // Interactive FirePulse Style
-using Style1_FirePulseInteractive = Layers<
+using BaseStyle_FirePulseInteractive = Layers<
 	Black,
 	ColorSelect<
 		IncrementWithReset<
@@ -646,7 +646,7 @@ using Style1_FirePulseInteractive = Layers<
 >;
 
 // Ghost Buster
-using Style1_GhostBusterBlade = StaticFire<
+using BaseStyle_GhostBusterBlade = StaticFire<
 	Mix<
 		SmoothStep<
 			Int<2000>,
@@ -691,7 +691,7 @@ using Style1_GhostBusterBlade = StaticFire<
 >;
 
 // ElectroStaff Blade
-using Style1_StaffBlade = StyleFire<
+using BaseStyle_StaffBlade = StyleFire<
 	Strobe<
 		RotateColorsX<Variation,BASECOLOR>, //Rgb<95,0,210>
 		Strobe<
@@ -727,7 +727,7 @@ using Style1_StaffBlade = StyleFire<
 
 
 // Smash Blade
-using Style1_SmashBlade = Layers<
+using BaseStyle_SmashBlade = Layers<
 	StripesX<
 		Sin<
 			Int<4>,
@@ -974,7 +974,7 @@ using Style1_SmashBlade = Layers<
 >;
 
 // Party Blade
-using Style1_PartyBlade = StyleFire<
+using BaseStyle_PartyBlade = StyleFire<
 	StripesX<
 		Int<3000>,
 		Scale<
@@ -1011,7 +1011,7 @@ using Style1_PartyBlade = StyleFire<
 >;
 
 // Fire blade with bright tip? TODO: separate bright tip for secondary/tirtiary styles...
-using Style1_FireTipBlade =	Layers<
+using BaseStyle_FireTipBlade =	Layers<
 	StaticFire<
 		Mix<
 			SmoothStep<
@@ -1042,7 +1042,7 @@ using Style1_FireTipBlade =	Layers<
 	>
 >;
 
-using Style1_FireTipBase = Layers<
+using BaseStyle_FireTipBase = Layers<
 	StaticFire <
 		StripesX<
 			Int<14000>,
@@ -1072,5 +1072,74 @@ using Style1_FireTipBase = Layers<
 		4,
 		2000,
 		2
+	>
+>;
+
+// Water blade style
+using BaseStyle_WaterBlade = StripesX<
+	Scale<
+		IsLessThan<
+			BladeAngle<>,
+			Int<16384>
+		>,
+		Scale<
+			BladeAngle<>,
+			Int<20000>,
+			Int<10000>
+		>,
+		Scale<
+			BladeAngle<>,
+			Int<10000>,
+			Int<20000>
+		>
+	>,
+	Scale<
+		BladeAngle<>,
+		Int<-1000>,
+		Scale<
+			IsGreaterThan<
+				HoldPeakF<
+					SwingAcceleration<>,
+					Scale<
+						HoldPeakF<
+							SwingAcceleration<>,
+							Int<200>,
+							Int<4000>
+						>,
+						Int<100>,
+						Int<600>
+					>,
+					Scale<
+						BladeAngle<>,
+						Int<3000>,
+						Int<6000>
+					>
+				>,
+				Int<16384>
+			>,
+			Int<1000>,
+			Int<-1000>
+		>
+	>,
+	BASECOLOR,
+	Mix<
+		Int<16384>,
+		Black,
+		BASECOLOR
+	>,
+	Mix<
+		Int<10280>,
+		Black,
+		BASECOLOR
+	>,
+	Mix<
+		Int<25700>,
+		Black,
+		BASECOLOR
+	>,
+	Mix<
+		Int<7710>,
+		Black,
+		BASECOLOR
 	>
 >;

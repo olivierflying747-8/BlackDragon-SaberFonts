@@ -1,34 +1,35 @@
-// ===================== BLADE STYLES 2 =======================
-// Using ALTCOLOR and ALTCOLOR2
+// ===================== ALTERNATE BLADE STYLES =======================
+// Using template passed in Color and variation timers.
 
-// AudioFlicker
-using Style2_AudioFilter = AudioFlicker<
-	TRANSPARENT,
-	RotateColorsX<Variation, ALTCOLOR2>
+// Audio Flicker
+template<class COLOR>
+using AltStyle_AudioFilter = AudioFlickerL<
+	RotateColorsX<Variation, COLOR>
 >;
 
 // Random Flicker
-using Style2_RandomFlicker = RandomFlicker<
-	TRANSPARENT,
-	ALTCOLOR2
+template<class COLOR>
+using AltStyle_RandomFlicker = RandomL<
+	COLOR
 >;
 
-// Pusling Blade
-using Style2_Pulsing = Pulsing<
-	TRANSPARENT,
-	RotateColorsX<Variation, ALTCOLOR2>,
-	1200
+// Pusling
+template<class COLOR, class PULSE_MS = Int<1200>>
+using AltStyle_Pulsing = PulsingL<
+	RotateColorsX<Variation, COLOR>,
+	PULSE_MS
 >;
 
-// RandomPerLEDFlicker
-using Style2_RandomPerLEDFlicker = RandomPerLEDFlicker<
-		TRANSPARENT,
-		ALTCOLOR2
+// Random Per LED Flicker
+template<class COLOR>
+using AltStyle_RandomPerLEDFlicker = RandomPerLEDFlickerL<
+	COLOR
 >;
 
-// Hump Flicker L (AltColor2, Random Position)
-using Style2_HumpFlicker_Random = AlphaL<
-	HumpFlickerL<ALTCOLOR2, 10>,
+// Hump Flicker
+template<class COLOR>
+using AltStyle_HumpFlicker_Random = AlphaL<
+	HumpFlickerL<COLOR, 10>,
 	Bump<
 		RandomF,
 		Int<20000>
@@ -36,10 +37,11 @@ using Style2_HumpFlicker_Random = AlphaL<
 >;
 
 // Hump Waves (2 Color)
-using Style2_HumpWave = Layers <
+template<class COLORA, class COLORB>
+using AltStyle_HumpWave = Layers <
 	TransitionLoopL<
 		TrWaveX<
-			HumpFlickerL<RotateColorsX<Variation, ALTCOLOR>, 40>,
+			HumpFlickerL<RotateColorsX<Variation, COLORA>, 40>,
 			Int<250>,
 			Int<100>,
 			Int<200>,
@@ -48,7 +50,7 @@ using Style2_HumpWave = Layers <
 	>,
 	TransitionLoopL<
 		TrWaveX<
-			HumpFlickerL<RotateColorsX<Variation, ALTCOLOR2>, 40>,
+			HumpFlickerL<RotateColorsX<Variation, COLORB>, 40>,
 			Int<350>,
 			Int<100>,
 			Int<300>,
@@ -58,13 +60,39 @@ using Style2_HumpWave = Layers <
 >;
 
 // Sparkle
-using Style2_Sparkle = SparkleL<
-	ALTCOLOR2
+template<class COLOR>
+using AltStyle_Sparkle = SparkleL<
+	COLOR
 >;
 
-// Brown Noise with Stripes, ALTCOLOR2
-using Style2_BrownNoiseFlicker = BrownNoiseFlicker<
-	TRANSPARENT,
+// Style Fire
+template<class COLORA, class COLORB>
+using AltStyle_Fire = AlphaL< 
+	StyleFire<
+		COLORA,
+		COLORB,
+		0,
+		2
+	>,
+	Int<16384>
+>;
+
+// Style Fire
+template<class COLOR>
+using AltStyle_FireTEST = AlphaL< 
+	StyleFire<
+		COLOR,
+		TRANSPARENT,
+		0,
+		2
+	>,
+	Int<16384>
+>;
+
+// Brown Noise with Stripes
+template<class COLOR>
+using AltStyle_BrownNoiseFlicker = BrownNoiseFlickerL<
+	//TRANSPARENT,
 	Stripes<
 		3000, 
 		-4000, 
@@ -72,29 +100,29 @@ using Style2_BrownNoiseFlicker = BrownNoiseFlicker<
 		Mix<
 			Int<9638>,
 			Black, 
-			ALTCOLOR2
+			COLOR
 		>,
 		//Rgb<100, 100, 150>, // ALT COLOR / 1.7
 		Mix<
 			Int<19275>,
 			Black, 
-			ALTCOLOR2
+			COLOR
 		>,
 		//Rgb<10, 10, 15>, // ALT COLOR / 17
 		Mix<
 			Int<1928>,
 			Black, 
-			ALTCOLOR2
+			COLOR
 		>,
 		//Rgb<150, 150, 225> // ALT COLOR
-		ALTCOLOR2
+		COLOR
 	>, 
-	200
+	Int<200>
 >;
 
 /* // Stripes doens't support Transparency, so it never looks good.
 // StripesX Slownoise
-using Style2_StripesX_SlowNoise = AlphaL<
+using AltStyle_StripesX_SlowNoise = AlphaL<
 	StripesX<
 		Int<1500>,
 		Scale<
@@ -121,16 +149,17 @@ using Style2_StripesX_SlowNoise = AlphaL<
 */
 
 // Fett263 Smoke Blade Fire layer, ALT Color
-using Style2_FireBlade = AlphaL <
+template<class COLOR>
+using AltStyle_FireBlade = AlphaL <
 	StyleFire<
-		RotateColorsX<Variation, ALTCOLOR2>,
+		RotateColorsX<Variation, COLOR>,
 		RotateColorsX<
 			Variation,
 			//Rgb<2,2,0> // ALT / 127.5
 			Mix<
 				Int<257>,
 				Black,
-				ALTCOLOR2
+				COLOR
 			>
 		>,
 		0,
@@ -143,21 +172,11 @@ using Style2_FireBlade = AlphaL <
 	Int<10000>
 >;
 
-// Style Fire
-using Style2_Fire = AlphaL< 
-	StyleFire<
-		ALTCOLOR,
-		ALTCOLOR2,
-		0,
-		2
-	>,
-	Int<16384>
->;
-
 // Lightning Flash
-using Style2_LightningFlash = TransitionLoop<
+template<class COLOR>
+using AltStyle_LightningFlash = TransitionLoop<
 	AlphaL< // Invisible color
-		ALTCOLOR2,
+		COLOR,
 		Int<0>
 	>,
 	TrConcat<
@@ -165,7 +184,7 @@ using Style2_LightningFlash = TransitionLoop<
 		TrConcat<
 			TrFade<100>,
 			AlphaL<
-				HumpFlickerL<ALTCOLOR2, 10>,
+				HumpFlickerL<COLOR, 10>,
 				Bump<
 					RandomF,
 					Int<20000>
@@ -184,9 +203,10 @@ using Style2_LightningFlash = TransitionLoop<
 >;
 
 // Cylon
-using Style2_Cylon = AlphaL<
+template<class COLOR>
+using AltStyle_Cylon = AlphaL<
 	Cylon<
-		ALTCOLOR2,
+		COLOR,
 		5,
 		20
 	>,
@@ -194,16 +214,17 @@ using Style2_Cylon = AlphaL<
 >;
 
 // Emitter Tip Flame
-using Style2_EmitterTipFlame = AlphaL<
+template<class COLOR>
+using AltStyle_EmitterTipFlame = AlphaL<
 	Layers <
-		Gradient<ALTCOLOR2, TRANSPARENT>,
+		Gradient<COLOR, TRANSPARENT>,
 		HumpFlickerL<
 			Layers<
-				AudioFlickerL<ALTCOLOR2>, 
-				BrownNoiseFlicker<
-					TRANSPARENT,
-					ALTCOLOR2,
-					200
+				AudioFlickerL<COLOR>, 
+				BrownNoiseFlickerL<
+					//TRANSPARENT,
+					COLOR,
+					Int<200>
 				>
 			>,
 			10
@@ -220,5 +241,115 @@ using Style2_EmitterTipFlame = AlphaL<
 			Int<20000>,
 			Int<8000>
 		>
+	>
+>;
+
+
+// Emitter Flare
+template<class COLOR>
+using AltStyle_EmitterFlare = AlphaL<
+	AudioFlickerL<COLOR>, 
+	SmoothStep<
+		IntArg<EMITTER_SIZE_ARG, 2000>, 
+		Int<-6000>
+	>
+>;
+
+// Emitter Random Flicker
+template<class COLOR>
+using AltStyle_EmitterFlicker = AlphaL<
+	RandomPerLEDFlickerL<COLOR>,
+	SmoothStep<
+		Scale<
+			NoisySoundLevel,
+			IntArg<EMITTER_SIZE_ARG,2000>,
+			Sum<
+				IntArg<EMITTER_SIZE_ARG,2000>,
+				Int<6000>
+			>
+		>,
+		Int<-6000>
+	>
+>;
+
+// Timed "breathing" emitter flare 
+//- NOTE: Due to the way Proffie works, this isn't always "lined up" and might be slightly ahead or slightly behind the hum's breathing. To fix you can turn the saber off and back on until it's lined up. The timing is right, but the code runs in the background even after turning the saber off so it doesn't always start "on time."
+template<class COLOR>
+using AltStyle_EmitterBreathe = Mix<
+	Sin<Int<8>>,
+	AlphaL<
+		RotateColorsX<
+			Variation,
+			COLOR
+		>,
+		Bump<
+			Int<0>,
+			//Int<6000>
+			Percentage<IntArg<EMITTER_SIZE_ARG, 2000>, 100>
+			/*
+			Mult<
+				Int<8937>, //33%
+				IntArg<EMITTER_SIZE_ARG, 2000>
+			>
+			*/
+		>
+	>,
+	AlphaL<
+		RotateColorsX<
+			Variation,
+			COLOR
+		>,
+		Bump<
+			Int<0>,
+			//Int<22000>
+			Percentage<IntArg<EMITTER_SIZE_ARG, 2000>, 300>
+		>
+	>
+>;
+
+// Emitter Pulse
+template<class COLOR>
+using AltStyle_Emitter_Pulse = TransitionLoopL<
+	TrConcat<
+		TrDelayX<
+			Scale<
+				SlowNoise<Int<1000>>,
+				Int<300>,
+				Int<3000>
+			>
+		>,
+		AlphaL<
+			COLOR,
+			Int<0>
+		>,
+		TrSparkX<
+			COLOR,
+			Scale<
+				NoisySoundLevel,
+				Int<200>,
+				Int<600>
+			>,
+			Int<250>,
+			Int<0>
+		>
+	>
+>;
+
+// Spark moving with BladeAngle
+template<class COLOR>
+using AltStyle_Spark_BladeAngle = AlphaL<
+	Mix<
+		BladeAngle<>,
+		AudioFlickerL<
+			RotateColorsX<Variation, COLOR>
+		>,
+		PulsingL<
+			RotateColorsX<Variation, COLOR>,
+			Int<100>
+		>
+	>,
+	Bump<
+		BladeAngle<0, 32000>,
+		Int<4000>
 	>
 >;

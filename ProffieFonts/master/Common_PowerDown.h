@@ -96,7 +96,7 @@ using PowerDown_Smoke_Reverse = TrConcat <
 	// Is this color even needed? does it even work?
 //	/*
 	AlphaL<
-		Style1_SmokeBlade, //Green,
+		BaseStyle_SmokeBlade, //Green,
 		Bump<
 			Int<0>,
 			Int<16000>

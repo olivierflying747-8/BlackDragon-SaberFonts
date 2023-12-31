@@ -74,3 +74,33 @@ using Retraction_Glitch_Off = TrConcat<
 		>
 	>
 >;
+
+// Gravity Retraction
+using Retraction_Gravity = TrSelect<
+	Scale<
+		IsLessThan<
+			BladeAngle<>,
+			Int<18384>
+		>,
+		Int<0>,
+		Int<1>
+	>,
+	TrWipeInX<
+		BendTimePowInvX<
+			RetractionTime<0>,
+			Mult<
+				IntArg<RETRACTION_OPTION2_ARG,10992>,
+				Int<98304>
+			>
+		>
+	>,
+	TrWipeX<
+		BendTimePowInvX<
+			RetractionTime<0>,
+			Mult<
+				IntArg<RETRACTION_OPTION2_ARG,10992>,
+				Int<98304>
+			>
+		>
+	>
+>;
