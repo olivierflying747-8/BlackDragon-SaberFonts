@@ -66,25 +66,13 @@ using AltStyle_Sparkle = SparkleL<
 >;
 
 // Style Fire
-template<class COLORA, class COLORB>
+template<class COLORA, class COLORB, int SPEED = 2>
 using AltStyle_Fire = AlphaL< 
 	StyleFire<
 		COLORA,
 		COLORB,
 		0,
-		2
-	>,
-	Int<16384>
->;
-
-// Style Fire
-template<class COLOR>
-using AltStyle_FireTEST = AlphaL< 
-	StyleFire<
-		COLOR,
-		TRANSPARENT,
-		0,
-		2
+		SPEED
 	>,
 	Int<16384>
 >;
@@ -96,74 +84,25 @@ using AltStyle_BrownNoiseFlicker = BrownNoiseFlickerL<
 	Stripes<
 		3000, 
 		-4000, 
-		//Rgb<50, 50, 75>, // ALT COLOR / 3.4
-		Mix<
-			Int<9638>,
-			Black, 
-			COLOR
-		>,
-		//Rgb<100, 100, 150>, // ALT COLOR / 1.7
-		Mix<
-			Int<19275>,
-			Black, 
-			COLOR
-		>,
-		//Rgb<10, 10, 15>, // ALT COLOR / 17
-		Mix<
-			Int<1928>,
-			Black, 
-			COLOR
-		>,
-		//Rgb<150, 150, 225> // ALT COLOR
-		COLOR
+		COLOR_MIX<9638, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
+		COLOR_MIX<19275, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
+		COLOR_MIX<1928, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
+		COLOR //Rgb<150, 150, 225> // ALT COLOR
 	>, 
 	Int<200>
 >;
 
-/* // Stripes doens't support Transparency, so it never looks good.
-// StripesX Slownoise
-using AltStyle_StripesX_SlowNoise = AlphaL<
-	StripesX<
-		Int<1500>,
-		Scale<
-			SlowNoise<Int<2500>>,
-			Int<-3000>,
-			Int<-5000>
-		>,
-		Black,
-		Mix<
-			Int<10280>, //33%
-			Black,
-			RotateColorsX<Variation, ALTCOLOR2>
-		>,
-		Black,
-		Mix<
-			Int<2570>,
-			Black,
-			RotateColorsX<Variation, ALTCOLOR2>
-		>,
-		Black
-	>,
-	Int<16384>
->;
-*/
-
 // Fett263 Smoke Blade Fire layer, ALT Color
-template<class COLOR>
-using AltStyle_FireBlade = AlphaL <
+template<class COLOR, int SPEED = 1>
+using AltStyle_SmokeBlade = AlphaL <
 	StyleFire<
 		RotateColorsX<Variation, COLOR>,
 		RotateColorsX<
 			Variation,
-			//Rgb<2,2,0> // ALT / 127.5
-			Mix<
-				Int<257>,
-				Black,
-				COLOR
-			>
+			COLOR_MIX<257, COLOR> //Rgb<2,2,0> // ALT / 127.5
 		>,
 		0,
-		1,
+		SPEED,
 		FireConfig<10,2000,2>,
 		FireConfig<10,2000,2>,
 		FireConfig<10,2000,2>,
@@ -203,12 +142,12 @@ using AltStyle_LightningFlash = TransitionLoop<
 >;
 
 // Cylon
-template<class COLOR>
+template<class COLOR, int SIZE = 5, int SPEED = 20>
 using AltStyle_Cylon = AlphaL<
 	Cylon<
 		COLOR,
-		5,
-		20
+		SIZE,
+		SPEED
 	>,
 	Int<16384>
 >;
@@ -250,16 +189,6 @@ template<class COLOR>
 using AltStyle_EmitterFlare = AlphaL<
 	AudioFlickerL<COLOR>, 
 	SmoothStep<
-		IntArg<EMITTER_SIZE_ARG, 2000>, 
-		Int<-6000>
-	>
->;
-
-// Emitter Random Flicker
-template<class COLOR>
-using AltStyle_EmitterFlicker = AlphaL<
-	RandomPerLEDFlickerL<COLOR>,
-	SmoothStep<
 		Scale<
 			NoisySoundLevel,
 			IntArg<EMITTER_SIZE_ARG,2000>,
@@ -278,10 +207,7 @@ template<class COLOR>
 using AltStyle_EmitterBreathe = Mix<
 	Sin<Int<8>>,
 	AlphaL<
-		RotateColorsX<
-			Variation,
-			COLOR
-		>,
+		RotateColorsX<Variation, COLOR>,
 		Bump<
 			Int<0>,
 			//Int<6000>
@@ -295,10 +221,7 @@ using AltStyle_EmitterBreathe = Mix<
 		>
 	>,
 	AlphaL<
-		RotateColorsX<
-			Variation,
-			COLOR
-		>,
+		RotateColorsX<Variation, COLOR>,
 		Bump<
 			Int<0>,
 			//Int<22000>
@@ -352,4 +275,38 @@ using AltStyle_Spark_BladeAngle = AlphaL<
 		BladeAngle<0, 32000>,
 		Int<4000>
 	>
+>;
+
+/* // Stripes doens't support Transparency, so it never looks good.
+// StripesX Slownoise
+template<class COLOR>
+using AltStyle_StripesX_SlowNoise = AlphaL<
+	StripesX<
+		Int<1500>,
+		Scale<
+			SlowNoise<Int<2500>>,
+			Int<-3000>,
+			Int<-5000>
+		>,
+		Black,
+		COLOR_MIX<10280, RotateColorsX<Variation, COLOR>>, //33%
+		Black,
+		COLOR_MIX<2570,	RotateColorsX<Variation, COLOR>>,
+		Black
+	>,
+	Int<16384>
+>;
+//*/
+
+
+// Style Fire TEST
+template<class COLOR>
+using AltStyle_FireTEST = AlphaL< 
+	StyleFire<
+		COLOR,
+		TRANSPARENT,
+		0,
+		2
+	>,
+	Int<16384>
 >;

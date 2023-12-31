@@ -20,13 +20,6 @@ using BaseStyle_RandomFlicker = RandomFlicker<
 	ALTCOLOR
 >;
 
-// Pusling Blade
-using BaseStyle_Pulsing = Pulsing<
-	RotateColorsX<Variation, BASECOLOR>,
-	RotateColorsX<Variation, ALTCOLOR>,
-	1200
->;
-
 // Brownnoise BASE color
 using BaseStyle_BrownNoiseFlicker = BrownNoiseFlicker<
 	RotateColorsX<Variation, BASECOLOR>,
@@ -34,13 +27,21 @@ using BaseStyle_BrownNoiseFlicker = BrownNoiseFlicker<
 	300
 >;
 
+// Pusling Blade
+using BaseStyle_Pulsing = Pulsing<
+	RotateColorsX<Variation, BASECOLOR>,
+	RotateColorsX<Variation, ALTCOLOR>,
+	1200
+>;
+
+
 // Stripes (single color)
 using BaseStyle_Stripes = Stripes<
 	10000,
 	-1700,
 	RotateColorsX<
 		Variation,
-		BASECOLOR_33
+		COLOR_MIX_P<33, BASECOLOR>
 	>,
 	RotateColorsX<
 		Variation,
@@ -48,11 +49,11 @@ using BaseStyle_Stripes = Stripes<
 	>,
 	RotateColorsX<
 		Variation,
-		BASECOLOR_50
+		COLOR_MIX_P<50, BASECOLOR>
 	>,
 	RotateColorsX<
 		Variation,
-		BASECOLOR_20
+		COLOR_MIX_P<20, BASECOLOR>
 	>,
 	RotateColorsX<
 		Variation,
@@ -69,17 +70,9 @@ using BaseStyle_StripesX_SlowNoise = StripesX<
 		Int<-5000>
 	>,
 	BASECOLOR,
-	Mix<
-		Int<10280>, //33%
-		Black,
-		ALTCOLOR
-	>,
+	COLOR_MIX_P<33, ALTCOLOR>,
 	BASECOLOR,
-	Mix<
-		Int<2570>, //8%
-		Black,
-		ALTCOLOR
-	>,
+	COLOR_MIX_P<8, ALTCOLOR>,
 	BASECOLOR
 >;
 
@@ -89,33 +82,17 @@ using BaseStyle_Stripes_RandomPerLEDFlicker = Stripes<
 	-3500, 
 	BASECOLOR, 
 	RandomPerLEDFlicker<
-		Mix<
-			Int<7710>, 
-			Black, 
-			BASECOLOR
-		>, 
+		COLOR_MIX<7710, BASECOLOR>,
 		Black
 	>, 
 	BrownNoiseFlicker<
-		BASECOLOR, 
-		Mix<
-			Int<3855>, 
-			Black, 
-			BASECOLOR
-		>,
+		BASECOLOR,
+		COLOR_MIX<3855, BASECOLOR>,
 		200
 	>, 
 	RandomPerLEDFlicker<
-		Mix<
-			Int<10280>, 
-			Black, 
-			BASECOLOR
-		>, 
-		Mix<
-			Int<3855>, 
-			Black, 
-			BASECOLOR
-		>
+		COLOR_MIX<10280, BASECOLOR>,
+		COLOR_MIX<3855, BASECOLOR>
 	>
 >;
 
@@ -167,6 +144,34 @@ using CalKestisStyle = StripesX<
 >;
 */
 
+// Fire Blade
+using BaseStyle_FireBlade = StyleFire<
+	BrownNoiseFlicker<
+		RotateColorsX<Variation, BASECOLOR>, //0, 135, 255
+		RandomPerLEDFlicker<
+			RotateColorsX<
+				Variation,
+				COLOR_MIX<3213, BASECOLOR> //Rgb<0,0,25>  // BASE / 10.2
+			>,
+			RotateColorsX<
+				Variation,
+				COLOR_MIX<7710, BASECOLOR> //Rgb<0,0,60> // BASE / 4.25
+			>
+		>,
+		300
+	>,
+	RotateColorsX<
+		Variation,
+		COLOR_MIX<10280, BASECOLOR> //Rgb<0,0,80> // BASE / 3.1875
+	>,
+	0,
+	6,
+	FireConfig<10,1000,2>,
+	FireConfig<10,1000,2>,
+	FireConfig<10,1000,2>,
+	FireConfig<10,1000,2>
+>;
+
 // Thunderstorm
 using BaseStyle_ThunderstormBlade = TransitionLoop<
 	RotateColorsX<
@@ -181,17 +186,11 @@ using BaseStyle_ThunderstormBlade = TransitionLoop<
 				100,
 				RotateColorsX<
 					Variation,
-					//Rgb<0,40,128> // BASECOLOR / 2
-					BASECOLOR_50
+					COLOR_MIX_P<50, BASECOLOR> 	//Rgb<0,40,128> // BASECOLOR / 2
 				>,
 				RotateColorsX<
 					Variation,
-					//Rgb<0,8,30> // Base Color / 8
-					Mix<
-						Int<4096>, //12.5%
-						Black, 
-						BASECOLOR
-					>
+					COLOR_MIX<4096, BASECOLOR> //Rgb<0,8,30> // Base Color / 8
 				>,
 				RotateColorsX<
 					Variation,
@@ -208,8 +207,7 @@ using BaseStyle_ThunderstormBlade = TransitionLoop<
 					>,
 					RotateColorsX<
 						Variation,
-						//Rgb<0,19,60> // Alt color / 4? DodgerBlue
-						ALTCOLOR_25
+						COLOR_MIX_P<25, ALTCOLOR> //Rgb<0,19,60> // Alt color / 4? DodgerBlue
 					>
 				>,
 				Int<16384> //50%
@@ -252,12 +250,7 @@ using BaseStyle_SmokeBlade = StripesX<
 			RotateColorsX<Variation, BASECOLOR>,
 			RotateColorsX<
 				Variation, 
-				//Rgb<15,14,0>>, // BASECOLOR / 12.75
-				Mix<
-					Int<2570>,
-					Black, 
-					BASECOLOR
-				>
+				COLOR_MIX<2570, BASECOLOR> //Rgb<15,14,0>>, // BASECOLOR / 12.75
 			>,
 			1200
 		>,
@@ -265,30 +258,19 @@ using BaseStyle_SmokeBlade = StripesX<
 			SwingSpeed<200>,
 			RotateColorsX<
 				Variation,
-				//Rgb<90,87,0> // Mix BASECOLOR / 2.125
-				Mix<
-					Int<15420>,
-					Black, 
-					BASECOLOR
-				>
+				COLOR_MIX<15420, BASECOLOR> //Rgb<90,87,0> // Mix BASECOLOR / 2.125
 			>,
 			Black
 		>
 	>,
 	RotateColorsX<
 		Variation,
-		//Rgb<40,40,0> // BASE / 4.25
-		Mix<
-			Int<7710>,
-			Black, 
-			BASECOLOR
-		>
+		COLOR_MIX<7710, BASECOLOR> //Rgb<40,40,0> // BASE / 4.25
 	>,
 	Pulsing<
 		RotateColorsX<
 			Variation,
-			//Rgb<36,33,0> // BASE / 5.1
-			BASECOLOR_20
+			COLOR_MIX_P<20, BASECOLOR> //Rgb<36,33,0> // BASE / 5.1
 		>,
 		StripesX<
 			Sin<
@@ -304,12 +286,7 @@ using BaseStyle_SmokeBlade = StripesX<
 			RotateColorsX<Variation, BASECOLOR>,
 			RotateColorsX<
 				Variation,
-				//Rgb<60,58,0> // BASE / 2.65625
-				Mix<
-					Int<12336>,
-					Black, 
-					BASECOLOR
-				>
+				COLOR_MIX_P<12336, BASECOLOR> //Rgb<60,58,0> // BASE / 2.65625
 			>
 		>,
 		2000
@@ -317,67 +294,14 @@ using BaseStyle_SmokeBlade = StripesX<
 	Pulsing<
 		RotateColorsX<
 			Variation,
-			//Rgb<90,88,0> // BASE / 2.125
-			Mix<
-				Int<15420>,
-				Black, 
-				BASECOLOR
-			>
+			COLOR_MIX<15420, BASECOLOR> //Rgb<90,88,0> // BASE / 2.125
 		>,
 		RotateColorsX<
 			Variation,
-			//Rgb<5,5,0> // BASE / 51
-			Mix<
-				Int<643>,
-				Black, 
-				BASECOLOR
-			>
+			COLOR_MIX<643, BASECOLOR> //Rgb<5,5,0> // BASE / 51
 		>,
 		3000
 	>
->;
-
-// Fire Blade
-using BaseStyle_FireBlade = StyleFire<
-	BrownNoiseFlicker<
-		RotateColorsX<Variation, BASECOLOR>, //0, 135, 255
-		RandomPerLEDFlicker<
-			RotateColorsX<
-				Variation,
-				//Rgb<0,0,25>  // BASE / 10.2
-				Mix<
-					Int<3213>,
-					Black, 
-					BASECOLOR
-				>
-			>,
-			RotateColorsX<
-				Variation,
-				//Rgb<0,0,60> // BASE / 4.25
-				Mix<
-					Int<7710>,
-					Black, 
-					BASECOLOR
-				>
-			>
-		>,
-		300
-	>,
-	RotateColorsX<
-		Variation,
-		//Rgb<0,0,80> // BASE / 3.1875
-		Mix<
-			Int<10280>,
-			Black, 
-			BASECOLOR
-		>
-	>,
-	0,
-	6,
-	FireConfig<10,1000,2>,
-	FireConfig<10,1000,2>,
-	FireConfig<10,1000,2>,
-	FireConfig<10,1000,2>
 >;
 
 // Flickery Blade style
@@ -392,23 +316,15 @@ using BaseStyle_FlickerBlade = Mix<
 		Int<0>, 
 		Int<32768>
 	>, 
-	BASECOLOR_GRADIENT_33,
+	COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
 	Stripes<
 		12000, 
 		-800, 
-		BASECOLOR_GRADIENT_33,
-		BASECOLOR_GRADIENT_33,
-		Mix<
-			Int<7710>, 
-			Black, 
-			BASECOLOR_GRADIENT_33
-		>, 
-		BASECOLOR_GRADIENT_33,
-		Mix<
-			Int<16448>, 
-			Black, 
-			BASECOLOR_GRADIENT_33
-		>
+		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
+		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
+		COLOR_MIX<7710, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>,
+		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
+		COLOR_MIX<16448, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>
 	>
 >;
 
@@ -419,102 +335,52 @@ using CodaBladeStyle = Mix<
 	AudioFlicker<
 		RotateColorsX<
 			Variation, 
-			//DodgerBlue //2, 72, 255 DodgerBlue // BASE COLOR
-			BASECOLOR
+			BASECOLOR //DodgerBlue //2, 72, 255 DodgerBlue // BASE COLOR
 		>, 
 		Stripes<
 			5000, 
 			-90, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 55, 165> //0, 135, 255 // DeepSkyBlue //// ALT COLOR / 1.5
-				Mix<
-					Int<21845>,
-					Black,
-					ALTCOLOR
-				>
+				COLOR_MIX<21845, ALTCOLOR> //Rgb<0, 55, 165> //0, 135, 255 // DeepSkyBlue //// ALT COLOR / 1.5
 			>, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 85, 115> // ALT COLOR / 2.2
-				Mix<
-					Int<14894>,
-					Black,
-					ALTCOLOR
-				>
+				COLOR_MIX<14894, ALTCOLOR> //Rgb<0, 85, 115> // ALT COLOR / 2.2
 			>, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 65, 145> // MIX BASE COLOR / ALT COLOR 50%, ALT COLOR / 1.75
-				Mix<
-					Int<18725>,
-					Black,
-					Mix< // 50% Base/alt color blend.
-						Int<16384>,
-						BASECOLOR,
-						ALTCOLOR
-					>
-				>
+				COLOR_MIX<18725, COLOR_MIX_P<50, BASECOLOR, ALTCOLOR>> //Rgb<0, 65, 145> // MIX BASE COLOR / ALT COLOR 50%, ALT COLOR / 1.75
 			>, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 30, 185> // MIX BASE COLOR / ALT COLOR 50%, ALT COLOR / 1.3
-				Mix<
-					Int<23206>,
-					Black,
-					Mix< // 50% Base/alt color blend.
-						Int<16384>,
-						BASECOLOR,
-						ALTCOLOR
-					>
-				>
+				COLOR_MIX<23206, COLOR_MIX_P<50, BASECOLOR, ALTCOLOR>> //Rgb<0, 30, 185> // MIX BASE COLOR / ALT COLOR 50%, ALT COLOR / 1.3
 			>
 		>
 	>, 
 	AudioFlicker<
 		RotateColorsX<
 			Variation, 
-			//Rgb<0, 155, 255> // ALT_COLOR_ARG
-			ALTCOLOR
+			ALTCOLOR //Rgb<0, 155, 255> // ALT_COLOR_ARG
 		>, 
 		Stripes<
 			5000, 
 			-90, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 95, 170> // ALT COLOR / 1.5
-				Mix<
-					Int<21845>,
-					Black,
-					ALTCOLOR
-				>
+				COLOR_MIX<21845, ALTCOLOR> //Rgb<0, 95, 170> // ALT COLOR / 1.5
 			>, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 115, 215> // ALT COLOR / 1.18
-				Mix<
-					Int<27769>,
-					Black,
-					ALTCOLOR
-				>
+				COLOR_MIX<27769, ALTCOLOR> //Rgb<0, 115, 215> // ALT COLOR / 1.18
 			>,
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 145, 145> //ALT_COLOR2_ARG / 1.75
-				Mix<
-					Int<18724>,
-					Black,
-					ALTCOLOR2
-				>
+				COLOR_MIX<18724, ALTCOLOR2> //Rgb<0, 145, 145> //ALT_COLOR2_ARG / 1.75
 			>, 
 			RotateColorsX<
 				Variation, 
-				//Rgb<0, 65, 225> // BASE COLOR / 1.13
-				Mix<
-					Int<28998>,
-					Black,
-					BASECOLOR
-				>
+				COLOR_MIX<28998, BASECOLOR> //Rgb<0, 65, 225> // BASE COLOR / 1.13
 			>
 		>
 	>
@@ -526,43 +392,19 @@ using DarkSaberStyle = AudioFlicker<
 		Mix<
 			SwingSpeed<400>, 
 			BASECOLOR, 
-			Mix<
-				Int<6425>, 
-				BASECOLOR, 
-				ALTCOLOR
-			>
+			COLOR_MIX<6425, BASECOLOR, ALTCOLOR> //20%
 		>, 
 		Stripes<
 			5000, 
 			-300, 
-			Mix<
-				Int<7710>, //23%
-				Black, 
-				BASECOLOR
-			>,
-			Mix<
-				Int<25700>, //80%
-				Black, 
-				BASECOLOR
-			>, 
-			Mix<
-				Int<1285>, //4%
-				Black, 
-				BASECOLOR
-			>, 
-			Mix<
-				Int<16384>, //50%
-				Black, 
-				BASECOLOR
-			>
+			COLOR_MIX<7710, BASECOLOR>, //23%
+			COLOR_MIX<25700, BASECOLOR>, //80%
+			COLOR_MIX<1285, BASECOLOR>, //4%
+			COLOR_MIX_P<50, BASECOLOR> //50%
 		>,
 		300
 	>, 
-	Mix<
-		Int<6425>, 
-		BASECOLOR, 
-		ALTCOLOR
-	>
+	COLOR_MIX<6425, BASECOLOR, ALTCOLOR> //20%
 >;
 
 // Interactive FirePulse Style
@@ -594,14 +436,14 @@ using BaseStyle_FirePulseInteractive = Layers<
 			>,
 			TrConcat<
 				TrInstant,
-				BASECOLOR_WHITE_50,
+				COLOR_MIX_P<50, BASECOLOR, White>,
 				TrSmoothFade<500>
 			>,
 			TrSmoothFade<600>
 		>,
 		AudioFlicker<
 			BASECOLOR,
-			BASECOLOR_50
+			COLOR_MIX_P<50, BASECOLOR>
 		>,
 		Layers<
 			StripesX<
@@ -622,9 +464,9 @@ using BaseStyle_FirePulseInteractive = Layers<
 					Int<-100>,
 					Int<-3000>
 				>,
-				BASECOLOR_33,
+				COLOR_MIX_P<33, BASECOLOR>,
 				BASECOLOR,
-				BASECOLOR_50
+				COLOR_MIX_P<50, BASECOLOR>
 			>,
 			AlphaL<
 				RandomPerLEDFlickerL<Black>,
@@ -656,27 +498,15 @@ using BaseStyle_GhostBusterBlade = StaticFire<
 			16000,
 			-3900,
 			BASECOLOR,
-			Mix<
-				Int<8172>,
-				Black,
-				BASECOLOR
-			>,
-			Mix<
-				Int<16384>,
-				Black,
-				BASECOLOR
-			>,
+			COLOR_MIX<8172, BASECOLOR>,
+			COLOR_MIX_P<50, BASECOLOR>,
 			Stripes<
 				2500,
 				-3500,
 				BASECOLOR,
 				BASECOLOR,
 				ALTCOLOR, // Blue
-				Mix<
-					Int<16000>,
-					Black,
-					BASECOLOR
-				>,
+				COLOR_MIX<16000, BASECOLOR>,
 				ALTCOLOR2 // DodgerBlue
 			>
 		>,
@@ -709,11 +539,7 @@ using BaseStyle_StaffBlade = StyleFire<
 	RotateColorsX<
 		Variation,
 		//Rgb<23,0,65> // BASECOLOR / 0.3
-		Mix<
-			Int<16000>,
-			Black,
-			BASECOLOR
-		>
+		COLOR_MIX<16000, BASECOLOR>
 	>,
 	0,
 	5,
@@ -722,9 +548,6 @@ using BaseStyle_StaffBlade = StyleFire<
 	FireConfig<2,1000,5>,
 	FireConfig<2,1000,5>
 >;
-
-
-
 
 // Smash Blade
 using BaseStyle_SmashBlade = Layers<
@@ -1022,16 +845,8 @@ using BaseStyle_FireTipBlade =	Layers<
 				>,
 				Int<8000>
 			>,
-			Mix<
-				Int<400>,
-				Black,
-				BASECOLOR
-			>,
-			Mix<
-				Int<6000>,
-				Black,
-				BASECOLOR
-			>
+			COLOR_MIX<400, BASECOLOR>,
+			COLOR_MIX<6000, BASECOLOR>
 		>,
 		TRANSPARENT,
 		0,
@@ -1122,24 +937,8 @@ using BaseStyle_WaterBlade = StripesX<
 		>
 	>,
 	BASECOLOR,
-	Mix<
-		Int<16384>,
-		Black,
-		BASECOLOR
-	>,
-	Mix<
-		Int<10280>,
-		Black,
-		BASECOLOR
-	>,
-	Mix<
-		Int<25700>,
-		Black,
-		BASECOLOR
-	>,
-	Mix<
-		Int<7710>,
-		Black,
-		BASECOLOR
-	>
+	COLOR_MIX_P<50, BASECOLOR>,
+	COLOR_MIX<10280, BASECOLOR>,
+	COLOR_MIX<25700, BASECOLOR>,
+	COLOR_MIX<7710, BASECOLOR>
 >;

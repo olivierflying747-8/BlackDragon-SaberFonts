@@ -24,12 +24,12 @@ Style Options:
 0: Static Color (Base Color)
 1: AudioFlicker (Base Color, Alt Color)
 2: RandomFlicker (Base Color, Alt Color)
-3: Pulsing (Base Color, Alt Color)
-4: Stripes blade (Base Color)
-5: Stripes Slownoise (Base Color, Alt Color)
-6: Unstable Blade (Base Color)
-7: Fire Blade (Base Color)
-8: Flicker Blade (Base Color)
+3: BrownNoise Flicker Blade (Base Color)
+4: Pulsing (Base Color, Alt Color)
+5: Stripes blade (Base Color)
+6: Stripes Slownoise (Base Color, Alt Color)
+7: Unstable Blade (Base Color)
+8: Fire Blade (Base Color)
 9: Thunderstorm blade (Base Color, Alt Color)
 10: Fett263 Smoke Blade style. (Base Color)
 11: Glitchy / Broken blade. (Base Color)
@@ -157,24 +157,26 @@ using MasterStyle = Layers<
 	ColorSelect<
 		IntArg<STYLE_OPTION_ARG, 0>, 
 		TrInstant, 
+
+
 		// Option 0: Static Color (BASECOLOR)
 		BaseStyle_Static,
 		// Option 1: Audioflicker (BASECOLOR, ALTCOLOR)
 		BaseStyle_AudioFilter,
 		// Option 2: Random Flicker (BASECOLOR, ALTCOLOR)
 		BaseStyle_RandomFlicker,
-		// Option 3: Pulsing Blade (BASECOLOR, ALTCOLOR)
-		BaseStyle_Pulsing,
-		// Option 4: Stripes (BASECOLOR)
-		BaseStyle_Stripes,
-		// Option 5: Stripes SlowNoise (BASECOLOR, ALTCOLOR)
-		BaseStyle_StripesX_SlowNoise,
-		// Option 6: Unstable Stripes (BASECOLOR)
-		BaseStyle_Stripes_RandomPerLEDFlicker,
-		// Option 7: Fire blade (BASECOLOR)
-		BaseStyle_FireBlade,
-		// Option 8: BrownNoise (BASECOLOR)
+		// Option 3: BrownNoise (BASECOLOR)
 		BaseStyle_BrownNoiseFlicker,
+		// Option 4: Pulsing Blade (BASECOLOR, ALTCOLOR)
+		BaseStyle_Pulsing,
+		// Option 5: Stripes (BASECOLOR)
+		BaseStyle_Stripes,
+		// Option 6: Stripes SlowNoise (BASECOLOR, ALTCOLOR)
+		BaseStyle_StripesX_SlowNoise,
+		// Option 7: Unstable Stripes (BASECOLOR)
+		BaseStyle_Stripes_RandomPerLEDFlicker,
+		// Option 8: Fire blade (BASECOLOR)
+		BaseStyle_FireBlade,
 		// Option 9: Thunderstorm (BASECOLOR, ALTCOLOR)
 		BaseStyle_ThunderstormBlade,
 		// Option 10: Base Fett263 Smoke Blade style (BASECOLOR)
@@ -229,11 +231,11 @@ using MasterStyle = Layers<
 		// Option 7: Sparkles (ALTCOLOR2)
 		AltStyle_Sparkle<ALTCOLOR2>,
 		// Option 8: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR)
-		AltStyle_FireBlade<ALTCOLOR2>,
+		AltStyle_SmokeBlade<ALTCOLOR2, 1>,
 		// Option 9: Fire (ALTCOLOR, ALTCOLOR2)
 		AltStyle_Fire<ALTCOLOR, ALTCOLOR2>,
 		// Option 10: Cylon (ALTCOLOR2)
-		AltStyle_Cylon<ALTCOLOR2>,
+		AltStyle_Cylon<ALTCOLOR2, 5, 20>,
 		// Option 11: Lightning flash (ALTCOLOR2)
 		AltStyle_LightningFlash<ALTCOLOR2>,
 		// Option 12: Emitter tip Flame (ALTCOLOR2)
@@ -266,22 +268,20 @@ using MasterStyle = Layers<
 		// Option 7: Sparkles (ALTCOLOR3)
 		AltStyle_Sparkle<ALTCOLOR3>,
 		// Option 8: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR3)
-		AltStyle_FireBlade<ALTCOLOR3>,
+		AltStyle_SmokeBlade<ALTCOLOR3, 1>,
 		// Option 9: Fire (ALTCOLOR2, ALTCOLOR3)
 		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3>,
 		// Option 10: Cylon (ALTCOLOR3)
-		AltStyle_Cylon<ALTCOLOR3>,
+		AltStyle_Cylon<ALTCOLOR3, 5, -20>,
 		// Option 11: Lightning Flash (ALTCOLOR3)
 		AltStyle_LightningFlash<ALTCOLOR3>,
 		// Option 12: Emitter Flare (EMITTER COLOR)
 		AltStyle_EmitterFlare<EMITTERCOLOR>,
-		// Option 13: Emitter Flicker (EMITTER COLOR)
-		AltStyle_EmitterFlicker<EMITTERCOLOR>,
-		// Option 14: Timed "breathing" emitter flare (EMITTER COLOR)
+		// Option 13: Timed "breathing" emitter flare (EMITTER COLOR)
 		AltStyle_EmitterBreathe<EMITTERCOLOR>,
-		// Option 15: Emitter Pulse (EMITTER COLOR)
+		// Option 14: Emitter Pulse (EMITTER COLOR)
 		AltStyle_Emitter_Pulse<EMITTERCOLOR>,
-		// Option 16: Blade Angle Flare (ALTCOLOR3)
+		// Option 15: Blade Angle Flare (ALTCOLOR3)
 		AltStyle_Spark_BladeAngle<ALTCOLOR3>
 
 		// Option 4: Random LED Flicker (ALTCOLOR3)

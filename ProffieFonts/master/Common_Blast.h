@@ -55,11 +55,7 @@ using Blast_Fade_Sound = TrConcat<
 			>
 		>, 
 		BLASTCOLOR, 
-		Mix<
-			Int<16384>, 
-			Black, 
-			BLASTCOLOR
-		>
+		COLOR_MIX_P<50, BLASTCOLOR>
 	>, 
 	TrFade<300>
 >;
@@ -86,11 +82,7 @@ using Blast_Ripple = TrConcat<
 				2000, 
 				-2000, 
 				BLASTCOLOR, 
-				Mix<
-					Int<2096>, 
-					Black, 
-					BLASTCOLOR
-				>
+				COLOR_MIX<2096, BLASTCOLOR>
 			>
 		>, 
 		Int<100>, 
@@ -121,11 +113,7 @@ using Blast_Ripple_Fade = TrConcat<
 				1500, 
 				-2000, 
 				BLASTCOLOR,
-				Mix<
-					Int<2096>, 
-					Black, 
-					BLASTCOLOR
-				>
+				COLOR_MIX<2096, BLASTCOLOR>
 			>
 		>, 
 		Int<160>, 
@@ -244,7 +232,7 @@ using Blast_Responsive_Fade = TrConcat <
 using ResponsiveEffectBlastStyle = EffectSequence<
 	EFFECT_BLAST,
 	ResponsiveBlastL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		Int<400>,
 		Scale<
 			SwingSpeed<200>,
@@ -254,13 +242,13 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		Int<400>
 	>,
 	LocalizedClashL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		80,
 		30,
 		EFFECT_BLAST
 	>,
 	ResponsiveBlastWaveL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		Scale<
 			SwingSpeed<400>,
 			Int<500>,
@@ -273,12 +261,12 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		>
 	>,
 	BlastL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		200,
 		200
 	>,
 	ResponsiveBlastFadeL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		Scale<
 			SwingSpeed<400>,
 			Int<6000>,
@@ -291,7 +279,7 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 		>
 	>,
 	ResponsiveBlastL<
-		BASECOLOR_BLASTCOLOR_50,
+		COLOR_MIX_P<50, BASECOLOR, BLASTCOLOR>,
 		Scale<
 			SwingSpeed<400>,
 			Int<400>,

@@ -18,96 +18,62 @@ using CLASHCOLOR = RgbArg<CLASH_COLOR_ARG, Rgb<255, 255, 255>>;
 using LOCKUPCOLOR = RgbArg<LOCKUP_COLOR_ARG, Rgb<255, 255, 255>>;
 using LBCOLOR = RgbArg<LB_COLOR_ARG, Rgb<255, 255, 255>>;
 using DRAGCOLOR = RgbArg<DRAG_COLOR_ARG, Rgb<255, 255, 255>>;
-using STABCOLOR = RgbArg<STAB_COLOR_ARG, Rgb<255, 24, 0>>;
+using STABCOLOR = RgbArg<STAB_COLOR_ARG, Rgb<255, 255, 255>>;
 using OFFCOLOR = RgbArg<OFF_COLOR_ARG, Rgb<255, 255, 255>>;
 using TRANSPARENT = AlphaL<Black, Int<0>>;
 
-// Base Color 50%
-using BASECOLOR_50 = Mix<
-	Int<16448>, //50%
-	Black,
-	BASECOLOR
+// Get a % mix of color A and B, using straight values (32768 = 100%)
+template<int MIX, class COLORA, class COLORB = Black>
+using COLOR_MIX = Mix<
+	Int<MIX>,
+	COLORB,
+	COLORA
 >;
 
-// Base Color 25%
-using BASECOLOR_25 = Mix<
-	Int<8192>, //25%
-	Black,
-	BASECOLOR
+template<int PERCENT, class COLORA, class COLORB = Black>
+using COLOR_MIX_P = Mix<
+	Percentage<Int<32768>, PERCENT>,
+	COLORB,
+	COLORA
 >;
 
-// Base Color 20%?
-using BASECOLOR_20 = Mix<
-	Int<6425>,
-	Black,
-	BASECOLOR
+/*
+// Color 50%
+template<class COLORA, class COLORB = Black>
+using COLOR_50 = Mix<
+	COLOR_PERCENT<50>, //Int<16448>, //50%
+	COLORA,
+	COLORB
 >;
 
-// Base Color 33%
-using BASECOLOR_33 = Mix<
-	Int<9921>, //33%
-	Black,
-	BASECOLOR
+// Color 33%
+template<class COLORA, class COLORB = Black>
+using COLOR_33 = Mix<
+	COLOR_PERCENT<33>, //Int<9921>, //33%
+	COLORA,
+	COLORB
 >;
 
-// Gradiant Base Color 33%
-using BASECOLOR_GRADIENT_33 = Gradient<
-	BASECOLOR,
-	BASECOLOR_33
+// Color 25%
+template<class COLORA, class COLORB = Black>
+using COLOR_25 = Mix<
+	COLOR_PERCENT<25>, //Int<8192>, //25%
+	COLORA,
+	COLORB
 >;
 
-// White blend
-using BASECOLOR_WHITE_50 = Mix<
-	Int<16384>, //50%
-	BASECOLOR,
-	White
+// Color 20%
+template<class COLORA, class COLORB = Black>
+using COLOR_20 = Mix<
+	COLOR_PERCENT<20>, //Int<6425>, //20%
+	COLORA,
+	COLORB
 >;
+*/
 
-// Alt Color 50%
-using ALTCOLOR_50 = Mix<
-	Int<16448>, //50%
-	Black,
-	ALTCOLOR
->;
-
-// Alt Color 25%
-using ALTCOLOR_25 = Mix<
-	Int<8192>, //25%
-	Black,
-	ALTCOLOR
->;
-
-// Alt Color 50%
-using ALTCOLOR2_50 = Mix<
-	Int<16448>, //50%
-	Black,
-	ALTCOLOR2
->;
-
-// Alt Color 25%
-using ALTCOLOR2_25 = Mix<
-	Int<8192>, //25%
-	Black,
-	ALTCOLOR2
->;
-
-// Alt Color 50%
-using ALTCOLOR3_50 = Mix<
-	Int<16448>, //50%
-	Black,
-	ALTCOLOR3
->;
-
-// Alt Color 25%
-using ALTCOLOR3_25 = Mix<
-	Int<8192>, //25%
-	Black,
-	ALTCOLOR3
->;
-
-// Blast Color blend
-using BASECOLOR_BLASTCOLOR_50 = Mix<
-	Int <16384>, //50%
-	BLASTCOLOR,
-	BASECOLOR
+// Color Gradiant
+template<class COLORA, class COLORB = Black>
+using COLOR_GRADIENT = Gradient<
+	COLORA,
+	COLORB
 >;
