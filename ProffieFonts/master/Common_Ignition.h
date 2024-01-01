@@ -75,12 +75,11 @@ using Ignition_LightningStrike = TrConcat<
 	TrDelayX<
 		Percentage<IgnitionTime<300>, 130>
 	>, //400>,
-	Mix<
+	COLOR_MIX<
 		SmoothStep<
 			Int<4000>,
 			Int<-3000>
 		>,
-		Black,
 		White
 	>,
 	TrWipeSparkTipX<

@@ -23,11 +23,7 @@ using Powerup_Flash_Fade = TrConcat<
 	AlphaL<
 		AudioFlicker<
 			IGNITIONCOLOR, //Blue,
-			Mix<
-				Int<16384>,
-				Black, 
-				IGNITIONCOLOR //SteelBlue
-			>
+			COLOR_MIX_P<50,	IGNITIONCOLOR> //SteelBlue
 		>,
 		Bump<
 			Int<0>,
@@ -47,16 +43,8 @@ using Powerup_Burst_Forward = TrConcat<
 		5000, 
 		-2500, 
 		IGNITIONCOLOR, 
-		Mix<
-			Int<7710>, 
-			Black, 
-			IGNITIONCOLOR
-		>, 
-		Mix<
-			Int<3855>, 
-			Black, 
-			IGNITIONCOLOR
-		>
+		COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
+		COLOR_MIX<Int<3855>, IGNITIONCOLOR>
 	>,
 	TrFade<800>
 >;
@@ -72,33 +60,17 @@ using Powerup_Unstable_Forward = TrConcat<
 		-3500, 
 		IGNITIONCOLOR, 
 		RandomPerLEDFlicker<
-			Mix<
-				Int<7710>, 
-				Black, 
-				IGNITIONCOLOR
-			>, 
+			COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
 			Black
 		>, 
 		BrownNoiseFlicker<
 			IGNITIONCOLOR, 
-			Mix<
-				Int<3855>, 
-				Black, 
-				IGNITIONCOLOR
-			>,
+			COLOR_MIX<Int<3855>, IGNITIONCOLOR>,
 			200
 		>, 
 		RandomPerLEDFlicker<
-			Mix<
-				Int<3137>, 
-				Black, 
-				IGNITIONCOLOR
-			>,
-			Mix<
-				Int<3855>, 
-				Black, 
-				IGNITIONCOLOR
-			>
+			COLOR_MIX<Int<3137>, IGNITIONCOLOR>,
+			COLOR_MIX<Int<3855>, IGNITIONCOLOR>
 		>
 	>, 
 	TrFade<800>
@@ -110,57 +82,33 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 	Stripes<
 		3000,
 		-3500,
-		RotateColorsX<
-			Variation,
-			//Rgb<100,100,150> //IGNITION_COLOR_ARG
-			IGNITIONCOLOR
-		>,
+		RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<100,100,150> //IGNITION_COLOR_ARG
 		RandomPerLEDFlicker<
 			RotateColorsX<
 				Variation,
-				//Rgb<60,60,80> //IGNITION_COLOR_ARG / 2
-				Mix<
-					Int<16384>,
-					Black, 
-					IGNITIONCOLOR
-				>
+				COLOR_MIX_P<50, IGNITIONCOLOR> //Rgb<60,60,80> //IGNITION_COLOR_ARG / 2
 			>,
 			Black
 		>,
 		BrownNoiseFlicker<
 			RotateColorsX<
 				Variation,
-				//Rgb<110,115,140>  //IGNITION_COLOR_ARG + 25% white?
-				Mix<
-					Int<8192>,
-					IGNITIONCOLOR,
-					White
-				>
+				COLOR_MIX_P<25, IGNITIONCOLOR, White> //Rgb<110,115,140>  //IGNITION_COLOR_ARG + 25% white?
 			>,
 			RotateColorsX<
 				Variation,
-				//Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
-				Mix<
-					Int<16384>,
-					Black, 
-					IGNITIONCOLOR
-				>
+				COLOR_MIX_P<50,	IGNITIONCOLOR> //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
 			>,
 			200
 		>,
 		RandomPerLEDFlicker<
 			RotateColorsX<
 				Variation,
-				Rgb<128,128,128> // White flicker
+				Rgb<127,127,127> // White flicker
 			>,
 			RotateColorsX<
 				Variation,
-				//Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
-				Mix<
-					Int<16384>,
-					Black, 
-					IGNITIONCOLOR
-				>
+				COLOR_MIX_P<50, IGNITIONCOLOR> //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
 			>
 		>
 	>,
@@ -175,17 +123,13 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 // Stabalize
 using Powerup_Stabalize = TrConcat<
 	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
-	Ignition_FlickerStripes,
+	Ignition_Flicker_Stripes,
 	TrFade<400>,
-	Ignition_FlickerStripes,
+	Ignition_Flicker_Stripes,
 	TrFade<450>,
 	HumpFlickerL<
 		AlphaL<
-			RotateColorsX<
-				Variation,
-				//Rgb<90,180,255> // IGNITION_COLOR_ARG
-				IGNITIONCOLOR
-			>,
+			RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> // IGNITION_COLOR_ARG
 			Int<19000>
 		>,
 		25

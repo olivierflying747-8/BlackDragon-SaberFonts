@@ -20,16 +20,8 @@ using PowerDown_Burst_Reverse = TrConcat<
 		5000, 
 		2500, 
 		RETRACTIONCOLOR, 
-		Mix<
-			Int<7710>, 
-			Black, 
-			RETRACTIONCOLOR
-		>, 
-		Mix<
-			Int<3855>, 
-			Black, 
-			RETRACTIONCOLOR
-		>
+		COLOR_MIX<Int<7710>, RETRACTIONCOLOR>, 
+		COLOR_MIX<Int<3855>, RETRACTIONCOLOR>
 	>, 
 	TrFade<800>
 >;
@@ -45,33 +37,17 @@ using PowerDown_Unstable_Reverse = TrConcat<
 		3500, 
 		RETRACTIONCOLOR, 
 		RandomPerLEDFlicker<
-			Mix<
-				Int<7710>, 
-				Black, 
-				RETRACTIONCOLOR
-			>, 
+			COLOR_MIX<Int<7710>, RETRACTIONCOLOR>, 
 			Black
 		>, 
 		BrownNoiseFlicker<
 			RETRACTIONCOLOR, 
-			Mix<
-				Int<3855>, 
-				Black, 
-				RETRACTIONCOLOR
-			>,
+			COLOR_MIX<Int<3855>, RETRACTIONCOLOR>,
 			200
 		>, 
 		RandomPerLEDFlicker<
-			Mix<
-				Int<3137>, 
-				Black, 
-				RETRACTIONCOLOR
-			>,
-			Mix<
-				Int<3855>, 
-				Black, 
-				RETRACTIONCOLOR
-			>
+			COLOR_MIX<Int<3137>, RETRACTIONCOLOR>,
+			COLOR_MIX<Int<3855>, RETRACTIONCOLOR>
 		>
 	>, 
 	TrFade<800>

@@ -89,17 +89,9 @@ using Lockup_Color_Style = AlphaMixL<
 			Int<-3500>, 
 			Int<-5000>
 		>, 
-		Mix<
-			Int<6425>, 
-			Black, 
-			LOCKUPCOLOR
-		>, 
+		COLOR_MIX<Int<6425>, LOCKUPCOLOR>, 
 		LOCKUPCOLOR, 
-		Mix<
-			Int<12850>, 
-			Black, 
-			LOCKUPCOLOR
-		>
+		COLOR_MIX<Int<12850>, LOCKUPCOLOR>
 	>
 >;
 
@@ -109,11 +101,7 @@ using Lockup_Color_Style2 = TransitionEffect<
 	AlphaL<
 		AudioFlicker<
 			LOCKUPCOLOR,
-			Mix<
-				Int<10280>,
-				Black,
-				LOCKUPCOLOR
-			>
+			COLOR_MIX<Int<10280>, LOCKUPCOLOR>
 		>,
 		Bump<
 			LOCKUPPOSITION,
@@ -325,11 +313,7 @@ using Lockup_Start = TrRandom<
 		AlphaL<
 			AudioFlicker<
 				LOCKUPCOLOR, 
-				Mix<
-					Int<10280>, 
-					Black, 
-					LOCKUPCOLOR
-				>
+				COLOR_MIX<Int<10280>, LOCKUPCOLOR>
 			>, 
 			Bump<
 				LOCKUPPOSITION,
@@ -393,17 +377,9 @@ using Lockup_End = TrRandom<
 					Stripes<
 						1200, 
 						-3600, 
-						Mix<
-							Int<6425>, 
-							Black, 
-							LOCKUPCOLOR
-						>, 
+						COLOR_MIX<Int<6425>, LOCKUPCOLOR>, 
 						LOCKUPCOLOR, 
-						Mix<
-							Int<12850>, 
-							Black, 
-							LOCKUPCOLOR
-						>
+						COLOR_MIX<Int<12850>, LOCKUPCOLOR>
 					>
 				>, 
 				Int<30>, 
@@ -442,17 +418,9 @@ using Lockup_End = TrRandom<
 			Stripes<
 				1200,
 				-3600,
-				Mix<
-					Int<6425>,
-					Black,
-					LOCKUPCOLOR
-				>,
+				COLOR_MIX<Int<6425>, LOCKUPCOLOR>,
 				LOCKUPCOLOR,
-				Mix<
-					Int<12850>,
-					Black,
-					LOCKUPCOLOR
-				>
+				COLOR_MIX<Int<12850>, LOCKUPCOLOR>
 			>
 		>,
 		Int<30>,
@@ -545,16 +513,11 @@ using Drag_Color_Style2 = AlphaL<
 		2000,
 		4000,
 		DRAGCOLOR,
-		Mix<
+		COLOR_MIX<
 			Sin<Int<50>>,
-			Black,
 			DRAGCOLOR
 		>,
-		Mix<
-			Int<4096>,
-			Black,
-			DRAGCOLOR
-		>
+		COLOR_MIX<Int<4096>, DRAGCOLOR>
 	>,
 	SmoothStep<
 		IntArg<DRAG_SIZE_ARG,28000>,
@@ -598,16 +561,11 @@ using Drag_Start2 = TrConcat<
 			2000,
 			3000,
 			DRAGCOLOR,
-			Mix<
+			COLOR_MIX<
 				Sin<Int<30>>,
-				Black,
 				DRAGCOLOR
 			>,
-			Mix<
-				Int<8192>,
-				Black,
-				DRAGCOLOR
-			>
+			COLOR_MIX_P<25, DRAGCOLOR>
 		>,
 		SmoothStep<
 			IntArg<DRAG_SIZE_ARG,28000>,

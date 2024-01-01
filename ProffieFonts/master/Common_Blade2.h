@@ -84,9 +84,9 @@ using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 	StripesX<
 		WIDTH, 
 		SPEED, 
-		COLOR_MIX<9638, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
-		COLOR_MIX<19275, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
-		COLOR_MIX<1928, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
+		COLOR_MIX<Int<9638>, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
+		COLOR_MIX<Int<19275>, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
+		COLOR_MIX<Int<1928>, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
 		COLOR //Rgb<150, 150, 225> // ALT COLOR
 	>, 
 	Int<200>
@@ -99,7 +99,7 @@ using AltStyle_SmokeBlade = AlphaL <
 		RotateColorsX<Variation, COLOR>,
 		RotateColorsX<
 			Variation,
-			COLOR_MIX<257, COLOR> //Rgb<2,2,0> // ALT / 127.5
+			COLOR_MIX<Int<256>, COLOR> //Rgb<2,2,0> // ALT / 127.5
 		>,
 		0,
 		SPEED,
@@ -107,6 +107,23 @@ using AltStyle_SmokeBlade = AlphaL <
 		FireConfig<10,2000,2>,
 		FireConfig<10,2000,2>,
 		FireConfig<0,0,25>
+	>,
+	Int<10000>
+>;
+
+template<class COLOR>
+using AltStyle_SmokeBlade2 = AlphaL<
+	StaticFire<
+		RotateColorsX<Variation, COLOR>,
+		RotateColorsX<
+			Variation,
+			COLOR_MIX<Int<256>, COLOR>
+		>,
+		0,
+		1,
+		10,
+		2000,
+		2
 	>,
 	Int<10000>
 >;

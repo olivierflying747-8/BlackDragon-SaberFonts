@@ -82,7 +82,7 @@ using Blast_Ripple = TrConcat<
 				2000, 
 				-2000, 
 				BLASTCOLOR, 
-				COLOR_MIX<2096, BLASTCOLOR>
+				COLOR_MIX<Int<2096>, BLASTCOLOR>
 			>
 		>, 
 		Int<100>, 
@@ -113,7 +113,7 @@ using Blast_Ripple_Fade = TrConcat<
 				1500, 
 				-2000, 
 				BLASTCOLOR,
-				COLOR_MIX<2096, BLASTCOLOR>
+				COLOR_MIX<Int<2096>, BLASTCOLOR>
 			>
 		>, 
 		Int<160>, 

@@ -9,11 +9,7 @@ using Swing_Force_Pulse = TransitionEffectL<
 		>, 
 		Pulsing<
 			SWINGCOLOR, 
-			Mix<
-				Int<16384>, 
-				Black, 
-				SWINGCOLOR
-			>, 
+			COLOR_MIX_P<50, SWINGCOLOR>, 
 			3000
 		>, 
 		TrFade<300>
@@ -53,17 +49,9 @@ using Swing_Fire = AlphaL<
 	Stripes<
 		2800,
 		-3000,
-		RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>,
-		Mix<
-			Int<2096>,
-			Black,
-			RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>
-		>,
-		Mix<
-			Int<16384>,
-			Black,
-			RgbArg<SWING_COLOR_ARG,Rgb<100,100,150>>
-		>
+		SWINGCOLOR,
+		COLOR_MIX<Int<2096>, SWINGCOLOR>,
+		COLOR_MIX_P<50, SWINGCOLOR>
 	>,
 	SWINGSPEEDSCALE<600>
 >;
@@ -73,28 +61,15 @@ using Swing_FettRipple = AlphaL<
 	Stripes<
 		2500,
 		-3000,
-		RotateColorsX<
-			Variation, 
-			SWINGCOLOR
-		>,
+		RotateColorsX<Variation, SWINGCOLOR>,
 		RotateColorsX<
 			Variation,
-			//Rgb<44,42,0> // SWING_COLOR_ARG / 5.1
-			Mix<
-				Int<6425>,
-				Black,
-				SWINGCOLOR
-			>
+			COLOR_MIX<Int<6425>, SWINGCOLOR> //Rgb<44,42,0> // SWING_COLOR_ARG / 5.1
 		>,
 		Pulsing<
 			RotateColorsX<
 				Variation,
-				//Rgb<22,20,0> // SWING_COLOR_ARG / 12.75
-				Mix<
-					Int<2570>,
-					Black,
-					SWINGCOLOR
-				>
+				COLOR_MIX<Int<2570>, SWINGCOLOR> //Rgb<22,20,0> // SWING_COLOR_ARG / 12.75
 			>,
 			Black,
 			800
@@ -109,17 +84,11 @@ using Swing_UnstableRippple = AlphaL<
 		1000, 
 		-2000, 
 		RandomPerLEDFlicker<
-			RotateColorsX<
-				Variation, 
-				SWINGCOLOR //DeepSkyBlue
-			>, 
+			RotateColorsX<Variation, SWINGCOLOR>, //DeepSkyBlue
 			Black
 		>, 
 		Black, 
-		RotateColorsX<
-			Variation, 
-			SWINGCOLOR //DeepSkyBlue
-		>, 
+		RotateColorsX<Variation, SWINGCOLOR>, //DeepSkyBlue
 		Black
 	>, 
 	SwingSpeed<525>
@@ -130,11 +99,7 @@ using Swing_FettHard = AlphaL<
 	RotateColorsX<
 		Variation,
 		//LemonChiffon //255, 244, 157 // MIX ALT_COLOR_ARG, WHITE, 75% White
-		Mix<
-			Int<24576>, //75% white
-			SWINGCOLOR,
-			White
-		>
+		COLOR_MIX_P<75, SWINGCOLOR, White>
 	>,
 	SWINGSPEEDSCALE<675, 13600, -17300>
 >;
@@ -142,10 +107,7 @@ using Swing_FettHard = AlphaL<
 //Unstable swing
 using Swing_Unstable = AlphaL<
 	BrownNoiseFlicker<
-		RotateColorsX<
-			Variation, 
-			SWINGCOLOR //DeepSkyBlue
-		>, 
+		RotateColorsX<Variation, SWINGCOLOR>, //DeepSkyBlue
 		Black, 
 		300
 	>, 
@@ -187,16 +149,8 @@ using Swing_Interactive_Power_Buildup = AlphaL<
 			Int<-50>,
 			Int<-8000>
 		>,
-		Mix<
-			Int<10000>,
-			Black,
-			SWINGCOLOR
-		>,
-		Mix<
-			Int<20000>,
-			Black,
-			SWINGCOLOR
-		>,
+		COLOR_MIX<Int<10000>, SWINGCOLOR>,
+		COLOR_MIX<Int<20000>, SWINGCOLOR>,
 		SWINGCOLOR
 	>,
 	SmoothStep<
@@ -348,11 +302,7 @@ using Swing_Fireball = AlphaL<
 			60
 		>,
 		RandomFlicker<
-			Mix<
-				Int<16384>,
-				Black,
-				SWINGCOLOR
-			>,
+			COLOR_MIX_P<50, SWINGCOLOR>,
 			SWINGCOLOR
 		>
 	>,
@@ -459,16 +409,8 @@ using Swing_Lightning = AlphaL<
 				Int<-4000>
 			>,
 			SWINGCOLOR,
-			Mix<
-				Int<16384>,
-				Black,
-				SWINGCOLOR
-			>,
-			Mix<
-				Int<16384>,
-				SWINGCOLOR,
-				White
-			>
+			COLOR_MIX_P<50, SWINGCOLOR>,
+			COLOR_MIX_P<50, SWINGCOLOR, White>
 		>,
 		Int<50>
 	>,

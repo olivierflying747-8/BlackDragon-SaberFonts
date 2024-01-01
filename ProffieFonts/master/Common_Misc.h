@@ -1,5 +1,9 @@
 // ================================ COMMON CODE ===========================
 
+// Simple Percentage
+template<int PERCENT>
+using PERCENTAGE_S = Percentage<Int<32768>, PERCENT>;
+
 // Basic Center position based on blade angle.
 using LOCKUPPOSITIONCENTER = Scale<
 	BladeAngle<0, 16000>, 
@@ -55,14 +59,14 @@ using LOCKUPCLASHCOLOR = Mix<
 >;
 
 // Swing Speed Calculation, used in Swing Options.
-template<int LT_SPEED, int SCALE_SPEED = 600, int SCALE_MIN = -19300, int SCALE_MAX = 32768>
+template<int SCALE_SPEED1, int SCALE_SPEED2 = 600, int SCALE_MIN = -19300, int SCALE_MAX = 32768>
 using SWINGSPEEDSCALE = Scale<
 	IsLessThan<
-		SwingSpeed<LT_SPEED>,
+		SwingSpeed<SCALE_SPEED1>,
 		Int<13600>
 	>,
 	Scale<
-		SwingSpeed<SCALE_SPEED>,
+		SwingSpeed<SCALE_SPEED2>,
 		Int<SCALE_MIN>,
 		Int<SCALE_MAX>
 	>,
@@ -70,61 +74,33 @@ using SWINGSPEEDSCALE = Scale<
 >;
 
 // Ignition Flicker Stripes, used in Stabalize Ignition.
-using Ignition_FlickerStripes = Stripes<
+using Ignition_Flicker_Stripes = Stripes<
 	3000,
 	-3500,
-	RotateColorsX<
-		Variation,
-		//Rgb<90,180,255> //IGNITION_COLOR_ARG
-		IGNITIONCOLOR
-	>,
+	RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> //IGNITION_COLOR_ARG
 	RandomPerLEDFlicker<
 		RotateColorsX<
 			Variation,
-			//Rgb<0,26,60> // IGNITION_COLOR_ARG / 4.25
-			Mix<
-				Int<7710>,
-				Black, 
-				IGNITIONCOLOR
-			>
+			COLOR_MIX<Int<7710>, IGNITIONCOLOR> //Rgb<0,26,60> // IGNITION_COLOR_ARG / 4.25
 		>,
 		Black
 	>,
 	BrownNoiseFlicker<
+		RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> //IGNITION_COLOR_ARG
 		RotateColorsX<
 			Variation,
-			//Rgb<90,180,255> //IGNITION_COLOR_ARG
-			IGNITIONCOLOR
-		>,
-		RotateColorsX<
-			Variation,
-			//Rgb<0,26,60> //IGNITION_COLOR_ARG / 4.25
-			Mix<
-				Int<7710>,
-				Black, 
-				IGNITIONCOLOR
-			>
+			COLOR_MIX<Int<7710>, IGNITIONCOLOR> //Rgb<0,26,60> //IGNITION_COLOR_ARG / 4.25
 		>,
 		200
 	>,
 	RandomPerLEDFlicker<
 		RotateColorsX<
 			Variation,
-			//Rgb<0,42,128> // IGNITION_COLOR_ARG / 2
-			Mix<
-				Int<16384>,
-				Black, 
-				IGNITIONCOLOR
-			>
+			COLOR_MIX<Int<16384>, IGNITIONCOLOR> //Rgb<0,42,128> // IGNITION_COLOR_ARG / 2
 		>,
 		RotateColorsX<
 			Variation,
-			//Rgb<0,26,60> // IGNITION_COLOR_ARG / 4.25
-			Mix<
-				Int<7710>,
-				Black, 
-				IGNITIONCOLOR
-			>
+			COLOR_MIX<Int<7710>, IGNITIONCOLOR> //Rgb<0,26,60> // IGNITION_COLOR_ARG / 4.25
 		>
 	>
 >;

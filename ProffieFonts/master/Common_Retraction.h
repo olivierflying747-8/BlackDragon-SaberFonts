@@ -59,12 +59,11 @@ using Retraction_Glitch_Off = TrConcat<
 			>
 		>
 	>, 
-	Mix<
+	COLOR_MIX<
 		SmoothStep<
 			NoisySoundLevel, 
 			Int<-1>
 		>,
-		Black, 
 		RETRACTIONCOLOR
 	>, 
 	TrWipeInX<
