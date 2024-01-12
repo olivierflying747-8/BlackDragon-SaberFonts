@@ -42,7 +42,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define FETT263_EDIT_MODE_MENU
 #define ENABLE_ALL_EDIT_OPTIONS
 #define DISABLE_BASIC_PARSER_STYLES
-#define KEEP_SAVEFILES_WHEN_PROGRAMMING
+//#define KEEP_SAVEFILES_WHEN_PROGRAMMING
 #define FETT263_SAY_COLOR_LIST
 #define FETT263_SAY_COLOR_LIST_CC
 #endif
@@ -55,6 +55,7 @@ const unsigned int maxLedsPerStrip = 144;
 /* VALID FONT FOlDERS
 
 Analog
+AncientSaber
 Apocalypse
 ASSASIN
 Battle
@@ -62,7 +63,7 @@ Battle2
 BLUE
 Coda
 common
-Cripsity
+Crispity
 Deadlink
 Decay
 Endure
@@ -79,6 +80,7 @@ Mercenary
 Metamorphose
 Mother
 Noble
+OneXWing
 Party
 PeaceInOurTime
 PURPLE
@@ -102,12 +104,12 @@ YELLOW
 #ifdef CONFIG_PRESETS
 
 // Master Font for Edit mode, create /customize your own blade styles using StylePtr<MasterStyle>() and Fett263's Edit Menu.
-#include "master/Master_v3.h"
+#include "master/Master_v2.h"
 
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {
 
-	// Basic blade style.
+// Basic Fonts.
 	{ "WHITE;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		()  //, "white"
@@ -138,6 +140,7 @@ Preset presets[] = {
 		() //, "yellow"
 	},
 
+// Custom Free Fonts
 	{ "Battle;common", "tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "battle1"
@@ -148,10 +151,120 @@ Preset presets[] = {
 		() //, "battle2"
 	},
 
-	// Broken ignition / flickery blade style.
+	{ "Analog;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "analog"
+	},
+
+	{ "Apocalypse;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "apocalypse"
+	},
+
+	{ "ASSASSIN;common", "tracks/JFO9.wav",
+		StylePtr <MasterStyle>
+		() //, "assasin" 
+	},
+
+	{ "Coda;common", "tracks/JFO19.wav",
+		StylePtr <MasterStyle>
+		() //, "coda" 
+	},
+
+	{ "Crispity;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "crispity"
+	},
+
+	{ "Deadlink;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "deadlink"
+	},
+
+	{ "Decay;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "decay"
+	},
+
+	{ "Endure;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "endure"
+	},
+
+	{ "EngineGrip;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "enginegrip"
+	},
+
+	{ "EXALTED;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "exalted"
+	},
+
+	{ "Grey;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "Grey"
+	},
+
+
+
+	{ "Magnetic;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "magnetic"
+	},
+
+	{ "Masterless;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "masterless"
+	},
+
+	{ "Mercenary;common", "tracks/venus.wav",
+		StylePtr <MasterStyle>
+		() //, "mercenary"
+	},
+
+	{ "Noble;common", "tracks/Spoiler.wav",
+		StylePtr <MasterStyle>
+		() //, "noble"
+	},
+
+	{ "PeaceInOurTime;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "peaceinourtime"
+	},
+
+	{ "Ra;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "ra"
+	},
+
+	{ "SEETHE;common", "tracks/JFO18.wav",
+		StylePtr <MasterStyle>
+		() //, "seethe" 
+	},
+
+	{ "Splinter;common", "tracks/",
+		StylePtr<MasterStyle>
+		() //, "splinter"
+	},
+
 	{ "Volatile;common", "tracks/",
 		StylePtr< MasterStyle>
 		(), //"volatile"
+	},
+
+// Paid Fonts
+
+	// Ancient Saber
+	{ "AncientSaber;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "ancientsaber"
+	},
+
+		// One X Wing (Mandalorian Luke inspired)
+	{ "OneXWing;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "onexwing"
 	},
 
 	// Standard green style, quigon sounds.
@@ -160,44 +273,74 @@ Preset presets[] = {
 		() //, "ginn"
 	},
 
-	// Assasin blade style.
-	{ "ASSASSIN;common", "tracks/JFO9.wav",
-		StylePtr <MasterStyle>
-		() //, "assasin" 
-	},
-
-	// Seethe blade style.
-	{ "SEETHE;common", "tracks/JFO18.wav",
-		StylePtr <MasterStyle>
-		() //, "seethe" 
-	},
-
 	// Nightsister blade style.
 	{ "Mother;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "mother"
 	},
 
-	{ "Noble;common", "tracks/Spoiler.wav",
-		StylePtr <MasterStyle>
-		() //, "noble"
-	},
-
-	{ "Mercenary;common", "common/tracks/venus.wav",
-		StylePtr <MasterStyle>
-		() //, "mercenary"
-	},
-
-	{ "Splinter;common", "tracks/",
-		StylePtr<MasterStyle>
-		() //, "splinter"
-	},
-
+	// Second Sister
 	{ "Second;common", "tracks/JFO19.wav",
 		StylePtr<MasterStyle>
 		() //, "second"
 	},
 
+	// Ghost Buster
+	{ "GhostSucker;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "ghostsucker"
+	},
+
+	// Thor (Avengers)
+	{ "ThunderGod;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "thundergod"
+	},
+
+	// Electro Staff
+	{ "Staff;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "staff"
+	},
+
+	// Smash sword
+	{ "SmashSowrd;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "smashsword"
+	},
+
+	// The Atom Project
+	{ "MagCyl;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "magcyl"
+	},
+
+	// Shock Baton
+	{ "ShockBaton;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "shockbaton"
+	},
+
+	// Metamorphose
+	{ "Metamorphose;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "metamorphose"
+	},
+
+	// WarpStar
+	{ "WarpStar;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "warpstar"
+	},
+
+	// Party
+	{ "Party;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "party"
+	},
+
+
+	/*
 	{ "Coda;common", "tracks/JFO19.wav",
 		StylePtr <
 			Layers <
@@ -390,10 +533,53 @@ Preset presets[] = {
 
 				// LOCKUP EFFECT
 				LockupTrL <
-				// LOCKUP BEGIN
-				TransitionEffect <
-					AlphaL <
-						AlphaMixL <
+					// LOCKUP BEGIN
+					TransitionEffect <
+						AlphaL <
+							AlphaMixL <
+								Bump <
+									Scale<
+										BladeAngle<>,
+										Scale<
+											BladeAngle<0,16000>,
+											Sum<
+												IntArg<LOCKUP_POSITION_ARG,16000>,
+												Int<-12000>
+											>,
+											Sum<
+												IntArg<LOCKUP_POSITION_ARG,16000>,
+												Int<10000>
+											>
+										>,
+										Sum<
+											IntArg<LOCKUP_POSITION_ARG,16000>,
+											Int<-10000>
+										>
+									>,
+									Scale<
+										SwingSpeed<100>,
+										Int<14000>,
+										Int<22000>
+									>
+								> ,
+								AudioFlicker<
+									RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
+									Mix<
+										Int<12000>,
+										Black,
+										RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>
+									>
+								>,
+								BrownNoiseFlicker<
+									RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
+									Mix<
+										Int<12000>,
+										Black,
+										RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>
+									>,
+									300
+								>
+							> ,
 							Bump <
 								Scale<
 									BladeAngle<>,
@@ -418,107 +604,17 @@ Preset presets[] = {
 									Int<14000>,
 									Int<22000>
 								>
-							> ,
+							>
+						> ,
+						AlphaL <
 							AudioFlicker<
 								RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
 								Mix<
-									Int<12000>,
+									Int<20000>,
 									Black,
 									RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>
 								>
 							>,
-							BrownNoiseFlicker<
-								RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
-								Mix<
-									Int<12000>,
-									Black,
-									RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>
-								>,
-								300
-							>
-						> ,
-						Bump <
-							Scale<
-								BladeAngle<>,
-								Scale<
-									BladeAngle<0,16000>,
-									Sum<
-										IntArg<LOCKUP_POSITION_ARG,16000>,
-										Int<-12000>
-									>,
-									Sum<
-										IntArg<LOCKUP_POSITION_ARG,16000>,
-										Int<10000>
-									>
-								>,
-								Sum<
-									IntArg<LOCKUP_POSITION_ARG,16000>,
-									Int<-10000>
-								>
-							>,
-							Scale<
-								SwingSpeed<100>,
-								Int<14000>,
-								Int<22000>
-							>
-						>
-					> ,
-					AlphaL <
-						AudioFlicker<
-							RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
-							Mix<
-								Int<20000>,
-								Black,
-								RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>
-							>
-						>,
-						Bump <
-							Scale<
-								BladeAngle<>,
-								Scale<
-									BladeAngle<0,16000>,
-									Sum<
-										IntArg<LOCKUP_POSITION_ARG,16000>,
-										Int<-12000>
-									>,
-									Sum<
-										IntArg<LOCKUP_POSITION_ARG,16000>,
-										Int<10000>
-									>
-								>,
-								Sum<
-									IntArg<LOCKUP_POSITION_ARG,16000>,
-									Int<-10000>
-								>
-							>,
-							Scale<
-								SwingSpeed<100>,
-								Int<14000>,
-								Int<18000>
-							>
-						>
-					> ,
-					TrExtend<
-						5000,
-						TrInstant
-					>,
-					TrFade<5000>,
-					EFFECT_LOCKUP_BEGIN
-				> ,
-				// LOCKUP
-				TrConcat <
-					TrJoin<
-						TrDelay<50>,
-						TrInstant
-					>,
-					Mix <
-						IsLessThan<
-							ClashImpactF<>,
-							Int<26000>
-						>,
-						RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
-						AlphaL <
-							RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
 							Bump <
 								Scale<
 									BladeAngle<>,
@@ -539,179 +635,188 @@ Preset presets[] = {
 									>
 								>,
 								Scale<
-									ClashImpactF<>,
-									Int<20000>,
-									Int<60000>
+									SwingSpeed<100>,
+									Int<14000>,
+									Int<18000>
 								>
 							>
-						>
+						> ,
+						TrExtend<
+							5000,
+							TrInstant
+						>,
+						TrFade<5000>,
+						EFFECT_LOCKUP_BEGIN
 					> ,
-					TrFade<300>
+					// LOCKUP
+					TrConcat <
+						TrJoin<
+							TrDelay<50>,
+							TrInstant
+						>,
+						Mix <
+							IsLessThan<
+								ClashImpactF<>,
+								Int<26000>
+							>,
+							RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
+							AlphaL <
+								RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
+								Bump <
+									Scale<
+										BladeAngle<>,
+										Scale<
+											BladeAngle<0,16000>,
+											Sum<
+												IntArg<LOCKUP_POSITION_ARG,16000>,
+												Int<-12000>
+											>,
+											Sum<
+												IntArg<LOCKUP_POSITION_ARG,16000>,
+												Int<10000>
+											>
+										>,
+										Sum<
+											IntArg<LOCKUP_POSITION_ARG,16000>,
+											Int<-10000>
+										>
+									>,
+									Scale<
+										ClashImpactF<>,
+										Int<20000>,
+										Int<60000>
+									>
+								>
+							>
+						> ,
+						TrFade<300>
+					> ,
+					// LOCKUP END
+					TrConcat<
+						TrInstant,
+						RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
+						TrFade<400>
+					>,
+					SaberBase::LOCKUP_NORMAL,
+					Int<1>
 				> ,
-				// LOCKUP END
-				TrConcat<
-					TrInstant,
-					RgbArg<LOCKUP_COLOR_ARG,Rgb<255,199,119>>,
-					TrFade<400>
-				>,
-				SaberBase::LOCKUP_NORMAL,
-				Int<1>
-			> ,
 
-			// LIGHTNING BLOCK
-			ResponsiveLightningBlockL <
-				// LB
-				Strobe<
-					RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
-					AudioFlicker<
+				// LIGHTNING BLOCK
+				ResponsiveLightningBlockL <
+					// LB
+					Strobe<
 						RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
-						Blue
+						AudioFlicker<
+							RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
+							Blue
+						>,
+						50,
+						1
 					>,
-					50,
-					1
-				>,
-				// LB START
-				TrConcat<
-					TrExtend<
-						200,
-						TrInstant
+					// LB START
+					TrConcat<
+						TrExtend<
+							200,
+							TrInstant
+						>,
+						AlphaL<
+							RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
+							Bump<
+								Scale<
+									BladeAngle<>,
+									Int<10000>,
+									Int<21000>
+								>,
+								Int<10000>
+							>
+						>,
+						TrFade<200>
 					>,
-					AlphaL<
+					// LB END
+					TrConcat<
+						TrInstant,
 						RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
-						Bump<
-							Scale<
-								BladeAngle<>,
-								Int<10000>,
-								Int<21000>
-							>,
-							Int<10000>
-						>
+						TrFade<400>
 					>,
-					TrFade<200>
-				>,
-				// LB END
-				TrConcat<
-					TrInstant,
-					RgbArg<LB_COLOR_ARG,Rgb<191,255,255>>,
-					TrFade<400>
-				>,
+					Int<1>
+				> ,
+
+				// DRAG EFFECT
+				LockupTrL <
+					AlphaL <
+					// DRAG BEGIN
+					TransitionEffect<
+						RandomPerLEDFlickerL<RgbArg<DRAG_COLOR_ARG,Rgb<255,255,255>>>,
+						BrownNoiseFlickerL<
+							RgbArg<DRAG_COLOR_ARG,Rgb<255,255,255>>,
+							Int<300>
+						>,
+						TrExtend<
+							4000,
+							TrInstant
+						>,
+						TrFade<4000>,
+						EFFECT_DRAG_BEGIN
+					>,
+					// DRAG SIZE
+					SmoothStep<
+						Scale<
+							TwistAngle<>,
+							IntArg<DRAG_SIZE_ARG,28000>,
+							Int<30000>
+						>,
+						Int<3000>
+					>
+				> ,
+				// DRAG IN/OUT EFFECT
+				TrWipeIn<200>,
+				TrWipe<200>,
+				SaberBase::LOCKUP_DRAG,
 				Int<1>
-			> ,
+				> ,
 
-			// DRAG EFFECT
-			LockupTrL <
-				AlphaL <
-				// DRAG BEGIN
-				TransitionEffect<
-					RandomPerLEDFlickerL<RgbArg<DRAG_COLOR_ARG,Rgb<255,255,255>>>,
-					BrownNoiseFlickerL<
-						RgbArg<DRAG_COLOR_ARG,Rgb<255,255,255>>,
-						Int<300>
-					>,
-					TrExtend<
-						4000,
-						TrInstant
-					>,
-					TrFade<4000>,
-					EFFECT_DRAG_BEGIN
-				>,
-				// DRAG SIZE
-				SmoothStep<
-					Scale<
-						TwistAngle<>,
-						IntArg<DRAG_SIZE_ARG,28000>,
-						Int<30000>
-					>,
-					Int<3000>
-				>
-			> ,
-			// DRAG IN/OUT EFFECT
-			TrWipeIn<200>,
-			TrWipe<200>,
-			SaberBase::LOCKUP_DRAG,
-			Int<1>
-			> ,
-
-			// STAB EFFECT
-			LockupTrL <
-				AlphaL <
-					Stripes <
-						2000,
-						4000,
-						Mix<
-							TwistAngle<>,
-							RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
-							RotateColorsX<
-								Int<3000>,
-								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
-							>
-						>,
-						Mix<
-							Sin<
-								Int<50>
+				// STAB EFFECT
+				LockupTrL <
+					AlphaL <
+						Stripes <
+							2000,
+							4000,
+							Mix<
+								TwistAngle<>,
+								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
+								RotateColorsX<
+									Int<3000>,
+									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+								>
 							>,
-							Black,
 							Mix<
-								TwistAngle<>,
-								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
-								RotateColorsX<
-									Int<3000>,
-									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+								Sin<
+									Int<50>
+								>,
+								Black,
+								Mix<
+									TwistAngle<>,
+									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
+									RotateColorsX<
+										Int<3000>,
+										RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+									>
+								>
+							>,
+							Mix<
+								Int<4096>,
+								Black,
+								Mix<
+									TwistAngle<>,
+									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
+									RotateColorsX<
+										Int<3000>,
+										RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+									>
 								>
 							>
-						>,
-						Mix<
-							Int<4096>,
-							Black,
-							Mix<
-								TwistAngle<>,
-								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
-								RotateColorsX<
-									Int<3000>,
-									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
-								>
-							>
-						>
-					> ,
-				// STAB SIZE
-				SmoothStep<
-					Scale<
-						TwistAngle<>,
-						IntArg<MELT_SIZE_ARG,28000>,
-						Int<30000>
-					>,
-					Int<3000>
-				>
-			> ,
-			// STAB START EFFECT
-			TrConcat <
-				TrExtend<
-					4000,
-					TrWipeIn<200>
-				>,
-				AlphaL <
-					HumpFlicker <
-						Mix<
-							TwistAngle<>,
-							RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
-							RotateColorsX<
-								Int<3000>,
-								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
-							>
-						>,
-						RotateColorsX<
-							Int<3000>,
-							Mix<
-								TwistAngle<>,
-								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
-								RotateColorsX<
-									Int<3000>,
-									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
-								>
-							>
-						>,
-						100
-					> ,
+						> ,
+					// STAB SIZE
 					SmoothStep<
 						Scale<
 							TwistAngle<>,
@@ -721,177 +826,215 @@ Preset presets[] = {
 						Int<3000>
 					>
 				> ,
-				TrFade<4000>
-			> ,
-			TrWipe<200>,
-			SaberBase::LOCKUP_MELT,
-			Int<1>
-			> ,
-
-			// BLAST EFFECT
-			TransitionEffectL<
-				TrConcat<
-					TrDelayX<
-						Mult<
-							WavLen<EFFECT_INTERACTIVE_BLAST>,
-							Int<24576>
+				// STAB START EFFECT
+				TrConcat <
+					TrExtend<
+						4000,
+						TrWipeIn<200>
+					>,
+					AlphaL <
+						HumpFlicker <
+							Mix<
+								TwistAngle<>,
+								RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
+								RotateColorsX<
+									Int<3000>,
+									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+								>
+							>,
+							RotateColorsX<
+								Int<3000>,
+								Mix<
+									TwistAngle<>,
+									RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>,
+									RotateColorsX<
+										Int<3000>,
+										RgbArg<STAB_COLOR_ARG,Rgb<255,68,0>>
+									>
+								>
+							>,
+							100
+						> ,
+						SmoothStep<
+							Scale<
+								TwistAngle<>,
+								IntArg<MELT_SIZE_ARG,28000>,
+								Int<30000>
+							>,
+							Int<3000>
 						>
-					>,
-					AlphaL<
-						White,
-						Int<0>
-					>,
-					TrDoEffect<
-						TrInstant,
-						EFFECT_GAME_CHOICE
-					>
-				>,
-				EFFECT_INTERACTIVE_BLAST
-			>,
-			// EFFECT GAME CHOICE: Choose to deflect blast.
-			TransitionEffectL<
-				TrConcat<
-					TrExtendX<
-						IntArg<STYLE_OPTION2_ARG,1000>,
-						TrInstant
-					>,
-					TransitionPulseL<
-						TrDoEffect<
-							TrInstant,
-							EFFECT_BLAST
-						>,
-						ThresholdPulseF<
-							SwingSpeed<300>,
-							Int<16000>
-						>
-					>,
-					TrInstant
-				>,
-				EFFECT_GAME_CHOICE
-			>,
-
-			// IN / OUT EFFECT
-			InOutTrL <
-				// IGNITION EFFECT
-				TrSelect <
-					IntArg<IGNITION_OPTION_ARG,0>,
-					TrWipeSparkTipX<
-						RgbArg<IGNITION_COLOR_ARG,Rgb<255,255,255>>,
-						BendTimePowInvX<
-							IgnitionTime<300>,
-							Mult<
-								IntArg<IGNITION_OPTION2_ARG,10992>,
-								Int<98304>
-							>
-						>
-					>,
-					TrWipeX<
-						BendTimePowInvX<
-							IgnitionTime<300>,
-							Mult<
-								IntArg<IGNITION_OPTION2_ARG,10992>,
-								Int<98304>
-							>
-						>
-					>
+					> ,
+					TrFade<4000>
+				> ,
+				TrWipe<200>,
+				SaberBase::LOCKUP_MELT,
+				Int<1>
 				> ,
 
-				// RETRACTION EFFECT
-				TrWipeInX<
-					BendTimePowInvX<
-						RetractionTime<0>,
-						Mult<
-							IntArg<RETRACTION_OPTION2_ARG,10992>,
-							Int<98304>
-						>
-					>
-				>,
-				Black
-			> ,
-
-			// EFFECT USER 7
-			TransitionEffectL<
-				TrConcat<
-					TrDelayX<
-						Int<1000>
-					>,
-					AlphaL<
-						White,
-						Int<0>
-					>,
+				// BLAST EFFECT
+				TransitionEffectL<
 					TrConcat<
-						TrInstant,
-						AudioFlickerL<
-							RgbArg<IGNITION_COLOR_ARG,Rgb<255,255,255>>
+						TrDelayX<
+							Mult<
+								WavLen<EFFECT_INTERACTIVE_BLAST>,
+								Int<24576>
+							>
 						>,
-						TrFade<1200>
-					>
-				>,
-				EFFECT_USER7
-			>,
-
-			TransitionEffectL<
-				TrConcat<
-					TrDelayX<
-						Int<1000>
+						AlphaL<
+							White,
+							Int<0>
+						>,
+						TrDoEffect<
+							TrInstant,
+							EFFECT_GAME_CHOICE
+						>
 					>,
-					Black,
-					TrWipeX<
-						Int<300>
-					>
+					EFFECT_INTERACTIVE_BLAST
 				>,
-				EFFECT_USER7
-			>,
+				// EFFECT GAME CHOICE: Choose to deflect blast.
+				TransitionEffectL<
+					TrConcat<
+						TrExtendX<
+							IntArg<STYLE_OPTION2_ARG,1000>,
+							TrInstant
+						>,
+						TransitionPulseL<
+							TrDoEffect<
+								TrInstant,
+								EFFECT_BLAST
+							>,
+							ThresholdPulseF<
+								SwingSpeed<300>,
+								Int<16000>
+							>
+						>,
+						TrInstant
+					>,
+					EFFECT_GAME_CHOICE
+				>,
 
-			TransitionEffectL <
-				TrConcat<
-					TrDoEffectAlwaysX<
+				// IN / OUT EFFECT
+				InOutTrL <
+					// IGNITION EFFECT
+					TrSelect <
+						IntArg<IGNITION_OPTION_ARG,0>,
+						TrWipeSparkTipX<
+							RgbArg<IGNITION_COLOR_ARG,Rgb<255,255,255>>,
+							BendTimePowInvX<
+								IgnitionTime<300>,
+								Mult<
+									IntArg<IGNITION_OPTION2_ARG,10992>,
+									Int<98304>
+								>
+							>
+						>,
+						TrWipeX<
+							BendTimePowInvX<
+								IgnitionTime<300>,
+								Mult<
+									IntArg<IGNITION_OPTION2_ARG,10992>,
+									Int<98304>
+								>
+							>
+						>
+					> ,
+
+					// RETRACTION EFFECT
+					TrWipeInX<
+						BendTimePowInvX<
+							RetractionTime<0>,
+							Mult<
+								IntArg<RETRACTION_OPTION2_ARG,10992>,
+								Int<98304>
+							>
+						>
+					>,
+					Black
+				> ,
+
+				// EFFECT USER 7
+				TransitionEffectL<
+					TrConcat<
 						TrDelayX<
 							Int<1000>
 						>,
-						EFFECT_QUOTE,
-						Int<1>,
-						Int<-1>
-					>,
-					AlphaL<
-						White,
-						Int<0>
-					>,
-					TrDoEffectAlwaysX<
-						TrInstant,
-						EFFECT_FAST_ON,
-						Int<-1>,
-						Int<-1>
-					>
-				>,
-				EFFECT_USER7
-			> ,
-
-			// BATTERY LEVEL
-			TransitionEffectL<
-				TrConcat<
-					TrJoin<
-						TrDelay<2000>,
-						TrWipe<1000>
-					>,
-					AlphaL<
-						Mix<
-							BatteryLevel,
-							Red,
-							Green
+						AlphaL<
+							White,
+							Int<0>
 						>,
-						SmoothStep<
-							BatteryLevel,
-							Int<-10>
+						TrConcat<
+							TrInstant,
+							AudioFlickerL<
+								RgbArg<IGNITION_COLOR_ARG,Rgb<255,255,255>>
+							>,
+							TrFade<1200>
 						>
 					>,
-					TrWipeIn<1000>
+					EFFECT_USER7
 				>,
-				EFFECT_BATTERY_LEVEL
+
+				TransitionEffectL<
+					TrConcat<
+						TrDelayX<
+							Int<1000>
+						>,
+						Black,
+						TrWipeX<
+							Int<300>
+						>
+					>,
+					EFFECT_USER7
+				>,
+
+				TransitionEffectL <
+					TrConcat<
+						TrDoEffectAlwaysX<
+							TrDelayX<
+								Int<1000>
+							>,
+							EFFECT_QUOTE,
+							Int<1>,
+							Int<-1>
+						>,
+						AlphaL<
+							White,
+							Int<0>
+						>,
+						TrDoEffectAlwaysX<
+							TrInstant,
+							EFFECT_FAST_ON,
+							Int<-1>,
+							Int<-1>
+						>
+					>,
+					EFFECT_USER7
+				> ,
+
+				// BATTERY LEVEL
+				TransitionEffectL<
+					TrConcat<
+						TrJoin<
+							TrDelay<2000>,
+							TrWipe<1000>
+						>,
+						AlphaL<
+							Mix<
+								BatteryLevel,
+								Red,
+								Green
+							>,
+							SmoothStep<
+								BatteryLevel,
+								Int<-10>
+							>
+						>,
+						TrWipeIn<1000>
+					>,
+					EFFECT_BATTERY_LEVEL
+				>
 			>
 		>
-	>
-	() //, “Ezra”
+		() //, “Ezra”
 	},
 
 
@@ -1153,9 +1296,10 @@ Preset presets[] = {
 	> 
 	()
 },
+*/
 
 // Nightsister blade style.
-{ "Mother;common", "tracks/", //{ "Fire Talzin;common", "tracks/mars.wav",
+//{ "Mother;common", "tracks/", //{ "Fire Talzin;common", "tracks/mars.wav",
 /* copyright Fett263 CustomBlade (Primary Blade) OS7 Style
 https://fett263library.com/early-access/#CustomBlade
 OS7.12 v2.231
@@ -1206,6 +1350,7 @@ Special Ability 7: Play Sound - Ignite Uses tr00.wav or tr/000/000.wav
 Special Ability 8: Play Sound - Ignite Uses tr01.wav or tr/001/000.wav
 
  */
+/*
 	StylePtr<
 		Layers<
 			// Blade Style
@@ -1821,6 +1966,7 @@ Special Ability 8: Play Sound - Ignite Uses tr01.wav or tr/001/000.wav
 		
 			// Lockup Effect
 			LockupTrL<
+				// Lockup Effect Begin?
 				TransitionEffect<
 					AlphaL<
 						Remap<
@@ -2232,6 +2378,7 @@ Special Ability 8: Play Sound - Ignite Uses tr01.wav or tr/001/000.wav
 					>,
 					TrFade<300>
 				>,
+				// Lockup Effect End?
 				TrConcat<
 					TrInstant,
 					AlphaL<
@@ -2999,6 +3146,7 @@ Special Ability 8: Play Sound - Ignite Uses tr01.wav or tr/001/000.wav
 	>
 	()
 },
+*/
 
 };
 

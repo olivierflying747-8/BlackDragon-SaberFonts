@@ -13,37 +13,75 @@ using AltStyle_RandomFlicker = RandomL<
 	COLOR
 >;
 
-// Pusling
-template<class COLOR, class PULSE_MS = Int<1200>>
-using AltStyle_Pulsing = PulsingL<
-	RotateColorsX<Variation, COLOR>,
-	PULSE_MS
->;
-
 // Random Per LED Flicker
 template<class COLOR>
 using AltStyle_RandomPerLEDFlicker = RandomPerLEDFlickerL<
 	COLOR
 >;
 
+// Blinking
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_TIME = Int<1000>, class MAX_TIME = Int<300>, class RATIO = Int<500>, class HOLD_TIME = Int<100>, class HOLD_SPEED = Int<4000>>
+using AltStyle_Blinking = BlinkingL<
+	COLOR,
+	SWING_SPEED_SCLAE<SWING_SPEED, MIN_TIME, MAX_TIME, HOLD_TIME, HOLD_SPEED>,
+	/*
+	Scale<
+		HoldPeakF<
+			SwingSpeed<SWING_SPEED>,
+			HOLD_TIME,
+			HOLD_SPEED
+		>,
+		MIN_TIME,
+		MAX_TIME
+	>,
+	*/
+	RATIO
+>;
+
+// Pusling
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>>
+using AltStyle_Pulsing = PulsingL<
+	RotateColorsX<Variation, COLOR>,
+	SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME, HOLD_SPEED>
+	/*
+	Scale<
+		HoldPeakF<
+			SwingSpeed<SWING_SPEED>,
+			HOLD_TIME,
+			HOLD_SPEED
+		>,
+		PULSE_MIN, //Int<3000>,
+		PULSE_MAX //Int<500>
+	>
+	*/
+>;
+
 // Hump Flicker
-template<class COLOR>
+template<class COLOR, int WIDTH = 10, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_SIZE = Int<1024>, class MAX_SIZE = Int<8192>>
 using AltStyle_HumpFlicker_Random = AlphaL<
-	HumpFlickerL<COLOR, 10>,
+	HumpFlickerL<COLOR, WIDTH>,
 	Bump<
 		RandomF,
-		Int<20000>
+		SWING_SPEED_SCLAE<SWING_SPEED, MIN_SIZE, MAX_SIZE>
+		/*
+		Scale<
+			SwingSpeed<SWING_SPEED>,
+			MIN_SIZE,
+			MAX_SIZE //Int<20000>
+		>
+		*/
 	>
 >;
 
 // Hump Waves (2 Color)
-template<class COLORA, class COLORB>
+template<class COLORA, class COLORB, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<100>, class WIDTH_MAX = Int<400>, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
 using AltStyle_HumpWave = Layers <
 	TransitionLoopL<
 		TrWaveX<
 			HumpFlickerL<RotateColorsX<Variation, COLORA>, 40>,
 			Int<250>,
-			Int<100>,
+			//Int<100>,
+			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
 			Int<200>,
 			Int<0>
 		>
@@ -52,7 +90,8 @@ using AltStyle_HumpWave = Layers <
 		TrWaveX<
 			HumpFlickerL<RotateColorsX<Variation, COLORB>, 40>,
 			Int<350>,
-			Int<100>,
+			//Int<100>,
+			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
 			Int<300>,
 			Int<0>
 		>
@@ -78,12 +117,12 @@ using AltStyle_Fire = AlphaL<
 >;
 
 // Brown Noise with Stripes
-template<class COLOR, class WIDTH = Int<3000>, class SPEED = Int<-4000>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<3000>, class WIDTH_MAX = Int<1000>, class SPEED_MIN = Int<-2000>, class SPEED_MAX = Int<-4000>, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
 using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 	//TRANSPARENT,
 	StripesX<
-		WIDTH, 
-		SPEED, 
+		SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
+		SWING_SPEED_SCLAE<SWING_SPEED, SPEED_MIN, SPEED_MAX, HOLD_TIME, HOLD_SPEED>,
 		COLOR_MIX<Int<9638>, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
 		COLOR_MIX<Int<19275>, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
 		COLOR_MIX<Int<1928>, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
@@ -92,10 +131,10 @@ using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 	Int<200>
 >;
 
-// Fett263 Smoke Blade Fire layer, ALT Color
-template<class COLOR, int SPEED = 1>
+// Fett263 Smoke Blade Fire layer
+template<class COLOR, int SPEED = 1, int BASE = 10, int RAND = 2000, int COOLING = 2>
 using AltStyle_SmokeBlade = AlphaL <
-	StyleFire<
+	StaticFire<
 		RotateColorsX<Variation, COLOR>,
 		RotateColorsX<
 			Variation,
@@ -103,38 +142,16 @@ using AltStyle_SmokeBlade = AlphaL <
 		>,
 		0,
 		SPEED,
-		FireConfig<10,2000,2>,
-		FireConfig<10,2000,2>,
-		FireConfig<10,2000,2>,
-		FireConfig<0,0,25>
-	>,
-	Int<10000>
->;
-
-template<class COLOR>
-using AltStyle_SmokeBlade2 = AlphaL<
-	StaticFire<
-		RotateColorsX<Variation, COLOR>,
-		RotateColorsX<
-			Variation,
-			COLOR_MIX<Int<256>, COLOR>
-		>,
-		0,
-		1,
-		10,
-		2000,
-		2
+		BASE,
+		RAND,
+		COOLING
 	>,
 	Int<10000>
 >;
 
 // Lightning Flash
-template<class COLOR>
-using AltStyle_LightningFlash = TransitionLoop<
-	AlphaL< // Invisible color
-		COLOR,
-		Int<0>
-	>,
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
+using AltStyle_LightningFlash = TransitionLoopL<
 	TrConcat<
 		TrBoing<500, 3>,
 		TrConcat<
@@ -143,7 +160,8 @@ using AltStyle_LightningFlash = TransitionLoop<
 				HumpFlickerL<COLOR, 10>,
 				Bump<
 					RandomF,
-					Int<20000>
+					//Int<20000>
+					SWING_SPEED_SCLAE<SWING_SPEED, Int<20000>, Int<10000>, HOLD_TIME, HOLD_SPEED>
 				>
 			>,
 			TrFade<100>
@@ -152,7 +170,8 @@ using AltStyle_LightningFlash = TransitionLoop<
 			Scale<
 				SlowNoise<Int<3000>>,
 				Int<100>,
-				Int<2000>
+				//Int<2000>
+				SWING_SPEED_SCLAE<SWING_SPEED, Int<2000>, Int<1000>, HOLD_TIME, HOLD_SPEED>
 			>
 		>
 	>
@@ -169,9 +188,9 @@ using AltStyle_Cylon = AlphaL<
 	Int<16384>
 >;
 
-// Emitter Tip Flame
+// Blade Tip Flame
 template<class COLOR>
-using AltStyle_EmitterTipFlame = AlphaL<
+using AltStyle_Blade_Tip_Flame = AlphaL<
 	Layers <
 		Gradient<COLOR, TRANSPARENT>,
 		HumpFlickerL<
@@ -203,7 +222,7 @@ using AltStyle_EmitterTipFlame = AlphaL<
 
 // Emitter Flare
 template<class COLOR>
-using AltStyle_EmitterFlare = AlphaL<
+using AltStyle_Emitter_Flare = AlphaL<
 	AudioFlickerL<COLOR>, 
 	SmoothStep<
 		Scale<
@@ -221,7 +240,7 @@ using AltStyle_EmitterFlare = AlphaL<
 // Timed "breathing" emitter flare 
 //- NOTE: Due to the way Proffie works, this isn't always "lined up" and might be slightly ahead or slightly behind the hum's breathing. To fix you can turn the saber off and back on until it's lined up. The timing is right, but the code runs in the background even after turning the saber off so it doesn't always start "on time."
 template<class COLOR>
-using AltStyle_EmitterBreathe = Mix<
+using AltStyle_Emitter_Breathe = Mix<
 	Sin<Int<8>>,
 	AlphaL<
 		RotateColorsX<Variation, COLOR>,

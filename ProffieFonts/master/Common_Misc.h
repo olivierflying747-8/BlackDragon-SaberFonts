@@ -1,8 +1,42 @@
 // ================================ COMMON CODE ===========================
 
+const int SWING_SPEED_DEFAULT = 500;
+
 // Simple Percentage
 template<int PERCENT>
 using PERCENTAGE_S = Percentage<Int<32768>, PERCENT>;
+
+// Blade Angle Scale
+template<class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>, int MIN_BLADE = 0, int MAX_BLADE = 32768>
+using BLADE_ANGLE_SCLAE = Scale<
+	HoldPeakF<
+		BladeAngle<MIN_BLADE, MAX_BLADE>,
+		HOLD_TIME, // HOLD_TIME_MS
+		HOLD_SPEED // TRANSITION SPEED
+	>,
+	MIN,
+	MAX
+>;
+
+// Swing Speed Scale with HoldPeak. HoldPeak defaults to 0 so it doesn't hold.
+template<int SPEED = 250, class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>>
+using SWING_SPEED_SCLAE = Scale<
+	//SwingSpeed<SPEED>,
+	//Scale<
+		HoldPeakF<
+			SwingSpeed<SPEED>,
+			//SwingAcceleration<250>,
+			//TwistAcceleration<250>,
+			//TwistAngle<>,
+			//BladeAngle<>
+			HOLD_TIME, // HOLD_TIME_MS
+			HOLD_SPEED // TRANSITION SPEED
+		>,
+		MIN,
+		MAX
+//	>,
+//	MAX
+>;
 
 // Basic Center position based on blade angle.
 using LOCKUPPOSITIONCENTER = Scale<
@@ -101,6 +135,36 @@ using Ignition_Flicker_Stripes = Stripes<
 		RotateColorsX<
 			Variation,
 			COLOR_MIX<Int<7710>, IGNITIONCOLOR> //Rgb<0,26,60> // IGNITION_COLOR_ARG / 4.25
+		>
+	>
+>;
+
+
+// Random Spark
+template<class COLOR, class POSITION = Int<0>, class SPEED = Int<250>, class SPARK_SIZE_MIN = Int<200>, class SPARK_SIZE_MAX = Int<600>, class MIN_DELAY = Int<200>, class MAX_DELAY = Int<600>, class FADE_TIME = Int<100>, class BOING_TIME = Int<500>>
+using TrSparkX_Random = TransitionLoopL<
+	TrConcat<
+		TrBoingX<BOING_TIME, 3>,
+		TrConcat<
+			TrFadeX<FADE_TIME>,
+			TrSparkX<
+				COLOR,
+				Scale<
+					NoisySoundLevel,
+					SPARK_SIZE_MIN,
+					SPARK_SIZE_MAX
+				>,
+				SPEED,
+				POSITION
+			>,
+			TrFadeX<FADE_TIME>
+		>,
+		TrDelayX< // Random Timer
+			Scale<
+				RandomF,
+				MIN_DELAY,
+				MAX_DELAY
+			>
 		>
 	>
 >;

@@ -16,9 +16,12 @@ using PowerDown_Burst_Reverse = TrConcat<
 		RetractionTime<0>, 
 		TrDelayX<IntArg<RETRACTION_DELAY_ARG, 0>> //TrInstant
 	>, 
-	Stripes<
-		5000, 
-		2500, 
+	StripesX<
+		//Int<5000>, 
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<2500>, Int<500>, Int<4000>>,
+		//Int<2500>, 
+		BLADE_ANGLE_SCLAE<Int<2500>, Int<1500>, Int<500>, Int<4000>>,
+
 		RETRACTIONCOLOR, 
 		COLOR_MIX<Int<7710>, RETRACTIONCOLOR>, 
 		COLOR_MIX<Int<3855>, RETRACTIONCOLOR>
@@ -32,9 +35,12 @@ using PowerDown_Unstable_Reverse = TrConcat<
 		RetractionTime<0>, 
 		TrDelayX<IntArg<RETRACTION_DELAY_ARG, 0>> //TrInstant
 	>, 
-	Stripes<
-		3000, 
-		3500, 
+	StripesX<
+		//Int<3000>, 
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<4000>>,
+		//Int<3500>, 
+		BLADE_ANGLE_SCLAE<Int<3500>, Int<2000>, Int<500>, Int<4000>>,
+
 		RETRACTIONCOLOR, 
 		RandomPerLEDFlicker<
 			COLOR_MIX<Int<7710>, RETRACTIONCOLOR>, 
@@ -58,10 +64,7 @@ using PowerDown_Bright_Hump = TrConcat<
 	TrDelayX<IntArg<RETRACTION_DELAY_ARG, 0>>, //TrInstant,
 	HumpFlickerL<RETRACTIONCOLOR, 40>, 
 	TrFadeX<
-		Percentage<
-			WavLen<>, 
-			125
-		>
+		Percentage<WavLen<>, 125>
 	>
 >;
 
@@ -80,7 +83,7 @@ using PowerDown_Smoke_Reverse = TrConcat <
 	>,
 //	*/
 	TrFade<2000>
-	/*
+	/* // Emitter Cooldown, moved to POST OFF.
 	AlphaL<
 		//Rgb<0, 63, 0>,
 		Mix<

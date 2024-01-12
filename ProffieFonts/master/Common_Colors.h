@@ -1,25 +1,27 @@
 // ===================== BASIC COLOR BLENDS ===================
 // Base Color
-using BASECOLOR = RgbArg<BASE_COLOR_ARG, Rgb<127, 127, 127>>;
+using BASECOLOR = RgbArg<BASE_COLOR_ARG, Rgb<127, 0, 0>>;
 // Alt Colors
-using ALTCOLOR = RgbArg<ALT_COLOR_ARG, Rgb<127, 127, 127>>;
-using ALTCOLOR2 = RgbArg<ALT_COLOR2_ARG, Rgb<127, 127, 127>>;
-using ALTCOLOR3 = RgbArg<ALT_COLOR3_ARG, Rgb<127, 127, 127>>;
+using ALTCOLOR = RgbArg<ALT_COLOR_ARG, Rgb<0, 127, 0>>;
+using ALTCOLOR2 = RgbArg<ALT_COLOR2_ARG, Rgb<0, 0, 127>>;
+using ALTCOLOR3 = RgbArg<ALT_COLOR3_ARG, Rgb<0, 127, 127>>;
 
 // Effect Colors
-using SWINGCOLOR = RgbArg<SWING_COLOR_ARG, Rgb<127, 127, 127>>;
-using BLASTCOLOR = RgbArg<BLAST_COLOR_ARG, Rgb<127, 127, 127>>;
-using IGNITIONCOLOR = RgbArg<IGNITION_COLOR_ARG, Rgb<127, 127, 127>>;
-using RETRACTIONCOLOR = RgbArg<RETRACTION_COLOR_ARG, Rgb<127, 127, 127>>;
+using SWINGCOLOR = RgbArg<SWING_COLOR_ARG, Rgb<127, 0, 127>>;
+using IGNITIONCOLOR = RgbArg<IGNITION_COLOR_ARG, Rgb<127, 127, 0>>;
+using RETRACTIONCOLOR = RgbArg<RETRACTION_COLOR_ARG, Rgb<127, 127, 0>>;
 using PREONCOLOR = RgbArg<PREON_COLOR_ARG, Rgb<127, 127, 127>>;
 using POSTOFFCOLOR = RgbArg<POSTOFF_COLOR_ARG, Rgb<127, 127, 127>>;
 using EMITTERCOLOR = RgbArg<EMITTER_COLOR_ARG, Rgb<127, 127, 127>>;
+using BLASTCOLOR = RgbArg<BLAST_COLOR_ARG, Rgb<127, 127, 127>>;
+using LBCOLOR = RgbArg<LB_COLOR_ARG, Rgb<127, 127, 127>>;
 using CLASHCOLOR = RgbArg<CLASH_COLOR_ARG, Rgb<127, 127, 127>>;
 using LOCKUPCOLOR = RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>;
-using LBCOLOR = RgbArg<LB_COLOR_ARG, Rgb<127, 127, 127>>;
 using DRAGCOLOR = RgbArg<DRAG_COLOR_ARG, Rgb<127, 127, 127>>;
 using STABCOLOR = RgbArg<STAB_COLOR_ARG, Rgb<127, 127, 127>>;
 using OFFCOLOR = RgbArg<OFF_COLOR_ARG, Rgb<127, 127, 127>>;
+
+// Common Colors
 using TRANSPARENT = AlphaL<Black, Int<0>>;
 
 // Get a % mix of color A and B, using straight values (32768 = 100%)

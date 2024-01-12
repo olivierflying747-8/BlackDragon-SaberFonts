@@ -13,7 +13,7 @@ using Powerup_Flash = TrConcat<
 // Surge
 using Powerup_Surge = TrConcat<
 	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
-	AudioFlickerL<RgbArg<IGNITION_COLOR_ARG,Rgb<255,255,255>>>,
+	AudioFlickerL<RgbArg<IGNITION_COLOR_ARG, Rgb<255,255,255>>>,
 	TrFade<1200>
 >;
 
@@ -39,9 +39,12 @@ using Powerup_Burst_Forward = TrConcat<
 		IgnitionTime<300>, 
 		TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>> //TrInstant
 	>, 
-	Stripes<
-		5000, 
-		-2500, 
+	StripesX<
+		//Int<5000>, 
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<2500>, Int<500>, Int<4000>>,
+		//Int<-2500>, 
+		BLADE_ANGLE_SCLAE<Int<-2500>, Int<-1500>, Int<500>, Int<4000>>,
+
 		IGNITIONCOLOR, 
 		COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
 		COLOR_MIX<Int<3855>, IGNITIONCOLOR>
@@ -55,9 +58,12 @@ using Powerup_Unstable_Forward = TrConcat<
 		IgnitionTime<300>, 
 		TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>> //TrInstant
 	>, 
-	Stripes<
-		3000, 
-		-3500, 
+	StripesX<
+		//Int<3000>, 
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<4000>>,
+		//Int<-3500>, 
+		BLADE_ANGLE_SCLAE<Int<-3500>, Int<-2000>, Int<500>, Int<4000>>,
+
 		IGNITIONCOLOR, 
 		RandomPerLEDFlicker<
 			COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
@@ -79,44 +85,29 @@ using Powerup_Unstable_Forward = TrConcat<
 // Unstable Powerup Bright Forward
 using Powerup_Unstable_Bright_Forward = TrConcat<
 	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
-	Stripes<
-		3000,
-		-3500,
+	StripesX<
+		//Int<3000>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<4000>>,
+		//Int<-3500>,
+		BLADE_ANGLE_SCLAE<Int<-3500>, Int<-2000>, Int<500>, Int<4000>>,
+
 		RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<100,100,150> //IGNITION_COLOR_ARG
 		RandomPerLEDFlicker<
-			RotateColorsX<
-				Variation,
-				COLOR_MIX_P<50, IGNITIONCOLOR> //Rgb<60,60,80> //IGNITION_COLOR_ARG / 2
-			>,
+			RotateColorsX<Variation, COLOR_MIX_P<50, IGNITIONCOLOR>>, //Rgb<60,60,80> //IGNITION_COLOR_ARG / 2
 			Black
 		>,
 		BrownNoiseFlicker<
-			RotateColorsX<
-				Variation,
-				COLOR_MIX_P<25, IGNITIONCOLOR, White> //Rgb<110,115,140>  //IGNITION_COLOR_ARG + 25% white?
-			>,
-			RotateColorsX<
-				Variation,
-				COLOR_MIX_P<50,	IGNITIONCOLOR> //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
-			>,
+			RotateColorsX<Variation, COLOR_MIX_P<25, IGNITIONCOLOR, White>>, //Rgb<110,115,140>  //IGNITION_COLOR_ARG + 25% white?
+			RotateColorsX<Variation, COLOR_MIX_P<50, IGNITIONCOLOR>>, //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
 			200
 		>,
 		RandomPerLEDFlicker<
-			RotateColorsX<
-				Variation,
-				Rgb<127,127,127> // White flicker
-			>,
-			RotateColorsX<
-				Variation,
-				COLOR_MIX_P<50, IGNITIONCOLOR> //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
-			>
+			RotateColorsX<Variation, Rgb<127,127,127>>,  // White flicker
+			RotateColorsX<Variation, COLOR_MIX_P<50, IGNITIONCOLOR>> //Rgb<60,60,80> // IGNITION_COLOR_ARG / 2
 		>
 	>,
 	TrFadeX<
-		Percentage<
-			WavLen<>,
-			65
-		>
+		Percentage<WavLen<>, 65>
 	>
 >;
 
@@ -124,9 +115,9 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 using Powerup_Stabalize = TrConcat<
 	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
 	Ignition_Flicker_Stripes,
-	TrFade<400>,
+	TrFadeX<Percentage<IgnitionTime<300>, 133>>, //400>
 	Ignition_Flicker_Stripes,
-	TrFade<450>,
+	TrFadeX<Percentage<IgnitionTime<300>, 150>>, //450>
 	HumpFlickerL<
 		AlphaL<
 			RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> // IGNITION_COLOR_ARG
@@ -134,5 +125,5 @@ using Powerup_Stabalize = TrConcat<
 		>,
 		25
 	>,
-	TrFade<2875>
+	TrFadeX<Percentage<IgnitionTime<300>, 958>> //2875>
 >;

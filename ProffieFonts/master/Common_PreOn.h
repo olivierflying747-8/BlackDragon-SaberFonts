@@ -183,16 +183,10 @@ using PreOn_Dim_Blade = TrConcat<
 	Mix<
 		NoisySoundLevel,
 		COLOR_MIX<Int<3983>, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
-		AlphaL <
+		AlphaL<
 			AudioFlicker<
-				RotateColorsX<
-					Variation, 
-					COLOR_MIX<Int<3983>, PREONCOLOR> //Rgb<0,31,0>
-				>,
-				RotateColorsX<
-					Variation, 
-					COLOR_MIX<Int<3983>, PREONCOLOR> //Rgb<0,15,0>
-				>
+				RotateColorsX<Variation, COLOR_MIX<Int<3983>, PREONCOLOR>>, //Rgb<0,31,0>
+				RotateColorsX<Variation, COLOR_MIX<Int<3983>, PREONCOLOR>> //Rgb<0,15,0>
 			>,
 			Int<100>
 		>

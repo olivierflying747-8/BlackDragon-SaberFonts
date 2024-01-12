@@ -10,7 +10,7 @@ using Ignition_DualMode = TrWipeX<
 	Scale<
 		IsLessThan<
 			BladeAngle<>, 
-			Int<16000>
+			Int<16384>
 		>, 
 		Mult<
 			IgnitionTime<300>, 
@@ -47,11 +47,7 @@ using Ignition_LightningStrike = TrConcat<
 	>, //200>
 	RandomBlinkX<
 		Percentage<IgnitionTime<300>, 10000>, //30000,
-		RotateColorsX<
-			Variation,
-			//Rgb16<65535,13655,65535>
-			IGNITIONCOLOR
-		>
+		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrWipeInX<
 		Percentage<IgnitionTime<300>, 66>
@@ -66,11 +62,7 @@ using Ignition_LightningStrike = TrConcat<
 			Int<-3000>
 		>,
 		Black,
-		RotateColorsX<
-			Variation,
-			//Rgb16<65535,13655,65535>
-			IGNITIONCOLOR
-		>
+		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrDelayX<
 		Percentage<IgnitionTime<300>, 130>

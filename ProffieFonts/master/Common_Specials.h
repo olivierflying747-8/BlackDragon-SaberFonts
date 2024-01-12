@@ -9,13 +9,10 @@ using Special1_Rain = Layers<
 			Int<2>
 		>,
 		TrFade<100>,
-		AlphaL<
-			White,
-			Int<0>
-		>,
+		TRANSPARENT,
 		AlphaL<
 			OFFCOLOR,
-			SparkleF<300,800>
+			SparkleF<300, 800>
 		>
 	>,
 	// USER 3 SOUND EFFECT
