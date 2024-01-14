@@ -2,24 +2,21 @@
 
 // Flash
 using Powerup_Flash = TrConcat<
-	TrJoin<
-		TrDelayX<IgnitionTime<300>>,
-		TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>> //TrInstant
-	>,
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	IGNITIONCOLOR,
 	TrFade<1000>
 >;
 
 // Surge
 using Powerup_Surge = TrConcat<
-	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	AudioFlickerL<RgbArg<IGNITION_COLOR_ARG, Rgb<255,255,255>>>,
 	TrFade<1200>
 >;
 
 // Flash Fade
 using Powerup_Flash_Fade = TrConcat<
-	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	AlphaL<
 		AudioFlicker<
 			IGNITIONCOLOR, //Blue,
@@ -27,7 +24,7 @@ using Powerup_Flash_Fade = TrConcat<
 		>,
 		Bump<
 			Int<0>,
-			IntArg<EMITTER_SIZE_ARG, 2000> //Int<8000>
+			EMITTER_SIZE //Int<8000>
 		>
 	>,
 	TrFade<600>
@@ -35,13 +32,10 @@ using Powerup_Flash_Fade = TrConcat<
 
 // Power Burst Forward
 using Powerup_Burst_Forward = TrConcat<
-	TrExtendX<
-		IgnitionTime<300>, 
-		TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>> //TrInstant
-	>, 
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	StripesX<
 		//Int<5000>, 
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<2500>, Int<500>, Int<4000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<2500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		//Int<-2500>, 
 		BLADE_ANGLE_SCLAE<Int<-2500>, Int<-1500>, Int<500>, Int<4000>>,
 
@@ -54,13 +48,10 @@ using Powerup_Burst_Forward = TrConcat<
 
 // Unstable Powerup Forward
 using Powerup_Unstable_Forward = TrConcat<
-	TrExtendX<
-		IgnitionTime<300>, 
-		TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>> //TrInstant
-	>, 
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	StripesX<
 		//Int<3000>, 
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<4000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		//Int<-3500>, 
 		BLADE_ANGLE_SCLAE<Int<-3500>, Int<-2000>, Int<500>, Int<4000>>,
 
@@ -84,10 +75,10 @@ using Powerup_Unstable_Forward = TrConcat<
 
 // Unstable Powerup Bright Forward
 using Powerup_Unstable_Bright_Forward = TrConcat<
-	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	StripesX<
 		//Int<3000>,
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<4000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		//Int<-3500>,
 		BLADE_ANGLE_SCLAE<Int<-3500>, Int<-2000>, Int<500>, Int<4000>>,
 
@@ -113,11 +104,11 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 
 // Stabalize
 using Powerup_Stabalize = TrConcat<
-	TrDelayX<IntArg<IGNITION_DELAY_ARG, 0>>, //TrInstant
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	Ignition_Flicker_Stripes,
-	TrFadeX<Percentage<IgnitionTime<300>, 133>>, //400>
+	TrFadeX<Percentage<IGNITION_TIME, 133>>, //400>
 	Ignition_Flicker_Stripes,
-	TrFadeX<Percentage<IgnitionTime<300>, 150>>, //450>
+	TrFadeX<Percentage<IGNITION_TIME, 150>>, //450>
 	HumpFlickerL<
 		AlphaL<
 			RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> // IGNITION_COLOR_ARG
@@ -125,5 +116,5 @@ using Powerup_Stabalize = TrConcat<
 		>,
 		25
 	>,
-	TrFadeX<Percentage<IgnitionTime<300>, 958>> //2875>
+	TrFadeX<Percentage<IGNITION_TIME, 958>> //2875>
 >;

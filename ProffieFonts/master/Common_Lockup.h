@@ -7,7 +7,7 @@ using Clash_EffectA = TransitionEffectL<
 		AlphaL<
 			CLASHCOLOR, 
 			Bump<
-				LOCKUPPOSITION, 
+				LOCKUPPOSITIONSCALE, 
 				Scale<
 					ClashImpactF<>, 
 					Int<12000>, 
@@ -41,7 +41,7 @@ using Clash_EffectB = TransitionEffectL<
 			Int<100>, 
 			Int<400>
 		>, 
-		LOCKUPPOSITION
+		LOCKUPPOSITIONSCALE
 	>, 
 	EFFECT_CLASH
 >;
@@ -60,7 +60,7 @@ using Clash_Update = TrWaveX<
 		Int<100>, 
 		Int<400>
 	>, 
-	LOCKUPPOSITION
+	LOCKUPPOSITIONSCALE
 >;
 
 // ================================ LOCKUP ================================
@@ -69,7 +69,7 @@ using Clash_Update = TrWaveX<
 using Lockup_Color_Style = AlphaMixL<
 	// Mix method
 	Bump<
-		LOCKUPPOSITION,
+		LOCKUPPOSITIONSCALE,
 		Scale<
 			SwingSpeed<100>, 
 			Int<14000>, 
@@ -104,7 +104,7 @@ using Lockup_Color_Style2 = TransitionEffect<
 			COLOR_MIX<Int<10280>, LOCKUPCOLOR>
 		>,
 		Bump<
-			LOCKUPPOSITION,
+			LOCKUPPOSITIONSCALE,
 			Int<13000>
 		>
 	>,
@@ -121,7 +121,7 @@ using Lockup_Color_Style3 = Layers<
 	AlphaL<
 		AudioFlickerL<LOCKUPCOLOR>,
 		Bump<
-			LOCKUPPOSITION,
+			LOCKUPPOSITIONSCALE,
 			Scale<
 				SwingSpeed<100>,
 				Int<14000>,
@@ -132,7 +132,7 @@ using Lockup_Color_Style3 = Layers<
 	AlphaL<
 		LOCKUPCOLOR,
 		Bump<
-			LOCKUPPOSITION,
+			LOCKUPPOSITIONSCALE,
 			Int<10000>
 		>
 	>
@@ -316,7 +316,7 @@ using Lockup_Start = TrRandom<
 				COLOR_MIX<Int<10280>, LOCKUPCOLOR>
 			>, 
 			Bump<
-				LOCKUPPOSITION,
+				LOCKUPPOSITIONSCALE,
 				Int<13000>
 			>
 		>, 
@@ -368,12 +368,12 @@ using Lockup_End = TrRandom<
 					Int<500>, 
 					Int<300>
 				>, 
-				LOCKUPPOSITION
+				LOCKUPPOSITIONSCALE
 			>, 
 			// Ripple
 			TrSparkX<
 				Remap<
-					CenterDistF<LOCKUPPOSITION>,
+					CenterDistF<LOCKUPPOSITIONSCALE>,
 					Stripes<
 						1200, 
 						-3600, 
@@ -391,7 +391,7 @@ using Lockup_End = TrRandom<
 					Int<100>, 
 					Int<400>
 				>, 
-				LOCKUPPOSITION
+				LOCKUPPOSITIONSCALE
 			>
 		>
 	>,
@@ -414,7 +414,7 @@ using Lockup_End = TrRandom<
 	// Effect C: Ripple
 	TrSparkX<
 		Remap<
-			CenterDistF<LOCKUPPOSITION>,
+			CenterDistF<LOCKUPPOSITIONSCALE>,
 			Stripes<
 				1200,
 				-3600,
@@ -432,19 +432,19 @@ using Lockup_End = TrRandom<
 			Int<50>,
 			Int<200>
 		>,
-		LOCKUPPOSITION
+		LOCKUPPOSITIONSCALE
 	>*/
 	// Power Burst
 	TrConcat<
 		TrCenterWipeX<
 			Int<150>,
-			LOCKUPPOSITION
+			LOCKUPPOSITIONSCALE
 		>,
 		LOCKUPCOLOR,
 		TrJoin<
 			TrCenterWipeX<
 				Int<150>,
-				LOCKUPPOSITION
+				LOCKUPPOSITIONSCALE
 			>,
 			TrSmoothFade<150>
 		>
@@ -502,7 +502,7 @@ using LB_End = TrConcat<
 using Drag_Color_Style = AlphaL<
 	RandomPerLEDFlickerL<DRAGCOLOR>, 
 	SmoothStep<
-		IntArg<DRAG_SIZE_ARG, 26000>, 
+		DRAG_SIZE, 
 		Int<3000>
 	>
 >;
@@ -517,10 +517,10 @@ using Drag_Color_Style2 = AlphaL<
 			Sin<Int<50>>,
 			DRAGCOLOR
 		>,
-		COLOR_MIX<Int<4096>, DRAGCOLOR>
+		COLOR_MIX_P<12, DRAGCOLOR>
 	>,
 	SmoothStep<
-		IntArg<DRAG_SIZE_ARG,28000>,
+		DRAG_SIZE,
 		Int<3000>
 	>
 >;
@@ -543,7 +543,7 @@ using Drag_Start = TrConcat<
 			Int<300>
 		>, 
 		SmoothStep<
-			IntArg<DRAG_SIZE_ARG, 26000>, 
+			DRAG_SIZE, 
 			Int<3000>
 		>
 	>, 
@@ -568,7 +568,7 @@ using Drag_Start2 = TrConcat<
 			COLOR_MIX_P<25, DRAGCOLOR>
 		>,
 		SmoothStep<
-			IntArg<DRAG_SIZE_ARG,28000>,
+			DRAG_SIZE,
 			Int<3000>
 		>
 	>,
@@ -592,7 +592,7 @@ using Stab_Color_Style = AudioFlickerL<
 using Stab_Color_Style2 = AlphaL<
 	AudioFlickerL<STABCOLOR>,
 	SmoothStep<
-		IntArg<MELT_SIZE_ARG, 28000>,
+		MELT_SIZE,
 		Int<2000>
 	>
 >;
@@ -601,7 +601,7 @@ using Stab_Color_Style2 = AlphaL<
 using Stab_Color_Style3 = AlphaL<
 	RandomPerLEDFlickerL<STABCOLOR>,
 	SmoothStep<
-		IntArg<MELT_SIZE_ARG, 28000>,
+		MELT_SIZE,
 		Int<2000>
 	>
 >;
@@ -631,7 +631,7 @@ using Melt_Color_Style = AlphaL<
 		>
 	>,
 	SmoothStep<
-		IntArg<MELT_SIZE_ARG,28000>,
+		MELT_SIZE,
 		Int<4000>
 	>
 >;
@@ -663,7 +663,7 @@ using Melt_Color_Style2 = AlphaL<
 		>
 	>, 
 	SmoothStep<
-		IntArg<MELT_SIZE_ARG, 26000>, 
+		MELT_SIZE, 
 		Int<4000>
 	>
 >;
@@ -674,7 +674,7 @@ using Melt_Start = TrConcat<
 	AlphaL<
 		STABCOLOR,
 		SmoothStep<
-			IntArg<MELT_SIZE_ARG,28000>,
+			MELT_SIZE,
 			Int<4000>
 		>
 	>,
@@ -687,7 +687,7 @@ using Melt_Start2 = TrConcat<
 	AlphaL<
 		STABCOLOR, //Red
 		SmoothStep<
-			IntArg<MELT_SIZE_ARG, 26000>, 
+			MELT_SIZE, 
 			Int<4000>
 		>
 	>, 
@@ -702,7 +702,7 @@ using Melt_Start2 = TrConcat<
 			Orange
 		>, 
 		SmoothStep<
-			IntArg<MELT_SIZE_ARG, 26000>, 
+			MELT_SIZE, 
 			Int<4000>
 		>
 	>, 

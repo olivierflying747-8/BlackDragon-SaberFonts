@@ -2,7 +2,7 @@
 
 // Standard
 using Retraction_Standard = TrWipeInX<
-	RetractionTime<0>
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
 >;
 
 // Dual Mode Wipe (up = fast)
@@ -13,22 +13,22 @@ using Retraction_DualMode = TrWipeInX<
 			Int<16000>
 		>, 
 		Mult<
-			RetractionTime<0>, 
+			RETRACTION_TIME, 
 			Int<16384>
 		>, 
-		RetractionTime<0>
+		RETRACTION_TIME
 	>
 >;
 
 // Spark Tip
 using Retraction_SparkTip = TrWipeInSparkTipX<
 	RETRACTIONCOLOR,
-	RetractionTime<0>
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
 >;
 
 // Center Wipe
 using Retraction_CenterWipe = TrCenterWipeX<
-	RetractionTime<0>, 
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>,
 	Scale<
 		BladeAngle<>, 
 		Int<6000>, 
@@ -36,9 +36,14 @@ using Retraction_CenterWipe = TrCenterWipeX<
 	>
 >;
 
+// Wipe Out (reverse)
+using Retraction_WipeOut = TrWipeX<
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+>;
+
 // Color Cycle
-using Retraction_ColorCycle = TrColorCycle<
-	1250,
+using Retraction_ColorCycle = TrColorCycleX<
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>,
 	0,
 	6000
 >;
@@ -48,14 +53,14 @@ using Retraction_Glitch_Off = TrConcat<
 	TrJoin<
 		TrDelayX<
 			Mult<
-				RetractionTime<0>, 
-				Int<16384>
+				RETRACTION_TIME, 
+				PERCENTAGE_S<50> //Int<16384>
 			>
 		>, 
 		TrWipeInX<
 			Mult<
-				RetractionTime<0>, 
-				Int<16384>
+				RETRACTION_TIME, 
+				PERCENTAGE_S<50> //Int<16384>
 			>
 		>
 	>, 
@@ -68,8 +73,8 @@ using Retraction_Glitch_Off = TrConcat<
 	>, 
 	TrWipeInX<
 		Mult<
-			RetractionTime<0>, 
-			Int<16384>
+			RETRACTION_TIME, 
+			PERCENTAGE_S<50> //Int<16384>
 		>
 	>
 >;
@@ -85,21 +90,29 @@ using Retraction_Gravity = TrSelect<
 		Int<1>
 	>,
 	TrWipeInX<
-		BendTimePowInvX<
-			RetractionTime<0>,
-			Mult<
-				IntArg<RETRACTION_OPTION2_ARG,10992>,
-				Int<98304>
-			>
-		>
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
 	>,
 	TrWipeX<
-		BendTimePowInvX<
-			RetractionTime<0>,
-			Mult<
-				IntArg<RETRACTION_OPTION2_ARG,10992>,
-				Int<98304>
-			>
-		>
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>
+>;
+
+// Metal Forge Cooldown
+using Retraction_Metal_Forge_Cooldown = // Metal Forge Cooldown
+TrConcat<
+	TrFadeX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>,
+	White,
+	TrFadeX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>,
+	DarkOrange,
+	TrFadeX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>,
+	Red,
+	TrFadeX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
 	>
 >;

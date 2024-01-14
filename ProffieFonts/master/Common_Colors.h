@@ -24,6 +24,16 @@ using OFFCOLOR = RgbArg<OFF_COLOR_ARG, Rgb<127, 127, 127>>;
 // Common Colors
 using TRANSPARENT = AlphaL<Black, Int<0>>;
 
+// Common Percentage Ints
+using P_75 = Int<24576>;
+using P_50 = Int<16384>;
+using P_33 = Int<10922>;
+using P_25 = Int<8192>;
+using P_20 = Int<6554>;
+using P_12_5 = Int<4096>;
+using P_8 = Int<2621>;
+using P_6_25 = Int<2048>;
+
 // Get a % mix of color A and B, using straight values (32768 = 100%)
 template<class MIX, class COLORA, class COLORB = Black>
 using COLOR_MIX = Mix<

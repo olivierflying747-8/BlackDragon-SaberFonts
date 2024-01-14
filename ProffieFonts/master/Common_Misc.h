@@ -1,10 +1,44 @@
 // ================================ COMMON CODE ===========================
 
+// DEFAULT SwingSpeed<> threshold used
 const int SWING_SPEED_DEFAULT = 500;
+
+// EDIT MODE Argument Defaults
+using LOCKUP_POSITION = IntArg<LOCKUP_POSITION_ARG, 16000>;
+using EMITTER_SIZE = IntArg<EMITTER_SIZE_ARG, 10000>;
+using DRAG_SIZE = IntArg<DRAG_SIZE_ARG, 28000>;
+using MELT_SIZE = IntArg<MELT_SIZE_ARG, 28000>;
+using PREON_SIZE = IntArg<PREON_SIZE_ARG, 4000>;
+using IGNITION_OPTION2 = IntArg<IGNITION_OPTION2_ARG, 10992>;
+using RETRACTION_OPTION2 = IntArg<RETRACTION_OPTION2_ARG, 10992>;
+using IGNITION_DELAY = IntArg<IGNITION_DELAY_ARG, 0>;
+using RETRACTION_DELAY = IntArg<RETRACTION_DELAY_ARG, 0>;
+
+// Default Ignition time = WavLen().
+using IGNITION_TIME = IgnitionTime<0>; //300
+using RETRACTION_TIME = RetractionTime<0>;
 
 // Simple Percentage
 template<int PERCENT>
 using PERCENTAGE_S = Percentage<Int<32768>, PERCENT>;
+
+// Transition Delay function
+template<class DELAY1, class DELAY2>
+using TRANSITION_DELAY = TrJoin<
+	TrDelayX<DELAY1>,
+	TrDelayX<DELAY2>,
+	TrInstant
+>;
+
+// Bend Time function
+template<class TIME, class ARG>
+using BEND_TIME = BendTimePowInvX<
+	TIME,
+	Mult<
+		ARG,
+		Int<98304>
+	>
+>;
 
 // Blade Angle Scale
 template<class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>, int MIN_BLADE = 0, int MAX_BLADE = 32768>
@@ -19,7 +53,7 @@ using BLADE_ANGLE_SCLAE = Scale<
 >;
 
 // Swing Speed Scale with HoldPeak. HoldPeak defaults to 0 so it doesn't hold.
-template<int SPEED = 250, class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>>
+template<int SPEED = SWING_SPEED_DEFAULT, class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
 using SWING_SPEED_SCLAE = Scale<
 	//SwingSpeed<SPEED>,
 	//Scale<
@@ -29,8 +63,18 @@ using SWING_SPEED_SCLAE = Scale<
 			//TwistAcceleration<250>,
 			//TwistAngle<>,
 			//BladeAngle<>
-			HOLD_TIME, // HOLD_TIME_MS
-			HOLD_SPEED // TRANSITION SPEED
+			//HOLD_TIME, // HOLD_TIME_MS
+			Scale<
+				SwingSpeed<SPEED>,
+				HOLD_TIME_MIN,
+				HOLD_TIME_MAX
+			>,
+			//HOLD_SPEED // TRANSITION SPEED
+			Scale<
+				SwingSpeed<SPEED>,
+				HOLD_SPEED_MIN,
+				HOLD_SPEED_MAX
+			>
 		>,
 		MIN,
 		MAX
@@ -38,25 +82,40 @@ using SWING_SPEED_SCLAE = Scale<
 //	MAX
 >;
 
+// Swing Speed Scale (LessThan)
+template<int COMPARE_SPEED = SWING_SPEED_DEFAULT, int SCALE_SPEED = COMPARE_SPEED, class THRESHOLD = Int<13600>, class MIN = Int<-19300>, class MAX = Int<32768>>
+using SWING_SPEED_LESS_THAN = Scale<
+	IsLessThan<
+		SwingSpeed<COMPARE_SPEED>,
+		THRESHOLD
+	>,
+	Scale<
+		SwingSpeed<SCALE_SPEED>,
+		MIN,
+		MAX
+	>,
+	Int<0>
+>;
+
 // Basic Center position based on blade angle.
 using LOCKUPPOSITIONCENTER = Scale<
 	BladeAngle<0, 16000>, 
 	Sum<
-		IntArg<LOCKUP_POSITION_ARG, 16000>, 
+		LOCKUP_POSITION, 
 		Int<-12000>
 	>, 
 	Sum<
-		IntArg<LOCKUP_POSITION_ARG, 16000>, 
+		LOCKUP_POSITION, 
 		Int<10000>
 	>
 >;
 
 // Blade Angle / Lockup Position.
-using LOCKUPPOSITION = Scale<
+using LOCKUPPOSITIONSCALE = Scale<
 	BladeAngle<>, 
 	LOCKUPPOSITIONCENTER,
 	Sum<
-		IntArg<LOCKUP_POSITION_ARG, 16000>, 
+		LOCKUP_POSITION, 
 		Int<-10000>
 	>
 >;
@@ -82,7 +141,7 @@ using LOCKUPCLASHCOLOR = Mix<
 	AlphaL<
 		LOCKUPCOLOR, 
 		Bump<
-			LOCKUPPOSITION,
+			LOCKUPPOSITIONSCALE,
 			Scale<
 				ClashImpactF<>, 
 				Int<20000>, 
@@ -182,7 +241,7 @@ using ShowBatteryLevelHilt = TrConcat<
 		>,
 		Bump<
 			Int<0>, //BatteryLevel
-			IntArg<EMITTER_SIZE_ARG, 2000> //Int<12000>
+			EMITTER_SIZE //Int<12000>
 		>
 	>,
 	TrFade<3000>

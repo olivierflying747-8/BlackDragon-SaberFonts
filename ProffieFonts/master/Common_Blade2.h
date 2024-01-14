@@ -20,68 +20,39 @@ using AltStyle_RandomPerLEDFlicker = RandomPerLEDFlickerL<
 >;
 
 // Blinking
-template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_TIME = Int<1000>, class MAX_TIME = Int<300>, class RATIO = Int<500>, class HOLD_TIME = Int<100>, class HOLD_SPEED = Int<4000>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_TIME = Int<1000>, class MAX_TIME = Int<300>, class RATIO = Int<500>, class HOLD_TIME_MIN = Int<100>, class HOLD_TIME_MAX = Int<500>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_Blinking = BlinkingL<
 	COLOR,
-	SWING_SPEED_SCLAE<SWING_SPEED, MIN_TIME, MAX_TIME, HOLD_TIME, HOLD_SPEED>,
-	/*
-	Scale<
-		HoldPeakF<
-			SwingSpeed<SWING_SPEED>,
-			HOLD_TIME,
-			HOLD_SPEED
-		>,
-		MIN_TIME,
-		MAX_TIME
-	>,
-	*/
+	SWING_SPEED_SCLAE<SWING_SPEED, MIN_TIME, MAX_TIME, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 	RATIO
 >;
 
 // Pusling
-template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME = Int<0>, class HOLD_SPEED = Int<0>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
 using AltStyle_Pulsing = PulsingL<
 	RotateColorsX<Variation, COLOR>,
-	SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME, HOLD_SPEED>
-	/*
-	Scale<
-		HoldPeakF<
-			SwingSpeed<SWING_SPEED>,
-			HOLD_TIME,
-			HOLD_SPEED
-		>,
-		PULSE_MIN, //Int<3000>,
-		PULSE_MAX //Int<500>
-	>
-	*/
+	SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 >;
 
 // Hump Flicker
-template<class COLOR, int WIDTH = 10, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_SIZE = Int<1024>, class MAX_SIZE = Int<8192>>
+template<class COLOR, int WIDTH = 10, int SWING_SPEED = SWING_SPEED_DEFAULT, class MIN_SIZE = Int<1024>, class MAX_SIZE = Int<8192>, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_HumpFlicker_Random = AlphaL<
 	HumpFlickerL<COLOR, WIDTH>,
 	Bump<
 		RandomF,
-		SWING_SPEED_SCLAE<SWING_SPEED, MIN_SIZE, MAX_SIZE>
-		/*
-		Scale<
-			SwingSpeed<SWING_SPEED>,
-			MIN_SIZE,
-			MAX_SIZE //Int<20000>
-		>
-		*/
+		SWING_SPEED_SCLAE<SWING_SPEED, MIN_SIZE, MAX_SIZE, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 	>
 >;
 
 // Hump Waves (2 Color)
-template<class COLORA, class COLORB, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<100>, class WIDTH_MAX = Int<400>, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
+template<class COLORA, class COLORB, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<100>, class WIDTH_MAX = Int<400>, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_HumpWave = Layers <
 	TransitionLoopL<
 		TrWaveX<
 			HumpFlickerL<RotateColorsX<Variation, COLORA>, 40>,
 			Int<250>,
 			//Int<100>,
-			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
+			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 			Int<200>,
 			Int<0>
 		>
@@ -91,7 +62,7 @@ using AltStyle_HumpWave = Layers <
 			HumpFlickerL<RotateColorsX<Variation, COLORB>, 40>,
 			Int<350>,
 			//Int<100>,
-			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
+			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 			Int<300>,
 			Int<0>
 		>
@@ -113,16 +84,16 @@ using AltStyle_Fire = AlphaL<
 		0,
 		SPEED
 	>,
-	Int<16384>
+	PERCENTAGE_S<50> //Int<16384>
 >;
 
 // Brown Noise with Stripes
-template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<3000>, class WIDTH_MAX = Int<1000>, class SPEED_MIN = Int<-2000>, class SPEED_MAX = Int<-4000>, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class WIDTH_MIN = Int<3000>, class WIDTH_MAX = Int<1000>, class SPEED_MIN = Int<-2000>, class SPEED_MAX = Int<-4000>, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 	//TRANSPARENT,
 	StripesX<
-		SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME, HOLD_SPEED>,
-		SWING_SPEED_SCLAE<SWING_SPEED, SPEED_MIN, SPEED_MAX, HOLD_TIME, HOLD_SPEED>,
+		SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
+		SWING_SPEED_SCLAE<SWING_SPEED, SPEED_MIN, SPEED_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 		COLOR_MIX<Int<9638>, COLOR>, //Rgb<50, 50, 75>, // ALT COLOR / 3.4
 		COLOR_MIX<Int<19275>, COLOR>, //Rgb<100, 100, 150>, // ALT COLOR / 1.7
 		COLOR_MIX<Int<1928>, COLOR>, //Rgb<10, 10, 15>, // ALT COLOR / 17
@@ -150,7 +121,7 @@ using AltStyle_SmokeBlade = AlphaL <
 >;
 
 // Lightning Flash
-template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class HOLD_TIME = Int<500>, class HOLD_SPEED = Int<4000>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_LightningFlash = TransitionLoopL<
 	TrConcat<
 		TrBoing<500, 3>,
@@ -161,7 +132,7 @@ using AltStyle_LightningFlash = TransitionLoopL<
 				Bump<
 					RandomF,
 					//Int<20000>
-					SWING_SPEED_SCLAE<SWING_SPEED, Int<20000>, Int<10000>, HOLD_TIME, HOLD_SPEED>
+					SWING_SPEED_SCLAE<SWING_SPEED, Int<20000>, Int<10000>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 				>
 			>,
 			TrFade<100>
@@ -171,7 +142,7 @@ using AltStyle_LightningFlash = TransitionLoopL<
 				SlowNoise<Int<3000>>,
 				Int<100>,
 				//Int<2000>
-				SWING_SPEED_SCLAE<SWING_SPEED, Int<2000>, Int<1000>, HOLD_TIME, HOLD_SPEED>
+				SWING_SPEED_SCLAE<SWING_SPEED, Int<2000>, Int<1000>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 			>
 		>
 	>
@@ -185,7 +156,7 @@ using AltStyle_Cylon = AlphaL<
 		SIZE,
 		SPEED
 	>,
-	Int<16384>
+	PERCENTAGE_S<50> //Int<16384>
 >;
 
 // Blade Tip Flame
@@ -227,9 +198,9 @@ using AltStyle_Emitter_Flare = AlphaL<
 	SmoothStep<
 		Scale<
 			NoisySoundLevel,
-			IntArg<EMITTER_SIZE_ARG,2000>,
+			EMITTER_SIZE,
 			Sum<
-				IntArg<EMITTER_SIZE_ARG,2000>,
+				EMITTER_SIZE,
 				Int<6000>
 			>
 		>,
@@ -247,11 +218,11 @@ using AltStyle_Emitter_Breathe = Mix<
 		Bump<
 			Int<0>,
 			//Int<6000>
-			Percentage<IntArg<EMITTER_SIZE_ARG, 2000>, 100>
+			Percentage<EMITTER_SIZE, 100>
 			/*
 			Mult<
 				Int<8937>, //33%
-				IntArg<EMITTER_SIZE_ARG, 2000>
+				EMITTER_SIZE
 			>
 			*/
 		>
@@ -261,7 +232,7 @@ using AltStyle_Emitter_Breathe = Mix<
 		Bump<
 			Int<0>,
 			//Int<22000>
-			Percentage<IntArg<EMITTER_SIZE_ARG, 2000>, 300>
+			Percentage<EMITTER_SIZE, 300>
 		>
 	>
 >;
@@ -330,7 +301,7 @@ using AltStyle_StripesX_SlowNoise = AlphaL<
 		COLOR_MIX<2570,	RotateColorsX<Variation, COLOR>>,
 		Black
 	>,
-	Int<16384>
+	PERCENTAGE_S<50> //Int<16384>
 >;
 //*/
 
@@ -344,5 +315,5 @@ using AltStyle_FireTEST = AlphaL<
 		0,
 		2
 	>,
-	Int<16384>
+	PERCENTAGE_S<50> //Int<16384>
 >;

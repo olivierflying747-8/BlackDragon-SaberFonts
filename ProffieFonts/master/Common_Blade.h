@@ -38,30 +38,32 @@ using BaseStyle_Pulsing = Pulsing<
 using BaseStyle_Stripes = StripesX<
 	//10000,
 	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT,
-		BLADE_ANGLE_SCLAE<Int<16384>, Int<8192>, Int<500>, Int<6000>>,
-		Int<4096>, Int<500>, Int<4000>>,
+		BLADE_ANGLE_SCLAE<PERCENTAGE_S<50>, Int<8192>, Int<500>, Int<6000>>,
+		Int<4096>, Int<500>, Int<1000>, Int<4000>, Int<8000>
+	>,
 	//-1700,
 	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT,
 		BLADE_ANGLE_SCLAE<Int<-300>, Int<-750>, Int<500>, Int<6000>>,
-		Int<-2000>, Int<500>, Int<6000>>,
+		Int<-2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>
+	>,
 	RotateColorsX<Variation, COLOR_MIX_P<33, BASECOLOR>>,
 	RotateColorsX<Variation, BASECOLOR>,
-	RotateColorsX<Variation, COLOR_MIX_P<50, BASECOLOR>>,
-	RotateColorsX<Variation, COLOR_MIX_P<20, BASECOLOR>>,
+	RotateColorsX<Variation, COLOR_MIX<P_50, BASECOLOR>>,
+	RotateColorsX<Variation, COLOR_MIX<P_20, BASECOLOR>>,
 	RotateColorsX<Variation, BASECOLOR>
 >;
 
 // Stripes (Slownoise Random, 2 color)
 using BaseStyle_Stripes_2Color = StripesX<
 	//Int<1500>,
-	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1500>, Int<1000>, Int<1000>, Int<4000>>,
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1500>, Int<1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT,
 		Scale<
 			SlowNoise<Int<2500>>,
 			Int<-2000>,
 			Int<-3000>
 		>,
-		Int<-5000>, Int<500>, Int<4000>
+		Int<500>, Int<1000>, Int<4000>, Int<8000>
 	>,
 	BASECOLOR,
 	COLOR_MIX_P<33, ALTCOLOR>,
@@ -75,10 +77,10 @@ using BaseStyle_Stripes_RandomPerLEDFlicker = StripesX<
 	//Int<3000>, 
 	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT,
 		BLADE_ANGLE_SCLAE<Int<3000>, Int<2000>, Int<500>, Int<6000>>,
-		Int<1000>, Int<500>, Int<4000>
+		Int<1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>
 	>,
 	//Int<-3500>,
-	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-1000>, Int<-3500>, Int<500>, Int<4000>>,
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-1000>, Int<-3500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
 	BASECOLOR, 
 	RandomPerLEDFlicker<
@@ -129,8 +131,8 @@ using BaseStyle_FireBlade = StyleFire<
 	BrownNoiseFlicker<
 		RotateColorsX<Variation, BASECOLOR>, //0, 135, 255
 		RandomPerLEDFlicker<
-			RotateColorsX<Variation, COLOR_MIX<Int<3213>, BASECOLOR>>, //Rgb<0,0,25>  // BASE / 10.2
-			RotateColorsX<Variation, COLOR_MIX<Int<7710>, BASECOLOR>> //Rgb<0,0,60> // BASE / 4.25
+			RotateColorsX<Variation, COLOR_MIX_P<10, BASECOLOR>>, //Rgb<0,0,25>  // BASE / 10.2
+			RotateColorsX<Variation, COLOR_MIX_P<24, BASECOLOR>> //Rgb<0,0,60> // BASE / 4.25
 		>,
 		300
 	>,
@@ -151,25 +153,25 @@ using BaseStyle_ThunderstormBlade = TransitionLoop<
 		Layers<
 			StripesX<
 				//Int<10000>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<10000>, Int<5000>, Int<500>, Int<4000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<10000>, Int<5000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 				//Int<100>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<100>, Int<300>, Int<500>, Int<4000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<100>, Int<300>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
-				RotateColorsX<Variation, COLOR_MIX_P<50, BASECOLOR>>, //Rgb<0,40,128> // BASECOLOR / 2
-				RotateColorsX<Variation, COLOR_MIX<Int<4096>, BASECOLOR>>, //Rgb<0,8,30> // Base Color / 8
+				RotateColorsX<Variation, COLOR_MIX<P_50, BASECOLOR>>, //Rgb<0,40,128> // BASECOLOR / 2
+				RotateColorsX<Variation, COLOR_MIX<P_12_5, BASECOLOR>>, //Rgb<0,8,30> // Base Color / 8
 				RotateColorsX<Variation, ALTCOLOR> //Rgb<0,63,200> // Alt Color? DodgerBlue
 			>,
 			AlphaL<
 				StripesX<
 					//Int<8000>,
-					SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<8000>, Int<3000>, Int<500>, Int<4000>>,
+					SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<8000>, Int<3000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 					//Int<-200>,
-					SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-200>, Int<-500>, Int<500>, Int<4000>>,
+					SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-200>, Int<-500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
 					RotateColorsX<Variation, BASECOLOR>, // Base Color
 					RotateColorsX<Variation, COLOR_MIX_P<25, ALTCOLOR>> //Rgb<0,19,60> // Alt color / 4? DodgerBlue
 				>,
-				Int<16384> //50%
+				PERCENTAGE_S<50> //Int<16384> //50%
 			>
 		>,
 		TrDelayX< // Is this the lightning flash??
@@ -177,7 +179,7 @@ using BaseStyle_ThunderstormBlade = TransitionLoop<
 				SlowNoise<Int<3000>>,
 				Int<100>,
 				//Int<2000>
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1000>, Int<1000>, Int<4000>>
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1000>, Int<1000>, Int<2000>, Int<4000>, Int<8000>>
 			>
 		>
 	>
@@ -232,7 +234,7 @@ using BaseStyle_SmokeBlade = StripesX<
 				Int<100>
 			>,
 			RotateColorsX<Variation, BASECOLOR>,
-			RotateColorsX<Variation, COLOR_MIX<Int<12336>, BASECOLOR>> //Rgb<60,58,0> // BASE / 2.65625
+			RotateColorsX<Variation, COLOR_MIX_P<38, BASECOLOR>> //Rgb<60,58,0> // BASE / 2.65625
 		>,
 		2000
 	>,
@@ -256,14 +258,15 @@ using BaseStyle_FlickerBlade = Mix<
 	COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
 	StripesX<
 		//Int<12000>,
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<12000>, Int<6000>, Int<500>, Int<4000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<12000>, Int<6000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		//Int<-800>,
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-800>, Int<-1600>, Int<500>, Int<4000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-800>, Int<-1600>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
 		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
 		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
-		COLOR_MIX<Int<7710>, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>,
+		COLOR_MIX_P<24, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>,
 		COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>,
-		COLOR_MIX<Int<16448>, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>
+		COLOR_MIX_P<50, COLOR_GRADIENT<BASECOLOR, COLOR_MIX_P<33, BASECOLOR>>>
 	>
 >;
 
@@ -275,9 +278,10 @@ using BaseStyle_CodaBlade = Mix<
 		RotateColorsX<Variation, BASECOLOR>, //DodgerBlue //2, 72, 255 DodgerBlue // BASE COLOR
 		StripesX<
 			//Int<5000>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<500>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			//Int<-90>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-90>, Int<-400>, Int<500>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-90>, Int<-400>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
 			RotateColorsX<Variation, COLOR_MIX<Int<21845>, ALTCOLOR>>, //Rgb<0, 55, 165> //0, 135, 255 // DeepSkyBlue //// ALT COLOR / 1.5
 			RotateColorsX<Variation, COLOR_MIX<Int<14894>, ALTCOLOR>>, //Rgb<0, 85, 115> // ALT COLOR / 2.2
 			RotateColorsX<Variation, COLOR_MIX<Int<18725>, COLOR_MIX_P<50, BASECOLOR, ALTCOLOR>>>, //Rgb<0, 65, 145> // MIX BASE COLOR / ALT COLOR 50%, ALT COLOR / 1.75
@@ -288,9 +292,10 @@ using BaseStyle_CodaBlade = Mix<
 		RotateColorsX<Variation, ALTCOLOR>,  //Rgb<0, 155, 255> // ALT_COLOR_ARG
 		StripesX<
 			//Int<5000>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<500>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			//Int<-90>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-90>, Int<-400>, Int<500>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-90>, Int<-400>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
 			RotateColorsX<Variation, COLOR_MIX<Int<21845>, ALTCOLOR>>, //Rgb<0, 95, 170> // ALT COLOR / 1.5
 			RotateColorsX<Variation, COLOR_MIX<Int<27769>, ALTCOLOR>>, //Rgb<0, 115, 215> // ALT COLOR / 1.18
 			RotateColorsX<Variation, COLOR_MIX<Int<18724>, ALTCOLOR2>>, //Rgb<0, 145, 145> //ALT_COLOR2_ARG / 1.75
@@ -305,13 +310,14 @@ using BaseStyle_DarkSaber = AudioFlicker<
 		Mix<
 			SwingSpeed<400>, 
 			BASECOLOR, 
-			COLOR_MIX<Int<6425>, BASECOLOR, ALTCOLOR> //20%
+			COLOR_MIX_P<20, BASECOLOR, ALTCOLOR> //20%
 		>, 
 		StripesX<
 			//Int<5000>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<1000>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<3000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			//Int<-300>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-300>, Int<-600>, Int<1000>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-300>, Int<-600>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
 			COLOR_MIX<Int<7710>, BASECOLOR>, //23%
 			COLOR_MIX<Int<25700>, BASECOLOR>, //80%
 			COLOR_MIX<Int<1285>, BASECOLOR>, //4%
@@ -319,7 +325,7 @@ using BaseStyle_DarkSaber = AudioFlicker<
 		>,
 		300
 	>, 
-	COLOR_MIX<Int<6425>, BASECOLOR, ALTCOLOR> //20%
+	COLOR_MIX_P<20, BASECOLOR, ALTCOLOR> //20%
 >;
 
 // Interactive FirePulse Style
@@ -379,7 +385,7 @@ using BaseStyle_FirePulseInteractive = Layers<
 					Int<-100>,
 					Int<-3000>
 				>,
-				COLOR_MIX_P<33, BASECOLOR>,
+				COLOR_MIX<P_33, BASECOLOR>,
 				BASECOLOR,
 				COLOR_MIX_P<50, BASECOLOR>
 			>,
@@ -411,18 +417,18 @@ using BaseStyle_GhostBusterBlade = StaticFire<
 		>,
 		StripesX<
 			//Int<16000>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<16000>, Int<8000>, Int<1000>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<16000>, Int<8000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			//Int<-3900>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-2500>, Int<-3900>, Int<1000>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-2500>, Int<-3900>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
 			BASECOLOR,
 			COLOR_MIX_P<25, BASECOLOR>,
 			COLOR_MIX_P<50, BASECOLOR>,
 			StripesX<
 				//Int<2500>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2500>, Int<1250>, Int<1000>, Int<4000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2500>, Int<1250>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 				//Int<-3500>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-2000>, Int<-3500>, Int<1000>, Int<4000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-2000>, Int<-3500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
 				BASECOLOR,
 				BASECOLOR,
@@ -464,6 +470,70 @@ using BaseStyle_StaffBlade = StyleFire<
 	FireConfig<2,1000,5>,
 	FireConfig<2,1000,5>,
 	FireConfig<2,1000,5>
+>;
+
+// Lava Lamp Blade
+using BaseStyle_LavaLamp = StripesX<
+	Sin<
+		Int<4>,
+		Int<3000>,
+		Int<6000>
+	>,
+	Scale<
+		TwistAngle<>,
+		Int<-50>,
+		Int<-100>
+	>,
+	StripesX<
+		Sin<
+			Int<3>,
+			Int<1000>,
+			Int<3000>
+		>,
+		Scale<
+			TwistAngle<>,
+			Int<25>,
+			Int<80>
+		>,
+		Pulsing<
+			COLOR_MIX_P<20, BASECOLOR, White>,
+			COLOR_MIX_P<8, BASECOLOR>,
+			3000
+		>,
+		Mix<
+			Sin<Int<2>>,
+			COLOR_MIX_P<79, BASECOLOR>,
+			COLOR_MIX_P<4, BASECOLOR>
+		>
+	>,
+	COLOR_MIX<Int<7710>, BASECOLOR>,
+	Pulsing<
+		COLOR_MIX<Int<6425>, BASECOLOR>,
+		StripesX<
+			Sin<
+				Int<2>,
+				Int<2000>,
+				Int<4000>
+			>,
+			Sin<
+				Int<2>,
+				Int<25>,
+				Int<75>
+			>,
+			Mix<
+				Sin<Int<4>>,
+				BASECOLOR,
+				COLOR_MIX<Int<6425>, BASECOLOR, White>
+			>,
+			COLOR_MIX_P<38, BASECOLOR>
+		>,
+		2000
+	>,
+	Pulsing<
+		COLOR_MIX<P_50, BASECOLOR>,
+		COLOR_MIX<Int<6425>, BASECOLOR>,
+		3000
+	>
 >;
 
 // Smash Blade
@@ -766,8 +836,8 @@ using BaseStyle_FireTipBlade =	Layers<
 				>,
 				Int<8000>
 			>,
-			COLOR_MIX<Int<400>, BASECOLOR>,
-			COLOR_MIX<Int<6000>, BASECOLOR>
+			COLOR_MIX_P<2, BASECOLOR>,
+			COLOR_MIX_P<20, BASECOLOR>
 		>,
 		TRANSPARENT,
 		0,
@@ -783,7 +853,7 @@ using BaseStyle_FireTipBase = Layers<
 	StaticFire <
 		StripesX<
 			//Int<14000>,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<14000>, Int<8000>, Int<500>, Int<4000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<14000>, Int<8000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			Scale<
 				BladeAngle<>,
 				Int<-5>,
@@ -853,7 +923,7 @@ using BaseStyle_WaterBlade = StripesX<
 						Int<6000>
 					>
 				>,
-				Int<16384>
+				PERCENTAGE_S<50> //Int<16384>
 			>,
 			Int<1000>,
 			Int<-1000>

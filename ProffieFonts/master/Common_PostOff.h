@@ -6,7 +6,7 @@ using PostOff_EmitterCoolOff = TrConcat<
 	AlphaL<
 		POSTOFFCOLOR,
 		SmoothStep<
-			IntArg<EMITTER_SIZE_ARG,2000>,
+			EMITTER_SIZE,
 			Int<-4000>
 		>
 	>,
@@ -26,7 +26,7 @@ using PostOff_EmitterCoolOff = TrConcat<
 	AlphaL<
 		Orange,
 		SmoothStep<
-			IntArg<EMITTER_SIZE_ARG,2000>,
+			EMITTER_SIZE,
 			Int<-4000>
 		>
 	>,
@@ -46,7 +46,7 @@ using PostOff_EmitterCoolOff = TrConcat<
 	AlphaL<
 		Red,
 		SmoothStep<
-			IntArg<EMITTER_SIZE_ARG,2000>,
+			EMITTER_SIZE,
 			Int<-2000>
 		>
 	>,

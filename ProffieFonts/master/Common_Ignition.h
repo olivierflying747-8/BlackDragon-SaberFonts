@@ -2,7 +2,7 @@
 
 // Standard
 using Ignition_Standard = TrWipeX<
-	IgnitionTime<300>
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
 >;
 
 // Dual Mode Wipe (up = fast)
@@ -10,47 +10,108 @@ using Ignition_DualMode = TrWipeX<
 	Scale<
 		IsLessThan<
 			BladeAngle<>, 
-			Int<16384>
+			PERCENTAGE_S<50> //Int<16384>
 		>, 
 		Mult<
-			IgnitionTime<300>, 
-			Int<16384>
+			IGNITION_TIME, 
+			PERCENTAGE_S<50> //Int<16384>
 		>, 
-		IgnitionTime<300>
+		IGNITION_TIME
 	>
 >;
 
 // Spark Tip
 using Ignition_SparkTip = TrWipeSparkTipX<
 	IGNITIONCOLOR,
-	IgnitionTime<300>
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
 >;
-
 
 // Center Wipe
 using Ignition_CenterWipe = TrCenterWipeInX<
-	IgnitionTime<300>,
-	Int<16384>
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>,
+	PERCENTAGE_S<50> //Int<16384>
+>;
+
+// Wipe In (Reverse)
+using Ignition_WipeIn = TrWipeInX<
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
 >;
 
 // Color Cycle
 using Ignition_ColorCycle = TrColorCycleX<
-	Percentage<IgnitionTime<300>, 1000>, //3000,
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>, //Percentage<IGNITION_TIME, 1000>, //3000,
 	3000,
 	0
+>;
+
+// Glitch On
+using Ignition_Glitch_On = TrConcat<
+	TrJoin<
+		TrDelayX<
+			Mult<
+				IGNITION_TIME,
+				PERCENTAGE_S<50> //Int<16384>
+			>
+		>,
+		TrWipeX<
+			Mult<
+				IGNITION_TIME,
+				PERCENTAGE_S<50> //Int<16384>
+			>
+		>
+	>,
+	COLOR_MIX<
+		SmoothStep<
+			NoisySoundLevel,
+			Int<-1>
+		>,
+		IGNITIONCOLOR
+	>,
+	TrWipeX<
+		Mult<
+			IGNITION_TIME,
+			PERCENTAGE_S<50> //Int<16384>
+		>
+	>
+>;
+
+// Ignition Gravity
+using Ignition_Gravity = TrSelect<
+	Scale<
+		IsLessThan<
+			BladeAngle<>,
+			Int<18384>
+		>,
+		Scale<
+			IsGreaterThan<
+				SwingAcceleration<>,
+				PERCENTAGE_S<50> //Int<16384>
+			>,
+			Int<0>,
+			Int<2>
+		>,
+		Int<1>
+	>,
+	TrWipeInX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>,
+	TrWipeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>,
+	TrWipe<100>
 >;
 
 // Lighting Strike
 using Ignition_LightningStrike = TrConcat<
 	TrWipeInX<
-		Percentage<IgnitionTime<300>, 66>
+		Percentage<IGNITION_TIME, 66>
 	>, //200>
 	RandomBlinkX<
-		Percentage<IgnitionTime<300>, 10000>, //30000,
+		Percentage<IGNITION_TIME, 10000>, //30000,
 		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrWipeInX<
-		Percentage<IgnitionTime<300>, 66>
+		Percentage<IGNITION_TIME, 66>
 	>, //200>,
 	Mix<
 		SmoothStep<
@@ -65,7 +126,7 @@ using Ignition_LightningStrike = TrConcat<
 		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrDelayX<
-		Percentage<IgnitionTime<300>, 130>
+		Percentage<IGNITION_TIME, 130>
 	>, //400>,
 	COLOR_MIX<
 		SmoothStep<
@@ -76,51 +137,32 @@ using Ignition_LightningStrike = TrConcat<
 	>,
 	TrWipeSparkTipX<
 		IGNITIONCOLOR,
-		Percentage<IgnitionTime<300>, 58>
+		Percentage<IGNITION_TIME, 58>
 	> //175>
 >;
 
-// Flash On
-using Ignition_Flash = TrConcat <
-	TrWipeX<IgnitionTime<300>>,
-	StrobeL<IGNITIONCOLOR, Int<100>, IgnitionTime<300>>,
-	TrFadeX<IgnitionTime<300>>
+// Metal Forge Heatup
+using Ignition_Metal_Forge_Heatup = TrConcat<
+	TrFadeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>,
+	Red,
+	TrFadeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>,
+	DarkOrange,
+	TrFadeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>,
+	White,
+	TrFadeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>
 >;
 
-// Ignition Gravity
-using Ignition_Gravity = TrSelect<
-	Scale<
-		IsLessThan<
-			BladeAngle<>,
-			Int<18384>
-		>,
-		Scale<
-			IsGreaterThan<
-				SwingAcceleration<>,
-				Int<16384>
-			>,
-			Int<0>,
-			Int<2>
-		>,
-		Int<1>
-	>,
-	TrWipeInX<
-		BendTimePowInvX<
-			IgnitionTime<300>,
-			Mult<
-				IntArg<IGNITION_OPTION2_ARG,10992>,
-				Int<98304>
-			>
-		>
-	>,
-	TrWipeX<
-		BendTimePowInvX<
-			IgnitionTime<300>,
-			Mult<
-				IntArg<IGNITION_OPTION2_ARG,10992>,
-				Int<98304>
-			>
-		>
-	>,
-	TrWipe<100>
+// Flash On
+using Ignition_Flash = TrConcat<
+	TrWipeX<BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>>,
+	StrobeL<IGNITIONCOLOR, Int<100>, IGNITION_TIME>,
+	TrFadeX<BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>>
 >;

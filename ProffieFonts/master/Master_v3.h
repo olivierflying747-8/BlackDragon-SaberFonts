@@ -29,18 +29,19 @@ Style Options:
 5: Stripes (Base Color)
 6: Stripes SlowNoise (Base Color, Alt Color)
 7: Stripes Unstable (Base Color)
-8: Fire Blade (Base Color)
-9: Thunderstorm blade (Base Color, Alt Color)
-10: Fett263 Smoke Blade style. (Base Color)
-11: Glitchy / Broken blade. (Base Color)
-12: DarkSaber (Base Color, Alt Color)
-13: Electro Staff Blade (Base Color)
-14: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
-15: Smash Blade
+8: Thunderstorm blade (Base Color, Alt Color)
+9: Fett263 Smoke Blade style. (Base Color)
+10: Glitchy / Broken blade. (Base Color)
+11: DarkSaber (Base Color, Alt Color)
+12: Electro Staff Blade (Base Color)
+13: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
+14: Smash Blade (Custom Colors)
+15: Fire Blade (Base Color)
 16: Coda blade style w/ swing effects. (Base Color, Alt Color, Alt Color 2)
 17: Fire Pulse Blade (Interactive)
 18: Static Electricty
-19: Party Blade (No Colors, Rainbow)
+19: Lava Lamp
+20: Party Blade (Custom Colors, Rainbow)
 
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
@@ -74,60 +75,25 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 11: Cylon (Alt Color 3)
 12: Lightning Flash (Alt Color 3)
 13: Emitter Flare (Emiter Color)
-14: Emitter Flare (Breathing) (Emitter Color)
+14: Emitter Breathing (Emitter Color)
 15: Emitter Pulse (Alt Color 3)
 16: Blade Spark (Interactive, Alt Color 3)
 
-Swing Effect Options:
-0: Disabled
-1: Audio Flicker
-2: Sparkle
-3: Fire
-4: Ripple (Fett263's)
-5: Unstable
-6: Power Buildup
-7: Fireball
-8: Lightning
-9: Clash Buildup, Lockup Release
-10: Force Pulse
-11: Force Aura
-12: Force Heat
-
-Preon Effect Options: 
-0: Disabled
-1: Overload (PreOn Color)
-2: Sparking (PreOn Color)
-3: Broken Ignition
-4: Emitter Warm up
-5: Faulty Ignition
-6: Blade Pre-Light up
-
-PostOff Effect Options:
-0: Disabled
-1: Emitter Cooldown (PostOff Color)
-
-Ignition Effect Options: 
+Ignition Effect Options (Ignition Color):
 0: Instant
-1: Standard Ignition 
+1: Standard Ignition
 2: Dual Mode Wipe (Up = Fast)
 3: SparkTip Ignition
 4: Center Wipe
-5: Color Cycle
-6: Lightning Strike
-7: Flash
+5: Wipe In
+6: Color Cycle
+7: Glitch On
 8: Gravity Ignition
+9: Lightning Strike
+10: Flash
+11: Metal Forge Heatup
 
-Retraction Effect Options:
-0: Instant
-1: Standard Retraction
-2: Dual Mode Wipe In (Up = Fast)
-3: SparkTip Retraction
-4: Center Wipe
-5: Color Cycle
-6: Glitch off
-7: Gravity Retraction
-
-PowerUp Effect Options:
+PowerUp Effect Options (Ignition Color):
 0: Disabled
 1: Glitch On (Power Flash)
 2: Power Surge
@@ -137,14 +103,56 @@ PowerUp Effect Options:
 6: Unstable Bright
 7: Stabalize
 
-CoolDown Effect Options:
+Retraction Effect Options (Retraction Color):
+0: Instant
+1: Standard Retraction
+2: Dual Mode Wipe In (Up = Fast)
+3: SparkTip Retraction
+4: Center Wipe
+5: Wipe Out
+6: Color Cycle
+7: Glitch off
+8: Gravity Retraction
+9: Metal Forge Cooldown
+
+CoolDown Effect Options (Retraction Color):
 0: Disabled
 1: Glitch Off (Flash)
 2: Power Burst Reverse
 3: Unstable Cool Down Reverse
 4: Bright Humpflicker
 5: Smoke Blade Retraction
-6: Emitter Cooldown (for fonts with no PostOff .wav files)
+6: Emitter Cooldown (for fonts with no PostOff .wav files) (PostOff Color)
+
+Swing Effect Options (Swing Color):
+0: Disabled
+1: Audio Flicker
+2: Sparkle
+3: Pulsing
+4: Fire
+5: Ripple (Fett263's)
+6: Unstable
+7: Bright Edge (Responsive)
+8: Power Buildup
+9: Fireball
+10: Lightning
+11: Clash Buildup, Lockup Release
+12: Force Pulse
+13: Force Aura
+14: Force Heat
+
+Preon Effect Options (PreOn Color): 
+0: Disabled
+1: Overload
+2: Sparking
+3: Broken Ignition
+4: Emitter Warm up
+5: Faulty Ignition
+6: Blade Pre-Light up
+
+PostOff Effect Options (PostOff Color):
+0: Disabled
+1: Emitter Cooldown
 
 Special Abilities:
 USER1: Rain (Off Color)
@@ -193,31 +201,33 @@ using MasterStyle = Layers<
 		BaseStyle_Stripes_2Color,
 		// Option 7: Unstable Stripes (BASECOLOR)
 		BaseStyle_Stripes_RandomPerLEDFlicker,
-		// Option 8: Fire blade (BASECOLOR)
-		BaseStyle_FireBlade,
-		// Option 9: Thunderstorm (BASECOLOR, ALTCOLOR)
+		// Option 8: Thunderstorm (BASECOLOR, ALTCOLOR)
 		BaseStyle_ThunderstormBlade,
-		// Option 10: Base Fett263 Smoke Blade style (BASECOLOR)
+		// Option 9: Base Fett263 Smoke Blade style (BASECOLOR)
 		BaseStyle_SmokeBlade,
-		// Option 11: Flickery / Broken Blade (BASECOLOR)
+		// Option 10: Flickery / Broken Blade (BASECOLOR)
 		BaseStyle_FlickerBlade,
-		// Option 12: Darksaber Blade (BASECOLOR, ALTCOLOR)
+		// Option 11: Darksaber Blade (BASECOLOR, ALTCOLOR)
 		BaseStyle_DarkSaber,
-		// Option 13: ElectroStaff (BASECOLOR)
+		// Option 12: ElectroStaff (BASECOLOR)
 		BaseStyle_StaffBlade,
-		// Option 14: Ghostbuster (BASECOLOR, ALTCOLOR, ALTCOLOR2)
+		// Option 13: Ghostbuster (BASECOLOR, ALTCOLOR, ALTCOLOR2)
 		BaseStyle_GhostBusterBlade,
-		// Option 15: Smash Blade (Special Colors)
+		// Option 14: Smash Blade (Special Colors)
 		BaseStyle_SmashBlade,
 
+		// Option 15: Fire blade (BASECOLOR)
+		BaseStyle_FireBlade,
 		// Option 16: Coda (BASECOLOR, ALTCOLOR, ALTCOLOR2)
 		BaseStyle_CodaBlade,
 		// Option 17: Fireblade Interactive Pulse
 		BaseStyle_FirePulseInteractive,
 		// Option 18: Static Electricty
 		BaseStyle_StaticElectricity,
+		// Option 19: Lava Lamp
+		BaseStyle_LavaLamp,
 
-		// Option 19: Party Blade (special colors)
+		// Option 20: Party Blade (special colors)
 		BaseStyle_PartyBlade
 	>,
 
@@ -322,9 +332,11 @@ using MasterStyle = Layers<
 		Swing_AudioFlicker,
 		// Option 2: Sparkle
 		Swing_Sparkle,
-		// Option 3: Fire
+		// Option 3: Pusling
+		Swing_Pulsing,
+		// Option 4: Fire
 		Swing_Fire,
-		// Option 4: Fett263's Swing Effect
+		// Option 5: Fett263's Swing Effect
 		Layers <
 			//Fett263 Ripple swing effect
 			Swing_FettRipple,
@@ -332,27 +344,75 @@ using MasterStyle = Layers<
 			//Fett263 Bright hard swing effect
 			Swing_FettHard
 		>,
-		// Option 5: Unstable Swing
+		// Option 6: Unstable Swing
 		Layers <
 			//Unstable swing
 			Swing_Unstable,
 			//Unstable ripple swing
 			Swing_UnstableRippple
 		>,
-		// Option 6: Interactive Power Buildup
+		// Option 7: Bright Edge (Responsive)
+		Swing_Bright_Edge,
+		// Option 8: Interactive Power Buildup
 		Swing_Interactive_Power_Buildup,
-		// Option 7: Fireball
+		// Option 9: Fireball
 		Swing_Fireball,
-		// Option 8: Lightning
+		// Option 10: Lightning
 		Swing_Lightning,
-		// Option 9: Clash Buildup
+		// Option 11: Clash Buildup
 		Swing_Clash_BuildUp,
-		// Option 10: Force Pulse
+		// Option 12: Force Pulse
 		Swing_Force_Pulse,
-		// Option 11: Force Aura
+		// Option 13: Force Aura
 		Swing_Force_Aura,
-		// Option 12: Force Heat
+		// Option 14: Force Heat
 		Swing_Force_Heat
+	>,
+
+	// Powerup Effect
+	TransitionEffectL<
+		TrSelect<
+			IntArg<IGNITION_POWER_UP_ARG, 0>,
+			// Option 0: None
+			TrInstant, 
+			// Option 1: Power Flash
+			Powerup_Flash,
+			// Option 2: Power Surge (Stable)
+			Powerup_Surge,
+			// Option 3: Flash on
+			Powerup_Flash_Fade,
+			// Option 4: Power Burst Forward
+			Powerup_Burst_Forward,
+			// Option 5: Unstable Power Up Forward
+			Powerup_Unstable_Forward,
+			// Option 6: Fett263 Unstable bright ignition effect
+			Powerup_Unstable_Bright_Forward,
+			// Option 7: Stabilize ignition
+			Powerup_Stabalize
+		>,
+		EFFECT_IGNITION
+	>,
+
+	// Cooldown effect
+	TransitionEffectL<
+		TrSelect<
+			IntArg<RETRACTION_COOL_DOWN_ARG, 0>,
+			// Option 0: None
+			TrInstant, 
+			// Option 1: Power Flash
+			PowerDown_Flash,
+			// Option 2: Unstable Cool Down Reverse
+			PowerDown_Burst_Reverse,
+			// Option 3: Power Burst Reverse
+			PowerDown_Unstable_Reverse,
+			// Option 4: Fett263 Bright Humpflicker retraction effect
+			PowerDown_Bright_Hump,
+			// Option 5: Smoke Blade Retraction, //Emitter Cooldown
+			PowerDown_Smoke_Reverse,
+			// Option 6: Postoff Cooldown, for fonts with no PostOff#.wav files
+			PostOff_EmitterCoolOff
+		>,
+		EFFECT_RETRACTION
 	>,
 
 	// Special Abiltiies
@@ -528,14 +588,20 @@ using MasterStyle = Layers<
 			Ignition_SparkTip, 
 			// Option 4: Center Wipe
 			Ignition_CenterWipe,
-			// Option 5: Color Cycle
+			// Option 5: Wipe In
+			Ignition_WipeIn,
+			// Option 6: Color Cycle
 			Ignition_ColorCycle,
-			// Option 6: Lightning Strike
-			Ignition_LightningStrike,
-			// Option 7: Flash On
-			Ignition_Flash,
+			// Option 7: Glitch On
+			Ignition_Glitch_On,
 			// Option 8: Gravity based
-			Ignition_Gravity
+			Ignition_Gravity,
+			// Option 9: Lightning Strike
+			Ignition_LightningStrike,
+			// Option 10: Flash On
+			Ignition_Flash,
+			// Option 11: Metal Forge Heatup
+			Ignition_Metal_Forge_Heatup,
 		>, 
 		// Retraction Options
 		TrSelect<
@@ -550,12 +616,16 @@ using MasterStyle = Layers<
 			Retraction_SparkTip,
 			// Option 4: Center Wipe
 			Retraction_CenterWipe,
-			// Option 5, Color cycle
+			// Option 5: Wipe Out
+			Retraction_WipeOut,
+			// Option 6, Color cycle
 			Retraction_ColorCycle,
-			// Option 6, Glitch off
+			// Option 7, Glitch off
 			Retraction_Glitch_Off,
-			// Option 7: Gravity based
-			Retraction_Gravity
+			// Option 8: Gravity based
+			Retraction_Gravity,
+			// Option 9: Metal Forge Cooldown
+			Retraction_Metal_Forge_Cooldown
 		>, 
 		Black
 	>,
@@ -580,52 +650,6 @@ using MasterStyle = Layers<
 			PreOn_Dim_Blade
 		>, 
 		EFFECT_PREON
-	>,
-
-	// Ignition Effect
-	TransitionEffectL<
-		TrSelect<
-			IntArg<IGNITION_POWER_UP_ARG, 0>,
-			// Option 0: None
-			TrInstant, 
-			// Option 1: Power Flash
-			Powerup_Flash,
-			// Option 2: Power Surge (Stable)
-			Powerup_Surge,
-			// Option 3: Flash on
-			Powerup_Flash_Fade,
-			// Option 4: Power Burst Forward
-			Powerup_Burst_Forward,
-			// Option 5: Unstable Power Up Forward
-			Powerup_Unstable_Forward,
-			// Option 6: Fett263 Unstable bright ignition effect
-			Powerup_Unstable_Bright_Forward,
-			// Option 7: Stabilize ignition
-			Powerup_Stabalize
-		>,
-		EFFECT_IGNITION
-	>,
-
-	// Retraction effect
-	TransitionEffectL<
-		TrSelect<
-			IntArg<RETRACTION_COOL_DOWN_ARG, 0>,
-			// Option 0: None
-			TrInstant, 
-			// Option 1: Power Flash
-			PowerDown_Flash,
-			// Option 2: Unstable Cool Down Reverse
-			PowerDown_Burst_Reverse,
-			// Option 3: Power Burst Reverse
-			PowerDown_Unstable_Reverse,
-			// Option 4: Fett263 Bright Humpflicker retraction effect
-			PowerDown_Bright_Hump,
-			// Option 5: Smoke Blade Retraction, //Emitter Cooldown
-			PowerDown_Smoke_Reverse,
-			// Option 6: Postoff Cooldown, for fonts with no PostOff#.wav files
-			PostOff_EmitterCoolOff
-		>,
-		EFFECT_RETRACTION
 	>,
 
 	// Post Off

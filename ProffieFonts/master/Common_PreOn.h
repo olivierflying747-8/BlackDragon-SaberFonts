@@ -11,7 +11,7 @@ using PreOn_Overload = TrConcat<
 	AlphaL<
 		HumpFlickerL<PREONCOLOR, 10>, 
 		SmoothStep<
-			IntArg<PREON_SIZE_ARG, 2000>, 
+			PREON_SIZE, 
 			Int<-4000>
 		>
 	>, 
@@ -26,7 +26,7 @@ using PreOn_Overload = TrConcat<
 		SmoothStep<
 			Sum<
 				Int<2000>, 
-				IntArg<PREON_SIZE_ARG, 2000>
+				PREON_SIZE
 			>, 
 			Int<-4000>
 		>
@@ -42,7 +42,7 @@ using PreOn_Overload = TrConcat<
 		SmoothStep<
 			Sum<
 				Int<4000>, 
-				IntArg<PREON_SIZE_ARG, 2000>
+				PREON_SIZE
 			>, 
 			Int<-4000>
 		>
@@ -67,9 +67,9 @@ using PreOn_Sparking = TrConcat<
 		SmoothStep<
 			Scale<
 				SlowNoise<Int<2000>>, 
-				IntArg<PREON_SIZE_ARG, 2000>, 
+				PREON_SIZE, 
 				Sum<
-					IntArg<PREON_SIZE_ARG, 2000>, 
+					PREON_SIZE, 
 					Int<4000>
 				>
 			>, 
@@ -114,11 +114,11 @@ using PreOn_Emitter_Warmup = TrConcat<
 		/*
 		Bump<
 			Int<0>,
-			IntArg<PREON_SIZE_ARG, 2000>
+			PREON_SIZE
 		>
 		*/
 		SmoothStep<
-			IntArg<PREON_SIZE_ARG, 2000>,
+			PREON_SIZE,
 			Int<-2000>
 		>
 	>,
@@ -137,12 +137,12 @@ using PreOn_Emitter_Warmup = TrConcat<
 			//Int<10000>
 			Sum<
 				Int<2000>,
-				IntArg<PREON_SIZE_ARG, 2000>
+				PREON_SIZE
 			>
 		>
 		*/
 		SmoothStep<
-			IntArg<PREON_SIZE_ARG, 2000>,
+			PREON_SIZE,
 			Int<-3000>
 		>
 	>,
@@ -161,12 +161,12 @@ using PreOn_Emitter_Warmup = TrConcat<
 			//Int<20000>
 			Sum<
 				Int<4000>,
-				IntArg<PREON_SIZE_ARG, 2000>
+				PREON_SIZE
 			>
 		>
 		*/
 		SmoothStep<
-			IntArg<PREON_SIZE_ARG, 2000>,
+			PREON_SIZE,
 			Int<-4000>
 		>
 	>,
@@ -182,11 +182,11 @@ using PreOn_Dim_Blade = TrConcat<
 	>,
 	Mix<
 		NoisySoundLevel,
-		COLOR_MIX<Int<3983>, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
+		COLOR_MIX_P<12, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
 		AlphaL<
 			AudioFlicker<
-				RotateColorsX<Variation, COLOR_MIX<Int<3983>, PREONCOLOR>>, //Rgb<0,31,0>
-				RotateColorsX<Variation, COLOR_MIX<Int<3983>, PREONCOLOR>> //Rgb<0,15,0>
+				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>>, //Rgb<0,31,0>
+				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>> //Rgb<0,15,0>
 			>,
 			Int<100>
 		>

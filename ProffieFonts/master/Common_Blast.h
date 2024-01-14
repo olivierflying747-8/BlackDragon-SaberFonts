@@ -66,7 +66,7 @@ using Blast_Ripple = TrConcat<
 	AlphaL<
 		BLASTCOLOR, 
 		Bump<
-			Int<16384>, 
+			PERCENTAGE_S<50>, //Int<16384>, 
 			Int<6000>
 		>
 	>, 
@@ -97,7 +97,7 @@ using Blast_Ripple_Fade = TrConcat<
 	AlphaL<
 		BLASTCOLOR, 
 		Bump<
-			Int<16384>, 
+			PERCENTAGE_S<50>, //Int<16384>, 
 			Int<6000>
 		>
 	>, 

@@ -42,7 +42,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define FETT263_EDIT_MODE_MENU
 #define ENABLE_ALL_EDIT_OPTIONS
 #define DISABLE_BASIC_PARSER_STYLES
-//#define KEEP_SAVEFILES_WHEN_PROGRAMMING
+#define KEEP_SAVEFILES_WHEN_PROGRAMMING
 #define FETT263_SAY_COLOR_LIST
 #define FETT263_SAY_COLOR_LIST_CC
 #endif
@@ -52,7 +52,7 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 
-/* VALID FONT FOlDERS
+/* VALID FONT FOlDERS: 42 (+2 for common/tracks)
 
 Analog
 AncientSaber
@@ -89,7 +89,7 @@ RED
 Second
 SEETHE
 ShockBaton
-SmashSowrd
+SmashSword
 Splinter
 Staff
 ThunderGod
@@ -109,7 +109,7 @@ YELLOW
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {
 
-// Basic Fonts.
+// Basic Fonts: 6
 	{ "WHITE;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		()  //, "white"
@@ -140,7 +140,7 @@ Preset presets[] = {
 		() //, "yellow"
 	},
 
-// Custom Free Fonts
+// Custom Free Fonts (mostly Grayscale): 22
 	{ "Battle;common", "tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "battle1"
@@ -206,8 +206,6 @@ Preset presets[] = {
 		() //, "Grey"
 	},
 
-
-
 	{ "Magnetic;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "magnetic"
@@ -253,7 +251,7 @@ Preset presets[] = {
 		(), //"volatile"
 	},
 
-// Paid Fonts
+// Paid Fonts: 14
 
 	// Ancient Saber
 	{ "AncientSaber;common", "tracks/",
@@ -261,7 +259,7 @@ Preset presets[] = {
 		() //, "ancientsaber"
 	},
 
-		// One X Wing (Mandalorian Luke inspired)
+	// One X Wing (Mandalorian Luke inspired)
 	{ "OneXWing;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "onexwing"
@@ -304,7 +302,7 @@ Preset presets[] = {
 	},
 
 	// Smash sword
-	{ "SmashSowrd;common", "tracks/JFO19.wav",
+	{ "SmashSword;common", "tracks/JFO19.wav",
 		StylePtr<MasterStyle>
 		() //, "smashsword"
 	},
