@@ -113,7 +113,7 @@ using Ignition_LightningStrike = TrConcat<
 	TrWipeInX<
 		Percentage<IGNITION_TIME, 66>
 	>, //200>,
-	Mix<
+	COLOR_MIX<
 		SmoothStep<
 			Scale<
 				SlowNoise<Int<30000>>,
@@ -122,7 +122,6 @@ using Ignition_LightningStrike = TrConcat<
 			>,
 			Int<-3000>
 		>,
-		Black,
 		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrDelayX<

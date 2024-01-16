@@ -6,8 +6,13 @@
 #include "Common_Blade2.h" // Blade effects, for STYLE_OPTION2_ARG
 //#include "Common_Blade3.h" // Blade effects, for STYLE_OPTION3_ARG
 #include "Common_Swing.h" // Swing effects for SWING_OPTION_ARG
-#include "Common_Blast.h" // Blaster Effects
-#include "Common_Lockup.h" // Lockup, Clash, Drag, Stab, Melt
+#include "Common_Blast.h" // Blaster effects
+#include "Common_Lockup.h" // Lockup effects
+#include "Common_Clash.h" // Clash effects
+#include "Common_Stab.h" // Stab effects
+#include "Common_Drag.h" // Drag effects
+#include "Common_Melt.h" // Melt effects
+#include "Common_Lightning.h" // Lightning Block effects
 #include "Common_PreOn.h" // PreOn effects for PREON_OPTION_ARG
 #include "Common_Ignition.h" // Effects for IGNITION_OPTION_ARG
 #include "Common_Retraction.h" // effects for RETRACTION_OPTION_ARG
@@ -86,6 +91,7 @@ Ignition Effect Options (Ignition Color):
 8: Gravity Ignition
 9: Lightning Strike
 10: Flash
+11: Metal Forge Heatup
 
 PowerUp Effect Options (Ignition Color):
 0: Disabled
@@ -107,6 +113,7 @@ Retraction Effect Options (Retraction Color):
 6: Color Cycle
 7: Glitch off
 8: Gravity Retraction
+9: Metal Forge Cooldown
 
 CoolDown Effect Options (Retraction Color):
 0: Disabled
@@ -126,10 +133,13 @@ Swing Effect Options (Swing Color):
 5: Ripple (Fett263's)
 6: Unstable
 7: Bright Edge (Responsive)
-8: Power Buildup
-9: Fireball
-10: Lightning
-11: Clash Buildup, Lockup Release
+8: Pixilate
+9: Lightning
+10: Clash Buildup, Lockup Release
+11: Power Buildup (Force Toggle)
+12: Fireball (Force Toggle)
+13: Force Pulse
+//14: Force Aura
 
 Preon Effect Options (PreOn Color): 
 0: Disabled
@@ -143,9 +153,14 @@ Preon Effect Options (PreOn Color):
 PostOff Effect Options (PostOff Color):
 0: Disabled
 1: Emitter Cooldown
+2: Emitter Spark
+3: Emitter Glow
 
 Special Abilities:
-USER1: Rain (Off Color)
+USER1: 
+USER2: 
+USER3: 
+USER4: Rain (Off Color)
 
 Lockup Effect: Intensity Lockup V1
 
@@ -153,13 +168,24 @@ LightningBlock Effect: Responsive Lightning Block
 
 Drag Effect: Intensity Sparking Drag
 
-Melt Effect: Intensity Melt
+Melt Effect: Responsive Melt
 
-Blast Effect (Randomly Selected): Blast Wave (Random), Blast Ripple Fade, Blast Wave (Sound Based), Blast Ripple, Blast Fade (Sound Based)
+Stab Effect: Normal Stab
+
+Blast Effect (Randomly Selected) (Blast Color):
+- Responsive Blast Fade (BladeAngle, Random),
+- Responsive Blast Fade (BladeAngle, Sound Based),
+- Responsive Blast Wave (BladeAngle, Random),
+- Responsive Blast Wave (BladeAngle, Sound Based),
+//- Responsive Blast Ripple Fade (BladeAngle)
 
 Clash Effect: Real Clash V1
 
 Battery Level: Hilt Location (Green to Red) on Boot/FontChange/BatteryLevel
+
+//Volume Level: Blade Light (White)
+
+Power Save: 10% Increment
 */
 
 using MasterStyle = Layers<
@@ -323,19 +349,21 @@ using MasterStyle = Layers<
 		>,
 		// Option 7: Bright Edge (Responsive)
 		Swing_Bright_Edge,
-		// Option 8: Interactive Power Buildup
-		Swing_Interactive_Power_Buildup,
-		// Option 9: Fireball
-		Swing_Fireball,
-		// Option 10: Lightning
+		// Option 8: Pixilate
+		Swing_Pixilate,
+		// Option 9: Lightning
 		Swing_Lightning,
-		// Option 11: Clash Buildup
-		Swing_Clash_BuildUp
-		// Option 12: Force Pulse
-		//Swing_Force_Pulse,
-		// Option 13: Force Aura
-		//Swing_Force_Aura,
-		// Option 14: Force Heat
+		// Option 10: Clash Buildup
+		Swing_Clash_BuildUp,
+		// Option 11: Interactive Power Buildup (Force Toggle)
+		Swing_Interactive_Power_Buildup,
+		// Option 12: Interactive Fireball (Force Toggle)
+		Swing_Interactive_Fireball,
+		// Option 13: Force Pulse
+		Swing_Force_Pulse
+		// Option 14: Force Aura
+		//Swing_Force_Aura
+		// Option 15: Force Heat
 		//Swing_Force_Heat
 	>,
 
@@ -386,13 +414,26 @@ using MasterStyle = Layers<
 	>,
 
 	// Special Abiltiies
-	Special1_Rain,
+	Special4_Rain,
 	
 	// Multi blast effect
-	// Blast_MultiRandom,
-
 	MultiTransitionEffectL<
 		TrRandom<
+
+		// Responsive based on BladeAngle<>
+			// Responsive Blast Fade Random
+			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, BLASTFADE_SIZE<>>,
+			// Responsive Blast Fade Sound
+			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, WavLen<EFFECT_BLAST>>,
+
+			// Responsive Blast Wave Random
+			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<BladeAngle<>>>,
+			// Responsive Blast Wave Sound
+			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<BladeAngle<>>>
+
+			// Responsive Blast Ripple Fade
+			//Blast_Ripple_Fade<BLASTRIPPLE_POS<BladeAngle<>>, Int<6000>, Int<320000>>
+
 			/*
 			// Option 1: Blast Wave (Random)
 			Blast_Wave_Random,
@@ -404,7 +445,6 @@ using MasterStyle = Layers<
 			Blast_Ripple_Fade,
 			// Option 5: Blast Fade (Sound Based)
 			Blast_Fade_Sound,
-			*/
 			// Option 6, Responsive Blast
 			Blast_Responsive,
 			// Option 7: Localized clash
@@ -431,9 +471,9 @@ using MasterStyle = Layers<
 			Int<26000>
 		>,
 		// Mix A
-		Clash_EffectA,
+		Clash_RealV1_Base,
 		// Mix B
-		Clash_EffectB
+		Clash_RealV1_Wave
 	>,
 
 	/*
@@ -451,13 +491,23 @@ using MasterStyle = Layers<
 	LockupTrL<
 //		EffectSequence<
 //			EFFECT_LOCKUP_BEGIN,
-			Lockup_Color_Style,
-//			Lockup_Color_Style2,
-//			Lockup_Color_Style3,
-//			Lockup_Color_Style4
+			Lockup_Color_Intensity,
+//			Lockup_Color_Localized_Flicker,
+//			Lockup_Color_Full_Flicker,
+//			Lockup_Color_Cylon
 //		>,
-		Lockup_Start, // EFFECT_LOCKUP_BEGIN
-		Lockup_End, // EFFECT_LOCKUP_END
+//		TrRandom<
+			Lockup_Start_RealClash,
+//			Lockup_Start_Localized,
+//			Lockup_Start_Localized_Flash,
+//			Lockup_Start_Full_Flash
+//		>, // EFFECT_LOCKUP_BEGIN
+//		TrRandom<
+			Lockup_End_Intensity,
+//			Lockup_End_Power_Burst,
+//			Lockup_End_Localized_Absorb,
+//			Lockup_End_Full_Absorb
+//		>, // EFFECT_LOCKUP_END
 		SaberBase::LOCKUP_NORMAL
 	>,
 	
@@ -472,65 +522,63 @@ using MasterStyle = Layers<
 	LockupTrL<
 //		EffectSequence<
 //			EFFECT_DRAG_BEGIN,
-			Drag_Color_Style,
-//			Drag_Color_Style2
+			Drag_Color_Sparking,
+//			Drag_Color_Fire
 //		>,
-//		TrRandom<
-			Drag_Start,
-//			Drag_Start2
+//		TrSequence<
+			Drag_Start_Sparking,
+//			Drag_Start_Fire
 //		>,
 		Drag_End, // EFFECT_DRAG_END
 		SaberBase::LOCKUP_DRAG
 	>,
 
+/*
 	// Stab
 	ResponsiveStabL<
 //		EffectSequence<
 //			EFFECT_STAB,
-			Stab_Color_Style,
-//			Stab_Color_Style2,
+			Stab_Color_Normal,
+//			Stab_Color_AudioFlicker,
 //			Stab_Color_Style3
 //		>,
 		Stab_Start,
 		Stab_End,
-		IntArg<MELT_SIZE_ARG, 28000>,
+
+		MELT_SIZE,
 		Sum <
-			IntArg<MELT_SIZE_ARG, 28000>,
+			MELT_SIZE,
 			Int<2000>
 		>	
 	>,
-	/* // Non Responsive Stab Effect
+
+	*/
+	// Stab Effect
 	TransitionEffectL<
 		TrConcat<
-			TrJoin<
-				TrDelayX<WavLen<>>,
-				TrWipeIn<200>
-			>,
-			AlphaL<
-				AudioFlickerL<
-					STABCOLOR
-				>,
-				SmoothStep<
-					IntArg<MELT_SIZE_ARG,28000>,
-					Int<2000>
-				>
-			>,
-			TrWipe<200>
+			Stab_Start,
+//			EffectSequence<
+//				EFFECT_STAB,
+				Stab_Color_Normal,
+//				Stab_Color_AudioFlicker,
+//				Stab_Color_Style3
+//			>,
+			Stab_End
 		>,
 		EFFECT_STAB
 	>,
-	*/
+// 	*/
 	
 	// Melt
 	LockupTrL<
 //		EffectSequence<
 //			EFFECT_LOCKUP_BEGIN,
-			Melt_Color_Style, 
-//			Melt_Color_Style2
+			Melt_Color_Responsive, 
+//			Melt_Color_Intensity
 //		>,
-//		TrRandom<
+//		TrSequence<
 			Melt_Start, 
-//			Melt_Start2
+//			Melt_Start_Intensity
 //		>,
 		Melt_End, 
 		SaberBase::LOCKUP_MELT
@@ -562,7 +610,9 @@ using MasterStyle = Layers<
 			// Option 9: Lightning Strike
 			Ignition_LightningStrike,
 			// Option 10: Flash On
-			Ignition_Flash
+			Ignition_Flash,
+			// Option 11: Metal Forge Heatup
+			Ignition_Metal_Forge_Heatup
 		>, 
 		// Retraction Options
 		TrSelect<
@@ -584,7 +634,9 @@ using MasterStyle = Layers<
 			// Option 7, Glitch off
 			Retraction_Glitch_Off,
 			// Option 8: Gravity based
-			Retraction_Gravity
+			Retraction_Gravity,
+			// Option 9: Metal Forge Cooldown
+			Retraction_Metal_Forge_Cooldown
 		>, 
 		Black
 	>,
@@ -618,7 +670,11 @@ using MasterStyle = Layers<
 			// Option 0 // None
 			TrInstant, 
 			// Option 1: Emitter cooldown
-			PostOff_EmitterCoolOff
+			PostOff_EmitterCoolOff,
+			// Option 2: Emitter Spark
+			PostOff_Emitter_Spark,
+			// Option 3: Emitter Glow
+			PostOff_Emitter_Glow
 		>,
 		EFFECT_POSTOFF
 	>,
@@ -630,5 +686,11 @@ using MasterStyle = Layers<
 	BatteryLevelOnFontChange,
 
 	// Battery level
-	BatteryLevelOnDemand
+	BatteryLevelOnDemand,
+
+	// Volume level
+//	VolumeLevelOnDemand,
+
+	// Battery Saber
+	Battery_Power_Save
 >;

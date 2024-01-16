@@ -1,72 +1,7 @@
-// ================================ CLASH ================================
+// ================================ LOCKUP COLORS ================================
 
-// Clash Effect A
-using Clash_EffectA = TransitionEffectL<
-	TrConcat<
-		TrInstant, 
-		AlphaL<
-			CLASHCOLOR, 
-			Bump<
-				LOCKUPPOSITIONSCALE, 
-				Scale<
-					ClashImpactF<>, 
-					Int<12000>, 
-					Int<60000>
-				>
-			>
-		>, 
-		TrFadeX<
-			Scale<
-				ClashImpactF<>, 
-				Int<200>, 
-				Int<400>
-			>
-		>
-	>, 
-	EFFECT_CLASH
->;
-
-// Clash Effect B
-using Clash_EffectB = TransitionEffectL<
-	TrWaveX<
-		CLASHCOLOR, 
-		Scale<
-			ClashImpactF<>, 
-			Int<100>, 
-			Int<400>
-		>, 
-		Int<100>, 
-		Scale<
-			ClashImpactF<>, 
-			Int<100>, 
-			Int<400>
-		>, 
-		LOCKUPPOSITIONSCALE
-	>, 
-	EFFECT_CLASH
->;
-
-// Clash Update flash
-using Clash_Update = TrWaveX<
-	CLASHCOLOR,
-	Scale<
-		ClashImpactF<>,
-		Int<100>, 
-		Int<400>
-	>, 
-	Int<100>, 
-	Scale<
-		ClashImpactF<>,
-		Int<100>, 
-		Int<400>
-	>, 
-	LOCKUPPOSITIONSCALE
->;
-
-// ================================ LOCKUP ================================
-
-// Lockup Color
-using Lockup_Color_Style = AlphaMixL<
+// Lockup Color used in intensity/responsive style
+using Lockup_Color_Intensity_ColorMix = AlphaMixL<
 	// Mix method
 	Bump<
 		LOCKUPPOSITIONSCALE,
@@ -94,10 +29,9 @@ using Lockup_Color_Style = AlphaMixL<
 		COLOR_MIX<Int<12850>, LOCKUPCOLOR>
 	>
 >;
-
-// Lockup Color 2
-using Lockup_Color_Style2 = TransitionEffect<
-	Lockup_Color_Style,
+// Lockup Intensity/Responsive
+using Lockup_Color_Intensity = TransitionEffect<
+	Lockup_Color_Intensity_ColorMix,
 	AlphaL<
 		AudioFlicker<
 			LOCKUPCOLOR,
@@ -116,8 +50,8 @@ using Lockup_Color_Style2 = TransitionEffect<
 	EFFECT_LOCKUP_BEGIN
 >;
 
-// Lockup Color 3
-using Lockup_Color_Style3 = Layers<
+// Lockup Localized Flicker
+using Lockup_Color_Localized_Flicker = Layers<
 	AlphaL<
 		AudioFlickerL<LOCKUPCOLOR>,
 		Bump<
@@ -138,8 +72,37 @@ using Lockup_Color_Style3 = Layers<
 	>
 >;
 
+// Original Moving Lockup Style
+using Lockup_Color_Cylon = AlphaMixL<
+	Bump<
+		Sin<
+			Int<12>,
+			Sum<
+				LOCKUP_POSITION,
+				Int<-8000>
+			>,
+			Sum<
+				LOCKUP_POSITION,
+				Int<8000>
+			>
+		>,
+		Scale<
+			SwingSpeed<100>,
+			Int<14000>,
+			Int<18000>
+		>
+	>,
+	AudioFlickerL<
+		LOCKUPCOLOR
+	>,
+	BrownNoiseFlickerL<
+		LOCKUPCOLOR,
+		Int<200>
+	>
+>;
+
 // Dual Lockup Style
-using Lockup_Color_Style4 = TransitionEffect<
+using Lockup_Color_Dual = TransitionEffect<
 	Layers<
 		// Color Hump 1
 		AlphaMixL<
@@ -296,421 +259,297 @@ using Lockup_Color_Style4 = TransitionEffect<
 	EFFECT_LOCKUP_BEGIN
 >;
 
-// TODO: Add more styles using TrRandom?
-// Lockup Start
-using Lockup_Start = TrRandom<
-	// Effect A (Localized Clash)
-	TrConcat<
-		TrExtend<
-			50, 
-			TrInstant
-		>, 
-		LOCKUPCLASHCOLOR,
-		TrExtend<
-			3000, 
-			TrFade<300>
-		>, 
-		AlphaL<
-			AudioFlicker<
-				LOCKUPCOLOR, 
-				COLOR_MIX<Int<10280>, LOCKUPCOLOR>
-			>, 
-			Bump<
-				LOCKUPPOSITIONSCALE,
-				Int<13000>
-			>
-		>, 
-		TrFade<3000>
+// DUNE Shield Lockup
+using Lockup_Color_Shield =	AlphaL<
+	StripesX<
+		Int<16000>,
+		Int<12000>,
+		Rgb<128,0,0>,
+		Red,
+		Rgb<90,0,0>
 	>,
-	// Effect B (Flash)
-	TrConcat<
-		TrJoin<
-			TrDelay<50>,
-			TrInstant
-		>,
-		LOCKUPCLASHCOLOR,
-		TrFade<300>
+	Bump<
+		LOCKUPPOSITIONSCALE,
+		Int<50000>
 	>
 >;
 
-// TODO: Add more styles via TrRandom?
-// Lockup End
-using Lockup_End = TrRandom<
-	// Effect A
-	TrConcat<
-		TrInstant, 
-		// Transparent
-		AlphaL<
+// Lockup Full Blade Flicker
+using Lockup_Color_Full_Flicker = AudioFlickerL<LOCKUPCOLOR>;
+
+// ================================ LOCKUP START TRANSITIONS ================================
+
+// Localized Clash
+using Lockup_Start_Localized = TrConcat<
+	TrJoin<
+		TrDelay<50>,
+		TrInstant
+	>, 
+	LOCKUPCLASHCOLOR,
+	TrExtend<
+		3000, 
+		TrFade<300>
+	>, 
+	AlphaL<
+		AudioFlicker<
 			LOCKUPCOLOR, 
+			COLOR_MIX<Int<10280>, LOCKUPCOLOR>
+		>, 
+		Bump<
+			LOCKUPPOSITIONSCALE,
+			Int<13000>
+		>
+	>, 
+	TrFade<3000>
+>;
+
+// Real Clash V1
+using Lockup_Start_RealClash = TrConcat<
+	TrJoin<
+		TrDelay<50>,
+		TrInstant
+	>,
+	Mix<
+		IsLessThan<
+			ClashImpactF<>,
+			Int<26000>
+		>,
+		LOCKUPCOLOR,
+		AlphaL<
+			LOCKUPCOLOR,
+			Bump<
+				LOCKUPPOSITIONSCALE,
+				Scale<
+					ClashImpactF<>,
+					Int<20000>,
+					Int<60000>
+				>
+			>
+		>
+	>,
+	TrFade<300>
+>;
+
+// Full Blade Flash
+using Lockup_Start_Full_Flash = TrConcat<
+	TrJoin<
+		TrDelay<50>,
+		TrInstant
+	>,
+	LOCKUPCLASHCOLOR,
+	TrFade<300>
+>;
+
+// Localized Flash
+using Lockup_Start_Localized_Flash = TrConcat<
+	TrInstant,
+	AlphaL<
+		LOCKUPCOLOR,
+		Bump<
+			LOCKUPPOSITIONSCALE,
+			Int<10000>
+		>
+	>,
+	TrFade<300>
+>;
+
+// Lockup Start Shield
+using Lockup_Start_Shield = TrConcat<
+	TrJoin<
+		TrDelayX<
+			Scale<
+				ClashImpactF<>,
+				Int<2000>,
+				Int<100>
+			>
+		>,
+		TrCenterWipeX<
+			Int<150>,
+			LOCKUPPOSITIONSCALE
+		>
+	>,
+	AlphaL<
+		StripesX<
+			Int<16000>,
+			Scale<
+				ClashImpactF<>,
+				Int<3000>,
+				Int<10000>
+			>,
+			Mix<
+				IsGreaterThan<
+					ClashImpactF<>,
+					Int<23000>
+				>,
+				Rgb<0,20,128>,
+				Rgb<128,0,0>
+			>,
+			Mix<
+				IsGreaterThan<
+					ClashImpactF<>,
+					Int<23000>
+				>,
+				DodgerBlue,
+				Red
+			>,
+			Mix<
+				IsGreaterThan<
+					ClashImpactF<>,
+					Int<23000>
+				>,
+				Rgb<0,10,80>,
+				Rgb<90,0,0>
+			>
+		>,
+		Bump<
+			LOCKUPPOSITIONSCALE,
+			Scale<
+				ClashImpactF<>,
+				Int<20000>,
+				Int<50000>
+			>
+		>
+	>,
+	TrFadeX<
+		Scale<
+			ClashImpactF<>,
+			Int<600>,
+			Int<100>
+		>
+	>
+>;
+
+// ================================ LOCKUP END TRANSITIONS ================================
+
+// Lockup End
+using Lockup_End_Intensity = TrConcat<
+	TrInstant, 
+	TRANSPARENT, 
+	// Selected based on Impact Force
+	TrSelect<
+		Scale<
+			IsLessThan<
+				ClashImpactF<>, 
+				Int<20000>
+			>, 
+			Int<1>, 
 			Int<0>
 		>, 
-		// Selected based on Impact Force
-		TrSelect<
+		// Wave
+		TrWaveX<
+			LOCKUPCOLOR, 
 			Scale<
-				IsLessThan<
-					ClashImpactF<>, 
-					Int<20000>
-				>, 
-				Int<1>, 
-				Int<0>
+				ClashImpactF<>, 
+				Int<50>, 
+				Int<400>
 			>, 
-			// Wave
-			TrWaveX<
-				LOCKUPCOLOR, 
-				Scale<
+			Int<100>, 
+			Scale<
+				ClashImpactF<>, 
+				Int<500>, 
+				Int<300>
+			>, 
+			LOCKUPPOSITIONSCALE
+		>, 
+		// Ripple
+		TrSparkX<
+			Remap<
+				CenterDistF<LOCKUPPOSITIONSCALE>,
+				Stripes<
+					1200, 
+					-3600, 
+					COLOR_MIX<Int<6425>, LOCKUPCOLOR>, 
+					LOCKUPCOLOR, 
+					COLOR_MIX<Int<12850>, LOCKUPCOLOR>
+				>
+			>, 
+			Int<30>, 
+			Scale<
+				Sum<
 					ClashImpactF<>, 
-					Int<50>, 
-					Int<400>
+					SwingSpeed<600>
 				>, 
 				Int<100>, 
-				Scale<
-					ClashImpactF<>, 
-					Int<500>, 
-					Int<300>
-				>, 
-				LOCKUPPOSITIONSCALE
+				Int<400>
 			>, 
-			// Ripple
-			TrSparkX<
-				Remap<
-					CenterDistF<LOCKUPPOSITIONSCALE>,
-					Stripes<
-						1200, 
-						-3600, 
-						COLOR_MIX<Int<6425>, LOCKUPCOLOR>, 
-						LOCKUPCOLOR, 
-						COLOR_MIX<Int<12850>, LOCKUPCOLOR>
-					>
-				>, 
-				Int<30>, 
-				Scale<
-					Sum<
-						ClashImpactF<>, 
-						SwingSpeed<600>
-					>, 
-					Int<100>, 
-					Int<400>
-				>, 
-				LOCKUPPOSITIONSCALE
-			>
+			LOCKUPPOSITIONSCALE
+		>
+	>
+>;
+
+/* // Merged into the above.
+// Effect B: Wave (Dissipate)
+using Lockup_End_Wave = TrConcat<
+	TrInstant,
+	TRANSPARENT,
+	TrWaveX<
+		LOCKUPCOLOR,
+		Int<300>,
+		Int<100>,
+		Int<400>,
+		LOCKUPPOSITIONSWING
+	>
+>;
+// Effect C: Ripple
+using Lockup_End_Ripple = TrSparkX<
+	Remap<
+		CenterDistF<LOCKUPPOSITIONSCALE>,
+		Stripes<
+			1200,
+			-3600,
+			COLOR_MIX<Int<6425>, LOCKUPCOLOR>,
+			LOCKUPCOLOR,
+			COLOR_MIX<Int<12850>, LOCKUPCOLOR>
 		>
 	>,
-	/*
-	// Effect B: Wave (Dissipate)
-	TrConcat<
-		TrInstant,
-		AlphaL<
-			LOCKUPCOLOR,
-			Int<0>
+	Int<30>,
+	Scale<
+		Sum<
+			ClashImpactF<>,
+			SwingSpeed<600>
 		>,
-		TrWaveX<
-			LOCKUPCOLOR,
-			Int<300>,
-			Int<100>,
-			Int<400>,
-			LOCKUPPOSITIONSWING
-		>
+		Int<50>,
+		Int<200>
 	>,
-	// Effect C: Ripple
-	TrSparkX<
-		Remap<
-			CenterDistF<LOCKUPPOSITIONSCALE>,
-			Stripes<
-				1200,
-				-3600,
-				COLOR_MIX<Int<6425>, LOCKUPCOLOR>,
-				LOCKUPCOLOR,
-				COLOR_MIX<Int<12850>, LOCKUPCOLOR>
-			>
-		>,
-		Int<30>,
-		Scale<
-			Sum<
-				ClashImpactF<>,
-				SwingSpeed<600>
-			>,
-			Int<50>,
-			Int<200>
-		>,
+	LOCKUPPOSITIONSCALE
+>;
+*/
+
+// Power Burst
+using Lockup_End_Power_Burst = TrConcat<
+	TrCenterWipeX<
+		Int<150>,
 		LOCKUPPOSITIONSCALE
-	>*/
-	// Power Burst
-	TrConcat<
+	>,
+	LOCKUPCOLOR,
+	TrJoin<
 		TrCenterWipeX<
 			Int<150>,
 			LOCKUPPOSITIONSCALE
 		>,
+		TrSmoothFade<150>
+	>
+>;
+
+// Localized Absorb
+using Lockup_End_Localized_Absorb = TrConcat<
+	TrInstant,
+	AlphaL<
 		LOCKUPCOLOR,
-		TrJoin<
-			TrCenterWipeX<
-				Int<150>,
-				LOCKUPPOSITIONSCALE
-			>,
-			TrSmoothFade<150>
-		>
-	>
->;
-
-// ================================ LIGHTNING BLOCK ================================
-
-// Lightning Block Color
-using LB_Color_Style = Strobe<
-	LBCOLOR, 
-	AudioFlicker<
-		LBCOLOR, 
-		Mix<
-			BladeAngle<>,
-			LBCOLOR,
-			Blue
-		>
-	>, 
-	50, 
-	1
->;
-
-// TODO: Add more styles via TrRandom?
-// LB Start
-using LB_Start = TrConcat<
-	TrInstant, 
-	AlphaL<
-		LBCOLOR, 
 		Bump<
-			Int<12000>, 
-			Int<18000>
-		>
-	>, 
-	TrFade<200>
->;
-
-// TODO: Add more styles via TrRandom?
-// LB End
-using LB_End = TrConcat<
-	TrInstant, 
-	HumpFlickerL<
-		AlphaL<
-			LBCOLOR, 
-			Int<16000>
-		>, 
-		30
-	>, 
-	TrSmoothFade<600>
->;
-
-// ====================================== DRAG ==================================
-
-// Drag Color Style (Intensity Sparking Drag)
-using Drag_Color_Style = AlphaL<
-	RandomPerLEDFlickerL<DRAGCOLOR>, 
-	SmoothStep<
-		DRAG_SIZE, 
-		Int<3000>
-	>
->;
-
-// Drag Color Style (Fire)
-using Drag_Color_Style2 = AlphaL<
-	Stripes<
-		2000,
-		4000,
-		DRAGCOLOR,
-		COLOR_MIX<
-			Sin<Int<50>>,
-			DRAGCOLOR
-		>,
-		COLOR_MIX_P<12, DRAGCOLOR>
-	>,
-	SmoothStep<
-		DRAG_SIZE,
-		Int<3000>
-	>
->;
-
-// Drag Start
-using Drag_Start = TrConcat<
-	/*
-	TrExtend<
-		4000, 
-		TrWipeIn<200>
-	>,
-	*/
-	TrJoin<
-		TrDelay<4000>,
-		TrWipeIn<200>
-	>,
-	AlphaL<
-		BrownNoiseFlickerL<
-			DRAGCOLOR, 
-			Int<300>
-		>, 
-		SmoothStep<
-			DRAG_SIZE, 
-			Int<3000>
-		>
-	>, 
-	TrFade<4000>
->;
-
-// Drag Start 2 (Fire)
-using Drag_Start2 = TrConcat<
-	TrJoin<
-		TrDelay<4000>,
-		TrWipeIn<200>
-	>,
-	AlphaL<
-		Stripes<
-			2000,
-			3000,
-			DRAGCOLOR,
-			COLOR_MIX<
-				Sin<Int<30>>,
-				DRAGCOLOR
-			>,
-			COLOR_MIX_P<25, DRAGCOLOR>
-		>,
-		SmoothStep<
-			DRAG_SIZE,
-			Int<3000>
+			LOCKUPPOSITIONSCALE,
+			Int<13000>
 		>
 	>,
-	TrFade<4000>
+	TrFade<400>
 >;
 
-// Drag End
-using Drag_End = TrConcat<
+// Full Blade Absorb
+using Lockup_End_Full_Absorb = TrConcat<
 	TrInstant,
-	TrFade<300>
+	LOCKUPCOLOR,
+	TrFade<400>
 >;
 
-// ===================================== STAB ==================================
-
-// Stab color Style (Normal)
-using Stab_Color_Style = AudioFlickerL<
-	STABCOLOR
->;
-
-// Stab Color Style 2 (Audioflicker)
-using Stab_Color_Style2 = AlphaL<
-	AudioFlickerL<STABCOLOR>,
-	SmoothStep<
-		MELT_SIZE,
-		Int<2000>
-	>
->;
-
-// Stab Color Style 3 (Sparking)
-using Stab_Color_Style3 = AlphaL<
-	RandomPerLEDFlickerL<STABCOLOR>,
-	SmoothStep<
-		MELT_SIZE,
-		Int<2000>
-	>
->;
-
-// Stab Start
-using Stab_Start = TrJoin<
-	TrDelayX<WavLen<>>,
-	TrWipeIn<200>
->;
-
-// Stab End
-using Stab_End = TrConcat <
-	TrInstant, 
-	TrWipe<200>
->;
-
-// ===================================== MELT ==================================
-
-// Melt Color Style (Responsive normal)
-using Melt_Color_Style = AlphaL<
-	Mix<
-		TwistAngle<>,
-		STABCOLOR,
-		RotateColorsX<
-			Int<3000>,
-			STABCOLOR
-		>
-	>,
-	SmoothStep<
-		MELT_SIZE,
-		Int<4000>
-	>
->;
-
-// Melt color Style (Responsive Fire)
-using Melt_Color_Style2 = AlphaL<
-	Remap<
-		Scale<
-			RampF, 
-			Int<65536>, 
-			Int<0>
-		>, 
-		StaticFire<
-			Mix<
-				TwistAngle<>, 
-				STABCOLOR, //OrangeRed, 
-				DarkOrange
-			>, 
-			Mix<
-				TwistAngle<>, 
-				STABCOLOR, //OrangeRed, 
-				Orange
-			>, 
-			0, 
-			3, 
-			5, 
-			3000, 
-			10
-		>
-	>, 
-	SmoothStep<
-		MELT_SIZE, 
-		Int<4000>
-	>
->;
-
-// Melt Start
-using Melt_Start = TrConcat<
-	TrWipeIn<100>,
-	AlphaL<
-		STABCOLOR,
-		SmoothStep<
-			MELT_SIZE,
-			Int<4000>
-		>
-	>,
-	TrFade<300>
->;
-
-// Melt Start 2
-using Melt_Start2 = TrConcat<
-	TrWipeIn<100>, 
-	AlphaL<
-		STABCOLOR, //Red
-		SmoothStep<
-			MELT_SIZE, 
-			Int<4000>
-		>
-	>, 
-	TrExtend<
-		4000, 
-		TrFade<300>
-	>, 
-	AlphaL<
-		Mix<
-			TwistAngle<>, 
-			STABCOLOR,  //Red
-			Orange
-		>, 
-		SmoothStep<
-			MELT_SIZE, 
-			Int<4000>
-		>
-	>, 
-	TrFade<4000>
->;
-
-// Melt End
-using Melt_End = TrConcat <
-	TrInstant,
-	TrWipe<200>
->;
+// Lockup End Shield
+using Lockup_End_Shield = TrFade<400>;

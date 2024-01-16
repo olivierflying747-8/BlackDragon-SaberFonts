@@ -55,7 +55,7 @@ using PowerDown_Bright_Hump = TrConcat<
 	TRANSITION_DELAY<RETRACTION_TIME, RETRACTION_DELAY>,
 	HumpFlickerL<RETRACTIONCOLOR, 40>, 
 	TrFadeX<
-		Percentage<WavLen<>, 125>
+		Percentage<WavLen<EFFECT_RETRACTION>, 125>
 	>
 >;
 
@@ -69,7 +69,7 @@ using PowerDown_Smoke_Reverse = TrConcat <
 		BaseStyle_SmokeBlade, //Green,
 		Bump<
 			Int<0>,
-			Int<16000>
+			Int<16384>
 		>
 	>,
 //	*/
@@ -77,11 +77,7 @@ using PowerDown_Smoke_Reverse = TrConcat <
 	/* // Emitter Cooldown, moved to POST OFF.
 	AlphaL<
 		//Rgb<0, 63, 0>,
-		Mix<
-			Int<7710>,
-			Black, 
-			RETRACTIONCOLOR
-		>,
+		COLOR_MIX<Int<7710>, RETRACTIONCOLOR>,
 		Bump<
 			Int<0>,
 			//Int<14000>

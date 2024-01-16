@@ -55,31 +55,29 @@ using BLADE_ANGLE_SCLAE = Scale<
 // Swing Speed Scale with HoldPeak. HoldPeak defaults to 0 so it doesn't hold.
 template<int SPEED = SWING_SPEED_DEFAULT, class MIN = Int<-50>, class MAX = Int<-2000>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
 using SWING_SPEED_SCLAE = Scale<
-	//SwingSpeed<SPEED>,
-	//Scale<
-		HoldPeakF<
+	HoldPeakF<
+		SwingSpeed<SPEED>,
+		//SwingAcceleration<250>,
+		//TwistAcceleration<250>,
+		//TwistAngle<>,
+		//BladeAngle<>
+		//ClashImpactF<>
+
+		//HOLD_TIME
+		Scale<
 			SwingSpeed<SPEED>,
-			//SwingAcceleration<250>,
-			//TwistAcceleration<250>,
-			//TwistAngle<>,
-			//BladeAngle<>
-			//HOLD_TIME, // HOLD_TIME_MS
-			Scale<
-				SwingSpeed<SPEED>,
-				HOLD_TIME_MIN,
-				HOLD_TIME_MAX
-			>,
-			//HOLD_SPEED // TRANSITION SPEED
-			Scale<
-				SwingSpeed<SPEED>,
-				HOLD_SPEED_MIN,
-				HOLD_SPEED_MAX
-			>
+			HOLD_TIME_MIN,
+			HOLD_TIME_MAX
 		>,
-		MIN,
-		MAX
-//	>,
-//	MAX
+		//HOLD_SPEED
+		Scale<
+			SwingSpeed<SPEED>,
+			HOLD_SPEED_MIN,
+			HOLD_SPEED_MAX
+		>
+	>,
+	MIN,
+	MAX
 >;
 
 // Swing Speed Scale (LessThan)
@@ -151,25 +149,150 @@ using LOCKUPCLASHCOLOR = Mix<
 	>
 >;
 
-// Swing Speed Calculation, used in Swing Options.
-template<int SCALE_SPEED1, int SCALE_SPEED2 = 600, int SCALE_MIN = -19300, int SCALE_MAX = 32768>
-using SWINGSPEEDSCALE = Scale<
-	IsLessThan<
-		SwingSpeed<SCALE_SPEED1>,
-		Int<13600>
-	>,
+// TODO: Make this work!
+/*
+// Randomly select between methods of choosing blast position
+using BLAST_POS_RANDOM = IntSelect<
 	Scale<
-		SwingSpeed<SCALE_SPEED2>,
-		Int<SCALE_MIN>,
-		Int<SCALE_MAX>
+		RandomF,
+		Int<0>,
+		Int<3> // Increment me if you add!
 	>,
-	Int<0>
+
+	EffectRandomF<EFFECT_BLAST>,
+	BladeAngle<>,
+	SwingSpeed<SWING_SPEED_DEFAULT>,
+	TwistAngle<>
+>;
+*/
+
+// Blast Position Scale
+template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+using BLASTPOS_SCALE = Scale<
+	SCALEPARAM,
+	Int<28000>,
+	Int<8000>
+>;
+
+// Blast Fade Size
+template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+using BLASTFADE_SIZE = Scale<
+	SCALEPARAM,
+	Int<9000>,
+	Int<15000>
+>;
+
+// Blast Wave Fadeout / Time
+template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+using BLASTWAVE_SCALE = Scale<
+	SCALEPARAM,
+	Int<100>,
+	Int<400>
+>;
+
+// Blast Ripple Position
+template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+using BLASTRIPPLE_POS = Scale<
+	SCALEPARAM,
+	Int<3000>,
+	Int<29000>
+>;
+
+// Lightning Block Position Function
+using LIGHTNINGBLOCK_RESPONSIVE_POSITION = LayerFunctions<
+	 Bump<
+		Scale<
+			SlowNoise<	
+				Scale<
+					BladeAngle<24000, 32768>,
+					Int<2100>,
+					Int<1000>
+				>
+			>,
+			Scale<
+				BladeAngle<24000, 32768>,
+				Int<3000>,
+				Int<10000>
+			>,
+			Int<16000>
+		>,
+		Scale<
+			BrownNoiseF<Int<10>>,
+			Scale<
+				TwistAngle<>,
+				Int<4000>,
+				Int<10000>
+			>,
+			Scale<
+				TwistAngle<>,
+				Int<9000>,
+				Int<14000>
+			>
+		>
+	>,
+	Bump<
+		Scale<
+			SlowNoise<Int<2200>>,
+			Scale<
+				BladeAngle<24000, 32768>,
+				Int<26000>,
+				Int<18000>
+			>,
+			Int<8000>
+		>,
+		Scale<
+			NoisySoundLevel,
+			Scale<
+				TwistAngle<>,
+				Int<6000>,
+				Int<10000>
+			>,
+			Scale<
+				TwistAngle<>,
+				Int<10000>,
+				Int<14000>
+			>
+		>
+	>,
+	Bump<
+		Scale<
+			SlowNoise<Int<2300>>,
+			Scale<
+				BladeAngle<24000, 32768>,
+				Int<20000>,
+				Int<16000>
+			>,
+			Scale<
+				BladeAngle<24000, 32768>,
+				Int<30000>,
+				Int<24000>
+			>
+		>,
+		Scale<
+			IsLessThan<
+				SlowNoise<Int<2000>>,
+				Int<12000>
+			>,
+			Scale<
+				NoisySoundLevel,
+				Scale<
+					TwistAngle<>,
+					Int<9000>,
+					Int<5000>
+				>,
+				Int<0>
+			>,
+			Int<0>
+		>
+	>
 >;
 
 // Ignition Flicker Stripes, used in Stabalize Ignition.
-using Ignition_Flicker_Stripes = Stripes<
-	3000,
-	-3500,
+using Ignition_Flicker_Stripes = StripesX<
+	//Int<3000>,
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+	//Int<-3500>,
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-2500>, Int<-3500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 	RotateColorsX<Variation, IGNITIONCOLOR>, //Rgb<90,180,255> //IGNITION_COLOR_ARG
 	RandomPerLEDFlicker<
 		RotateColorsX<
@@ -263,4 +386,38 @@ using BatteryLevelOnFontChange = TransitionEffectL<
 using BatteryLevelOnDemand = TransitionEffectL<
 	ShowBatteryLevelHilt,
 	EFFECT_BATTERY_LEVEL
+>;
+
+// Volume level
+using VolumeLevelOnDemand = TransitionEffectL<
+	TrConcat<
+		TrExtend<
+			2000,
+			TrFade<100>
+		>,
+		AlphaL<
+			White,
+			Bump<
+				VolumeLevel,
+				Int<8000>
+			>
+		>,
+		TrFade<300>
+	>,
+	EFFECT_VOLUME_LEVEL
+>;
+
+// Power Save (10% increments)
+using Battery_Power_Save = EffectSequence<
+	EFFECT_POWERSAVE,
+	AlphaL<Black,Int<3277>>,
+	AlphaL<Black,Int<6554>>,
+	AlphaL<Black,Int<9831>>,
+	AlphaL<Black,Int<13108>>,
+	AlphaL<Black,Int<16385>>,
+	AlphaL<Black,Int<19662>>,
+	AlphaL<Black,Int<22939>>,
+	AlphaL<Black,Int<26216>>,
+	AlphaL<Black,Int<29493>>,
+	AlphaL<Black,Int<0>>
 >;

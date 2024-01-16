@@ -1,6 +1,91 @@
 // ================================ BLAST EFFECTS ===========================
 
+// Blast Fade
+template<class POS = EffectPosition<EFFECT_BLAST>, class SIZE = BLASTFADE_SIZE<>>
+using Blast_Fade = TrConcat<
+	TrInstant,
+	AlphaMixL<
+		Bump<
+			POS,
+			SIZE
+		>,
+		BLASTCOLOR,
+		COLOR_MIX<Int<16384>, BLASTCOLOR>
+	>,
+	TrFade<300>
+>;
+
 // Blast Wave
+template<class FADEOUT = BLASTWAVE_SCALE<>, class SIZE = BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, class TIME = BLASTWAVE_SCALE<>, class POS = BLASTPOS_SCALE<>>
+using Blast_Wave = TrWaveX<
+	BLASTCOLOR,
+	FADEOUT,
+	SIZE,
+	TIME,
+	POS
+>;
+
+// Blast Ripple Fade
+template<class POS = BLASTRIPPLE_POS<>, class SIZE1 = Int<6000>, class SIZE2 = Int<32000>>
+using Blast_Ripple_Fade = TrConcat<
+	TrInstant,
+	AlphaL<
+		BLASTCOLOR,
+		Bump<
+			POS,
+			SIZE1
+		>
+	>,
+	TrCenterWipeX<
+		Int<100>,
+		POS
+	>,
+	AlphaL<
+		Remap<
+			CenterDistF<POS>,
+			Stripes<
+				1600,
+				-2000,
+				BLASTCOLOR,
+				COLOR_MIX<Int<2096>, BLASTCOLOR>
+			>
+		>,
+		Bump<
+			POS,
+			SIZE2
+		>
+	>,
+	TrJoin<
+		TrSmoothFade<50>,
+		TrCenterWipeX<
+			Int<100>,
+			POS
+		>
+	>
+>;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+// Blast Wave Random
 using Blast_Wave_Random = TrWaveX<
 	BLASTCOLOR,
 	Scale<
@@ -25,13 +110,13 @@ using Blast_Wave_Random = TrWaveX<
 using Blast_Wave_Sound = TrWaveX<
 	BLASTCOLOR, 
 	Scale<
-		WavLen<>, 
+		WavLen<EFFECT_BLAST>, 
 		Int<100>, 
 		Int<400>
 	>, 
 	Int<100>, 
 	Scale<
-		WavLen<>, 
+		WavLen<EFFECT_BLAST>, 
 		Int<100>, 
 		Int<400>
 	>, 
@@ -42,14 +127,32 @@ using Blast_Wave_Sound = TrWaveX<
 	>
 >;
 
+// Blast Fade Random
+using Blast_Fade_Random = TrConcat<
+	TrInstant,
+	AlphaMixL<
+		Bump<
+			EffectPosition<EFFECT_BLAST>,
+			Scale<
+				EffectPosition<EFFECT_BLAST>,
+				Int<9000>,
+				Int<12000>
+			>
+		>,
+		BLASTCOLOR,
+		COLOR_MIX<Int<16384>, BLASTCOLOR>
+	>,
+	TrFade<300>
+>;
+
 // Blade Fade (sound based)
 using Blast_Fade_Sound = TrConcat<
 	TrInstant, 
 	AlphaMixL<
 		Bump<
-			EffectPosition<>, 
+			EffectPosition<EFFECT_BLAST>,
 			Scale<
-				WavLen<>, 
+				WavLen<EFFECT_BLAST>, 
 				Int<9000>, 
 				Int<12000>
 			>
@@ -77,7 +180,7 @@ using Blast_Ripple = TrConcat<
 	>, 
 	TrSparkX<
 		Remap<
-			CenterDistF<EffectPosition<>>, 
+			CenterDistF<EffectPosition<EFFECT_BLAST>>,
 			Stripes<
 				2000, 
 				-2000, 
@@ -206,7 +309,7 @@ using Blast_BlastL = TrConcat <
 >;
 
 // Blast Responsive Fade
-using Blast_Responsive_Fade = TrConcat <
+using Blast_Responsive_Fade_Swing = TrConcat <
 	TrInstant,
 	ResponsiveBlastFadeL<
 		BLASTCOLOR,
@@ -223,8 +326,6 @@ using Blast_Responsive_Fade = TrConcat <
 	>,
 	TrFade<300>
 >;
-
-
 
 // TODO: Merge with above code and stuff
 
@@ -298,9 +399,6 @@ using ResponsiveEffectBlastStyle = EffectSequence<
 	>
 >;
 
-
-
-
 // Single hook function
 using Blast_MultiRandom = MultiTransitionEffectL<
 	TrRandom<
@@ -329,3 +427,4 @@ using Blast_MultiRandom = MultiTransitionEffectL<
 	>, 
 	EFFECT_BLAST
 >;
+*/

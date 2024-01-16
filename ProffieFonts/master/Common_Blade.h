@@ -943,7 +943,7 @@ using BaseStyle_StaticElectricity = Layers<
 	ColorSelect<
 		IncrementWithReset<
 			ThresholdPulseF<
-				SwingSpeed<400>,
+				SwingSpeed<SWING_SPEED_DEFAULT>,
 				Int<18000>
 			>,
 			Sum<
@@ -955,7 +955,7 @@ using BaseStyle_StaticElectricity = Layers<
 		TrSelect<
 			IncrementWithReset<
 				ThresholdPulseF<
-					SwingSpeed<400>,
+					SwingSpeed<SWING_SPEED_DEFAULT>,
 					Int<18000>
 				>,
 				Sum<
@@ -984,7 +984,7 @@ using BaseStyle_StaticElectricity = Layers<
 				Scale<
 					IncrementWithReset<
 						ThresholdPulseF<
-							SwingSpeed<400>,
+							SwingSpeed<SWING_SPEED_DEFAULT>,
 							Int<18000>
 						>,
 						Sum<
@@ -1006,7 +1006,7 @@ using BaseStyle_StaticElectricity = Layers<
 				RandomPerLEDFlickerL<Black>,
 				IncrementWithReset<
 					ThresholdPulseF<
-						SwingSpeed<400>,
+						SwingSpeed<SWING_SPEED_DEFAULT>,
 						Int<18000>
 					>,
 					Sum<

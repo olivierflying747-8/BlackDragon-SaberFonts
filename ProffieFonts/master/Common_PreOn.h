@@ -83,10 +83,7 @@ using PreOn_Sparking = TrConcat<
 using PreOn_Broken_Ignition = TrConcat<
 	TrInstant, 
 	AlphaL<
-		RandomPerLEDFlicker<
-			PREONCOLOR,
-			Black
-		>, 
+		RandomPerLEDFlickerL<PREONCOLOR>, 
 		SmoothStep<
 			Scale<
 				NoisySoundLevel, 

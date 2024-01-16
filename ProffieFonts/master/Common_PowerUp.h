@@ -98,7 +98,7 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 		>
 	>,
 	TrFadeX<
-		Percentage<WavLen<>, 65>
+		Percentage<WavLen<EFFECT_IGNITION>, 65>
 	>
 >;
 

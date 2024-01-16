@@ -1,11 +1,11 @@
 // ================================ SPECIAL ABILITY EFFECTS ===========================
 
 // Force Pulse
-using Special1_Rain = Layers<
-	// USER 3 RAIN EFFECT??
+using Special4_Rain = Layers<
+	// USER 4 RAIN EFFECT??
 	ColorSelect<
 		EffectIncrementF<
-			EFFECT_USER1,
+			EFFECT_USER4,
 			Int<2>
 		>,
 		TrFade<100>,
@@ -15,13 +15,13 @@ using Special1_Rain = Layers<
 			SparkleF<300, 800>
 		>
 	>,
-	// USER 3 SOUND EFFECT
+	// USER 4 SOUND EFFECT
 	TransitionEffectL<
 		TrDoEffect<
 			TrInstant,
 			EFFECT_SOUND_LOOP,
 			0
 		>,
-		EFFECT_USER1
+		EFFECT_USER4
 	>
 >;

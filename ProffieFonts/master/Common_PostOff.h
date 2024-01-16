@@ -64,3 +64,62 @@ using PostOff_EmitterCoolOff = TrConcat<
 		>
 	>
 >;
+
+// Emitter Spark
+using PostOff_Emitter_Spark = TrConcat<
+	TrInstant,
+	AlphaL<
+		BrownNoiseFlickerL<
+			POSTOFFCOLOR,
+			Int<30>
+		>,
+		SmoothStep<
+			Scale<
+				SlowNoise<Int<2000>>,
+				EMITTER_SIZE,
+				Sum<
+					EMITTER_SIZE,
+					Int<3000>
+				>
+			>,
+			Int<-4000>
+		>
+	>,
+	TrDelayX<
+		Scale<
+			IsLessThan<
+				WavLen<EFFECT_POSTOFF>,
+				Int<200>
+			>,
+			WavLen<EFFECT_POSTOFF>,
+			Int<4000>
+		>
+	>
+>;
+
+// Emitter Glow
+using PostOff_Emitter_Glow = TrConcat<
+	TrInstant,
+	TRANSPARENT,
+	TrJoin<
+		TrDelay<1000>,
+		TrInstant
+	>,
+	AlphaL<
+		POSTOFFCOLOR,
+		SmoothStep<
+			EMITTER_SIZE,
+			Int<-2000>
+		>
+	>,
+	TrSmoothFadeX<
+		Scale<
+			IsLessThan<
+				WavLen<EFFECT_POSTOFF>,
+				Int<200>
+			>,
+			WavLen<EFFECT_POSTOFF>,
+			Int<4000>
+		>
+	>
+>;
