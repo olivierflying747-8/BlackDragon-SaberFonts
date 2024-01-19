@@ -52,7 +52,7 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 
-/* VALID FONT FOlDERS: 42 (+2 for common/tracks)
+/* VALID FONT FOlDERS: 43 (+2 for common/tracks)
 
 Analog
 AncientSaber
@@ -78,6 +78,7 @@ Magnetic
 Masterless
 Mercenary
 Metamorphose
+Metropolis
 Mother
 Noble
 OneXWing
@@ -140,9 +141,9 @@ Preset presets[] = {
 		() //, "yellow"
 	},
 
-	/*
+	 /*
 
-// Custom Free Fonts (mostly Grayscale): 22
+// Custom Free Fonts (mostly Grayscale): 23
 	{ "Battle;common", "tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "battle1"
@@ -221,6 +222,11 @@ Preset presets[] = {
 	{ "Mercenary;common", "tracks/venus.wav",
 		StylePtr <MasterStyle>
 		() //, "mercenary"
+	},
+
+	{ "Metropolis;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "metropolis"
 	},
 
 	{ "Noble;common", "tracks/Spoiler.wav",
