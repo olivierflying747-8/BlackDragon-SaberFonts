@@ -14,7 +14,7 @@ using Powerup_Surge = TrConcat<
 	TrFade<1200>
 >;
 
-// Flash Fade
+// Emitter Flash Fade
 using Powerup_Flash_Fade = TrConcat<
 	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	AlphaL<
@@ -28,6 +28,28 @@ using Powerup_Flash_Fade = TrConcat<
 		>
 	>,
 	TrFade<600>
+>;
+
+// Power Burst Emitter
+using Powerup_Burst_Emitter = TrConcat<
+	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
+	AlphaL<
+		StripesX<
+			//Int<5000>, 
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<5000>, Int<2500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			//Int<-2500>, 
+			BLADE_ANGLE_SCLAE<Int<-2500>, Int<-1500>, Int<500>, Int<4000>>,
+
+			IGNITIONCOLOR,
+			COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
+			COLOR_MIX<Int<3855>, IGNITIONCOLOR>
+		>,
+		SmoothStep<
+			EMITTER_SIZE,
+			Int<-500>
+		>
+	>,
+	TrFade<500>
 >;
 
 // Power Burst Forward

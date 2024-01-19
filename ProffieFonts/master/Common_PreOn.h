@@ -170,25 +170,35 @@ using PreOn_Emitter_Warmup = TrConcat<
 	TrBoing<1000,3>
 >;
 
-// Dim Pre-Blade ignition
-using PreOn_Dim_Blade = TrConcat<
-	TrInstant,
-	Black,
-	TrWipeX<
-		WavLen<EFFECT_PREON>
+// Emitter Heat Up
+using PreOn_Emitter_Heatup = TrConcat<
+	TrExtendX<
+		WavLen<EFFECT_PREON>,
+		TrFade<100>
 	>,
-	Mix<
-		NoisySoundLevel,
-		COLOR_MIX_P<12, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
-		AlphaL<
-			AudioFlicker<
-				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>>, //Rgb<0,31,0>
-				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>> //Rgb<0,15,0>
+	AlphaL<
+		HumpFlickerL<
+			Mix<
+				Trigger<
+					EFFECT_PREON,
+					Mult<
+						WavLen<EFFECT_PREON>,
+						Int<24000>
+					>,
+					WavLen<EFFECT_PREON>,
+					Int<500>
+				>,
+				PREONCOLOR,
+				White
 			>,
-			Int<100>
+			20
+		>,
+		SmoothStep<
+			PREON_SIZE,
+			Int<-3000>
 		>
 	>,
-	TrInstant
+	TrFade<200>
 >;
 
 // Faulty Ignition
@@ -245,4 +255,155 @@ using PreOn_Faulty_Ignition = TrConcat<
 	TrDelayX<
 		WavLen<EFFECT_PREON>
 	>
+>;
+
+// Faulty Fire Ignition
+using PreOn_Faulty_Fire_Ignition = TrConcat<
+	TrExtendX<
+		WavLen<EFFECT_PREON>,
+		TrWipe<100>
+	>,
+	AlphaL<
+		StripesX<
+			Int<3000>,
+			Sin<
+				Int<60>,
+				Int<-1600>,
+				Int<-4000>
+			>,
+			PREONCOLOR,
+			COLOR_MIX<Int<10772>, PREONCOLOR>,
+			COLOR_MIX<Int<24000>, PREONCOLOR>
+		>,
+		SmoothStep<
+			NoisySoundLevel,
+			Int<-3000>
+		>
+	>,
+	TrFade<100>
+>;
+
+// Erratic (Apocalypse Version)
+using PreOn_Erratic = TrConcat<
+	TrExtendX<
+		Mult<
+			WavLen<EFFECT_PREON>,
+			Int<16384>
+		>,
+		TrInstant
+	>,
+	Layers<
+		AlphaL<
+			Mix<
+				Trigger<
+					EFFECT_PREON, 
+					Int<3000>,
+					Int<2000>,
+					Int<1000>
+				>,
+				BrownNoiseFlicker<
+					Black,
+					PREONCOLOR,
+					100
+				>,
+				RandomPerLEDFlicker<
+					PREONCOLOR,
+					COLOR_MIX<Int<8192>, PREONCOLOR>
+				>,
+				BrownNoiseFlicker<
+					Mix<
+						NoisySoundLevel,
+						PREONCOLOR,
+						RotateColorsX<
+							Int<4000>,
+							PREONCOLOR
+						>
+					>,
+					RotateColorsX<
+						Int<1200>,
+						PREONCOLOR
+					>,
+					50
+				>
+			>,
+			SmoothStep<
+				Scale<
+					NoisySoundLevel,
+					Int<-1000>,
+					Int<25000>
+				>,
+				Int<-4000>
+			>
+		>,
+		AlphaL<
+			HumpFlickerL<
+				AlphaL<
+					White,
+					Trigger<
+						EFFECT_PREON,
+						Mult<
+							WavLen<EFFECT_PREON>,
+							Int<8176>
+						>,
+						WavLen<EFFECT_PREON>,
+						Mult<
+							WavLen<EFFECT_PREON>,
+							Int<16384>
+						>
+					>
+				>,
+				40
+			>,
+			SmoothStep<
+				PREON_SIZE,
+				Int<-4000>
+			>
+		>
+	>,
+	TrLoopN<
+		10,
+		TrWaveX<
+			PREONCOLOR,
+			Int<200>,
+			Int<200>,
+			Scale<
+				Trigger<
+					EFFECT_PREON,
+					Int<0>,
+					Mult<
+						WavLen<EFFECT_PREON>,
+						Int<24576>
+					>,
+					Mult<
+						WavLen<EFFECT_PREON>,
+						Int<8192>
+					>
+				>,
+				Int<400>,
+				Int<100>
+			>,
+			Int<0>
+		>
+	>
+>;
+
+// Dim Pre-Blade ignition
+using PreOn_Dim_Blade = TrConcat<
+	TrInstant,
+	Black,
+	TrWipeX<
+		WavLen<EFFECT_PREON>
+	>,
+	Mix<
+		NoisySoundLevel,
+		COLOR_MIX_P<12, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
+		AlphaL<
+			AudioFlicker<
+				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>>, //Rgb<0,31,0>
+				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>> //Rgb<0,15,0>
+			>,
+			Int<100>
+		>
+	>,
+	TrInstant
 >;

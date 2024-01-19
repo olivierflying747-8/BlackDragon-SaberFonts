@@ -859,8 +859,8 @@ using BaseStyle_FireTipBase = Layers<
 				Int<-5>,
 				Int<-50>
 			>,
-			RgbArg<BASE_COLOR_ARG, Rgb<127, 127, 127>>,
-			Mix<
+			BASECOLOR,
+			COLOR_MIX<
 				Scale<
 					HoldPeakF<
 						SwingSpeed<250>,
@@ -870,8 +870,7 @@ using BaseStyle_FireTipBase = Layers<
 					Int<6000>,
 					Int<16000>
 				>,
-				Black,
-				RgbArg<BASE_COLOR_ARG, Rgb<127, 127, 127>>
+				BASECOLOR
 			>
 		>,
 		TRANSPARENT,
@@ -1019,4 +1018,106 @@ using BaseStyle_StaticElectricity = Layers<
 			>
 		>
 	>
+>;
+
+
+
+
+// TEST ME
+
+// Rotoscope (Original Trilogy)
+using BaseStyle_Rotoscope_Original = RandomFlicker<
+	Stripes<	
+		10000,
+		-2600,
+		BASECOLOR,
+		BASECOLOR,
+		COLOR_MIX<Int<7710>, BASECOLOR>,
+		BASECOLOR,
+		COLOR_MIX<Int<16448>, BASECOLOR>
+	>,
+	BASECOLOR
+>;
+
+// Audio Rotoscope (Original Trilogy)
+using BaseStyle_Rotoscope_Audio_Original = AudioFlicker<
+	Stripes<
+		10000,
+		-2600,
+		BASECOLOR,
+		BASECOLOR,
+		COLOR_MIX<Int<7710>, BASECOLOR>,
+		BASECOLOR,
+		COLOR_MIX<Int<16448>, BASECOLOR>
+	>,
+	BASECOLOR
+>;
+			
+// Rotoscope (Prequels)
+using BaseStyle_Rotoscope_Prequel = RandomFlicker<
+	Stripes<
+		24000,
+		-1400,
+		BASECOLOR,
+		BASECOLOR,
+		COLOR_MIX<Int<11565>, BASECOLOR>,
+		BASECOLOR,
+		COLOR_MIX<Int<16448>, BASECOLOR>
+	>,
+	BASECOLOR
+>;
+			
+// Rotoroscope (Sequels)
+using BaseStyle_Rotoscope_Sequel = RandomFlicker<
+	Stripes<
+		14000,
+		-4000,
+		BASECOLOR,
+		BASECOLOR,
+		COLOR_MIX<Int<7710>, BASECOLOR>,
+		BASECOLOR,
+		COLOR_MIX<Int<16448>, BASECOLOR>
+	>,
+	BASECOLOR
+>;
+
+// Responsive Rotoscope
+using BaseStyle_Rotoscope_Responsive = Mix<
+	HoldPeakF<
+		SwingSpeed<250>,
+		Scale<
+			SwingAcceleration<100>,
+			Int<50>,
+			Int<500>
+		>,
+		Scale<
+			SwingAcceleration<>,
+			Int<20000>,
+			Int<10000>
+		>
+	>,
+	Mix<
+		Scale<
+			IsLessThan<
+				SlowNoise<Int<2000>>,
+				Int<18000>
+			>,
+			Int<0>,
+			Int<32768>
+		>,
+		BASECOLOR,
+		StripesX<
+			//12000,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<12000>, Int<8000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			//-800,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-800>, Int<-1200>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
+			BASECOLOR,
+			BASECOLOR,
+			COLOR_MIX<Int<7710>, BASECOLOR>,
+			BASECOLOR,
+			COLOR_MIX<Int<16448>, BASECOLOR>
+		>
+	>,
+	BASECOLOR
 >;

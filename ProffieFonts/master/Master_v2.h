@@ -97,11 +97,12 @@ PowerUp Effect Options (Ignition Color):
 0: Disabled
 1: Glitch On (Power Flash)
 2: Power Surge
-3: Flash Fade
-4: Power Burst Forward
-5: Unstable Power Up Forward
-6: Unstable Bright
-7: Stabalize
+3: Emitter Flash
+4: Power Burst Emitter
+5: Power Burst Forward
+6: Unstable Power Up Forward
+7: Unstable Bright
+8: Stabalize
 
 Retraction Effect Options (Retraction Color):
 0: Instant
@@ -377,15 +378,17 @@ using MasterStyle = Layers<
 			Powerup_Flash,
 			// Option 2: Power Surge (Stable)
 			Powerup_Surge,
-			// Option 3: Flash on
+			// Option 3: Emitter Flash
 			Powerup_Flash_Fade,
-			// Option 4: Power Burst Forward
+			// Option 4: Power Burst Emitter
+			Powerup_Burst_Emitter,
+			// Option 5: Power Burst Forward
 			Powerup_Burst_Forward,
-			// Option 5: Unstable Power Up Forward
+			// Option 6: Unstable Power Up Forward
 			Powerup_Unstable_Forward,
-			// Option 6: Fett263 Unstable bright ignition effect
+			// Option 7: Fett263 Unstable bright ignition effect
 			Powerup_Unstable_Bright_Forward,
-			// Option 7: Stabilize ignition
+			// Option 8: Stabilize ignition
 			Powerup_Stabalize
 		>,
 		EFFECT_IGNITION
@@ -420,19 +423,14 @@ using MasterStyle = Layers<
 	MultiTransitionEffectL<
 		TrRandom<
 
-		// Responsive based on BladeAngle<>
-			// Responsive Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, BLASTFADE_SIZE<>>,
-			// Responsive Blast Fade Sound
-			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, WavLen<EFFECT_BLAST>>,
+			// Blast Fade Random
+			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
 
-			// Responsive Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<BladeAngle<>>>,
-			// Responsive Blast Wave Sound
-			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<BladeAngle<>>>
+			// Blast Wave Random
+			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
 
-			// Responsive Blast Ripple Fade
-			//Blast_Ripple_Fade<BLASTRIPPLE_POS<BladeAngle<>>, Int<6000>, Int<320000>>
+			// Blast Ripple Fade
+			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
 
 			/*
 			// Option 1: Blast Wave (Random)

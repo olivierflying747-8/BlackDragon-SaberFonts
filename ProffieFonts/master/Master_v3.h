@@ -102,11 +102,12 @@ PowerUp Effect Options (Ignition Color):
 0: Disabled
 1: Glitch On (Power Flash)
 2: Power Surge
-3: Flash Fade
-4: Power Burst Forward
-5: Unstable Power Up Forward
-6: Unstable Bright
-7: Stabalize
+3: Emitter Flash
+4: Power Burst Emitter
+5: Power Burst Forward
+6: Unstable Power Up Forward
+7: Unstable Bright
+8: Stabalize
 
 Retraction Effect Options (Retraction Color):
 0: Instant
@@ -159,8 +160,11 @@ Preon Effect Options (PreOn Color):
 2: Sparking
 3: Broken Ignition
 4: Emitter Warm up
-5: Faulty Ignition
-6: Blade Pre-Light up
+5: Emitter Heat up
+6: Faulty Ignition
+7: Faulty Fire Ignition
+8: Erratic
+9: Blade Pre-Light up
 
 PostOff Effect Options (PostOff Color):
 0: Disabled
@@ -243,6 +247,14 @@ using MasterStyle = Layers<
 		IntArg<STYLE_OPTION_ARG, 0>, 
 		TrInstant, 
 	
+
+		BaseStyle_Rotoscope_Original,
+		BaseStyle_Rotoscope_Audio_Original,
+		BaseStyle_Rotoscope_Prequel,
+		BaseStyle_Rotoscope_Sequel,
+		BaseStyle_Rotoscope_Responsive,
+
+
 		// Option 12: Fire Blade with Swing Speed and Fire Tip (BASECOLOR)
 		BaseStyle_FireTipBlade,
 		// Option 13: blablabla
@@ -344,6 +356,10 @@ using MasterStyle = Layers<
 	ColorSelect<
 		IntArg<STYLE_OPTION3_ARG, 0>,
 		TrInstant,
+
+		// Emitter Bright Blade
+		AltStyle_Emitter_Fade<ALTCOLOR3>,
+
 		// Option 0 Off
 		TRANSPARENT,
 		// Option 1: AudiFlicker (ALTCOLOR3)
@@ -459,15 +475,17 @@ using MasterStyle = Layers<
 			Powerup_Flash,
 			// Option 2: Power Surge (Stable)
 			Powerup_Surge,
-			// Option 3: Flash on
+			// Option 3: Emitter Flash
 			Powerup_Flash_Fade,
-			// Option 4: Power Burst Forward
+			// Option 4: Power Burst Emitter
+			Powerup_Burst_Emitter,
+			// Option 5: Power Burst Forward
 			Powerup_Burst_Forward,
-			// Option 5: Unstable Power Up Forward
+			// Option 6: Unstable Power Up Forward
 			Powerup_Unstable_Forward,
-			// Option 6: Fett263 Unstable bright ignition effect
+			// Option 7: Fett263 Unstable bright ignition effect
 			Powerup_Unstable_Bright_Forward,
-			// Option 7: Stabilize ignition
+			// Option 8: Stabilize ignition
 			Powerup_Stabalize
 		>,
 		EFFECT_IGNITION
@@ -502,7 +520,16 @@ using MasterStyle = Layers<
 	MultiTransitionEffectL<
 		TrRandom<
 
-		// /*
+			// Blast Fade Random
+			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
+
+			// Blast Wave Random
+			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
+
+			// Blast Ripple Fade
+			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
+
+		 /*
 		// Random Positions based on EffectPosition
 			// Blast Fade Random
 			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
@@ -518,7 +545,7 @@ using MasterStyle = Layers<
 			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>,
 		// */
 
-		// /*
+		 /*
 		// Responsive based on BladeAngle<>
 			// Responsive Blast Fade Random
 			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, BLASTFADE_SIZE<>>,
@@ -534,7 +561,7 @@ using MasterStyle = Layers<
 			Blast_Ripple_Fade<BLASTRIPPLE_POS<BladeAngle<>>, Int<6000>, Int<320000>>,
 		// */
 
-		// /*
+		 /*
 		// Responsive based on SwingSpeed<>
 			// Responsive Blast Fade Random
 			Blast_Fade<BLASTPOS_SCALE<SwingSpeed<200>>, BLASTFADE_SIZE<>>,
@@ -550,7 +577,7 @@ using MasterStyle = Layers<
 			Blast_Ripple_Fade<BLASTRIPPLE_POS<SwingSpeed<200>>, Int<6000>, Int<320000>>,
 		// */
 
-		// /*
+		 /*
 		// Responsive based on TwistAngle<>
 			// Responsive Blast Fade Random
 			Blast_Fade<BLASTPOS_SCALE<TwistAngle<>>, BLASTFADE_SIZE<>>,
@@ -922,11 +949,17 @@ using MasterStyle = Layers<
 			PreOn_Sparking,
 			// Option 3: Broken Ignition
 			PreOn_Broken_Ignition,
-			// Option 4: Emitter warm up
+			// Option 4: Emitter Warm up
 			PreOn_Emitter_Warmup,
-			// Option 5: Faulty Ignition
+			// Option 5: Emitter Heat up
+			PreOn_Emitter_Heatup,
+			// Option 6: Faulty Ignition
 			PreOn_Faulty_Ignition,
-			// Option 6: Dim Pre-Blade Extension
+			// Option 7: Faulty Fire Ignition
+			PreOn_Faulty_Fire_Ignition,
+			// Option 8: Erratic
+			PreOn_Erratic,
+			// Option 9: Dim Pre-Blade Extension
 			PreOn_Dim_Blade
 		>, 
 		EFFECT_PREON

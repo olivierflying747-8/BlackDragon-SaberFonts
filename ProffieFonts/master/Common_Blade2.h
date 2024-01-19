@@ -265,6 +265,33 @@ using AltStyle_Emitter_Pulse = TransitionLoopL<
 	>
 >;
 
+// Emitter Flicker
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
+using AltStyle_Emitter_Fade = AlphaMixL<
+	Bump<
+		Int<0>, 
+		Int<65536>
+	>, 
+	Black, 
+	AudioFlicker<
+		COLOR_MIX<
+			Percentage<
+				SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
+				50
+			>,
+			COLOR
+		>,
+		COLOR_MIX<
+			//Int<24576>, 
+			Percentage<
+				SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
+				75
+			>,
+			COLOR
+		>
+	>
+>;
+
 // Spark moving with BladeAngle
 template<class COLOR>
 using AltStyle_Spark_BladeAngle = AlphaL<

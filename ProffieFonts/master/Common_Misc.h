@@ -1,7 +1,7 @@
 // ================================ COMMON CODE ===========================
 
 // DEFAULT SwingSpeed<> threshold used
-const int SWING_SPEED_DEFAULT = 500;
+const int SWING_SPEED_DEFAULT = 400;
 
 // EDIT MODE Argument Defaults
 using LOCKUP_POSITION = IntArg<LOCKUP_POSITION_ARG, 16000>;
@@ -149,25 +149,19 @@ using LOCKUPCLASHCOLOR = Mix<
 	>
 >;
 
-// TODO: Make this work!
-/*
 // Randomly select between methods of choosing blast position
-using BLAST_POS_RANDOM = IntSelect<
-	Scale<
-		RandomF,
-		Int<0>,
-		Int<3> // Increment me if you add!
-	>,
-
+using BLAST_SELECT_RANDOM = IntSelectX<
 	EffectRandomF<EFFECT_BLAST>,
+	// Select one of the following at random
 	BladeAngle<>,
+	EffectRandomF<EFFECT_BLAST>,
 	SwingSpeed<SWING_SPEED_DEFAULT>,
+	WavLen<EFFECT_BLAST>,
 	TwistAngle<>
 >;
-*/
 
 // Blast Position Scale
-template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+template<class SCALEPARAM = BLAST_SELECT_RANDOM>
 using BLASTPOS_SCALE = Scale<
 	SCALEPARAM,
 	Int<28000>,
@@ -175,7 +169,7 @@ using BLASTPOS_SCALE = Scale<
 >;
 
 // Blast Fade Size
-template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+template<class SCALEPARAM = BLAST_SELECT_RANDOM>
 using BLASTFADE_SIZE = Scale<
 	SCALEPARAM,
 	Int<9000>,
@@ -183,7 +177,7 @@ using BLASTFADE_SIZE = Scale<
 >;
 
 // Blast Wave Fadeout / Time
-template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+template<class SCALEPARAM = BLAST_SELECT_RANDOM>
 using BLASTWAVE_SCALE = Scale<
 	SCALEPARAM,
 	Int<100>,
@@ -191,7 +185,7 @@ using BLASTWAVE_SCALE = Scale<
 >;
 
 // Blast Ripple Position
-template<class SCALEPARAM = EffectRandomF<EFFECT_BLAST>>
+template<class SCALEPARAM = BLAST_SELECT_RANDOM>
 using BLASTRIPPLE_POS = Scale<
 	SCALEPARAM,
 	Int<3000>,
