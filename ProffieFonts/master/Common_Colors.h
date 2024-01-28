@@ -19,7 +19,7 @@ using CLASHCOLOR = RgbArg<CLASH_COLOR_ARG, Rgb<127, 127, 127>>;
 using LOCKUPCOLOR = RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>;
 using DRAGCOLOR = RgbArg<DRAG_COLOR_ARG, Rgb<127, 127, 127>>;
 using STABCOLOR = RgbArg<STAB_COLOR_ARG, Rgb<127, 127, 127>>;
-using OFFCOLOR = RgbArg<OFF_COLOR_ARG, Rgb<127, 127, 127>>;
+using OFFCOLOR = RgbArg<OFF_COLOR_ARG, Rgb<0, 0, 0>>;
 
 // Common Colors
 using TRANSPARENT = AlphaL<Black, Int<0>>;
