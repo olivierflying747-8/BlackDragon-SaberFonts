@@ -64,6 +64,11 @@ using BaseStyle_Stripes_2Color = StripesX<
 			Int<-2000>,
 			Int<-3000>
 		>,
+		Scale<
+			SlowNoise<Int<2500>>,
+			Int<-3000>,
+			Int<-6000>
+		>,
 		Int<500>, Int<1000>, Int<4000>, Int<8000>
 	>,
 	BASECOLOR,
