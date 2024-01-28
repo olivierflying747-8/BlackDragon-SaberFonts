@@ -266,29 +266,30 @@ using AltStyle_Emitter_Pulse = TransitionLoopL<
 >;
 
 // Emitter Flicker
-template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
+template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<600>, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_Emitter_Fade = AlphaMixL<
 	Bump<
-		Int<0>, 
-		Int<65536>
+		Int<2048>, 
+		Int<131070>
 	>, 
 	Black, 
-	AudioFlicker<
+	PulsingX< //AudioFlicker<
 		COLOR_MIX<
 			Percentage<
-				SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
+				SWING_SPEED_SCLAE<SWING_SPEED, Int<0>, Int<32768>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 				50
 			>,
-			COLOR
+			RotateColorsX<Variation, COLOR>
 		>,
 		COLOR_MIX<
 			//Int<24576>, 
 			Percentage<
-				SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
+				SWING_SPEED_SCLAE<SWING_SPEED, Int<0>, Int<32768>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
 				75
 			>,
-			COLOR
-		>
+			RotateColorsX<Variation, COLOR>
+		>,
+		SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 	>
 >;
 

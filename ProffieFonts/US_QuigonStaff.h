@@ -14,13 +14,13 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_SERIAL
 //#define NO_COLOR_SWING
 //#define NO_SAVED_PRESET
-//#define SAVE_STATE //#define SAVE_PRESET
 //#define NO_LOCKUP_HOLD
-#define COLOR_CHANGE_DIRECT // this enables "click to change"
+#define SAVE_STATE //#define SAVE_PRESET
+//#define COLOR_CHANGE_DIRECT // this enables "click to change"
 // this disables some diagnostic commands to save memory
 #define DISABLE_DIAGNOSTIC_COMMANDS
 //#define DISABLE_TALKIE // Changes talky to simple beeps
-#define FEMALE_TALKIE_VOICE
+//#define FEMALE_TALKIE_VOICE
 #define NO_REPEAT_RANDOM
 #define KILL_OLD_PLAYERS
 //#define FETT263_TWIST_ON
@@ -52,298 +52,623 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 
-/* VALID FONT FOlDERS: 43 (+2 for common/tracks)
+/* VALID FONT FOlDERS: 47 (+2 for common/tracks)
 
-Analog
-AncientSaber
-Apocalypse
-ASSASIN
-Battle
-Battle2
-BLUE
-Coda
+// Common Folders
 common
-Crispity
-Deadlink
-Decay
-Endure
-EngineGrip
-EXALTED
-GhostSucker
-gone
-GREEN
-Grey
-MagCyl
-Magnetic
-Masterless
-Mercenary
-Metamorphose
-Metropolis
-Mother
-Noble
-OneXWing
-Party
-PeaceInOurTime
-PURPLE
-Ra
-RED
-Second
-SEETHE
-ShockBaton
-SmashSword
-Splinter
-Staff
-ThunderGod
 tracks
-Volatile
-WarpStar
-WHITE
-YELLOW
+.voices
+	Ahsoka_CW
+	Anakin_CW
+	Anakin_HC
+	Ben_Kenobi
+	Bendu
+	C3P0
+	Cal_Kestis
+	Din_Djarin
+	Dooku
+	Dooku_CW
+	Emperor
+	Ezra
+	General_Kenobi
+	Hati
+	Hyang
+	Kanan
+	Kylo
+	Luke_ANH
+	Mace
+	Malgus
+	Maul
+	Narrator
+	Obi-Wan_CW
+	Obi-Wan_EP3
+	Princess_Leia
+	Qui-Gon
+	Rebel_Leia
+	Savage
+	Skoll
+	Starkiller
+	The_Ronin
+	Thrawn
+	Vader
+	Ventress
+	Yoda
+
+// Free Fonts
+001_BLUE
+002_GREEN
+003_PURPLE
+004_RED
+005_WHITE
+006_YELLOW
+007_Battle
+008_Battle2
+009_Analog
+010_Apocalypse
+011_Assassin
+012_Coda
+013_Crispity
+014_Deadlink
+015_Decay
+016_Endure
+017_EngineGrip
+018_Exalted
+019_Grey
+020_Magnetic
+021_Masterless
+022_Mercenary
+023_Noble
+024_Ra
+025_Seethe
+026_Splinter
+027_Volatile
+028_PeaceInOurTime
+029_Metropolis
+030_Arcane
+031_Nameless
+032_Rey
+033_SenateMajority
+034_TheReturn
+035_TheMaw
+036_Slave
+037_Decimate
+038_Knighthood
+039_Corvus_Tano
+
+// Paid Fonts
+075_Ascension
+076_Proto
+077_RM_Ben
+078_RM_Darth
+079_RM_Third
+080_Hero
+081_ProjectStardust
+082_AncientSaber
+083_OneXWing
+084_GreyAssassin
+085_Qui-Gon
+086_TheSurvivor
+087_TinyDroid
+088_ThunderGod
+089_Mother
+090_Second
+091_GhostSucker
+092_Staff
+093_SmashSword
+094_MagCyl
+095_ShockBaton
+096_Metamorphose
+097_WarpStar
+098_Party
+
+// Goofy Fonts
+101_PartyFoul
+102_Lightsaber_Of_The_Bells
+103_Lumos
+104_Thanos
+105_ThePredator
+106_WildChild
+107_WitchKing
+108_EnergySword
+109_Rave
+110_Batman
+111_JarJar
+112_C-137
+113_N1_Mod
+114_ElectricMouse
+115_SailorMoon
+116_
+117_
+118_
+119_
+120_
 
 */
 
 #ifdef CONFIG_PRESETS
 
 // Master Font for Edit mode, create /customize your own blade styles using StylePtr<MasterStyle>() and Fett263's Edit Menu.
-#include "master/Master_v3.h"
+#include "master/Master_v2.h"
 
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {
 
-// Basic Fonts: 6
-	{ "WHITE;common","tracks/fates.wav",
-		StylePtr <MasterStyle>
-		()  //, "white"
-	},
+	// Third Sister V2 Test Style
 
-	{ "BLUE;common","tracks/fates.wav",
+	// /*
+	// One starter font, use Copy Preset to make more.
+	{ "059_RM_Third;common", "tracks/",
+		StylePtr <MasterStyle>
+		()
+	},
+	// */
+
+	/*
+// Basic Fonts: 6 by Kyberphonic
+	{ "001_BLUE;.voices/Obi-Wan_EP3;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "blue"
 	},
 
-	{ "RED;common","tracks/fates.wav",
-		StylePtr <MasterStyle>
-		() //, "red"
-	},
-
-	{ "GREEN;common","tracks/fates.wav",
+	{ "002_GREEN;.voices/Qui-Gon;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "green"
 	},
 
-	{ "PURPLE;common","tracks/fates.wav",
+	{ "003_PURPLE;.voices/Mace;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "purple"
 	},
 
-	{ "YELLOW;common","tracks/fates.wav",
+	{ "004_RED;.voices/Skoll;common","tracks/fates.wav",
+		StylePtr <MasterStyle>
+		() //, "red"
+	},
+
+	{ "005_WHITE;common","tracks/",
+		StylePtr <MasterStyle>
+		()  //, "white"
+	},
+
+	{ "006_YELLOW;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "yellow"
 	},
 
 	 /*
 
-// Custom Free Fonts (mostly Grayscale): 23
-	{ "Battle;common", "tracks/fates.wav",
+// Custom Free Fonts: 33
+	
+	// Battlefield v1 by Kyberfonic
+	{ "007_Battle;common", "tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "battle1"
 	},
 
-	{ "Battle2;common","tracks/fates.wav",
+	// Battlefield v2 by Kyberfonic
+	{ "008_Battle2;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "battle2"
 	},
 
-	{ "Analog;common","tracks/",
+	// Analog by Grayscale
+	{ "009_Analog;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "analog"
 	},
 
-	{ "Apocalypse;common","tracks/",
+	// Apocolypse by Grayscale
+	{ "010_Apocalypse;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "apocalypse"
 	},
 
-	{ "ASSASSIN;common", "tracks/JFO9.wav",
+	// Assassin by Grayscale
+	{ "011_Assasin;common", "tracks/JFO9.wav",
 		StylePtr <MasterStyle>
-		() //, "assasin" 
+		() //, "assassin" 
 	},
 
-	{ "Coda;common", "tracks/JFO19.wav",
+	// Coda by Grayscale
+	{ "012_Coda;common", "tracks/JFO19.wav",
 		StylePtr <MasterStyle>
 		() //, "coda" 
 	},
 
-	{ "Crispity;common","tracks/",
+	// Crispity by Grayscale
+	{ "013_Crispity;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "crispity"
 	},
 
-	{ "Deadlink;common","tracks/",
+	// Deadlink by Grayscale
+	{ "014_Deadlink;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "deadlink"
 	},
 
-	{ "Decay;common","tracks/",
+	// Decay by Grayscale
+	{ "015_Decay;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "decay"
 	},
 
-	{ "Endure;common","tracks/",
+	// Endure by Grayscale
+	{ "016_Endure;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "endure"
 	},
 
-	{ "EngineGrip;common","tracks/",
+	// EngineGrip by Grayscale
+	{ "017_EngineGrip;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "enginegrip"
 	},
 
-	{ "EXALTED;common","tracks/",
+	// Exhalted by Grayscale
+	{ "018_Exalted;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "exalted"
 	},
 
-	{ "Grey;common","tracks/",
+	// Grey by Grayscale
+	{ "019_Grey;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "Grey"
 	},
 
-	{ "Magnetic;common","tracks/",
+	// Magnetic by Grayscale
+	{ "020_Magnetic;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "magnetic"
 	},
 
-	{ "Masterless;common","tracks/",
+	// Masterless by Grayscale
+	{ "021_Masterless;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "masterless"
 	},
 
-	{ "Mercenary;common", "tracks/venus.wav",
+	// Mercenary by Grayscale
+	{ "022_Mercenary;common", "tracks/venus.wav",
 		StylePtr <MasterStyle>
 		() //, "mercenary"
 	},
 
-	{ "Metropolis;common", "tracks/",
-		StylePtr <MasterStyle>
-		() //, "metropolis"
-	},
-
-	{ "Noble;common", "tracks/Spoiler.wav",
+	// Noble by Grayscale
+	{ "023_Noble;common", "tracks/Spoiler.wav",
 		StylePtr <MasterStyle>
 		() //, "noble"
 	},
 
-	{ "PeaceInOurTime;common","tracks/",
-		StylePtr <MasterStyle>
-		() //, "peaceinourtime"
-	},
-
-	{ "Ra;common","tracks/",
+	// Ra by Grayscale
+	{ "024_Ra;common","tracks/",
 		StylePtr <MasterStyle>
 		() //, "ra"
 	},
 
-	{ "SEETHE;common", "tracks/JFO18.wav",
+	// Seethe by Grayscale
+	{ "025_Seethe;common", "tracks/JFO18.wav",
 		StylePtr <MasterStyle>
 		() //, "seethe" 
 	},
 
-	{ "Splinter;common", "tracks/",
+	// Splinter by Grayscale
+	{ "026_Splinter;common", "tracks/",
 		StylePtr<MasterStyle>
 		() //, "splinter"
 	},
 
-	{ "Volatile;common", "tracks/",
+	// Volatile by Grayscale
+	{ "027_Volatile;common", "tracks/",
 		StylePtr< MasterStyle>
 		(), //"volatile"
 	},
 
-// Paid Fonts: 14
+	// Age Of Ultron by Harry Solo
+	{ "028_PeaceInOurTime;common","tracks/",
+		StylePtr <MasterStyle>
+		() //, "peaceinourtime"
+	},
 
-	// Ancient Saber
-	{ "AncientSaber;common", "tracks/",
+	// Metropolis by Jasper Aykroyd (The Bacon Wizard)
+	{ "029_Metropolis;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "metropolis"
+	},
+
+	// Arcane by TehMothman
+	{ "030_Arcane;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "arcane"
+	},
+
+	// Nameless by TehMothman
+	{ "031_Nameless;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "nameless"
+	},
+
+	// "Rey Skywalker" Smoothswing Font by Daryl John Donato
+	{ "032_Rey;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "rey"
+	},
+
+	// Senate Majority v2 by ???
+	{ "033_SenateMajority;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "senatemajority"
+	},
+
+	// The Return by ???
+	{ "034_TheReturn;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "thereturn"
+	},
+
+	// The Maw by Brian Conner
+	{ "035_TheMaw;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "themaw"
+	},
+
+	// Slave1 2.1 by Brian Conner
+	{ "036_Slave;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "slave"
+	},
+
+	// Decimate by Jay Dalorian
+	{ "037_Decimate;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "decimate"
+	},
+
+	// Knighthood by Fourze
+	{ "038_Knighthood;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "knighthood"
+	},
+
+	// Corvus_Tano by Ninja Jedi Order
+	{ "039_Corvus_Tano;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "corvustano"
+	},
+
+// Paid Fonts: 18
+
+	// Ascension by KSith
+	{ "075_Ascension;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "ascension"
+	},
+
+	// Proto by KSith
+	{ "076_Proto;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "proto"
+	},
+
+	// The Rematch Bundle - Ben by Kyberphonic
+	{ "077_RM_Ben;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "rm_ben"
+	},
+
+	// The Rematch Bundle - Darth by kyberphonic
+	{ "078_RM_Darth;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "rm_darth"
+	},
+
+	// The Rematch Bundle - Third by kyberphonic
+	{ "079_RM_Third;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "rm_third"
+	},
+
+	// Hero (Obiwan EP3) by kyberphonic
+	{ "080_Hero;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "hero"
+	},
+
+	// Project Stardust by Kyberphonic
+	{ "081_ProjectStardust;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "projectstardust"
+	},
+
+	// Ancient Saber by SaberFont
+	{ "082_AncientSaber;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "ancientsaber"
 	},
 
-	// One X Wing (Mandalorian Luke inspired)
-	{ "OneXWing;common", "tracks/",
+	// One X Wing (Mandalorian Luke inspired) by BK Saber Sounds
+	{ "083_OneXWing;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "onexwing"
 	},
 
-	// Standard green style, quigon sounds.
-	{ "Gone;common","tracks/Fates.wav",
+	// Grey Assassin by BK Saber Sounds
+	{ "084_GreyAssasin;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "greyassassin"
+	},
+
+	// Qui-gon Jinn by Kyberphonic
+	{ "085_Qui-Gon;common","tracks/Fates.wav",
 		StylePtr <MasterStyle>
 		() //, "ginn"
 	},
 
-	// Nightsister blade style.
-	{ "Mother;common", "tracks/",
+	// The Survivor by BK Saber Sounds
+	{ "086_TheSurvivor;common", "tracks/",
 		StylePtr <MasterStyle>
-		() //, "mother"
+		() //, "thesurvivor"
 	},
 
-	// Second Sister
-	{ "Second;common", "tracks/JFO19.wav",
-		StylePtr<MasterStyle>
-		() //, "second"
+	// Tiny Droid by BK Saber Sounds
+	{ "087_TinyDroid;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "tinydroid"
 	},
 
-	// Ghost Buster
-	{ "GhostSucker;common", "tracks/JFO19.wav",
-		StylePtr<MasterStyle>
-		() //, "ghostsucker"
-	},
-
-	// Thor (Avengers)
-	{ "ThunderGod;common", "tracks/JFO19.wav",
+	// Thunder God (Thor Avengers) by Kyberphonic
+	{ "088_ThunderGod;common", "tracks/Ragnorok.wav",
 		StylePtr<MasterStyle>
 		() //, "thundergod"
 	},
 
-	// Electro Staff
-	{ "Staff;common", "tracks/JFO19.wav",
+	// Great Mother by Kyberphonic
+	{ "089_Mother;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "mother"
+	},
+
+	// Second Sister by KSith
+	{ "090_Second;common", "tracks/JFO19.wav",
+		StylePtr<MasterStyle>
+		() //, "second"
+	},
+
+	// Ghost Sucker by Kyberphonic
+	{ "091_GhostSucker;common", "tracks/ReyParkerJr.wav",
+		StylePtr<MasterStyle>
+		() //, "ghostsucker"
+	},
+
+	// Electric Staff by Kyberphonic
+	{ "092_Staff;common", "tracks/fates.wav",
 		StylePtr<MasterStyle>
 		() //, "staff"
 	},
 
-	// Smash sword
-	{ "SmashSword;common", "tracks/JFO19.wav",
+	// Smash Sword by Kyberphonic
+	{ "093_SmashSword;common", "tracks/Bro.wav",
 		StylePtr<MasterStyle>
 		() //, "smashsword"
 	},
 
-	// The Atom Project
-	{ "MagCyl;common", "tracks/JFO19.wav",
+	// Mag-Cyl (The Atom Project) by Kyberphonic
+	{ "094_MagCyl;common", "tracks/JFO19.wav",
 		StylePtr<MasterStyle>
 		() //, "magcyl"
 	},
 
-	// Shock Baton
-	{ "ShockBaton;common", "tracks/JFO19.wav",
+	// Shock Baton by Kyberphonic
+	{ "095_ShockBaton;common", "tracks/TFA.wav",
 		StylePtr<MasterStyle>
 		() //, "shockbaton"
 	},
 
-	// Metamorphose
-	{ "Metamorphose;common", "tracks/JFO19.wav",
+	// Metamorphose by Kyberphonic
+	{ "096_Metamorphose;common", "tracks/Arrival.wav",
 		StylePtr<MasterStyle>
 		() //, "metamorphose"
 	},
 
-	// WarpStar
-	{ "WarpStar;common", "tracks/JFO19.wav",
+	// Warp Star by Kyberphonic
+	{ "097_WarpStar;common", "tracks/JFO19.wav",
 		StylePtr<MasterStyle>
 		() //, "warpstar"
 	},
 
-	// Party
-	{ "Party;common", "tracks/JFO19.wav",
+	// Party by ???
+	{ "098_Party;common", "tracks/meco.wav",
 		StylePtr<MasterStyle>
 		() //, "party"
 	},
+
+// Free Goofy Fonts
+
+	// Party Foul by BK Saber Sounds
+	{ "101_PartyFoul;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "partyfoul"
+	},
+
+	// Lightsaber of the Bells by Jérôme Tremblay ( Jay DaloRian) 
+	{ "102_Lightsaber_Of_The_Bellsl;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "lightsaberofthebells"
+	},
+
+	// Lumos by KidsTryThisAtHome / naitsirkc
+	{ "103_Lumos;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "lumos"
+	},
+
+	// Thanos by UltraInstinctKermit
+	{ "104_Thanos;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "thanos"
+	},
+
+	// The Predator by Josh Pearl
+	{ "105_ThePredator;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "thepredator"
+	},
+
+	// Wild Child by ???
+	{ "106_WildChild;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "wildchild"
+	},
+
+	// Witch King by ???
+	{ "107_WitchKing;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "witchking"
+	},
+
+	// Energy Sword by XTwistyBoi
+	{ "108_EmergySword;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "energysword"
+	},
+
+	// Rave by Brian Conner
+	{ "109_Rave;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "rave"
+	},
+
+	// Batman by Meaty Smurf
+	{ "110_Batman;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "batman"
+	},
+
+	// JarJar by Darth Hater
+	{ "111_JarJar;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "jarjar"
+	},
+
+	// C-137 by Harry Solo Fonts and Synplicity
+	{ "112_C-137;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "c-136"
+	},
+
+	// N1_Mod by kyberphonic
+	{ "113_N1_Mod;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "n1_mod"
+	},
+
+	// ElectricMouse by kyberphonic
+	{ "114_ElectricMouse;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "electricmouse"
+	},
+
 	//	*/
 
 	/*

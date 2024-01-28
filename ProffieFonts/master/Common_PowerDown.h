@@ -74,40 +74,4 @@ using PowerDown_Smoke_Reverse = TrConcat <
 	>,
 //	*/
 	TrFade<2000>
-	/* // Emitter Cooldown, moved to POST OFF.
-	AlphaL<
-		//Rgb<0, 63, 0>,
-		COLOR_MIX<Int<7710>, RETRACTIONCOLOR>,
-		Bump<
-			Int<0>,
-			//Int<14000>
-			Sum<
-				Int<4000>,
-				EMITTER_SIZE
-			>
-		>
-	>,
-	TrFade<1500>,
-	AlphaL<
-		Orange,
-		Bump<
-			Int<0>,
-			//Int<8000>
-			Sum<
-				Int<2000>,
-				EMITTER_SIZE
-			>
-		>
-	>,
-	TrFade<1000>,
-	AlphaL<
-		Red,
-		Bump<
-			Int<0>,
-			//Int<6000>
-			EMITTER_SIZE
-		>
-	>,
-	TrFade<500>
-	*/
 >;

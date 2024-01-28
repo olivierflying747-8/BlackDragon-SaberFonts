@@ -64,58 +64,22 @@ using Blast_Ripple_Fade = TrConcat<
 	>
 >;
 
-
-
-
-
-
-using TEST_BLAST = TrConcat<
-	TrInstant,
-	AlphaMixL<
-		Bump<
-			Scale<
-				IntSelectX<
-					EffectRandomF<EFFECT_BLAST>,
-
-					BladeAngle<>,
-					EffectRandomF<EFFECT_BLAST>,
-					SwingSpeed<500>,
-					TwistAngle<>
-				>,
-				Int<28000>,
-				Int<8000>
-			>,
-			Scale<
-				IntSelectX<
-					EffectRandomF<EFFECT_BLAST>,
-
-					BladeAngle<>,
-					EffectRandomF<EFFECT_BLAST>,
-					SwingSpeed<500>,
-					TwistAngle<>
-				>,
-				Int<9000>,
-				Int<15000>
-			>
-		>,
-		RgbArg<BLAST_COLOR_ARG, Rgb<127, 127, 127>>,
-		Mix<
-			Int<16384>, 
-			Black, 
-			RgbArg<BLAST_COLOR_ARG, Rgb<127, 127, 127>>>
+// Blaster mode shot
+using Blast_Blaster_Shot = TrWaveX<
+	BLASTCOLOR,
+	Scale<
+		WavLen<>,
+		Int<100>,
+		Int<400>
 	>,
-	TrFade<300>
+	Int<100>,
+	Scale<
+		WavLen<>,
+		Int<100>,
+		Int<400>
+	>,
+	Int<0>
 >;
-
-
-
-
-
-
-
-
-
-
 
 
 

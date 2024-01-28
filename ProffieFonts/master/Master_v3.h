@@ -46,7 +46,9 @@ Style Options:
 17: Fire Pulse Blade (Interactive)
 18: Static Electricty
 19: Lava Lamp
-20: Party Blade (Custom Colors, Rainbow)
+20: Omni Blade (All Colors)
+21: Rainbow Stripes (All Colors)
+22: Rainbow Fire (All Colors)
 
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
@@ -82,7 +84,8 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 13: Emitter Flare (Emiter Color)
 14: Emitter Breathing (Emitter Color)
 15: Emitter Pulse (Alt Color 3)
-16: Blade Spark (Interactive, Alt Color 3)
+16: Emitter Fade (Alt Color 3)
+17: Blade Spark (Interactive, Alt Color 3)
 
 Ignition Effect Options (Ignition Color):
 0: Instant
@@ -91,12 +94,15 @@ Ignition Effect Options (Ignition Color):
 3: SparkTip Ignition
 4: Center Wipe
 5: Wipe In
-6: Color Cycle
-7: Glitch On
-8: Gravity Ignition
-9: Lightning Strike
-10: Flash
+6: Fade On
+7: Color Cycle
+8: Glitch On
+9: Gravity Ignition
+10: Assemble
 11: Metal Forge Heatup
+12: Lightning Strike
+13: Flash
+14: Interactive Assemble
 
 PowerUp Effect Options (Ignition Color):
 0: Disabled
@@ -116,10 +122,12 @@ Retraction Effect Options (Retraction Color):
 3: SparkTip Retraction
 4: Center Wipe
 5: Wipe Out
-6: Color Cycle
-7: Glitch off
-8: Gravity Retraction
-9: Metal Forge Cooldown
+6: Fade Off
+7: Color Cycle
+8: Glitch Off
+9: Gravity Retraction
+10: Disassemble
+11: Metal Forge Cooldown
 
 CoolDown Effect Options (Retraction Color):
 0: Disabled
@@ -142,17 +150,19 @@ Swing Effect Options (Swing Color):
 8: Pixilate
 9: Lightning
 10: Clash Buildup, Lockup Release
+// Force Effects
 11: Interactive Power Buildup (Force Toggle)
 12: Interactive Fireball (Force Toggle)
 13: Force Pulse
-14: Force Aura
-15: Force Flicker Swing
-16: Force Heat
-17: Interactive Flamethrower (Force Toggle)
-18: Force Rage Unstable
-19: Force Rage Lightning
-20: Interactive Ice Blade
-21: Static Electricty Swing
+14: Force Flash
+15: Force Aura
+16: Force Flicker Swing
+17: Force Heat
+18: Interactive Flamethrower (Force Toggle)
+19: Force Rage Unstable
+20: Force Rage Lightning
+21: Interactive Ice Blade
+22: Static Electricty Swing
 
 Preon Effect Options (PreOn Color): 
 0: Disabled
@@ -173,10 +183,14 @@ PostOff Effect Options (PostOff Color):
 3: Emitter Glow
 
 Special Abilities:
-USER1: Clash/Lockup Shield Toggle (DUNE Shield)
-USER2: Dual Lockup Toggle (Two Independent Lockup Humps)
+USER1: Lockup Selection: 0 = Normal, 1 = Clash/Lockup Shield Toggle (DUNE Shield), 2 = Dual Lockup (Two Independent Lockup Humps)
+USER2: 
 USER3: Force Lightning Toggle (Replaces Lightning Block)
 USER4: Rain Toggle (Off Color)
+USER5: Blaster mode?
+USER6:
+USER7: Next Phase? TODO
+USER8: Previous Phase? TODO
 
 Lockup Effects (Sequential): 
 - Intensity Lockup
@@ -305,8 +319,12 @@ using MasterStyle = Layers<
 		// Option 19: Lava Lamp
 		BaseStyle_LavaLamp,
 
-		// Option 20: Party Blade (special colors)
-		BaseStyle_PartyBlade
+		// Option 20: Omni Blade
+		BaseStyle_Omni_Blade,
+		// Option 21: Rainbow Stripes (All Colors)
+		BaseStyle_Rainbow_Stripes,
+		// Option 22: Rainbow Fire (All Colors)
+		BaseStyle_Rainbow_Fire
 	>,
 
 	// Secondary blade Styles
@@ -356,12 +374,9 @@ using MasterStyle = Layers<
 	ColorSelect<
 		IntArg<STYLE_OPTION3_ARG, 0>,
 		TrInstant,
-
-		// Emitter Bright Blade
-		AltStyle_Emitter_Fade<ALTCOLOR3>,
-
 		// Option 0 Off
 		TRANSPARENT,
+
 		// Option 1: AudiFlicker (ALTCOLOR3)
 		AltStyle_AudioFilter<ALTCOLOR3>,
 		// Option 2: RandomFlicker (ALTCOLOR3)
@@ -392,7 +407,9 @@ using MasterStyle = Layers<
 		AltStyle_Emitter_Breathe<EMITTERCOLOR>,
 		// Option 15: Emitter Pulse (EMITTER COLOR)
 		AltStyle_Emitter_Pulse<EMITTERCOLOR>,
-		// Option 16: Blade Angle Flare (ALTCOLOR3)
+		// Option 16: Emitter Fade
+		AltStyle_Emitter_Fade<ALTCOLOR3>,
+		// Option 17: Blade Angle Flare (ALTCOLOR3)
 		AltStyle_Spark_BladeAngle<ALTCOLOR3>
 
 		// Option 4: Random LED Flicker (ALTCOLOR3)
@@ -447,21 +464,23 @@ using MasterStyle = Layers<
 		Swing_Interactive_Fireball,
 		// Option 13: Force Pulse
 		Swing_Force_Pulse,
-		// Option 14: Force Aura
+		// Option 14: Force Flash
+		Swing_Force_Flash,
+		// Option 15: Force Aura
 		Swing_Force_Aura,
-		// Option 15: Force Flicker Swing
+		// Option 16: Force Flicker Swing
 		Swing_Force_Flicker,
-		// Option 16: Force Heat
+		// Option 17: Force Heat
 		Swing_Force_Heat,
-		// Option 17: Interactive Flamethrower (Force Toggle)
+		// Option 18: Interactive Flamethrower (Force Toggle)
 		Swing_Interactive_Flamethrower,
-		// Option 18: Force Rage Unstable
+		// Option 19: Force Rage Unstable
 		Swing_Force_Rage_Unstable,
-		// Option 19: Force Rage Lightning
+		// Option 20: Force Rage Lightning
 		Swing_Force_Rage_Lightning,
-		// Option 20: Interactive Ice Blade
+		// Option 21: Interactive Ice Blade
 		Swing_Interactive_IceBlade,
-		// Option 21: Static Electricty Swing
+		// Option 22: Static Electricty Swing
 		Swing_Static_Electricity
 	>,
 
@@ -515,124 +534,40 @@ using MasterStyle = Layers<
 
 	// Special Abiltiies
 	Special4_Rain,
+
+	// USER1 visual effect
+	Specials_Flashes,
 	
 	// Multi blast effect
 	MultiTransitionEffectL<
-		TrRandom<
+		TrSelect<
+			// BLASTER Mode
+			EffectIncrementF<
+				EFFECT_USER5,
+				Int<2>
+			>,
+			// Normal Blasts.
+			TrRandom<
+				// Blast Fade Random
+				Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
 
-			// Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
+				// Blast Wave Random
+				Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
 
-			// Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
+				// Blast Ripple Fade
+				Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
 
-			// Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
-
-		 /*
-		// Random Positions based on EffectPosition
-			// Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
-			// Blast Fade Sound
-			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<WavLen<EFFECT_BLAST>>>,
-
-			// Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
-			// Blast Wave Sound
-			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<>>,
-
-			// Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>,
-		// */
-
-		 /*
-		// Responsive based on BladeAngle<>
-			// Responsive Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, BLASTFADE_SIZE<>>,
-			// Responsive Blast Fade Sound
-			Blast_Fade<BLASTPOS_SCALE<BladeAngle<>>, WavLen<EFFECT_BLAST>>,
-
-			// Responsive Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<BladeAngle<>>>,
-			// Responsive Blast Wave Sound
-			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<BladeAngle<>>>,
-
-			// Responsive Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<BladeAngle<>>, Int<6000>, Int<320000>>,
-		// */
-
-		 /*
-		// Responsive based on SwingSpeed<>
-			// Responsive Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<SwingSpeed<200>>, BLASTFADE_SIZE<>>,
-			// Responsive Blast Fade Sound
-			Blast_Fade<BLASTPOS_SCALE<SwingSpeed<200>>, WavLen<EFFECT_BLAST>>,
-
-			// Responsive Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<SwingSpeed<200>>>,
-			// Responsive Blast Wave Sound
-			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<SwingSpeed<200>>>,
-
-			// Responsive Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<SwingSpeed<200>>, Int<6000>, Int<320000>>,
-		// */
-
-		 /*
-		// Responsive based on TwistAngle<>
-			// Responsive Blast Fade Random
-			Blast_Fade<BLASTPOS_SCALE<TwistAngle<>>, BLASTFADE_SIZE<>>,
-			// Responsive Blast Fade Sound
-			Blast_Fade<BLASTPOS_SCALE<TwistAngle<>>, WavLen<EFFECT_BLAST>>,
-
-			// Responsive Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<TwistAngle<>>>,
-			// Responsive Blast Wave Sound
-			Blast_Wave<BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTWAVE_SCALE<SlowNoise<Int<3000>>>, BLASTWAVE_SCALE<WavLen<EFFECT_BLAST>>, BLASTPOS_SCALE<TwistAngle<>>>,
-
-			// Responsive Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<TwistAngle<>>, Int<6000>, Int<320000>>
-		// */
-
-
-
-
-			/*
-			// Option 1: Blast Wave (Random)
-			Blast_Wave_Random,
-			// Option 3: Blast Wave (Sound Based)
-			Blast_Wave_Sound,
-			// Option 4: Blast Ripple
-			Blast_Ripple,
-			// Option 2: Blast Ripple Fade
-			Blast_Ripple_Fade,
-			// Option 5: Blast Fade (Sound Based)
-			Blast_Fade_Sound,
-			// Option 6, Responsive Blast
-			Blast_Responsive,
-			// Option 7: Localized clash
-			Blast_LocalClash,
-			// Option 8: Responsive Wave
-			Blast_Responsive_Wave,
-			// Option 9: BlastL
-			Blast_BlastL,
-			// Option 10: Responsive Blast Fade
-			Blast_Responsive_Fade,
-			// Option 11: Responsive Blast (Swing based)
-			Blast_Responsive_Swing
-			// */
-		//	Blast_Responsive_Wave
+			>,
+			// Blaster mode
+			Blast_Blaster_Shot
 		>, 
 		EFFECT_BLAST
 	>, 
 	
 	// TODO: Try using ResponsiveClashL < COLOR, TR1, TR2, TOP, BOTTOM, SIZE >
 	// Clash effect
-	ColorSelect<
-		EffectIncrementF<
-			EFFECT_USER1,
-			Int<2>
-		>,
-		TrInstant,
+	EffectSequence<
+		EFFECT_USER1,
 		// Normal Clash
 		EffectSequence <
 			EFFECT_CLASH,
@@ -684,36 +619,32 @@ using MasterStyle = Layers<
 	
 	// Lockup
 	LockupTrL<
+		EffectSequence<
+			EFFECT_USER1,
+			/*
 		// Lockup Effect
 		ColorSelect<
 			EffectIncrementF<
-				EFFECT_USER2,
-				Int<2>
+				EFFECT_USER1,
+				Int<3>
 			>,
 			TrInstant,
-			// Else look for DUNE Shield using USER1 Special Ability
-			ColorSelect<
-				EffectIncrementF<
-					EFFECT_USER1,
-					Int<2>
-				>,
-				TrInstant,
-				// Normal Lockup, pick a random effect
-				EffectSequence<
-					EFFECT_LOCKUP_BEGIN,
-					// Intensity Lockup
-					Lockup_Color_Intensity,
-					// Localized AudioFlicker
-					Lockup_Color_Localized_Flicker,
-					// Full Blade AudioFlicker
-					Lockup_Color_Full_Flicker,
-					// Original old Lockup, moves on it's own...
-					Lockup_Color_Cylon
-				>,
-				// Dune Shield Lockup
-				Lockup_Color_Shield
+			*/
+			// Normal Lockup, pick a random effect
+			EffectSequence<
+				EFFECT_LOCKUP_BEGIN,
+				// Intensity Lockup
+				Lockup_Color_Intensity,
+				// Localized AudioFlicker
+				Lockup_Color_Localized_Flicker,
+				// Full Blade AudioFlicker
+				Lockup_Color_Full_Flicker,
+				// Original old Lockup, moves on it's own...
+				Lockup_Color_Cylon
 			>,
-			// Dial Mode Lockup using USER2 Special Ability
+			// Dune Shield Lockup
+			Lockup_Color_Shield,
+			// Dial Mode Lockup using USER1 Special Ability
 			Lockup_Color_Dual
 		>,
 		// EFFECT_LOCKUP_BEGIN
@@ -762,48 +693,30 @@ using MasterStyle = Layers<
 	>,
 	
 	// Lightning Block
-	LockupTrL<
-		// Color
-		ColorSelect<
-			EffectIncrementF<
-				EFFECT_USER3,
-				Int<2>
-			>,
-			TrInstant,
-			// Normal Lightning Block
+	EffectSequence<
+		EFFECT_USER3,
+		// Normal Lightning Block
+		LockupTrL<
 			AlphaL<
 				LB_Color_Style,
 				// LB Positions
 				LIGHTNINGBLOCK_RESPONSIVE_POSITION
 			>,
-			// Force Lightning
-			Lockup_Force_Lightning
-		>,
-		// Start Transition
-		TrSelect<
-			// look for Force Lightning using USER3 Special Ability
-			EffectIncrementF<
-				EFFECT_USER3,
-				Int<2>
-			>,
-			// Normal Lightning Start
+			// Start Transition
 			LB_Start,
-			// Force Lightning Start
-			Lockup_Force_Lightning_StartEnd
-		>,
-		// End Transition
-		TrSelect<
-			// look for Force Lightning using USER3 Special Ability
-			EffectIncrementF<
-				EFFECT_USER3,
-				Int<2>
-			>,
-			// Normal Lightning End
+			// End Transition
 			LB_End,
-			// Force Lightning End
-			Lockup_Force_Lightning_StartEnd
+			SaberBase::LOCKUP_LIGHTNING_BLOCK
 		>,
-		SaberBase::LOCKUP_LIGHTNING_BLOCK
+		// Force Lightning
+		LockupTrL<
+			Lockup_Force_Lightning,
+			// Force Lightning Start
+			Lockup_Force_Lightning_StartEnd,
+			// Force Lightning End
+			Lockup_Force_Lightning_StartEnd,
+			SaberBase::LOCKUP_LIGHTNING_BLOCK
+		>
 	>,
 	/* // Old, kinda hard to do options in.
 	ResponsiveLightningBlockL<
@@ -887,6 +800,7 @@ using MasterStyle = Layers<
 			IntArg<IGNITION_OPTION_ARG, 0>, 
 			// Option 0: Instant, for letting the PreOn do the work
 			TrInstant, 
+
 			// Option 1: Standard
 			Ignition_Standard,
 			// Option 2: Dual Mode wip (up = fast)
@@ -897,24 +811,33 @@ using MasterStyle = Layers<
 			Ignition_CenterWipe,
 			// Option 5: Wipe In
 			Ignition_WipeIn,
-			// Option 6: Color Cycle
+			// Option 6: Fade On
+			Ignition_Fade_On,
+			// Option 7: Color Cycle
 			Ignition_ColorCycle,
-			// Option 7: Glitch On
+			// Option 8: Glitch On
 			Ignition_Glitch_On,
-			// Option 8: Gravity based
+			// Option 9: Gravity based
 			Ignition_Gravity,
-			// Option 9: Lightning Strike
-			Ignition_LightningStrike,
-			// Option 10: Flash On
-			Ignition_Flash,
+			// Option 10: Assemble (Stack)
+			Ignition_Assemble,
 			// Option 11: Metal Forge Heatup
-			Ignition_Metal_Forge_Heatup
+			Ignition_Metal_Forge_Heatup,
+			// Option 10: Lightning Strike
+			Ignition_LightningStrike,
+			// Option 12: Flash On
+			Ignition_Flash,
+			// Option 13: Assemble Interactive
+			Ignition_Stack_Interactive
 		>, 
 		// Retraction Options
 		TrSelect<
 			IntArg<RETRACTION_OPTION_ARG, 0>, 
 			// Option 0: Instant, for letting PostOff do the work
 			TrInstant, 
+
+			Retraction_Blink_Off,
+
 			// Option 1: Standard
 			Retraction_Standard,
 			// Option 2: Dual Mode
@@ -925,13 +848,17 @@ using MasterStyle = Layers<
 			Retraction_CenterWipe,
 			// Option 5: Wipe Out
 			Retraction_WipeOut,
-			// Option 6, Color cycle
+			// Option 6: Fade off
+			Retraction_Fade_Off,
+			// Option 7, Color cycle
 			Retraction_ColorCycle,
-			// Option 7, Glitch off
+			// Option 8, Glitch off
 			Retraction_Glitch_Off,
-			// Option 8: Gravity based
+			// Option 9: Gravity based
 			Retraction_Gravity,
-			// Option 9: Metal Forge Cooldown
+			// Option 10: Disassemble
+			Retraction_Disassemble,
+			// Option 11: Metal Forge Cooldown
 			Retraction_Metal_Forge_Cooldown
 		>, 
 		Black
@@ -943,6 +870,14 @@ using MasterStyle = Layers<
 			IntArg<PREON_OPTION_ARG, 0>, 
 			// Option 0: None
 			TrInstant, 
+
+			PreOn_Faulty_Ignition,
+			PreOn_Faulty_Ignition_Volatile,
+			PreOn_Sparking_Absorb,
+			PreOn_Seismic_Charge,
+			PreOn_Force_Drain,
+
+
 			// Option 1:  Overload
 			PreOn_Overload,
 			// Option 2: Sparking
@@ -955,8 +890,9 @@ using MasterStyle = Layers<
 			PreOn_Emitter_Heatup,
 			// Option 6: Faulty Ignition
 			PreOn_Faulty_Ignition,
+			PreOn_Faulty_Ignition_Volatile,
 			// Option 7: Faulty Fire Ignition
-			PreOn_Faulty_Fire_Ignition,
+			PreOn_Faulty_Ignition_Fire,
 			// Option 8: Erratic
 			PreOn_Erratic,
 			// Option 9: Dim Pre-Blade Extension
@@ -971,6 +907,7 @@ using MasterStyle = Layers<
 			IntArg<OFF_OPTION_ARG, 0>,
 			// Option 0 // None
 			TrInstant, 
+
 			// Option 1: Emitter Cooldown
 			PostOff_EmitterCoolOff,
 			// Option 2: Emitter Spark
@@ -989,6 +926,9 @@ using MasterStyle = Layers<
 
 	// Battery level
 	BatteryLevelOnDemand,
+
+	// Volume level
+	VolumeLevelOnDemand,
 
 	// Power Saver
 	Battery_Power_Save

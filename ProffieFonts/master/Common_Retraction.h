@@ -41,6 +41,11 @@ using Retraction_WipeOut = TrWipeX<
 	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
 >;
 
+// Fade Off
+using Retraction_Fade_Off = TrFadeX<
+	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+>;
+
 // Color Cycle
 using Retraction_ColorCycle = TrColorCycleX<
 	BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>,
@@ -114,5 +119,93 @@ TrConcat<
 	Red,
 	TrFadeX<
 		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>
+>;
+
+// Blink Off
+using Retraction_Blink_Off = TrJoin<
+	TrBoingX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>,
+		3
+	>,
+	TrWipeInX<
+		BEND_TIME<RETRACTION_TIME, RETRACTION_OPTION2>
+	>
+>;
+
+// Disassemble
+using Retraction_Disassemble = TrConcat<
+	TrSparkX<
+		RETRACTIONCOLOR,
+		Int<100>,
+		Mult<
+			RetractionTime<0>,
+			Int<6554>
+		>,
+		Int<0>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<26216>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		RETRACTIONCOLOR,
+		Int<100>,
+		Mult<
+			RetractionTime<0>,
+			Int<6554>
+		>,
+		Int<0>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<19662>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		RETRACTIONCOLOR,
+		Int<100>,
+		Mult<
+			RetractionTime<0>,
+			Int<6554>
+		>,
+		Int<0>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<13108>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		RETRACTIONCOLOR,
+		Int<100>,
+		Mult<
+			RetractionTime<0>,
+			Int<6554>
+		>,
+		Int<0>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<6554>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		RETRACTIONCOLOR,
+		Int<100>,
+		Mult<
+			RetractionTime<0>,
+			Int<6554>
+		>,
+		Int<0>
 	>
 >;

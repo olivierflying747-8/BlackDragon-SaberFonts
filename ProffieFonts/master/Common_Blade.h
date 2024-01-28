@@ -28,10 +28,11 @@ using BaseStyle_BrownNoiseFlicker = BrownNoiseFlicker<
 >;
 
 // Pusling Blade
-using BaseStyle_Pulsing = Pulsing<
+using BaseStyle_Pulsing = PulsingX<
 	RotateColorsX<Variation, BASECOLOR>,
 	RotateColorsX<Variation, ALTCOLOR>,
-	1000
+	//1000
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1000>, Int<600>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 >;
 
 // Stripes (single color)
@@ -208,10 +209,11 @@ using BaseStyle_SmokeBlade = StripesX<
 			Int<75>,
 			Int<100>
 		>,
-		Pulsing<
+		PulsingX<
 			RotateColorsX<Variation, BASECOLOR>,
 			RotateColorsX<Variation, COLOR_MIX<Int<2570>, BASECOLOR>>, //Rgb<15,14,0>>, // BASECOLOR / 12.75
-			1200
+			//1200
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1200>, Int<900>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>,
 		Mix<
 			SwingSpeed<200>,
@@ -220,7 +222,7 @@ using BaseStyle_SmokeBlade = StripesX<
 		>
 	>,
 	RotateColorsX<Variation, COLOR_MIX<Int<7710>, BASECOLOR>>, //Rgb<40,40,0> // BASE / 4.25
-	Pulsing<
+	PulsingX<
 		RotateColorsX<Variation, COLOR_MIX_P<20, BASECOLOR>>, //Rgb<36,33,0> // BASE / 5.1
 		StripesX<
 			Sin<
@@ -236,12 +238,14 @@ using BaseStyle_SmokeBlade = StripesX<
 			RotateColorsX<Variation, BASECOLOR>,
 			RotateColorsX<Variation, COLOR_MIX_P<38, BASECOLOR>> //Rgb<60,58,0> // BASE / 2.65625
 		>,
-		2000
+		//2000
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 	>,
-	Pulsing<
+	PulsingX<
 		RotateColorsX<Variation, COLOR_MIX<Int<15420>, BASECOLOR>>, //Rgb<90,88,0> // BASE / 2.125
 		RotateColorsX<Variation, COLOR_MIX<Int<643>, BASECOLOR>>, //Rgb<5,5,0> // BASE / 51
-		3000
+		//3000
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 	>
 >;
 
@@ -495,10 +499,11 @@ using BaseStyle_LavaLamp = StripesX<
 			Int<25>,
 			Int<80>
 		>,
-		Pulsing<
+		PulsingX<
 			COLOR_MIX_P<20, BASECOLOR, White>,
 			COLOR_MIX_P<8, BASECOLOR>,
-			3000
+			//3000
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>,
 		Mix<
 			Sin<Int<2>>,
@@ -507,7 +512,7 @@ using BaseStyle_LavaLamp = StripesX<
 		>
 	>,
 	COLOR_MIX<Int<7710>, BASECOLOR>,
-	Pulsing<
+	PulsingX<
 		COLOR_MIX<Int<6425>, BASECOLOR>,
 		StripesX<
 			Sin<
@@ -527,12 +532,14 @@ using BaseStyle_LavaLamp = StripesX<
 			>,
 			COLOR_MIX_P<38, BASECOLOR>
 		>,
-		2000
+		//2000
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 	>,
-	Pulsing<
+	PulsingX<
 		COLOR_MIX<P_50, BASECOLOR>,
 		COLOR_MIX<Int<6425>, BASECOLOR>,
-		3000
+		//3000
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 	>
 >;
 
@@ -560,7 +567,7 @@ using BaseStyle_SmashBlade = Layers<
 				Int<25>,
 				Int<80>
 			>,
-			Pulsing<
+			PulsingX<
 				RotateColorsX<
 					Sin<Int<10>>,
 					Rgb<255,50,50>
@@ -569,7 +576,8 @@ using BaseStyle_SmashBlade = Layers<
 					Sin<Int<12>>,
 					Rgb<200,0,0>
 				>,
-				3000
+				//3000
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 			>,
 			Mix<
 				Sin<Int<2>>,
@@ -599,7 +607,7 @@ using BaseStyle_SmashBlade = Layers<
 			>,
 			Rgb<60,0,0>
 		>,
-		Pulsing<
+		PulsingX<
 			RotateColorsX<
 				Sin<
 					Scale<
@@ -649,9 +657,10 @@ using BaseStyle_SmashBlade = Layers<
 					Rgb<96,0,0>
 				>
 			>,
-			2000
+			//2000
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>,
-		Pulsing<
+		PulsingX<
 			RotateColorsX<
 				Sin<
 					Scale<
@@ -672,7 +681,8 @@ using BaseStyle_SmashBlade = Layers<
 				>,
 				Rgb<50,0,0>
 			>,
-			3000
+			//3000
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>
 	>,
 	// Blade part 2?
@@ -699,7 +709,7 @@ using BaseStyle_SmashBlade = Layers<
 					Int<-25>,
 					Int<-80>
 				>,
-				Pulsing<
+				PulsingX<
 					Mix<
 						Sin<Int<4>>,
 						RotateColorsX<
@@ -721,7 +731,8 @@ using BaseStyle_SmashBlade = Layers<
 						>,
 						Rgb<20,0,0>
 					>,
-					4000
+					//4000
+					SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<4000>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 				>,
 				Mix<
 					Sin<Int<2>>,
@@ -736,7 +747,7 @@ using BaseStyle_SmashBlade = Layers<
 				Sin<Int<12>>,
 				Rgb<60,0,0>
 			>,
-			Pulsing<
+			PulsingX<
 				RotateColorsX<
 					Sin<Int<4>>,
 					Rgb<50,0,0>
@@ -768,61 +779,87 @@ using BaseStyle_SmashBlade = Layers<
 						Rgb<96,0,0>
 					>
 				>,
-				2000
+				//2000
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<2000>, Int<1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 			>,
-			Pulsing<
+			PulsingX<
 				RotateColorsX<
 					Sin<Int<9>>,
 					Rgb<128,0,0>
 				>,
 				Black,
-				3000
+				//3000
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 			>
 		>,
 		Int<10000>
 	>
 >;
 
-// Party Blade
-using BaseStyle_PartyBlade = StyleFire<
-	StripesX<
-		Int<3000>,
-		Scale<
-			TwistAngle<>,
-			Int<-500>,
-			Int<0>
-		>,
-		Red,
-		Orange,
-		Yellow,
-		Green,
-		Blue,
-		Magenta
+// Rainbow Stripes
+using BaseStyle_Rainbow_Stripes = StripesX<
+	//50000,
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<50000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+	Scale<
+		TwistAngle<>,
+		Int<-500>,
+		Int<0>
 	>,
-	StripesX<
-		Int<3000>,
-		Scale<
-			TwistAngle<>,
-			Int<-500>,
-			Int<0>
-		>,
-		Tomato,
-		OrangeRed,
-		Orange,
-		Yellow,
-		SteelBlue,
-		DeepPink
-	>,
-	0,
-	3,
-	FireConfig<0,2000,5>,
-	FireConfig<0,2000,5>,
-	FireConfig<0,2000,5>
+	RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>,
+	RotateColorsX<Int<5461>, RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
+	RotateColorsX<Int<10922>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
+	RotateColorsX<Int<16384>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
+	RotateColorsX<Int<21845>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
+	RotateColorsX<Int<27306>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>
 >;
 
+// Rainbow Fire
+using BaseStyle_Rainbow_Fire = StyleFire<
+	StripesX<
+		//30000,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<20000>, Int<30000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+		Scale<
+			TwistAngle<>,
+			Int<-500>,
+			Int<0>
+		>,
+		BASECOLOR,
+		RotateColorsX<Int<5461>,BASECOLOR>,
+		RotateColorsX<Int<10922>,BASECOLOR>,
+		RotateColorsX<Int<16384>,BASECOLOR>,
+		RotateColorsX<Int<21845>,BASECOLOR>,
+		RotateColorsX<Int<27306>,BASECOLOR>
+	>,
+	COLOR_MIX_P<
+		50,
+		StripesX<
+			//30000,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<20000>, Int<30000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			Scale<
+				TwistAngle<>,
+				Int<-500>,
+				Int<0>
+			>,
+			BASECOLOR,
+			RotateColorsX<Int<5461>,BASECOLOR>,
+			RotateColorsX<Int<10922>,BASECOLOR>,
+			RotateColorsX<Int<16384>,BASECOLOR>,
+			RotateColorsX<Int<21845>,BASECOLOR>,
+			RotateColorsX<Int<27306>,BASECOLOR>
+		>
+	>,
+	0,
+	2
+>;
 
-
-
+// Omni rotating blade
+using BaseStyle_Omni_Blade = RotateColorsX<
+	Saw<
+		//Int<1>
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1>, Int<5>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
+	>,
+	BASECOLOR
+>;
 
 // Fire blade with bright tip? TODO: separate bright tip for secondary/tirtiary styles...
 using BaseStyle_FireTipBlade =	Layers<

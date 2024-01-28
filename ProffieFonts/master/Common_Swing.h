@@ -84,13 +84,14 @@ using Swing_FettRipple = AlphaL<
 			Variation,
 			COLOR_MIX<Int<6425>, SWINGCOLOR> //Rgb<44,42,0> // SWING_COLOR_ARG / 5.1
 		>,
-		Pulsing<
+		PulsingX<
 			RotateColorsX<
 				Variation,
 				COLOR_MIX_P<8, SWINGCOLOR> //Rgb<22,20,0> // SWING_COLOR_ARG / 12.75
 			>,
 			Black,
-			800
+			//800
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<800>, Int<400>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>
 	>,
 	SwingSpeed<SWING_SPEED_DEFAULT>
@@ -854,6 +855,23 @@ using Swing_Interactive_IceBlade = Layers<
 	>
 >;
 
+// Force Flash
+using Swing_Force_Flash = TransitionEffectL<
+	TrConcat<
+		TrJoin<
+			TrDelay<100>,
+			TrFade<300>
+		>,
+		Pulsing<
+			SWINGCOLOR,
+			COLOR_MIX_P<50, SWINGCOLOR>,
+			3000
+		>,
+		TrFade<300>
+	>,
+	EFFECT_FORCE
+>;
+
 // Force Pulse (Slow)
 using Swing_Force_Pulse = TransitionEffectL<
 	TrConcat<
@@ -861,10 +879,11 @@ using Swing_Force_Pulse = TransitionEffectL<
 			Int<30000>, 
 			TrFade<300>
 		>, 
-		Pulsing<
+		PulsingX<
 			SWINGCOLOR, 
 			COLOR_MIX<P_50, SWINGCOLOR>, 
-			3000
+			//3000
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<3000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 		>, 
 		TrFade<300>
 	>, 

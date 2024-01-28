@@ -136,7 +136,7 @@ using Lockup_Color_Dual = TransitionEffect<
 			>,
 			// Color A
 			BrownNoiseFlickerL<
-				LOCKUPCOLOR,
+				RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>,
 				Int<200>
 			>,
 			// Color B
@@ -150,13 +150,13 @@ using Lockup_Color_Dual = TransitionEffect<
 				Mix<
 					Int<6425>,
 					Black,
-					LOCKUPCOLOR
+					RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>
 				>,
-				LOCKUPCOLOR,
+				RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>,
 				Mix<
 					Int<12850>,
 					Black,
-					LOCKUPCOLOR
+					RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>
 				>
 			>
 		>,
@@ -192,7 +192,7 @@ using Lockup_Color_Dual = TransitionEffect<
 			>,
 			// Color A
 			BrownNoiseFlickerL<
-				LOCKUPCOLOR,
+				RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>,
 				Int<200>
 			>,
 			// Color B
@@ -206,13 +206,13 @@ using Lockup_Color_Dual = TransitionEffect<
 				Mix<
 					Int<6425>,
 					Black,
-					LOCKUPCOLOR
+					RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>
 				>,
-				LOCKUPCOLOR,
+				RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>,
 				Mix<
 					Int<12850>,
 					Black,
-					LOCKUPCOLOR
+					RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>
 				>
 			>
 		>
@@ -220,11 +220,11 @@ using Lockup_Color_Dual = TransitionEffect<
 	// Effect Color
 	AlphaL<
 		AudioFlicker<
-			LOCKUPCOLOR,
+			RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>,
 			Mix<
 				Int<10280>,
 				Black,
-				LOCKUPCOLOR
+				RgbArg<LOCKUP_COLOR_ARG, Rgb<127, 127, 127>>
 			>
 		>,
 		Bump<
@@ -455,9 +455,9 @@ using Lockup_End_Intensity = TrConcat<
 		TrSparkX<
 			Remap<
 				CenterDistF<LOCKUPPOSITIONSCALE>,
-				Stripes<
-					1200, 
-					-3600, 
+				StripesX<
+					Int<1200>, 
+					Int<-3600>, 
 					COLOR_MIX<Int<6425>, LOCKUPCOLOR>, 
 					LOCKUPCOLOR, 
 					COLOR_MIX<Int<12850>, LOCKUPCOLOR>

@@ -44,6 +44,11 @@ using Ignition_ColorCycle = TrColorCycleX<
 	0
 >;
 
+// Fade On
+using Ignition_Fade_On = TrFadeX<
+	BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+>;
+
 // Glitch On
 using Ignition_Glitch_On = TrConcat<
 	TrJoin<
@@ -164,4 +169,108 @@ using Ignition_Flash = TrConcat<
 	TrWipeX<BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>>,
 	StrobeL<IGNITIONCOLOR, Int<100>, IGNITION_TIME>,
 	TrFadeX<BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>>
+>;
+
+// Interactive Stack (5 Swings)
+using Ignition_Stack_Interactive = TrConcat<
+	TrJoin<
+		TrDelay<30000>,
+		TrInstant
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			IncrementWithReset<
+				ThresholdPulseF<
+					SwingSpeed<400>,
+					Int<18000>
+				>,
+				EffectPulseF<EFFECT_IGNITION>,
+				Int<33000>,
+				Int<6600>
+			>,
+			Int<0>
+		>
+	>,
+	TrWipeX<
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+	>
+>;
+
+// TODO: Incorperate BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
+// Assemble
+using Ignition_Assemble = TrConcat<
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<100>,
+		Mult<
+			IgnitionTime<1000>,
+			Int<6554>
+		>,
+		Int<32768>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<6554>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<100>,
+		Mult<
+			IgnitionTime<1000>,
+			Int<6554>
+		>,
+		Int<32768>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<13108>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<100>,
+		Mult<
+			IgnitionTime<1000>,
+			Int<6554>
+		>,
+		Int<32768>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<19662>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<100>,
+		Mult<
+			IgnitionTime<1000>,
+			Int<6554>
+		>,
+		Int<32768>
+	>,
+	AlphaL<
+		Black,
+		SmoothStep<
+			Int<26216>,
+			Int<0>
+		>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<100>,
+		Mult<
+			IgnitionTime<1000>,
+			Int<6554>
+		>,
+		Int<32768>
+	>
 >;

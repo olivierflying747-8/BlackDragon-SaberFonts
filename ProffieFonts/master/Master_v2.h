@@ -28,56 +28,52 @@ This Style Contains ???? (a lot) Unique Combinations
 Style Options:
 0: Static Color (Base Color)
 1: Audio Flicker (Base Color, Alt Color)
-2: Random Flicker (Base Color, Alt Color)
-3: BrownNoise Flicker Blade (Base Color)
-4: Pulsing (Base Color, Alt Color)
-5: Stripes (Base Color)
-6: Stripes SlowNoise (Base Color, Alt Color)
-7: Stripes Unstable (Base Color)
-8: Thunderstorm blade (Base Color, Alt Color)
-9: Fett263 Smoke Blade style. (Base Color)
-10: Glitchy / Broken blade. (Base Color)
-11: DarkSaber (Base Color, Alt Color)
-12: Electro Staff Blade (Base Color)
-13: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
-14: Smash Blade (Custom Colors)
-15: Party Blade (Custom Colors, Rainbow)
+2: BrownNoise Flicker Blade (Base Color)
+3: Pulsing (Base Color, Alt Color)
+4: Stripes (Base Color)
+5: Stripes SlowNoise (Base Color, Alt Color)
+6: Stripes Unstable (Base Color)
+7: Thunderstorm blade (Base Color, Alt Color)
+8: Fett263 Smoke Blade style. (Base Color)
+9: Glitchy / Broken blade. (Base Color)
+10: DarkSaber (Base Color, Alt Color)
+11: Electro Staff Blade (Base Color)
+12: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
+13: Smash Blade (Custom Colors)
+14: Omni Blade (All Colors)
+15: Rainbow Stripes (All Colors)
 
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
 0: Disabled
 1: Audio Flicker (Alt Color 2)
-2: Random Flicker (Alt Color 2)
-3: Blinking (Alt Color 2)
-4: Pulsing (Alt Color 2)
-5: BrownNoise Stripes (Alt Color 2)
-6: HumpFlicker Random (Alt Color 2)
-7: Waves (Alt Color, Alt Color 2)
-8: Sparkles (Alt Color 2)
-9: Fett263 FireBlade (Alt Color 2)
-10: Fire (Alt Color, Alt Color 2)
-11: Cylon (Alt Color 2)
-12: Lightning flash (Alt Color 2)
-13: Emitter Tip Flame (Alt Color 2)
+2: Pulsing (Alt Color 2)
+3: BrownNoise Stripes (Alt Color 2)
+4: HumpFlicker Random (Alt Color 2)
+5: Waves (Alt Color, Alt Color 2)
+6: Sparkles (Alt Color 2)
+7: Fett263 FireBlade (Alt Color 2)
+8: Fire (Alt Color, Alt Color 2)
+9: Cylon (Alt Color 2)
+10: Lightning flash (Alt Color 2)
+11: Emitter Tip Flame (Alt Color 2)
 
 STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 0: Disabled
 1: Audio Flicker (Alt Color 3)
-2: Random Flicker (Alt Color 3)
-3: Blinking (Alt Color 2)
-4: Pulsing (Alt Color 3)
-5: BrownNoise Stripes (Alt Color 3)
-6: HumpFlicker Random (Alt Color 3)
-7: Waves (Alt Color2, Alt Color 3)
-8: Sparkles (Alt Color 3)
-9: Fett263 FireBlade (Alt Color 3)
-10: Fire (Alt Color 2, Alt Color 3)
-11: Cylon (Alt Color 3)
-12: Lightning Flash (Alt Color 3)
-13: Emitter Flare (Emiter Color)
-14: Emitter Breathing (Emitter Color)
-15: Emitter Pulse (Alt Color 3)
-16: Blade Spark (Interactive, Alt Color 3)
+2: Pulsing (Alt Color 3)
+3: BrownNoise Stripes (Alt Color 3)
+4: HumpFlicker Random (Alt Color 3)
+5: Waves (Alt Color2, Alt Color 3)
+6: Sparkles (Alt Color 3)
+7: Fett263 FireBlade (Alt Color 3)
+8: Fire (Alt Color 2, Alt Color 3)
+9: Cylon (Alt Color 3)
+10: Lightning Flash (Alt Color 3)
+11: Emitter Flare (Emiter Color)
+12: Emitter Breathing (Emitter Color)
+13: Emitter Pulse (Alt Color 3)
+14: Emitter Flare (Alt Color 3)
 
 Ignition Effect Options (Ignition Color):
 0: Instant
@@ -86,12 +82,12 @@ Ignition Effect Options (Ignition Color):
 3: SparkTip Ignition
 4: Center Wipe
 5: Wipe In
-6: Color Cycle
-7: Glitch On
-8: Gravity Ignition
-9: Lightning Strike
-10: Flash
-11: Metal Forge Heatup
+6: Fade On
+7: Color Cycle
+8: Glitch On
+9: Gravity Ignition
+10: Assemble
+11: Lightning Strike
 
 PowerUp Effect Options (Ignition Color):
 0: Disabled
@@ -111,10 +107,11 @@ Retraction Effect Options (Retraction Color):
 3: SparkTip Retraction
 4: Center Wipe
 5: Wipe Out
-6: Color Cycle
-7: Glitch off
-8: Gravity Retraction
-9: Metal Forge Cooldown
+6: Fade Off
+7: Color Cycle
+8: Glitch Off
+9: Gravity Retraction
+10: Disassemble
 
 CoolDown Effect Options (Retraction Color):
 0: Disabled
@@ -137,10 +134,9 @@ Swing Effect Options (Swing Color):
 8: Pixilate
 9: Lightning
 10: Clash Buildup, Lockup Release
-11: Power Buildup (Force Toggle)
-12: Fireball (Force Toggle)
+// Force Effects
+11: Interactive Power Buildup (Force Toggle)
 13: Force Pulse
-//14: Force Aura
 
 Preon Effect Options (PreOn Color): 
 0: Disabled
@@ -174,11 +170,8 @@ Melt Effect: Responsive Melt
 Stab Effect: Normal Stab
 
 Blast Effect (Randomly Selected) (Blast Color):
-- Responsive Blast Fade (BladeAngle, Random),
-- Responsive Blast Fade (BladeAngle, Sound Based),
-- Responsive Blast Wave (BladeAngle, Random),
-- Responsive Blast Wave (BladeAngle, Sound Based),
-//- Responsive Blast Ripple Fade (BladeAngle)
+- Responsive Blast Fade (Random),
+- Responsive Blast Wave (Random),
 
 Clash Effect: Real Clash V1
 
@@ -198,7 +191,7 @@ using MasterStyle = Layers<
 		// Option 1: Audioflicker (BASECOLOR, ALTCOLOR)
 		BaseStyle_AudioFilter,
 		// Option 2: Random Flicker (BASECOLOR, ALTCOLOR)
-		BaseStyle_RandomFlicker,
+		//BaseStyle_RandomFlicker,
 		// Option 3: BrownNoise (BASECOLOR)
 		BaseStyle_BrownNoiseFlicker,
 		// Option 4: Pulsing Blade (BASECOLOR, ALTCOLOR)
@@ -224,15 +217,10 @@ using MasterStyle = Layers<
 		// Option 14: Smash Blade (Special Colors)
 		BaseStyle_SmashBlade,
 
-		// Option 15: Party Blade
-		BaseStyle_PartyBlade
-
-		// Option 8: Fire blade (BASECOLOR)
-//		BaseStyle_FireBlade, // Looks too similar to BrownNoiseFlicker
-		// Option 17: Coda
-//		BaseStyle_CodaBlade,
-		// Option 18: Fireblade Interactive Pulse
-//		BaseStyle_FirePulseInteractive,
+		// Option 15: Omni Blade
+		BaseStyle_Omni_Blade,
+		// Option 16: Rainbow Stripes (All Colors)
+		BaseStyle_Rainbow_Stripes
 	>,
 
 	// Secondary blade Styles
@@ -244,9 +232,9 @@ using MasterStyle = Layers<
 		// Option 1: AudiFlicker (ALTCOLOR2)
 		AltStyle_AudioFilter<ALTCOLOR2>,
 		// Option 2: RandomFlicker (ALTCOLOR2)
-		AltStyle_RandomFlicker<ALTCOLOR2>,
+		//AltStyle_RandomFlicker<ALTCOLOR2>,
 		// Option 3: Blinking
-		AltStyle_Blinking<ALTCOLOR2>,
+		//AltStyle_Blinking<ALTCOLOR2>,
 		// Option 4: Pusling (ALTCOLOR2)
 		AltStyle_Pulsing<ALTCOLOR2>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR2)
@@ -267,11 +255,6 @@ using MasterStyle = Layers<
 		AltStyle_LightningFlash<ALTCOLOR2>,
 		// Option 13: Emitter tip Flame (ALTCOLOR2)
 		AltStyle_Blade_Tip_Flame<ALTCOLOR2>
-
-		// Option 4: Random LED Flicker (ALTCOLOR2)
-		//AltStyle_RandomPerLEDFlicker<ALTCOLOR2>, // Looks too similar to BownNoise_Stripes.
-		// Option 6: StripesX Slownoise (ALTCOLOR2 50%)
-		//AltStyle_StripesX_SlowNoise<ALTCOLOR2>, // Stripes doesn't support Transparency.
 	>,
 
 	// Tirtiary blade Styles
@@ -283,9 +266,9 @@ using MasterStyle = Layers<
 		// Option 1: AudiFlicker (ALTCOLOR3)
 		AltStyle_AudioFilter<ALTCOLOR3>,
 		// Option 2: RandomFlicker (ALTCOLOR3)
-		AltStyle_RandomFlicker<ALTCOLOR3>,
+		//AltStyle_RandomFlicker<ALTCOLOR3>,
 		// Option 3: Blinking
-		AltStyle_Blinking<ALTCOLOR3, 250, Int<750>, Int<500>, Int<1200>>,
+		//AltStyle_Blinking<ALTCOLOR3, 250, Int<750>, Int<500>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
 		AltStyle_Pulsing<ALTCOLOR3, 250, Int<1400>, Int<2000>, Int<500>, Int<4000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
@@ -310,13 +293,10 @@ using MasterStyle = Layers<
 		AltStyle_Emitter_Breathe<EMITTERCOLOR>,
 		// Option 15: Emitter Pulse (EMITTER COLOR)
 		AltStyle_Emitter_Pulse<EMITTERCOLOR>,
-		// Option 16: Blade Angle Flare (ALTCOLOR3)
-		AltStyle_Spark_BladeAngle<ALTCOLOR3>
-
-		// Option 4: Random LED Flicker (ALTCOLOR3)
-		//AltStyle_RandomPerLEDFlicker<ALTCOLOR3>, // Looks too similar to BrownNoise_Stripes
-		// Option 6: StripesX Slownoise
-		//AltStyle_StripesX_SlowNoise<ALTCOLOR3>, // Stripes doesn't support Transparency
+		// Option 16: Emitter Fade
+		AltStyle_Emitter_Fade<ALTCOLOR3>
+		// Option 17: Blade Angle Flare (ALTCOLOR3)
+		//AltStyle_Spark_BladeAngle<ALTCOLOR3>
 	>,
 	
 	// Swing Options/Force Effect options
@@ -359,7 +339,7 @@ using MasterStyle = Layers<
 		// Option 11: Interactive Power Buildup (Force Toggle)
 		Swing_Interactive_Power_Buildup,
 		// Option 12: Interactive Fireball (Force Toggle)
-		Swing_Interactive_Fireball,
+	//	Swing_Interactive_Fireball,
 		// Option 13: Force Pulse
 		Swing_Force_Pulse
 		// Option 14: Force Aura
@@ -427,36 +407,10 @@ using MasterStyle = Layers<
 			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
 
 			// Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
+			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>
 
 			// Blast Ripple Fade
-			Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
-
-			/*
-			// Option 1: Blast Wave (Random)
-			Blast_Wave_Random,
-			// Option 3: Blast Wave (Sound Based)
-			Blast_Wave_Sound,
-			// Option 4: Blast Ripple
-			Blast_Ripple,
-			// Option 2: Blast Ripple Fade
-			Blast_Ripple_Fade,
-			// Option 5: Blast Fade (Sound Based)
-			Blast_Fade_Sound,
-			// Option 6, Responsive Blast
-			Blast_Responsive,
-			// Option 7: Localized clash
-			Blast_LocalClash,
-			// Option 8: Responsive Wave
-			Blast_Responsive_Wave,
-			// Option 9: BlastL
-			Blast_BlastL,
-			// Option 10: Responsive Blast Fade
-			Blast_Responsive_Fade,
-			// Option 11: Responsive Blast (Swing based)
-			Blast_Responsive_Swing
-			// */
-		//	Blast_Responsive_Wave
+			//Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
 		>, 
 		EFFECT_BLAST
 	>, 
@@ -599,18 +553,18 @@ using MasterStyle = Layers<
 			Ignition_CenterWipe,
 			// Option 5: Wipe In
 			Ignition_WipeIn,
-			// Option 6: Color Cycle
+			// Option 6: Fade On
+			Ignition_Fade_On,
+			// Option 7: Color Cycle
 			Ignition_ColorCycle,
-			// Option 7: Glitch On
+			// Option 8: Glitch On
 			Ignition_Glitch_On,
-			// Option 8: Gravity based
+			// Option 9: Gravity based
 			Ignition_Gravity,
-			// Option 9: Lightning Strike
-			Ignition_LightningStrike,
-			// Option 10: Flash On
-			Ignition_Flash,
-			// Option 11: Metal Forge Heatup
-			Ignition_Metal_Forge_Heatup
+			// Option 10: Assemble (Stack)
+			Ignition_Assemble,
+			// Option 11: Lightning Strike
+			Ignition_LightningStrike
 		>, 
 		// Retraction Options
 		TrSelect<
@@ -627,14 +581,16 @@ using MasterStyle = Layers<
 			Retraction_CenterWipe,
 			// Option 5: Wipe Out
 			Retraction_WipeOut,
-			// Option 6, Color cycle
+			// Option 6: Fade off
+			Retraction_Fade_Off,
+			// Option 7, Color cycle
 			Retraction_ColorCycle,
-			// Option 7, Glitch off
+			// Option 8, Glitch off
 			Retraction_Glitch_Off,
-			// Option 8: Gravity based
+			// Option 9: Gravity based
 			Retraction_Gravity,
-			// Option 9: Metal Forge Cooldown
-			Retraction_Metal_Forge_Cooldown
+			// Option 10: Disassemble
+			Retraction_Disassemble
 		>, 
 		Black
 	>,
@@ -651,7 +607,7 @@ using MasterStyle = Layers<
 			PreOn_Sparking,
 			// Option 3: Broken Ignition
 			PreOn_Broken_Ignition,
-			// Option 4: Emitter warm up
+			// Option 4: Emitter Warm up
 			PreOn_Emitter_Warmup,
 			// Option 5: Faulty Ignition
 			PreOn_Faulty_Ignition,
@@ -667,7 +623,7 @@ using MasterStyle = Layers<
 			IntArg<OFF_OPTION_ARG, 0>,
 			// Option 0 // None
 			TrInstant, 
-			// Option 1: Emitter cooldown
+			// Option 1: Emitter Cooldown
 			PostOff_EmitterCoolOff,
 			// Option 2: Emitter Spark
 			PostOff_Emitter_Spark,
@@ -689,6 +645,6 @@ using MasterStyle = Layers<
 	// Volume level
 //	VolumeLevelOnDemand,
 
-	// Battery Saber
+	// Power Saver
 	Battery_Power_Save
 >;
