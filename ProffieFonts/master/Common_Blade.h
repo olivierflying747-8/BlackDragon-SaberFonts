@@ -799,18 +799,28 @@ using BaseStyle_SmashBlade = Layers<
 // Rainbow Stripes
 using BaseStyle_Rainbow_Stripes = StripesX<
 	//50000,
-	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<50000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
-	Scale<
-		TwistAngle<>,
-		Int<-500>,
-		Int<0>
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<50000>, Int<5000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
+	SWING_SPEED_SCLAE<
+		SWING_SPEED_DEFAULT, 
+		Scale<
+			TwistAngle<>,
+			Int<-100>,
+			Int<-300>
+		>,
+		Scale<
+			TwistAngle<>,
+			Int<-500>,
+			Int<-1000>
+		>,
+		Int<1000>, Int<2000>, Int<1000>, Int<2000>
 	>,
-	RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>,
-	RotateColorsX<Int<5461>, RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
-	RotateColorsX<Int<10922>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
-	RotateColorsX<Int<16384>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
-	RotateColorsX<Int<21845>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>,
-	RotateColorsX<Int<27306>,RgbArg<BASE_COLOR_ARG,Rgb<0,0,255>>>
+	BASECOLOR,
+	RotateColorsX<Int<5461>, BASECOLOR>,
+	RotateColorsX<Int<10922>,BASECOLOR>,
+	RotateColorsX<Int<16384>,BASECOLOR>,
+	RotateColorsX<Int<21845>,BASECOLOR>,
+	RotateColorsX<Int<27306>,BASECOLOR>
 >;
 
 // Rainbow Fire
@@ -820,8 +830,8 @@ using BaseStyle_Rainbow_Fire = StyleFire<
 		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<20000>, Int<30000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		Scale<
 			TwistAngle<>,
-			Int<-500>,
-			Int<0>
+			Int<-200>,
+			Int<-100>
 		>,
 		BASECOLOR,
 		RotateColorsX<Int<5461>,BASECOLOR>,
@@ -837,8 +847,8 @@ using BaseStyle_Rainbow_Fire = StyleFire<
 			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<20000>, Int<30000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			Scale<
 				TwistAngle<>,
-				Int<-500>,
-				Int<0>
+				Int<-200>,
+				Int<-100>
 			>,
 			BASECOLOR,
 			RotateColorsX<Int<5461>,BASECOLOR>,
@@ -849,7 +859,7 @@ using BaseStyle_Rainbow_Fire = StyleFire<
 		>
 	>,
 	0,
-	2
+	4
 >;
 
 // Omni rotating blade
