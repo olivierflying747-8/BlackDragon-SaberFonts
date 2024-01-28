@@ -5,9 +5,9 @@ using PostOff_EmitterCoolOff = TrConcat<
 	TrInstant,
 	AlphaL<
 		POSTOFFCOLOR,
-		SmoothStep<
-			EMITTER_SIZE,
-			Int<-4000>
+		Bump<
+			Int<0>,
+			EMITTER_SIZE
 		>
 	>,
 	TrFadeX<
@@ -25,9 +25,9 @@ using PostOff_EmitterCoolOff = TrConcat<
 	>,
 	AlphaL<
 		Orange,
-		SmoothStep<
-			EMITTER_SIZE,
-			Int<-4000>
+		Bump<
+			Int<0>,
+			EMITTER_SIZE
 		>
 	>,
 	TrFadeX<
@@ -45,9 +45,9 @@ using PostOff_EmitterCoolOff = TrConcat<
 	>,
 	AlphaL<
 		Red,
-		SmoothStep<
-			EMITTER_SIZE,
-			Int<-2000>
+		Bump<
+			Int<0>,
+			EMITTER_SIZE
 		>
 	>,
 	TrFadeX<
@@ -73,16 +73,13 @@ using PostOff_Emitter_Spark = TrConcat<
 			POSTOFFCOLOR,
 			Int<30>
 		>,
-		SmoothStep<
+		Bump<
+			Int<0>,
 			Scale<
 				SlowNoise<Int<2000>>,
 				EMITTER_SIZE,
-				Sum<
-					EMITTER_SIZE,
-					Int<3000>
-				>
-			>,
-			Int<-4000>
+				Percentage<EMITTER_SIZE, 150>
+			>
 		>
 	>,
 	TrDelayX<
@@ -107,9 +104,9 @@ using PostOff_Emitter_Glow = TrConcat<
 	>,
 	AlphaL<
 		POSTOFFCOLOR,
-		SmoothStep<
-			EMITTER_SIZE,
-			Int<-2000>
+		Bump<
+			Int<0>,
+			EMITTER_SIZE
 		>
 	>,
 	TrSmoothFadeX<

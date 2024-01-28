@@ -44,9 +44,9 @@ using Powerup_Burst_Emitter = TrConcat<
 			COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
 			COLOR_MIX<Int<3855>, IGNITIONCOLOR>
 		>,
-		SmoothStep<
-			EMITTER_SIZE,
-			Int<-500>
+		Bump<
+			Int<0>,
+			EMITTER_SIZE
 		>
 	>,
 	TrFade<500>

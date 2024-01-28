@@ -195,16 +195,13 @@ using AltStyle_Blade_Tip_Flame = AlphaL<
 template<class COLOR>
 using AltStyle_Emitter_Flare = AlphaL<
 	AudioFlickerL<COLOR>, 
-	SmoothStep<
+	Bump<
+		Int<0>,
 		Scale<
 			NoisySoundLevel,
 			EMITTER_SIZE,
-			Sum<
-				EMITTER_SIZE,
-				Int<6000>
-			>
-		>,
-		Int<-6000>
+			Percentage<EMITTER_SIZE, 200>
+		>
 	>
 >;
 
