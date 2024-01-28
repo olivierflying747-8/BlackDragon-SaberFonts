@@ -37,7 +37,7 @@ Style Options:
 8: Fett263 Smoke Blade style. (Base Color)
 9: Glitchy / Broken blade. (Base Color)
 10: DarkSaber (Base Color, Alt Color)
-11: Electro Staff Blade (Base Color)
+11: Electro Staff Blade (Base Color, Alt Color)
 12: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
 13: Smash Blade (Custom Colors)
 14: Omni Blade (All Colors)
