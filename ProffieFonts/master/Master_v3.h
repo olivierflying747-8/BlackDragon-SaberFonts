@@ -103,6 +103,7 @@ Ignition Effect Options (Ignition Color):
 12: Lightning Strike
 13: Flash
 14: Interactive Assemble
+15: Photon
 
 PowerUp Effect Options (Ignition Color):
 0: Disabled
@@ -823,12 +824,14 @@ using MasterStyle = Layers<
 			Ignition_Assemble,
 			// Option 11: Metal Forge Heatup
 			Ignition_Metal_Forge_Heatup,
-			// Option 10: Lightning Strike
+			// Option 12: Lightning Strike
 			Ignition_LightningStrike,
-			// Option 12: Flash On
+			// Option 13: Flash On
 			Ignition_Flash,
-			// Option 13: Assemble Interactive
-			Ignition_Stack_Interactive
+			// Option 14: Assemble Interactive
+			Ignition_Stack_Interactive,
+			// Option 15: Photon Ignition
+			Ignition_Photon
 		>, 
 		// Retraction Options
 		TrSelect<

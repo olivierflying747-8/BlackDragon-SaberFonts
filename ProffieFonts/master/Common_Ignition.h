@@ -204,8 +204,8 @@ using Ignition_Assemble = TrConcat<
 		IGNITIONCOLOR,
 		Int<100>,
 		Mult<
-			IgnitionTime<1000>,
-			Int<6554>
+			IGNITION_TIME,
+			Int<6554> //20%
 		>,
 		Int<32768>
 	>,
@@ -220,7 +220,7 @@ using Ignition_Assemble = TrConcat<
 		IGNITIONCOLOR,
 		Int<100>,
 		Mult<
-			IgnitionTime<1000>,
+			IGNITION_TIME,
 			Int<6554>
 		>,
 		Int<32768>
@@ -236,7 +236,7 @@ using Ignition_Assemble = TrConcat<
 		IGNITIONCOLOR,
 		Int<100>,
 		Mult<
-			IgnitionTime<1000>,
+			IGNITION_TIME,
 			Int<6554>
 		>,
 		Int<32768>
@@ -252,7 +252,7 @@ using Ignition_Assemble = TrConcat<
 		IGNITIONCOLOR,
 		Int<100>,
 		Mult<
-			IgnitionTime<1000>,
+			IGNITION_TIME,
 			Int<6554>
 		>,
 		Int<32768>
@@ -268,9 +268,91 @@ using Ignition_Assemble = TrConcat<
 		IGNITIONCOLOR,
 		Int<100>,
 		Mult<
-			IgnitionTime<1000>,
+			IGNITION_TIME,
 			Int<6554>
 		>,
 		Int<32768>
+	>
+>;
+
+// Photon Ignition
+using Ignition_Photon = TrConcat<
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	Black,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	TrSparkX<
+		IGNITIONCOLOR,
+		Int<200>,
+		Mult<
+			IGNITION_TIME,
+			Int<4096>
+		>,
+		Int<32768>
+	>,
+	// Now wipe
+	TrWipeSparkTipX<
+		IGNITIONCOLOR,
+		BEND_TIME<IGNITION_TIME, IGNITION_OPTION2>
 	>
 >;

@@ -46,7 +46,7 @@ Style Options:
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
 0: Disabled
-1: Audio Flicker (Alt Color 2)
+1: Random Flicker (Alt Color 2)
 2: Pulsing (Alt Color 2)
 3: BrownNoise Stripes (Alt Color 2)
 4: HumpFlicker Random (Alt Color 2)
@@ -88,6 +88,7 @@ Ignition Effect Options (Ignition Color):
 9: Gravity Ignition
 10: Assemble
 11: Lightning Strike
+12: Photon
 
 PowerUp Effect Options (Ignition Color):
 0: Disabled
@@ -221,6 +222,8 @@ using MasterStyle = Layers<
 		BaseStyle_Omni_Blade,
 		// Option 16: Rainbow Stripes (All Colors)
 		BaseStyle_Rainbow_Stripes
+		// Option 17: Rainbow Fire (All Colors)
+		//BaseStyle_Rainbow_Fire
 	>,
 
 	// Secondary blade Styles
@@ -230,9 +233,9 @@ using MasterStyle = Layers<
 		// Option 0 Off
 		TRANSPARENT,
 		// Option 1: AudiFlicker (ALTCOLOR2)
-		AltStyle_AudioFilter<ALTCOLOR2>,
+		//AltStyle_AudioFilter<ALTCOLOR2>,
 		// Option 2: RandomFlicker (ALTCOLOR2)
-		//AltStyle_RandomFlicker<ALTCOLOR2>,
+		AltStyle_RandomFlicker<ALTCOLOR2>,
 		// Option 3: Blinking
 		//AltStyle_Blinking<ALTCOLOR2>,
 		// Option 4: Pusling (ALTCOLOR2)
@@ -564,7 +567,9 @@ using MasterStyle = Layers<
 			// Option 10: Assemble (Stack)
 			Ignition_Assemble,
 			// Option 11: Lightning Strike
-			Ignition_LightningStrike
+			Ignition_LightningStrike,
+			// Option 12: Photon
+			Ignition_Photon
 		>, 
 		// Retraction Options
 		TrSelect<
