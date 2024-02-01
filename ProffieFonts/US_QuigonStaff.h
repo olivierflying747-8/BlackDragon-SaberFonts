@@ -36,7 +36,9 @@ const unsigned int maxLedsPerStrip = 144;
 #define FETT263_BATTLE_MODE
 #define FETT263_LOCKUP_DELAY 200
 #define FETT263_FORCE_PUSH
+#define FETT263_FORCE_PUSH_LENGTH 5
 #define FETT263_SAY_BATTERY_PERCENT
+#define FETT263_MOTION_WAKE_POWER_BUTTON
 #define FETT263_SPECIAL_ABILITIES //#define FETT263_MULTI_PHASE
 // Edit Mode
 #define FETT263_EDIT_MODE_MENU
@@ -134,6 +136,7 @@ tracks
 037_Decimate
 038_Knighthood
 039_Corvus_Tano
+040_Kashyyyk_Knight
 
 // Paid Fonts
 075_Ascension
@@ -177,8 +180,8 @@ tracks
 113_N1_Mod
 114_ElectricMouse
 115_SailorMoon
-116_
-117_
+116_JurassicPark
+117_Alien
 118_
 119_
 120_
@@ -188,14 +191,14 @@ tracks
 #ifdef CONFIG_PRESETS
 
 // Master Font for Edit mode, create /customize your own blade styles using StylePtr<MasterStyle>() and Fett263's Edit Menu.
-#include "master/Master_v2.h"
+#include "master/Master_v3.h"
 
 // Font Presets. Just load as many font folders as you want with Master Style.
 Preset presets[] = {
 
 	// Third Sister V2 Test Style
 
-	// /*
+	 /*
 	// One starter font, use Copy Preset to make more.
 	{ "059_RM_Third;common", "tracks/",
 		StylePtr <MasterStyle>
@@ -203,24 +206,25 @@ Preset presets[] = {
 	},
 	// */
 
-	/*
+	// /*
 // Basic Fonts: 6 by Kyberphonic
-	{ "001_BLUE;.voices/Obi-Wan_EP3;common","tracks/fates.wav",
+	{ "001_BLUE;;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "blue"
 	},
 
-	{ "002_GREEN;.voices/Qui-Gon;common","tracks/fates.wav",
+//	/*
+	{ "002_GREEN;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "green"
 	},
 
-	{ "003_PURPLE;.voices/Mace;common","tracks/fates.wav",
+	{ "003_PURPLE;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "purple"
 	},
 
-	{ "004_RED;.voices/Skoll;common","tracks/fates.wav",
+	{ "004_RED;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "red"
 	},
@@ -235,7 +239,7 @@ Preset presets[] = {
 		() //, "yellow"
 	},
 
-	 /*
+	// /*
 
 // Custom Free Fonts: 33
 	
@@ -264,7 +268,7 @@ Preset presets[] = {
 	},
 
 	// Assassin by Grayscale
-	{ "011_Assasin;common", "tracks/JFO9.wav",
+	{ "011_Assassin;common", "tracks/JFO9.wav",
 		StylePtr <MasterStyle>
 		() //, "assassin" 
 	},
@@ -494,7 +498,7 @@ Preset presets[] = {
 	},
 
 	// Grey Assassin by BK Saber Sounds
-	{ "084_GreyAssasin;common", "tracks/",
+	{ "084_GreyAssassin;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "greyassassin"
 	},
@@ -592,7 +596,7 @@ Preset presets[] = {
 	},
 
 	// Lightsaber of the Bells by Jérôme Tremblay ( Jay DaloRian) 
-	{ "102_Lightsaber_Of_The_Bellsl;common", "tracks/",
+	{ "102_Lightsaber_Of_The_Bells;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "lightsaberofthebells"
 	},
@@ -628,7 +632,7 @@ Preset presets[] = {
 	},
 
 	// Energy Sword by XTwistyBoi
-	{ "108_EmergySword;common", "tracks/",
+	{ "108_EnergySword;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "energysword"
 	},
@@ -668,6 +672,26 @@ Preset presets[] = {
 		StylePtr <MasterStyle>
 		() //, "electricmouse"
 	},
+
+	// Sailor Moon by kyberphonic
+	{ "115_SailorMoon;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "sailormoon"
+	},
+
+	// JurassicPark by ???
+	{ "116_JurassicPark;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "jurassicpark"
+	},
+
+	// Alien by Blue Force Sabers
+	{ "117_Alien;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "alien"
+	},
+
+
 
 	//	*/
 
