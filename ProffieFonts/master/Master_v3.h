@@ -345,7 +345,7 @@ using MasterStyle = Layers<
 		// Option 3: Blinking
 		AltStyle_Blinking<ALTCOLOR2>,
 		// Option 4: Pusling (ALTCOLOR2)
-		AltStyle_Pulsing<ALTCOLOR2>,
+		AltStyle_Pulsing<ALTCOLOR2, SWING_SPEED_DEFAULT, Int<1200>, Int<600>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR2)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR2>,
 		// Option 6: HumpFlicker Random (ALTCOLOR2)
@@ -385,7 +385,7 @@ using MasterStyle = Layers<
 		// Option 3: Blinking
 		AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<750>, Int<500>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
-		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<4000>>,
+		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<2500>, Int<3500>, Int<-1500>, Int<-2500>>,
 		// Option 6: HumpFlicker Random (ALTCOLOR3)
