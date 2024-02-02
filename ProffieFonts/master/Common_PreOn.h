@@ -722,6 +722,92 @@ using PreOn_Force_Drain = TrConcat<
 	>
 >;
 
+// Glowstick
+using PreOn_Glowstick = TrConcat <
+	TrInstant,
+	AlphaL<
+		Layers<
+			AlphaL<
+				Sparkle<
+					COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+					PREONCOLOR, // Rgb<10,255,0>
+					3000,
+					500
+				>,
+				Bump<
+					Int<16384>,
+					Scale<
+						Trigger<
+							EFFECT_PREON,
+							//Int<10000>,
+							Mult<
+								WavLen<EFFECT_PREON>,
+								Int<16384>
+							>,
+							Int<1>,
+							Int<3000>
+						>,
+						Int<0>,
+						Int<50000>
+					>
+				>
+			>,
+			TransitionEffectL<
+				TrWaveX<
+					Sparkle<
+						TRANSPARENT,
+						COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+						3000,
+						500
+					>,
+					WavLen<EFFECT_PREON>, //Int<20000>,
+					Int<200>,
+					WavLen<EFFECT_PREON> //Int<20000>
+				>,
+				EFFECT_PREON
+			>,
+			AlphaL<
+				Black,
+				Scale<
+					Trigger<
+						EFFECT_PREON,
+						Int<1>,
+						Scale<
+							Trigger<
+								EFFECT_IGNITION,
+								Int<500>,
+								Int<1000>,
+								Int<500>
+							>,
+							//Int<10000>,
+							Mult<
+								WavLen<EFFECT_PREON>,
+								Int<16384>
+							>,
+							Int<0>
+						>,
+						Int<500>
+					>,
+					Int<0>,
+					Int<22000>
+				>
+			>,
+			TransitionEffectL<
+				TrConcat<
+					TrInstant,
+					COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+					TrDelay<15>
+				>,
+				EFFECT_PREON
+			>
+		>,
+		Int<32768>
+	>,
+	TrDelayX<
+		WavLen<EFFECT_PREON>
+	>
+>;
+
 // Dim Pre-Blade ignition
 using PreOn_Dim_Blade = TrConcat<
 	TrInstant,

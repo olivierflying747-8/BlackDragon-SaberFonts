@@ -150,20 +150,21 @@ Swing Effect Options (Swing Color):
 7: Bright Edge (Responsive)
 8: Pixilate
 9: Lightning
-10: Clash Buildup, Lockup Release
+10: Rainbow
+11: Clash Buildup, Lockup Release
 // Force Effects
-11: Interactive Power Buildup (Force Toggle)
-12: Interactive Fireball (Force Toggle)
-13: Force Pulse
-14: Force Flash
-15: Force Aura
-16: Force Flicker Swing
-17: Force Heat
-18: Interactive Flamethrower (Force Toggle)
-19: Force Rage Unstable
-20: Force Rage Lightning
-21: Interactive Ice Blade
-22: Static Electricty Swing
+12: Interactive Power Buildup (Force Toggle)
+13: Interactive Fireball (Force Toggle)
+14: Force Pulse
+15: Force Flash
+16: Force Aura
+17: Force Flicker Swing
+18: Force Heat
+19: Interactive Flamethrower (Force Toggle)
+20: Force Rage Unstable
+21: Force Rage Lightning
+22: Interactive Ice Blade
+23: Static Electricty Swing
 
 Preon Effect Options (PreOn Color): 
 0: Disabled
@@ -190,8 +191,8 @@ USER3: Force Lightning Toggle (Replaces Lightning Block)
 USER4: Rain Toggle (Off Color)
 USER5: Blaster mode?
 USER6:
-USER7: Next Phase? TODO
-USER8: Previous Phase? TODO
+USER7: Next Phase?
+USER8: Previous Phase?
 
 Lockup Effects (Sequential): 
 - Intensity Lockup
@@ -258,17 +259,16 @@ Power Save: 10% Increment
 */
 
 using MasterStyle = Layers<
+
 	ColorSelect<
 		IntArg<STYLE_OPTION_ARG, 0>, 
 		TrInstant, 
-	
 
-		BaseStyle_Rotoscope_Original,
-		BaseStyle_Rotoscope_Audio_Original,
-		BaseStyle_Rotoscope_Prequel,
-		BaseStyle_Rotoscope_Sequel,
 		BaseStyle_Rotoscope_Responsive,
 
+		BaseStyle_Survivor,
+
+		BaseStyle_Glowstick,
 
 		// Option 12: Fire Blade with Swing Speed and Fire Tip (BASECOLOR)
 		BaseStyle_FireTipBlade,
@@ -383,9 +383,9 @@ using MasterStyle = Layers<
 		// Option 2: RandomFlicker (ALTCOLOR3)
 		AltStyle_RandomFlicker<ALTCOLOR3>,
 		// Option 3: Blinking
-		AltStyle_Blinking<ALTCOLOR3, 250, Int<750>, Int<500>, Int<1200>>,
+		AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<750>, Int<500>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
-		AltStyle_Pulsing<ALTCOLOR3, 250, Int<1400>, Int<2000>, Int<500>, Int<4000>>,
+		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<4000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<2500>, Int<3500>, Int<-1500>, Int<-2500>>,
 		// Option 6: HumpFlicker Random (ALTCOLOR3)
@@ -395,7 +395,7 @@ using MasterStyle = Layers<
 		// Option 8: Sparkles (ALTCOLOR3)
 		AltStyle_Sparkle<ALTCOLOR3>,
 		// Option 9: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR3)
-		AltStyle_SmokeBlade<ALTCOLOR3, 1>,
+		AltStyle_SmokeBlade<ALTCOLOR3, 2>,
 		// Option 10: Fire (ALTCOLOR2, ALTCOLOR3)
 		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3>,
 		// Option 11: Cylon (ALTCOLOR3)
@@ -423,11 +423,11 @@ using MasterStyle = Layers<
 	ColorSelect<
 		IntArg<SWING_OPTION_ARG, 0>, 
 		TrInstant, 
-
-		Swing_Force_Heat,
-
 		// Option 0: Disabled
 		TRANSPARENT,
+
+		Swing_Rainbow,
+
 		// Option 1: AudioFlicker
 		Swing_AudioFlicker,
 		// Option 2: Sparkle
@@ -457,6 +457,8 @@ using MasterStyle = Layers<
 		Swing_Pixilate,
 		// Option 9: Lightning
 		Swing_Lightning,
+		// Option 10: Rainbow
+		Swing_Rainbow,
 		// Option 10: Clash Buildup
 		Swing_Clash_BuildUp,
 		// Option 11: Interactive Power Buildup (Force Toggle)
@@ -534,10 +536,11 @@ using MasterStyle = Layers<
 	>,
 
 	// Special Abiltiies
-	Special4_Rain,
-
-	// USER1 visual effect
-	Specials_Flashes,
+	//EFFECT_USER1: Lockup Selection : 0 = Normal, 1 = Clash / Lockup Shield Toggle(DUNE Shield), 2 = Dual Lockup(Two Independent Lockup Humps)
+	//EFFECT_USER3: Force Lightning Toggle(Replaces Lightning Block)
+	Special_Rain<EFFECT_USER4>,
+	Special_Phase_Next<EFFECT_USER3>,
+	//Special_Phase_Previous<EFFECT_USER8>,
 	
 	// Multi blast effect
 	MultiTransitionEffectL<
@@ -839,7 +842,9 @@ using MasterStyle = Layers<
 			// Option 0: Instant, for letting PostOff do the work
 			TrInstant, 
 
+			Retraction_Glowstick,
 			Retraction_Blink_Off,
+			Retraction_Glitch_Off,
 
 			// Option 1: Standard
 			Retraction_Standard,
@@ -874,6 +879,8 @@ using MasterStyle = Layers<
 			// Option 0: None
 			TrInstant, 
 
+			PreOn_Glowstick,
+
 			PreOn_Faulty_Ignition,
 			PreOn_Faulty_Ignition_Volatile,
 			PreOn_Sparking_Absorb,
@@ -893,7 +900,6 @@ using MasterStyle = Layers<
 			PreOn_Emitter_Heatup,
 			// Option 6: Faulty Ignition
 			PreOn_Faulty_Ignition,
-			PreOn_Faulty_Ignition_Volatile,
 			// Option 7: Faulty Fire Ignition
 			PreOn_Faulty_Ignition_Fire,
 			// Option 8: Erratic
@@ -920,6 +926,24 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_POSTOFF
 	>,
+
+	// Special Ability Toggle effects
+	Special_ToggleFlash<EFFECT_USER1, Green>,
+	Special_ToggleFlash<EFFECT_USER2, Red>,
+	Special_ToggleFlash<EFFECT_USER3, Blue>,
+	Special_ToggleFlash<EFFECT_USER4, Yellow>,
+	Special_ToggleFlash<EFFECT_USER5, Green>,
+	Special_ToggleFlash<EFFECT_USER6, Red>,
+	Special_ToggleFlash<EFFECT_USER7, Blue>,
+	Special_ToggleFlash<EFFECT_USER8, Yellow>,
+	Special_ToggleAudio<EFFECT_USER1>,
+	Special_ToggleAudio<EFFECT_USER2>,
+	Special_ToggleAudio<EFFECT_USER3>,
+	Special_ToggleAudio<EFFECT_USER4>,
+	Special_ToggleAudio<EFFECT_USER5>,
+	Special_ToggleAudio<EFFECT_USER6>,
+	Special_ToggleAudio<EFFECT_USER7>,
+	Special_ToggleAudio<EFFECT_USER8>,
 	
 	// Battery Monitor on Boot
 	BatteryLevelOnBoot,

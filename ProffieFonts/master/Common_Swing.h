@@ -50,7 +50,7 @@ using Swing_Unstable = AlphaL<
 using Swing_UnstableRippple = AlphaL<
 	StripesX<
 		//Int<1000>, 
-		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1500>, Int<1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<1000>, Int<1500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		//Int<-2000>, 
 		SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-1000>, Int<-2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
@@ -301,6 +301,55 @@ using Swing_Static_Electricity = ColorSelect<
 				Int<4000>
 			>
 		>
+	>
+>;
+
+// Rainbow Swing
+using Swing_Rainbow = AlphaL<
+	StyleFire<
+		StripesX<
+			//30000,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<10000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-500>, Int<-1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			BASECOLOR,
+			RotateColorsX<Int<5461>,BASECOLOR>,
+			RotateColorsX<Int<10922>,BASECOLOR>,
+			RotateColorsX<Int<16384>,BASECOLOR>,
+			RotateColorsX<Int<21845>,BASECOLOR>,
+			RotateColorsX<Int<27306>,BASECOLOR>
+		>,
+		COLOR_MIX<
+			P_50,
+			StripesX<
+				//30000,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<10000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-500>, Int<-1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+				BASECOLOR,
+				RotateColorsX<Int<5461>,BASECOLOR>,
+				RotateColorsX<Int<10922>,BASECOLOR>,
+				RotateColorsX<Int<16384>,BASECOLOR>,
+				RotateColorsX<Int<21845>,BASECOLOR>,
+				RotateColorsX<Int<27306>,BASECOLOR>
+			>
+		>,
+		0,
+		4
+	>,
+	Scale<
+		Scale<
+			IsGreaterThan<
+				//SwingSpeed<SWING_SPEED_DEFAULT>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<0>, Int<32768>, Int<1000>, Int<2000>, Int<2000>, Int<4000>>,
+				Int<8192>
+			>,
+			Int<0>,
+			Sum<
+				SwingSpeed<SWING_SPEED_DEFAULT>,
+				Int<-8192>
+			>
+		>,
+		Int<0>,
+		Int<32768>
 	>
 >;
 
@@ -984,7 +1033,7 @@ using Swing_Force_Rage_Lightning = TransitionEffectL<
 // Force Heating
 using Swing_Force_Heat = EffectSequence<
 	EFFECT_FORCE,
-	TRANSPARENT,
+	// On
 	AlphaL<
 		Mix<
 			SWING_SPEED_LESS_THAN<SWING_SPEED_DEFAULT>,
@@ -997,5 +1046,7 @@ using Swing_Force_Heat = EffectSequence<
 			Int<0>,
 			Int<32768>
 		>
-	>
+	>,
+	// Off
+	TRANSPARENT
 >;

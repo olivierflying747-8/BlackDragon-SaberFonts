@@ -1,87 +1,135 @@
 // ================================ SPECIAL ABILITY EFFECTS ===========================
 
 // Special Ability Visual Signals
-using Specials_Flashes = Layers<
+template<BladeEffectType EFFECTTYPE, class COLOR>
+using Special_ToggleFlash = TransitionEffectL<
+	TrConcat<
+		TrFade<100>, 
+		COLOR,
+		TrFade<100>
+	>, 
+	EFFECTTYPE
+>;
 
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER1
+// Specials Audio
+template<BladeEffectType EFFECTTYPE>
+using Special_ToggleAudio = TransitionEffectL<
+	TrDoEffectAlwaysX<
+		TrInstant,
+		EFFECT_TRANSITION_SOUND,
+		Int<0>, // tr.wav
+		Int<-1>
 	>,
+	EFFECTTYPE
+>;
 
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER2
+// Special Ability 1: Next Phase
+template<BladeEffectType EFFECTTYPE>
+using Special_Phase_Next = TransitionEffectL<
+	TrDoEffectAlwaysX<
+		TrInstant,
+		EFFECT_ALT_SOUND,
+		ModF<
+			Sum<
+				AltF,
+				Int<1>
+			>,
+			Int<9>
+		>,
+		Int<-1>
 	>,
-
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER3
+	EFFECTTYPE
+>;
+	
+// Special Ability 2: Previous Phase
+template<BladeEffectType EFFECTTYPE>
+using Special_Phase_Previous = TransitionEffectL<
+	TrDoEffectAlwaysX<
+		TrInstant,
+		EFFECT_ALT_SOUND,
+		ModF<
+			Sum<
+				AltF,
+				Int<-1>
+			>,
+			Int<9>
+		>,
+		Int<-1>
 	>,
-
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER4
+	EFFECTTYPE
+>;
+	
+// Special Ability 3: Random Phase
+template<BladeEffectType EFFECTTYPE>
+using Special_Phase_Random = TransitionEffectL<
+	TrDoEffectAlwaysX<
+		TrInstant,
+		EFFECT_ALT_SOUND,
+		ModF<
+			Sum<
+				AltF,
+				Scale<
+					RandomF,
+					Int<1>,
+					Int<8>
+				>
+			>,
+			Int<9>
+		>,
+		Int<-1>
 	>,
-
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER5
+	EFFECTTYPE
+>;
+	
+// Special Ability 4: Swing Phase Random
+template<BladeEffectType EFFECTTYPE>
+using Special_Phase_Swing = Layers <
+	TransitionPulseL<
+		TrSelect<
+			IncrementModuloF<
+				EffectPulseF<EFFECT_USER4>,
+				Int<2>
+			>,
+			TrInstant,
+			TrDoEffectX<
+				TrInstant,
+				EFFECT_ALT_SOUND,
+				ModF<
+					Sum<
+						AltF,
+						Scale<
+							RandomF,
+							Int<1>,
+							Int<8>
+						>
+					>,
+					Int<9>
+				>,
+				Int<-1>
+			>
+		>,
+		ThresholdPulseF<
+			SwingSpeed<320>,
+			Int<31000>
+		>
 	>,
-
 	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER6
-	>,
-
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER7
-	>,
-
-	TransitionEffectL<
-		TrConcat<
-			TrFade<100>, 
-			Green, 
-			TrFade<100>
-		>, 
-		EFFECT_USER8
+		TrDoEffectX<
+			TrInstant,
+			EFFECT_TRANSITION_SOUND,
+			Int<0>,
+			Int<-1>
+		>,
+		EFFECTTYPE
 	>
 >;
 
 // Force Pulse
-using Special4_Rain = Layers<
-	// USER 4 RAIN EFFECT??
+template<BladeEffectType EFFECTTYPE>
+using Special_Rain = Layers<
 	ColorSelect<
 		EffectIncrementF<
-			EFFECT_USER4,
+			EFFECTTYPE,
 			Int<2>
 		>,
 		TrFade<100>,
@@ -98,6 +146,6 @@ using Special4_Rain = Layers<
 			EFFECT_SOUND_LOOP,
 			0 // trloop.wav
 		>,
-		EFFECT_USER4
+		EFFECTTYPE
 	>
 >;

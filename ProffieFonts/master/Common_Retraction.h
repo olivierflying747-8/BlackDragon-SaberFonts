@@ -209,3 +209,37 @@ using Retraction_Disassemble = TrConcat<
 		Int<0>
 	>
 >;
+
+// Glowstick Off
+using Retraction_Glowstick = TrConcat<
+	TrInstant,
+	AlphaL<
+		Mix<
+			BlinkingF<
+				Int<360>,
+				Int<100>
+			>,
+			Rgb<100,200,255>,
+			Sparkle<
+				COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+				RETRACTIONCOLOR,
+				3000,
+				500
+			>
+		>,
+		Bump<
+			Int<16384>,
+			Scale<
+				Trigger<
+					EFFECT_RETRACTION,
+					Int<3000>,
+					Int<1>,
+					Int<3000>
+				>,
+				Int<65536>,
+				Int<0>
+			>
+		>
+	>,
+	TrDelay<3000>
+>;
