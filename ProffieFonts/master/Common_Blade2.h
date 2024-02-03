@@ -229,7 +229,7 @@ using AltStyle_Emitter_Breathe = Mix<
 		Bump<
 			Int<0>,
 			//Int<22000>
-			Percentage<EMITTER_SIZE, 300>
+			Percentage<EMITTER_SIZE, 200>
 		>
 	>
 >;
@@ -245,10 +245,7 @@ using AltStyle_Emitter_Pulse = TransitionLoopL<
 				Int<3000>
 			>
 		>,
-		AlphaL<
-			COLOR,
-			Int<0>
-		>,
+		TRANSPARENT,
 		TrSparkX<
 			COLOR,
 			Scale<
