@@ -4,7 +4,6 @@
 
 #include "Common_Blade.h" // Blade effects, for STYLE_OPTION_ARG
 #include "Common_Blade2.h" // Blade effects, for STYLE_OPTION2_ARG
-//#include "Common_Blade3.h" // Blade effects, for STYLE_OPTION3_ARG
 #include "Common_Swing.h" // Swing effects for SWING_OPTION_ARG
 #include "Common_Blast.h" // Blaster effects
 #include "Common_Lockup.h" // Lockup effects
@@ -38,7 +37,7 @@ Style Options:
 9: Fett263 Smoke Blade style. (Base Color)
 10: Glitchy / Broken blade. (Base Color)
 11: DarkSaber (Base Color, Alt Color)
-12: Electro Staff Blade (Base Color)
+12: Electro Staff Blade (Base Color, Alt Color)
 13: Ghost Buster Blade (Base Color, Alt Color, Alt Color 2)
 14: Smash Blade (Custom Colors)
 15: Fire Blade (Base Color)
@@ -136,8 +135,6 @@ CoolDown Effect Options (Retraction Color):
 2: Power Burst Reverse
 3: Unstable Cool Down Reverse
 4: Bright Humpflicker
-5: Smoke Blade Retraction
-6: Emitter Cooldown (for fonts with no PostOff .wav files) (PostOff Color)
 
 Swing Effect Options (Swing Color):
 0: Disabled
@@ -224,26 +221,9 @@ Melt Effect (Sequential):
 - Intensity Melt
 
 Blast Effect (Randomly Selected) (Blast Color): 
-- Blast Fade (Random)
-- Blast Fade (Sound Based)
-- Blast Wave (Random)
-- Blast Wave (Sound Based)
-- Blast Ripple Fade,
-- Responsive Blast Fade (BladeAngle, Random), 
-- Responsive Blast Fade (BladeAngle, Sound Based), 
-- Responsive Blast Wave (BladeAngle, Random), 
-- Responsive Blast Wave (BladeAngle, Sound Based), 
-- Responsive Blast Ripple Fade (BladeAngle)
-- Responsive Blast Fade (SwingSpeed, Random),
-- Responsive Blast Fade (SwingSpeed, Sound Based),
-- Responsive Blast Wave (SwingSpeed, Random),
-- Responsive Blast Wave (SwingSpeed, Sound Based),
-- Responsive Blast Ripple Fade (SwingSpeed)
-- Responsive Blast Fade (TwistAngle, Random),
-- Responsive Blast Fade (TwistAngle, Sound Based),
-- Responsive Blast Wave (TwistAngle, Random),
-- Responsive Blast Wave (TwistAngle, Sound Based),
-- Responsive Blast Ripple Fade (TwistAngle)
+- Responsive Blast Fade (Random), 
+- Responsive Blast Wave (Random), 
+- Responsive Blast Ripple Fade (Random)
 
 Clash Effect (Sequential): 
 - Real Clash V1
@@ -383,7 +363,7 @@ using MasterStyle = Layers<
 		// Option 2: RandomFlicker (ALTCOLOR3)
 		AltStyle_RandomFlicker<ALTCOLOR3>,
 		// Option 3: Blinking
-		AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<750>, Int<500>, Int<1200>>,
+		AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<500>, Int<800>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
 		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
@@ -526,11 +506,7 @@ using MasterStyle = Layers<
 			// Option 3: Power Burst Reverse
 			PowerDown_Unstable_Reverse,
 			// Option 4: Fett263 Bright Humpflicker retraction effect
-			PowerDown_Bright_Hump,
-			// Option 5: Smoke Blade Retraction, //Emitter Cooldown
-			PowerDown_Smoke_Reverse,
-			// Option 6: Postoff Cooldown, for fonts with no PostOff#.wav files
-			PostOff_EmitterCoolOff
+			PowerDown_Bright_Hump
 		>,
 		EFFECT_RETRACTION
 	>,

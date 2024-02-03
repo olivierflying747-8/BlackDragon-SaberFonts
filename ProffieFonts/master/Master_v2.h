@@ -4,7 +4,6 @@
 
 #include "Common_Blade.h" // Blade effects, for STYLE_OPTION_ARG
 #include "Common_Blade2.h" // Blade effects, for STYLE_OPTION2_ARG
-//#include "Common_Blade3.h" // Blade effects, for STYLE_OPTION3_ARG
 #include "Common_Swing.h" // Swing effects for SWING_OPTION_ARG
 #include "Common_Blast.h" // Blaster effects
 #include "Common_Lockup.h" // Lockup effects
@@ -120,8 +119,6 @@ CoolDown Effect Options (Retraction Color):
 2: Power Burst Reverse
 3: Unstable Cool Down Reverse
 4: Bright Humpflicker
-5: Smoke Blade Retraction
-6: Emitter Cooldown (for fonts with no PostOff .wav files) (PostOff Color)
 
 Swing Effect Options (Swing Color):
 0: Disabled
@@ -134,9 +131,10 @@ Swing Effect Options (Swing Color):
 7: Bright Edge (Responsive)
 8: Pixilate
 9: Lightning
-10: Clash Buildup, Lockup Release
+10: Rainbow
+11: Clash Buildup, Lockup Release
 // Force Effects
-11: Interactive Power Buildup (Force Toggle)
+12: Interactive Power Buildup (Force Toggle)
 13: Force Pulse
 
 Preon Effect Options (PreOn Color): 
@@ -177,8 +175,6 @@ Blast Effect (Randomly Selected) (Blast Color):
 Clash Effect: Real Clash V1
 
 Battery Level: Hilt Location (Green to Red) on Boot/FontChange/BatteryLevel
-
-//Volume Level: Blade Light (White)
 
 Power Save: 10% Increment
 */
@@ -337,6 +333,8 @@ using MasterStyle = Layers<
 		Swing_Pixilate,
 		// Option 9: Lightning
 		Swing_Lightning,
+		// Option 10: Rainbow
+		Swing_Rainbow,
 		// Option 10: Clash Buildup
 		Swing_Clash_BuildUp,
 		// Option 11: Interactive Power Buildup (Force Toggle)
@@ -390,17 +388,13 @@ using MasterStyle = Layers<
 			// Option 3: Power Burst Reverse
 			PowerDown_Unstable_Reverse,
 			// Option 4: Fett263 Bright Humpflicker retraction effect
-			PowerDown_Bright_Hump,
-			// Option 5: Smoke Blade Retraction, //Emitter Cooldown
-			PowerDown_Smoke_Reverse,
-			// Option 6: Postoff Cooldown, for fonts with no PostOff#.wav files
-			PostOff_EmitterCoolOff
+			PowerDown_Bright_Hump
 		>,
 		EFFECT_RETRACTION
 	>,
 
 	// Special Abiltiies
-	Special4_Rain,
+	Special_Rain<EFFECT_USER4>,
 	
 	// Multi blast effect
 	MultiTransitionEffectL<

@@ -58,20 +58,3 @@ using PowerDown_Bright_Hump = TrConcat<
 		Percentage<WavLen<EFFECT_RETRACTION>, 125>
 	>
 >;
-
-// Smoke Blade Fade
-using PowerDown_Smoke_Reverse = TrConcat <
-	TRANSITION_DELAY<RETRACTION_TIME, RETRACTION_DELAY>,
-	TrWipeInX<RETRACTION_TIME>,
-	// Is this color even needed? does it even work?
-//	/*
-	AlphaL<
-		BaseStyle_SmokeBlade, //Green,
-		Bump<
-			Int<0>,
-			Int<16384>
-		>
-	>,
-//	*/
-	TrFade<2000>
->;
