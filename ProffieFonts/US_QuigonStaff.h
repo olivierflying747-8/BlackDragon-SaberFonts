@@ -149,7 +149,7 @@ tracks
 082_AncientSaber
 083_OneXWing
 084_GreyAssassin
-085_Qui-Gon
+085_Quis-Gone
 086_TheSurvivor
 087_TinyDroid
 088_ThunderGod
@@ -503,8 +503,8 @@ Preset presets[] = {
 		() //, "greyassassin"
 	},
 
-	// Qui-gon Jinn by Kyberphonic
-	{ "085_Qui-Gon;common","tracks/Fates.wav",
+	// Qui's-Gone by KSith
+	{ "085_Quis-Gone;common","tracks/Fates.wav",
 		StylePtr <MasterStyle>
 		() //, "ginn"
 	},
