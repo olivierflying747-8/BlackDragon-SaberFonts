@@ -745,7 +745,11 @@ using PreOn_Glowstick = TrConcat <
 								Int<16384>
 							>,
 							Int<1>,
-							Int<3000>
+							//Int<3000>
+							Mult<
+								WavLen<EFFECT_PREON>,
+								Int<4098>
+							>
 						>,
 						Int<0>,
 						Int<50000>
@@ -804,7 +808,13 @@ using PreOn_Glowstick = TrConcat <
 		Int<32768>
 	>,
 	TrDelayX<
-		WavLen<EFFECT_PREON>
+		Sum<
+			WavLen<EFFECT_PREON>,
+			Mult<
+				WavLen<EFFECT_PREON>,
+				Int<4098>
+			>
+		>
 	>
 >;
 
