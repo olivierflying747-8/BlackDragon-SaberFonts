@@ -515,6 +515,7 @@ using MasterStyle = Layers<
 	//EFFECT_USER1: Lockup Selection : 0 = Normal, 1 = Clash / Lockup Shield Toggle(DUNE Shield), 2 = Dual Lockup(Two Independent Lockup Humps)
 	//EFFECT_USER3: Force Lightning Toggle(Replaces Lightning Block)
 	Special_Rain<EFFECT_USER4>,
+	//Special_Fireflies<EFFECT_USER3>,
 	Special_Phase_Next<EFFECT_USER3>,
 	//Special_Phase_Previous<EFFECT_USER8>,
 	
@@ -855,32 +856,28 @@ using MasterStyle = Layers<
 			// Option 0: None
 			TrInstant, 
 
-			PreOn_Glowstick,
-
-			PreOn_Faulty_Ignition,
-			PreOn_Faulty_Ignition_Volatile,
-			PreOn_Sparking_Absorb,
 			PreOn_Seismic_Charge,
 			PreOn_Force_Drain,
-
 
 			// Option 1:  Overload
 			PreOn_Overload,
 			// Option 2: Sparking
 			PreOn_Sparking,
-			// Option 3: Broken Ignition
-			PreOn_Broken_Ignition,
-			// Option 4: Emitter Warm up
-			PreOn_Emitter_Warmup,
-			// Option 5: Emitter Heat up
-			PreOn_Emitter_Heatup,
-			// Option 6: Faulty Ignition
-			PreOn_Faulty_Ignition,
-			// Option 7: Faulty Fire Ignition
+			// Option 3: Emitter Warm up
+			PreOn_Emitter_Warmup, //PreOn_Emitter_Heatup,
+			// Option 4: Faulty Ignition
+			PreOn_Faulty_Ignition, //PreOn_Faulty_Ignition_Volatile,
+			// Option 5: Faulty Fire Ignition
 			PreOn_Faulty_Ignition_Fire,
-			// Option 8: Erratic
+			// Option 6: Erratic
 			PreOn_Erratic,
-			// Option 9: Dim Pre-Blade Extension
+			// Option 7: Sparking Absorb
+			PreOn_Sparking_Absorb,
+			// Option 8: Force Drain
+			PreOn_Force_Drain,
+			// Option 9: Glowstick
+			PreOn_Glowstick,
+			// Option 10: Dim Pre-Blade Extension
 			PreOn_Dim_Blade
 		>, 
 		EFFECT_PREON
@@ -904,14 +901,14 @@ using MasterStyle = Layers<
 	>,
 
 	// Special Ability Toggle effects
-	Special_ToggleFlash<EFFECT_USER1, Green>,
-	Special_ToggleFlash<EFFECT_USER2, Red>,
-	Special_ToggleFlash<EFFECT_USER3, Blue>,
-	Special_ToggleFlash<EFFECT_USER4, Yellow>,
-	Special_ToggleFlash<EFFECT_USER5, Green>,
-	Special_ToggleFlash<EFFECT_USER6, Red>,
-	Special_ToggleFlash<EFFECT_USER7, Blue>,
-	Special_ToggleFlash<EFFECT_USER8, Yellow>,
+	//Special_ToggleFlash<EFFECT_USER1, Green>,
+	//Special_ToggleFlash<EFFECT_USER2, Red>,
+	//Special_ToggleFlash<EFFECT_USER3, Blue>,
+	//Special_ToggleFlash<EFFECT_USER4, Yellow>,
+	//Special_ToggleFlash<EFFECT_USER5, Green>,
+	//Special_ToggleFlash<EFFECT_USER6, Red>,
+	//Special_ToggleFlash<EFFECT_USER7, Blue>,
+	//Special_ToggleFlash<EFFECT_USER8, Yellow>,
 	Special_ToggleAudio<EFFECT_USER1>,
 	Special_ToggleAudio<EFFECT_USER2>,
 	Special_ToggleAudio<EFFECT_USER3>,

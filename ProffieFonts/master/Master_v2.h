@@ -141,9 +141,9 @@ Preon Effect Options (PreOn Color):
 0: Disabled
 1: Overload
 2: Sparking
-3: Broken Ignition
-4: Emitter Warm up
-5: Faulty Ignition
+3: Emitter Warm up
+4: Faulty Ignition
+5: Sparking Absorb
 6: Blade Pre-Light up
 
 PostOff Effect Options (PostOff Color):
@@ -604,12 +604,12 @@ using MasterStyle = Layers<
 			PreOn_Overload,
 			// Option 2: Sparking
 			PreOn_Sparking,
-			// Option 3: Broken Ignition
-			PreOn_Broken_Ignition,
-			// Option 4: Emitter Warm up
+			// Option 3: Emitter Warm up
 			PreOn_Emitter_Warmup,
-			// Option 5: Faulty Ignition
+			// Option 4: Faulty Ignition
 			PreOn_Faulty_Ignition,
+			// Option 5: Sparking Absorb
+			PreOn_Sparking_Absorb,
 			// Option 6: Dim Pre-Blade Extension
 			PreOn_Dim_Blade
 		>, 
