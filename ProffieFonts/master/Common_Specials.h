@@ -11,19 +11,19 @@ using Special_ToggleFlash = TransitionEffectL<
 	EFFECTTYPE
 >;
 
-// Specials Audio
+// Special Ability Audio Signals
 template<BladeEffectType EFFECTTYPE>
 using Special_ToggleAudio = TransitionEffectL<
 	TrDoEffectAlwaysX<
 		TrInstant,
 		EFFECT_TRANSITION_SOUND,
-		Int<0>, // tr.wav
+		Int<0>, // tr00.wav
 		Int<-1>
 	>,
 	EFFECTTYPE
 >;
 
-// Special Ability 1: Next Phase
+// Next Phase
 template<BladeEffectType EFFECTTYPE>
 using Special_Phase_Next = TransitionEffectL<
 	TrDoEffectAlwaysX<
@@ -41,7 +41,7 @@ using Special_Phase_Next = TransitionEffectL<
 	EFFECTTYPE
 >;
 	
-// Special Ability 2: Previous Phase
+// Previous Phase
 template<BladeEffectType EFFECTTYPE>
 using Special_Phase_Previous = TransitionEffectL<
 	TrDoEffectAlwaysX<
@@ -59,7 +59,7 @@ using Special_Phase_Previous = TransitionEffectL<
 	EFFECTTYPE
 >;
 	
-// Special Ability 3: Random Phase
+// Random Phase
 template<BladeEffectType EFFECTTYPE>
 using Special_Phase_Random = TransitionEffectL<
 	TrDoEffectAlwaysX<
@@ -81,7 +81,7 @@ using Special_Phase_Random = TransitionEffectL<
 	EFFECTTYPE
 >;
 	
-// Special Ability 4: Swing Phase Random
+// Swing Phase Random
 template<BladeEffectType EFFECTTYPE>
 using Special_Phase_Swing = Layers <
 	TransitionPulseL<
@@ -124,7 +124,7 @@ using Special_Phase_Swing = Layers <
 	>
 >;
 
-// Force Pulse
+// Rain
 template<BladeEffectType EFFECTTYPE>
 using Special_Rain = Layers<
 	ColorSelect<
@@ -133,8 +133,8 @@ using Special_Rain = Layers<
 			Int<2>
 		>,
 		TrFade<100>,
-		TRANSPARENT,
-		AlphaL<
+		TRANSPARENT, // Off
+		AlphaL< // On
 			OFFCOLOR,
 			SparkleF<300, 800>
 		>
@@ -144,8 +144,44 @@ using Special_Rain = Layers<
 		TrDoEffect<
 			TrInstant,
 			EFFECT_SOUND_LOOP,
-			0 // trloop.wav
+			0 // trloop00.wav
 		>,
 		EFFECTTYPE
+	>
+>;
+
+// TODO: Make this toggle on/off with Special Abilities.
+// Fireflies
+template<BladeEffectType EFFECTTYPE>
+using Special_Fireflies = Layers<
+	ColorSelect<
+		EffectIncrementF<
+			EFFECTTYPE,
+			Int<2>
+		>,
+		TrInstant,
+		TRANSPARENT, // Off
+		TransitionLoopL< // On
+			TrDoEffect<
+				TrDelay<500>,
+				EFFECT_USER8
+			>
+		>
+	>,
+	
+	MultiTransitionEffectL<
+		TrConcat<
+			TrFade<3000>,
+			AlphaL<
+				Yellow,
+				Bump<
+					EffectPosition<>,
+					Int<1000>
+				>
+			>,
+			TrFade<3000>
+		>,
+		EFFECT_USER8,
+		12
 	>
 >;
