@@ -79,25 +79,6 @@ using PreOn_Sparking = TrConcat<
 	TrDelayX<WavLen<EFFECT_PREON>>
 >;
 
-// Broken Ignition
-using PreOn_Broken_Ignition = TrConcat<
-	TrInstant, 
-	AlphaL<
-		RandomPerLEDFlickerL<PREONCOLOR>, 
-		SmoothStep<
-			Scale<
-				NoisySoundLevel, 
-				Int<-10000>, 
-				Int<36000> // Extend as far as tip?
-			>, 
-			Int<-4000> // Start at base of blade.
-		>
-	>, 
-	TrDelayX<
-		WavLen<EFFECT_PREON>
-	>
->;
-
 // Emitter Warmup
 using PreOn_Emitter_Warmup = TrConcat<
 	TrFadeX<
@@ -201,6 +182,27 @@ using PreOn_Emitter_Heatup = TrConcat<
 	TrFade<200>
 >;
 
+/* // Too similar to Faulty_Ignition below
+// Broken Ignition
+using PreOn_Broken_Ignition = TrConcat<
+	TrInstant, 
+	AlphaL<
+		RandomPerLEDFlickerL<PREONCOLOR>, 
+		SmoothStep<
+			Scale<
+				NoisySoundLevel, 
+				Int<-10000>, 
+				Int<36000> // Extend as far as tip?
+			>, 
+			Int<-4000> // Start at base of blade.
+		>
+	>, 
+	TrDelayX<
+		WavLen<EFFECT_PREON>
+	>
+>;
+*/
+
 // Faulty Ignition
 using PreOn_Faulty_Ignition = TrConcat<
 	TrInstant,
@@ -228,7 +230,7 @@ using PreOn_Faulty_Ignition = TrConcat<
 			>,
 			RandomPerLEDFlicker<
 				PREONCOLOR,
-				Rgb<50,50,50>
+				COLOR_MIX<Int<4096>, IGNITIONCOLOR> //Rgb<50,50,50>
 			>,
 			BrownNoiseFlicker<
 				Mix<
@@ -239,7 +241,7 @@ using PreOn_Faulty_Ignition = TrConcat<
 						PREONCOLOR
 					>
 				>,
-				White,
+				COLOR_MIX<Int<16384>, PREONCOLOR, White>,
 				50
 			>
 		>,
@@ -287,7 +289,7 @@ using PreOn_Faulty_Ignition_Volatile = TrConcat<
 				COLOR_MIX<
 					Int<6425>,
 					RotateColorsX<
-						Int<26000>,
+						Int<6000>,
 						PREONCOLOR
 					>
 				>
@@ -297,12 +299,12 @@ using PreOn_Faulty_Ignition_Volatile = TrConcat<
 					NoisySoundLevel,
 					PREONCOLOR,
 					RotateColorsX<
-						Int<26000>,
+						Int<6000>,
 						PREONCOLOR
 					>
 				>,
 				RotateColorsX<
-					Int<21845>,
+					Int<2845>,
 					PREONCOLOR
 				>,
 				50
@@ -479,7 +481,7 @@ using PreOn_Sparking_Absorb = TrConcat<
 						WavLen<EFFECT_PREON>,
 						Int<8>
 					>,
-					Int<32768>
+					Int<0> //BladeAngle<> //Int<32768>
 				>
 			>,
 			SmoothStep<
@@ -504,7 +506,7 @@ using PreOn_Seismic_Charge = TrConcat<
 				Trigger<
 					EFFECT_PREON,
 					Int<800>,
-					Int<2000>,
+					WavLen<EFFECT_PREON>, 	//Int<2000>,
 					Int<500>
 				>,
 				Int<0>,
@@ -729,7 +731,7 @@ using PreOn_Glowstick = TrConcat <
 		Layers<
 			AlphaL<
 				Sparkle<
-					COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+					COLOR_MIX<Int<8192>, PREONCOLOR, White>, //GreenYellow,
 					PREONCOLOR, // Rgb<10,255,0>
 					3000,
 					500
@@ -740,16 +742,10 @@ using PreOn_Glowstick = TrConcat <
 						Trigger<
 							EFFECT_PREON,
 							//Int<10000>,
-							Mult<
-								WavLen<EFFECT_PREON>,
-								Int<16384>
-							>,
+							WavLen<EFFECT_PREON>,
 							Int<1>,
 							//Int<3000>
-							Mult<
-								WavLen<EFFECT_PREON>,
-								Int<4098>
-							>
+							WavLen<EFFECT_PREON>
 						>,
 						Int<0>,
 						Int<50000>
@@ -760,13 +756,13 @@ using PreOn_Glowstick = TrConcat <
 				TrWaveX<
 					Sparkle<
 						TRANSPARENT,
-						COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+						COLOR_MIX<Int<8192>, PREONCOLOR, White>, //GreenYellow,
 						3000,
 						500
 					>,
-					WavLen<EFFECT_PREON>, //Int<20000>,
+					Percentage<WavLen<EFFECT_PREON>, 200>, //Int<20000>,
 					Int<200>,
-					WavLen<EFFECT_PREON> //Int<20000>
+					Percentage<WavLen<EFFECT_PREON>, 200> //Int<20000>
 				>,
 				EFFECT_PREON
 			>,
@@ -784,10 +780,7 @@ using PreOn_Glowstick = TrConcat <
 								Int<500>
 							>,
 							//Int<10000>,
-							Mult<
-								WavLen<EFFECT_PREON>,
-								Int<16384>
-							>,
+							WavLen<EFFECT_PREON>,
 							Int<0>
 						>,
 						Int<500>
@@ -799,7 +792,7 @@ using PreOn_Glowstick = TrConcat <
 			TransitionEffectL<
 				TrConcat<
 					TrInstant,
-					COLOR_MIX<Int<10000>, PREONCOLOR, White>, //GreenYellow,
+					COLOR_MIX<Int<8192>, PREONCOLOR, White>, //GreenYellow,
 					TrDelay<15>
 				>,
 				EFFECT_PREON
@@ -808,13 +801,7 @@ using PreOn_Glowstick = TrConcat <
 		Int<32768>
 	>,
 	TrDelayX<
-		Sum<
-			WavLen<EFFECT_PREON>,
-			Mult<
-				WavLen<EFFECT_PREON>,
-				Int<4098>
-			>
-		>
+		Percentage<WavLen<EFFECT_PREON>, 200>
 	>
 >;
 
