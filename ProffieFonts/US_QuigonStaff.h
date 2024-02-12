@@ -691,6 +691,18 @@ Preset presets[] = {
 		() //, "alien"
 	},
 
+	// Godzilla by ???
+	{ "118_Godzilla;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "godzilla"
+	},
+
+	// Sebulba by 
+	{ "119_Sebulba;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "sebulba"
+	},
+
 
 
 	//	*/
