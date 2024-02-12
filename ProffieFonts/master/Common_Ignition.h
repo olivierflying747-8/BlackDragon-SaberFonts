@@ -7,16 +7,19 @@ using Ignition_Standard = TrWipeX<
 
 // Dual Mode Wipe (up = fast)
 using Ignition_DualMode = TrWipeX<
-	Scale<
-		IsLessThan<
-			BladeAngle<>, 
-			PERCENTAGE_S<50> //Int<16384>
-		>, 
-		Mult<
-			IGNITION_TIME, 
-			PERCENTAGE_S<50> //Int<16384>
-		>, 
-		IGNITION_TIME
+	BEND_TIME<
+		Scale<
+			IsLessThan<
+				BladeAngle<>, 
+				PERCENTAGE_S<50> //Int<16384>
+			>, 
+			Mult<
+				IGNITION_TIME, 
+				PERCENTAGE_S<50> //Int<16384>
+			>, 
+			IGNITION_TIME
+		>,
+		IGNITION_OPTION2
 	>
 >;
 
@@ -53,15 +56,21 @@ using Ignition_Fade_On = TrFadeX<
 using Ignition_Glitch_On = TrConcat<
 	TrJoin<
 		TrDelayX<
-			Mult<
-				IGNITION_TIME,
-				PERCENTAGE_S<50> //Int<16384>
+			BEND_TIME<
+				Mult<
+					IGNITION_TIME,
+					PERCENTAGE_S<50> //Int<16384>
+				>,
+				IGNITION_OPTION2
 			>
 		>,
 		TrWipeX<
-			Mult<
-				IGNITION_TIME,
-				PERCENTAGE_S<50> //Int<16384>
+			BEND_TIME<
+				Mult<
+					IGNITION_TIME,
+					PERCENTAGE_S<50> //Int<16384>
+				>,
+				IGNITION_OPTION2
 			>
 		>
 	>,
@@ -73,9 +82,12 @@ using Ignition_Glitch_On = TrConcat<
 		IGNITIONCOLOR
 	>,
 	TrWipeX<
-		Mult<
-			IGNITION_TIME,
-			PERCENTAGE_S<50> //Int<16384>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				PERCENTAGE_S<50> //Int<16384>
+			>,
+			IGNITION_OPTION2
 		>
 	>
 >;
@@ -109,14 +121,23 @@ using Ignition_Gravity = TrSelect<
 // Lighting Strike
 using Ignition_LightningStrike = TrConcat<
 	TrWipeInX<
-		Percentage<IGNITION_TIME, 66>
+		BEND_TIME<
+			Percentage<IGNITION_TIME, 66>,
+			IGNITION_OPTION2
+		>
 	>, //200>
 	RandomBlinkX<
-		Percentage<IGNITION_TIME, 10000>, //30000,
+//		BEND_TIME<
+			Percentage<IGNITION_TIME, 10000>, //30000,
+//			IGNITION_OPTION2
+//		>,
 		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrWipeInX<
-		Percentage<IGNITION_TIME, 66>
+		BEND_TIME<
+			Percentage<IGNITION_TIME, 66>,
+			IGNITION_OPTION2
+		>
 	>, //200>,
 	COLOR_MIX<
 		SmoothStep<
@@ -130,7 +151,10 @@ using Ignition_LightningStrike = TrConcat<
 		RotateColorsX<Variation, IGNITIONCOLOR>
 	>,
 	TrDelayX<
-		Percentage<IGNITION_TIME, 130>
+		BEND_TIME<
+			Percentage<IGNITION_TIME, 130>,
+			IGNITION_OPTION2
+		>
 	>, //400>,
 	COLOR_MIX<
 		SmoothStep<
@@ -141,7 +165,10 @@ using Ignition_LightningStrike = TrConcat<
 	>,
 	TrWipeSparkTipX<
 		IGNITIONCOLOR,
-		Percentage<IGNITION_TIME, 58>
+		BEND_TIME<
+			Percentage<IGNITION_TIME, 58>,
+			IGNITION_OPTION2
+		>
 	> //175>
 >;
 
@@ -203,9 +230,12 @@ using Ignition_Assemble = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<100>,
-		Mult<
-			IGNITION_TIME,
-			Int<6554> //20%
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<6554> //20%
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
@@ -219,9 +249,12 @@ using Ignition_Assemble = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<100>,
-		Mult<
-			IGNITION_TIME,
-			Int<6554>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<6554>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
@@ -235,9 +268,12 @@ using Ignition_Assemble = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<100>,
-		Mult<
-			IGNITION_TIME,
-			Int<6554>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<6554>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
@@ -251,9 +287,12 @@ using Ignition_Assemble = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<100>,
-		Mult<
-			IGNITION_TIME,
-			Int<6554>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<6554>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
@@ -267,9 +306,12 @@ using Ignition_Assemble = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<100>,
-		Mult<
-			IGNITION_TIME,
-			Int<6554>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<6554>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>
@@ -280,9 +322,12 @@ using Ignition_Photon = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
@@ -290,63 +335,84 @@ using Ignition_Photon = TrConcat<
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
 	TrSparkX<
 		IGNITIONCOLOR,
 		Int<200>,
-		Mult<
-			IGNITION_TIME,
-			Int<4096>
+		BEND_TIME<
+			Mult<
+				IGNITION_TIME,
+				Int<4096>
+			>,
+			IGNITION_OPTION2
 		>,
 		Int<32768>
 	>,
