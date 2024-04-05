@@ -12,12 +12,12 @@ using Special_ToggleFlash = TransitionEffectL<
 >;
 
 // Special Ability Audio Signals
-template<BladeEffectType EFFECTTYPE>
+template<BladeEffectType EFFECTTYPE, int WAVNUM = 0>
 using Special_ToggleAudio = TransitionEffectL<
 	TrDoEffectAlwaysX<
 		TrInstant,
 		EFFECT_TRANSITION_SOUND,
-		Int<0>, // tr00.wav
+		Int<WAVNUM>, // tr00.wav
 		Int<-1>
 	>,
 	EFFECTTYPE
@@ -87,7 +87,7 @@ using Special_Phase_Swing = Layers <
 	TransitionPulseL<
 		TrSelect<
 			IncrementModuloF<
-				EffectPulseF<EFFECT_USER4>,
+				EffectPulseF<EFFECTTYPE>,
 				Int<2>
 			>,
 			TrInstant,
@@ -125,8 +125,9 @@ using Special_Phase_Swing = Layers <
 >;
 
 // Rain
-template<BladeEffectType EFFECTTYPE>
+template<BladeEffectType EFFECTTYPE, int WAVNUM = 0>
 using Special_Rain = Layers<
+	// Rain Sparkle
 	ColorSelect<
 		EffectIncrementF<
 			EFFECTTYPE,
@@ -139,18 +140,70 @@ using Special_Rain = Layers<
 			SparkleF<300, 800>
 		>
 	>,
-	// USER 4 SOUND EFFECT
+	// Lightning Flash
+	ColorSelect<
+		EffectIncrementF<
+			EFFECTTYPE,
+			Int<2>
+		>,
+		TrFade<100>,
+		TRANSPARENT, // Off 
+		TransitionLoopL< // On
+			TrConcat<
+				TrDelayX<
+					Scale<
+						SlowNoise<Int<100>>,
+						Int<1000>,
+						Int<8000>
+					>
+				>,
+				TRANSPARENT,
+				TrSelect<
+					EffectIncrementF<
+						EFFECTTYPE,
+						Int<2>
+					>,
+					TrInstant,
+					TrConcat<
+						TrDoEffect<
+							TrInstant,
+							EFFECT_TRANSITION_SOUND,
+							WAVNUM // tr00.wav
+						>,
+						BrownNoiseFlickerL<
+							White,
+							Int<200>
+						>,
+						TrRandom<
+							TrBoingX<
+								WavLen<EFFECT_TRANSITION_SOUND>,
+								2
+							>,
+							TrBoingX<
+								WavLen<EFFECT_TRANSITION_SOUND>,
+								3
+							>,
+							TrBoingX<
+								WavLen<EFFECT_TRANSITION_SOUND>,
+								4
+							>
+						>
+					>
+				>
+			>
+		>
+	>,
+	// Rain Sound
 	TransitionEffectL<
 		TrDoEffect<
 			TrInstant,
 			EFFECT_SOUND_LOOP,
-			0 // trloop00.wav
+			WAVNUM // trloop00.wav
 		>,
 		EFFECTTYPE
 	>
 >;
 
-// TODO: Make this toggle on/off with Special Abilities.
 // Fireflies
 template<BladeEffectType EFFECTTYPE>
 using Special_Fireflies = Layers<
@@ -161,27 +214,28 @@ using Special_Fireflies = Layers<
 		>,
 		TrInstant,
 		TRANSPARENT, // Off
-		TransitionLoopL< // On
-			TrDoEffect<
-				TrDelay<500>,
-				EFFECT_USER8
-			>
-		>
-	>,
-	
-	MultiTransitionEffectL<
-		TrConcat<
-			TrFade<3000>,
-			AlphaL<
-				Yellow,
-				Bump<
-					EffectPosition<>,
-					Int<1000>
+		Layers<
+			TransitionLoopL< // On
+				TrDoEffect<
+					TrDelay<500>,
+					EFFECT_USER8
 				>
 			>,
-			TrFade<3000>
-		>,
-		EFFECT_USER8,
-		12
+			MultiTransitionEffectL<
+				TrConcat<
+					TrFade<3000>,
+					AlphaL<
+						Yellow,
+						Bump<
+							EffectPosition<>,
+							Int<1000>
+						>
+					>,
+					TrFade<3000>
+				>,
+				EFFECT_USER8,
+				24
+			>
+		>
 	>
 >;
