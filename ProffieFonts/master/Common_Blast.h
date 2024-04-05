@@ -81,7 +81,78 @@ using Blast_Blaster_Shot = TrWaveX<
 	Int<0>
 >;
 
+// ================================ BLAST CONTROLLERS ===========================
 
+// Interactive Blast
+template<BladeEffectType EFFECTTYPE, class TIMEOUT = Int<1000>>
+using Blast_Interactive_Control = Layers<
+	TransitionEffectL<
+		TrSelect<
+			EffectIncrementF<
+				EFFECTTYPE,
+				Int<2>
+			>,
+			TrConcat<
+				TrDelay<100>,
+				TRANSPARENT,
+				TrDoEffect<
+					TrInstant,
+					EFFECT_GAME_CHOICE
+				>
+			>,
+			TrInstant
+		>,
+		EFFECT_INTERACTIVE_BLAST
+	>,
+	// Interactive Blast Random
+	TransitionEffectL<
+		TrSelect<
+			EffectIncrementF<
+				EFFECTTYPE,
+				Int<2>
+			>,
+			TrConcat<
+				TrExtendX<
+					Sum<
+						WavLen<EFFECT_INTERACTIVE_BLAST>,
+						TIMEOUT
+					>,
+					TrInstant
+				>,
+				TransitionPulseL<
+					TrDoEffect<
+						TrInstant,
+						EFFECT_BLAST
+					>,
+					ThresholdPulseF<
+						SwingSpeed<300>,
+						Int<16000>
+					>
+				>,
+				TrConcat<
+					TrDelay<150>,
+					TrRandom<
+						TrInstant,
+						TrDoEffect<
+							TrInstant,
+							EFFECT_INTERACTIVE_BLAST
+						>,
+						TrDoEffect<
+							TrInstant,
+							EFFECT_INTERACTIVE_BLAST
+						>,
+						TrDoEffect<
+							TrInstant,
+							EFFECT_INTERACTIVE_BLAST
+						>
+					>
+				>
+			>,
+			TrInstant
+		>,
+		EFFECT_GAME_CHOICE
+	>
+>;
 
 
 
