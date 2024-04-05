@@ -308,8 +308,8 @@ using Swing_Static_Electricity = ColorSelect<
 using Swing_Rainbow = AlphaL<
 	StyleFire<
 		StripesX<
-			//30000,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<10000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			//Int<30000>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<20000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-500>, Int<-1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 			BASECOLOR,
 			RotateColorsX<Int<5461>,BASECOLOR>,
@@ -321,9 +321,9 @@ using Swing_Rainbow = AlphaL<
 		COLOR_MIX<
 			P_50,
 			StripesX<
-				//30000,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<10000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-500>, Int<-1000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+				//Int<30000>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<30000>, Int<20000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-250>, Int<-500>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 				BASECOLOR,
 				RotateColorsX<Int<5461>,BASECOLOR>,
 				RotateColorsX<Int<10922>,BASECOLOR>,
@@ -335,21 +335,17 @@ using Swing_Rainbow = AlphaL<
 		0,
 		4
 	>,
-	Scale<
+	ChangeSlowly<
 		Scale<
 			IsGreaterThan<
 				//SwingSpeed<SWING_SPEED_DEFAULT>,
-				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<0>, Int<32768>, Int<1000>, Int<2000>, Int<2000>, Int<4000>>,
-				Int<8192>
+				SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<0>, Int<32768>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+				Int<16384>
 			>,
 			Int<0>,
-			Sum<
-				SwingSpeed<SWING_SPEED_DEFAULT>,
-				Int<-8192>
-			>
+			Int<32768>
 		>,
-		Int<0>,
-		Int<32768>
+		Int<12228>
 	>
 >;
 
