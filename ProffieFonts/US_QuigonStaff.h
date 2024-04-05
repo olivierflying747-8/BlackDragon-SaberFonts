@@ -5,8 +5,8 @@
 #define VOLUME 1700
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 17.0
-#define MOTION_TIMEOUT 60 * 10 * 1000
-#define IDLE_OFF_TIME 60 * 10 * 1000
+#define MOTION_TIMEOUT 60 * 5 * 1000
+#define IDLE_OFF_TIME 60 * 5 * 1000
 #define ENABLE_AUDIO
 #define ENABLE_MOTION
 #define ENABLE_WS2811
@@ -182,8 +182,8 @@ tracks
 115_SailorMoon
 116_JurassicPark
 117_Alien
-118_
-119_
+118_Godzilla
+119_Sebulba
 120_
 
 */
@@ -213,7 +213,7 @@ Preset presets[] = {
 		() //, "blue"
 	},
 
-//	/*
+	/*
 	{ "002_GREEN;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
 		() //, "green"

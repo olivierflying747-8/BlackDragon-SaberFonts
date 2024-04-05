@@ -42,12 +42,15 @@ Style Options:
 14: Smash Blade (Custom Colors)
 15: Fire Blade (Base Color)
 16: Coda blade style w/ swing effects. (Base Color, Alt Color, Alt Color 2)
-17: Fire Pulse Blade (Interactive)
-18: Static Electricty
-19: Lava Lamp
-20: Omni Blade (All Colors)
-21: Rainbow Stripes (All Colors)
-22: Rainbow Fire (All Colors)
+17: Fire Pulse Blade (Interactive, Base Color)
+18: Static Electricty (Base Color)
+19: Lava Lamp (Base Color)
+20: Water Blade (Base Color)
+21: Glowstick (Base Color, Alt Color)
+22: Rotoscope (Base Color)
+23: Omni Blade (All Colors)
+24: Rainbow Stripes (All Colors)
+25: Rainbow Fire (All Colors)
 
 --Effects Included--
 STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
@@ -127,7 +130,9 @@ Retraction Effect Options (Retraction Color):
 8: Glitch Off
 9: Gravity Retraction
 10: Disassemble
-11: Metal Forge Cooldown
+11: Blink Off
+12: Glowstick
+13: Metal Forge Cooldown
 
 CoolDown Effect Options (Retraction Color):
 0: Disabled
@@ -167,13 +172,15 @@ Preon Effect Options (PreOn Color):
 0: Disabled
 1: Overload
 2: Sparking
-3: Broken Ignition
-4: Emitter Warm up
-5: Emitter Heat up
-6: Faulty Ignition
-7: Faulty Fire Ignition
+3: Emitter Warm up
+4: Faulty Ignition
+5: Faulty Fire Ignition
+6: Sparking Absorb
+7: Force Drain
 8: Erratic
-9: Blade Pre-Light up
+9: Glowstick
+10: Seismic Charge
+11: Blade Pre-Light up
 
 PostOff Effect Options (PostOff Color):
 0: Disabled
@@ -182,14 +189,14 @@ PostOff Effect Options (PostOff Color):
 3: Emitter Glow
 
 Special Abilities:
-USER1: Lockup Selection: 0 = Normal, 1 = Clash/Lockup Shield Toggle (DUNE Shield), 2 = Dual Lockup (Two Independent Lockup Humps)
-USER2: 
-USER3: Force Lightning Toggle (Replaces Lightning Block)
-USER4: Rain Toggle (Off Color)
-USER5: Blaster mode?
-USER6:
-USER7: Next Phase?
-USER8: Previous Phase?
+USER1: Lockup Selection: 0 = Normal, 1 = Clash/Lockup Shield Toggle (DUNE Shield), 2 = Dual Lockup (Two Independent Lockup Humps)			//Hold PWR + Turn Right (parallel or up) = Special Ability 1 (USER1)
+USER2:																																		//Hold PWR + Turn Left (parallel or up) = Special Ability 2 (USER2)
+USER3: Force Lightning Toggle (Replaces Lightning Block)																					//Hold PWR + Turn Right (pointing down) = Special Ability 3 (USER3)
+USER4: Rain Toggle (Off Color)																												//Hold PWR + Turn Left (pointing down) = Special Ability 4 (USER4)
+USER5: Blaster mode?																														//Hold PWR + Turn Right (parallel or up) = Special Ability 5 (USER5)
+USER6:																																		//Hold PWR + Turn Left (parallel or up) = Special Ability 6 (USER6)
+USER7: Next Phase?																															//Hold PWR + Turn Right (pointing down) = Special Ability 7 (USER7)
+USER8: Previous Phase?																														//Hold PWR + Turn Left (pointing down) = Special Ability 8 (USER8)
 
 Lockup Effects (Sequential): 
 - Intensity Lockup
@@ -244,18 +251,14 @@ using MasterStyle = Layers<
 		IntArg<STYLE_OPTION_ARG, 0>, 
 		TrInstant, 
 
-		BaseStyle_Rotoscope_Responsive,
+		BaseStyle_Static,
 
 		BaseStyle_Survivor,
-
-		BaseStyle_Glowstick,
 
 		// Option 12: Fire Blade with Swing Speed and Fire Tip (BASECOLOR)
 		BaseStyle_FireTipBlade,
 		// Option 13: blablabla
 		BaseStyle_FireTipBase,
-		// Option 14: Water Blade
-		BaseStyle_WaterBlade,
 
 
 		// Option 0: Static Color (BASECOLOR)
@@ -293,18 +296,24 @@ using MasterStyle = Layers<
 		BaseStyle_FireBlade,
 		// Option 16: Coda (BASECOLOR, ALTCOLOR, ALTCOLOR2)
 		BaseStyle_CodaBlade,
-		// Option 17: Fireblade Interactive Pulse
+		// Option 17: Fireblade Interactive Pulse (BASECOLOR)
 		BaseStyle_FirePulseInteractive,
-		// Option 18: Static Electricty
+		// Option 18: Static Electricty (BASECOLOR)
 		BaseStyle_StaticElectricity,
-		// Option 19: Lava Lamp
+		// Option 19: Lava Lamp (BASECOLOR)
 		BaseStyle_LavaLamp,
+		// Option 20: Water Blade (BASECOLOR)
+		BaseStyle_WaterBlade,
+		// Option 21: Glowstick (BASECOLOR, ALTCOLOR)
+		BaseStyle_Glowstick,
+		// Option 22: Rotoroscope (BASECOLOR)
+		BaseStyle_Rotoscope_Responsive,
 
-		// Option 20: Omni Blade
+		// Option 23: Omni Blade
 		BaseStyle_Omni_Blade,
-		// Option 21: Rainbow Stripes (All Colors)
+		// Option 24: Rainbow Stripes (All Colors)
 		BaseStyle_Rainbow_Stripes,
-		// Option 22: Rainbow Fire (All Colors)
+		// Option 25: Rainbow Fire (All Colors)
 		BaseStyle_Rainbow_Fire
 	>,
 
@@ -405,8 +414,6 @@ using MasterStyle = Layers<
 		TrInstant, 
 		// Option 0: Disabled
 		TRANSPARENT,
-
-		Swing_Rainbow,
 
 		// Option 1: AudioFlicker
 		Swing_AudioFlicker,
@@ -512,11 +519,11 @@ using MasterStyle = Layers<
 	>,
 
 	// Special Abiltiies
-	//EFFECT_USER1: Lockup Selection : 0 = Normal, 1 = Clash / Lockup Shield Toggle(DUNE Shield), 2 = Dual Lockup(Two Independent Lockup Humps)
+	//EFFECT_USER1: Lockup Selection : 0 = Normal, 1 = Clash / Lockup Shield (DUNE Shield), 2 = Dual Lockup(Two Independent Lockup Humps)
 	//EFFECT_USER3: Force Lightning Toggle(Replaces Lightning Block)
-	Special_Rain<EFFECT_USER4>,
-	//Special_Fireflies<EFFECT_USER3>,
-	Special_Phase_Next<EFFECT_USER3>,
+	Special_Rain<EFFECT_USER4, 0>,
+	Special_Fireflies<EFFECT_USER3>, // Uses SPECIAL 8 for effect triggers
+	Special_Phase_Next<EFFECT_USER7>,
 	//Special_Phase_Previous<EFFECT_USER8>,
 	
 	// Multi blast effect
@@ -545,7 +552,6 @@ using MasterStyle = Layers<
 		EFFECT_BLAST
 	>, 
 	
-	// TODO: Try using ResponsiveClashL < COLOR, TR1, TR2, TOP, BOTTOM, SIZE >
 	// Clash effect
 	EffectSequence<
 		EFFECT_USER1,
@@ -774,6 +780,9 @@ using MasterStyle = Layers<
 		SaberBase::LOCKUP_MELT
 	>,
 	
+	// Interactive Blast, Random
+	Blast_Interactive_Control<EFFECT_USER5, Int<1000>>,
+
 	// In/Out
 	InOutTrL<
 		// Ignition Options
@@ -819,10 +828,6 @@ using MasterStyle = Layers<
 			// Option 0: Instant, for letting PostOff do the work
 			TrInstant, 
 
-			Retraction_Glowstick,
-			Retraction_Blink_Off,
-			Retraction_Glitch_Off,
-
 			// Option 1: Standard
 			Retraction_Standard,
 			// Option 2: Dual Mode
@@ -843,7 +848,11 @@ using MasterStyle = Layers<
 			Retraction_Gravity,
 			// Option 10: Disassemble
 			Retraction_Disassemble,
-			// Option 11: Metal Forge Cooldown
+			// Option 11: Blink off
+			Retraction_Blink_Off,
+			// Option 12: Glow stick
+			Retraction_Glowstick,
+			// Option 13: Metal Forge Cooldown
 			Retraction_Metal_Forge_Cooldown
 		>, 
 		Black
@@ -854,12 +863,9 @@ using MasterStyle = Layers<
 		TrSelect<
 			IntArg<PREON_OPTION_ARG, 0>, 
 			// Option 0: None
-			TrInstant, 
+			TrInstant,
 
-			PreOn_Seismic_Charge,
-			PreOn_Force_Drain,
-
-			// Option 1:  Overload
+			// Option 1: Overload
 			PreOn_Overload,
 			// Option 2: Sparking
 			PreOn_Sparking,
@@ -877,7 +883,9 @@ using MasterStyle = Layers<
 			PreOn_Force_Drain,
 			// Option 9: Glowstick
 			PreOn_Glowstick,
-			// Option 10: Dim Pre-Blade Extension
+			// Optoin 10: Seismic Charge
+			PreOn_Seismic_Charge,
+			// Option 11: Dim Pre-Blade Extension
 			PreOn_Dim_Blade
 		>, 
 		EFFECT_PREON
@@ -909,14 +917,14 @@ using MasterStyle = Layers<
 	//Special_ToggleFlash<EFFECT_USER6, Red>,
 	//Special_ToggleFlash<EFFECT_USER7, Blue>,
 	//Special_ToggleFlash<EFFECT_USER8, Yellow>,
-	Special_ToggleAudio<EFFECT_USER1>,
-	Special_ToggleAudio<EFFECT_USER2>,
-	Special_ToggleAudio<EFFECT_USER3>,
-	Special_ToggleAudio<EFFECT_USER4>,
-	Special_ToggleAudio<EFFECT_USER5>,
-	Special_ToggleAudio<EFFECT_USER6>,
-	Special_ToggleAudio<EFFECT_USER7>,
-	Special_ToggleAudio<EFFECT_USER8>,
+	Special_ToggleAudio<EFFECT_USER1, 1>,
+	Special_ToggleAudio<EFFECT_USER2, 1>,
+	Special_ToggleAudio<EFFECT_USER3, 1>,
+	Special_ToggleAudio<EFFECT_USER4, 1>,
+	Special_ToggleAudio<EFFECT_USER5, 1>,
+	Special_ToggleAudio<EFFECT_USER6, 1>,
+	Special_ToggleAudio<EFFECT_USER7, 1>,
+	//Special_ToggleAudio<EFFECT_USER8>, // Used for Special 3 firefly effect
 	
 	// Battery Monitor on Boot
 	BatteryLevelOnBoot,

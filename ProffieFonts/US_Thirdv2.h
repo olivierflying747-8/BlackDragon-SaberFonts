@@ -5,8 +5,8 @@
 #define VOLUME 2000
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 13.0
-#define MOTION_TIMEOUT 60 * 15 * 1000
-#define IDLE_OFF_TIME 60 * 10 * 1000
+#define MOTION_TIMEOUT 60 * 5 * 1000
+#define IDLE_OFF_TIME 60 * 5 * 1000
 #define ENABLE_AUDIO
 #define ENABLE_MOTION
 #define ENABLE_WS2811
@@ -36,7 +36,9 @@ const unsigned int maxLedsPerStrip = 144;
 #define FETT263_BATTLE_MODE
 #define FETT263_LOCKUP_DELAY 200
 #define FETT263_FORCE_PUSH
+#define FETT263_FORCE_PUSH_LENGTH 5
 #define FETT263_SAY_BATTERY_PERCENT
+#define FETT263_MOTION_WAKE_POWER_BUTTON
 #define FETT263_SPECIAL_ABILITIES //#define FETT263_MULTI_PHASE
 // Edit Mode
 #define FETT263_EDIT_MODE_MENU

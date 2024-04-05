@@ -97,8 +97,7 @@ PowerUp Effect Options (Ignition Color):
 4: Power Burst Emitter
 5: Power Burst Forward
 6: Unstable Power Up Forward
-7: Unstable Bright
-8: Stabalize
+7: Stabalize
 
 Retraction Effect Options (Retraction Color):
 0: Instant
@@ -174,7 +173,7 @@ Blast Effect (Randomly Selected) (Blast Color):
 
 Clash Effect: Real Clash V1
 
-Battery Level: Hilt Location (Green to Red) on Boot/FontChange/BatteryLevel
+Battery Level: Hilt Location (Green to Red) on Boot/BatteryLevel
 
 Power Save: 10% Increment
 */
@@ -368,7 +367,7 @@ using MasterStyle = Layers<
 			// Option 6: Unstable Power Up Forward
 			Powerup_Unstable_Forward,
 			// Option 7: Fett263 Unstable bright ignition effect
-			Powerup_Unstable_Bright_Forward,
+			//Powerup_Unstable_Bright_Forward,
 			// Option 8: Stabilize ignition
 			Powerup_Stabalize
 		>,
@@ -636,7 +635,7 @@ using MasterStyle = Layers<
 	BatteryLevelOnBoot,
 
 	// Battery level on font change
-	BatteryLevelOnFontChange,
+//	BatteryLevelOnFontChange,
 
 	// Battery level
 	BatteryLevelOnDemand,
