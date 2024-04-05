@@ -313,6 +313,60 @@ using BaseStyle_CodaBlade = Mix<
 	>
 >;
 
+
+// Water blade style
+using BaseStyle_WaterBlade = StripesX<
+	Scale<
+		IsLessThan<
+			BladeAngle<>,
+			PERCENTAGE_S<50> //Int<16384>
+		>,
+		Scale<
+			BladeAngle<>,
+			Int<20000>,
+			Int<10000>
+		>,
+		Scale<
+			BladeAngle<>,
+			Int<10000>,
+			Int<20000>
+		>
+	>,
+	Scale<
+		BladeAngle<>,
+		Int<-1000>,
+		Scale<
+			IsGreaterThan<
+				HoldPeakF<
+					SwingAcceleration<>,
+					Scale<
+						HoldPeakF<
+							SwingAcceleration<>,
+							Int<200>,
+							Int<4000>
+						>,
+						Int<100>,
+						Int<600>
+					>,
+					Scale<
+						BladeAngle<>,
+						Int<3000>,
+						Int<6000>
+					>
+				>,
+				PERCENTAGE_S<50> //Int<16384>
+			>,
+			Int<1000>,
+			Int<-1000>
+		>
+	>,
+	BASECOLOR,
+	COLOR_MIX_P<50, BASECOLOR>,
+	COLOR_MIX<Int<10280>, BASECOLOR>,
+	COLOR_MIX<Int<25700>, BASECOLOR>,
+	COLOR_MIX<Int<7710>, BASECOLOR>
+>;
+
 // DarkSaber style
 using BaseStyle_DarkSaber = AudioFlicker<
 	BrownNoiseFlicker<	
@@ -985,59 +1039,6 @@ using BaseStyle_FireTipBase = Layers<
 	>
 >;
 
-// Water blade style
-using BaseStyle_WaterBlade = StripesX<
-	Scale<
-		IsLessThan<
-			BladeAngle<>,
-			PERCENTAGE_S<50> //Int<16384>
-		>,
-		Scale<
-			BladeAngle<>,
-			Int<20000>,
-			Int<10000>
-		>,
-		Scale<
-			BladeAngle<>,
-			Int<10000>,
-			Int<20000>
-		>
-	>,
-	Scale<
-		BladeAngle<>,
-		Int<-1000>,
-		Scale<
-			IsGreaterThan<
-				HoldPeakF<
-					SwingAcceleration<>,
-					Scale<
-						HoldPeakF<
-							SwingAcceleration<>,
-							Int<200>,
-							Int<4000>
-						>,
-						Int<100>,
-						Int<600>
-					>,
-					Scale<
-						BladeAngle<>,
-						Int<3000>,
-						Int<6000>
-					>
-				>,
-				PERCENTAGE_S<50> //Int<16384>
-			>,
-			Int<1000>,
-			Int<-1000>
-		>
-	>,
-	BASECOLOR,
-	COLOR_MIX_P<50, BASECOLOR>,
-	COLOR_MIX<Int<10280>, BASECOLOR>,
-	COLOR_MIX<Int<25700>, BASECOLOR>,
-	COLOR_MIX<Int<7710>, BASECOLOR>
->;
-
 // TODO: Break up into separate pieces? 
 // Static Electricity swing blade
 using BaseStyle_StaticElectricity = Layers<
@@ -1123,6 +1124,46 @@ using BaseStyle_StaticElectricity = Layers<
 	>
 >;
 
+// Responsive Rotoscope
+using BaseStyle_Rotoscope_Responsive = Mix<
+	HoldPeakF<
+		SwingSpeed<250>,
+		Scale<
+			SwingAcceleration<100>,
+			Int<50>,
+			Int<500>
+		>,
+		Scale<
+			SwingAcceleration<>,
+			Int<20000>,
+			Int<10000>
+		>
+	>,
+	Mix<
+		Scale<
+			IsLessThan<
+				SlowNoise<Int<2000>>,
+				Int<18000>
+			>,
+			Int<0>,
+			Int<32768>
+		>,
+		BASECOLOR,
+		StripesX<
+			//Int<12000>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<12000>, Int<8000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+			//Int<-800>,
+			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-800>, Int<-1200>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+
+			BASECOLOR,
+			BASECOLOR,
+			COLOR_MIX<Int<7710>, BASECOLOR>,
+			BASECOLOR,
+			COLOR_MIX<Int<16448>, BASECOLOR>
+		>
+	>,
+	BASECOLOR
+>;
 
 
 
@@ -1184,46 +1225,7 @@ using BaseStyle_Rotoscope_Sequel = RandomFlicker<
 	BASECOLOR
 >;
 
-// Responsive Rotoscope
-using BaseStyle_Rotoscope_Responsive = Mix<
-	HoldPeakF<
-		SwingSpeed<250>,
-		Scale<
-			SwingAcceleration<100>,
-			Int<50>,
-			Int<500>
-		>,
-		Scale<
-			SwingAcceleration<>,
-			Int<20000>,
-			Int<10000>
-		>
-	>,
-	Mix<
-		Scale<
-			IsLessThan<
-				SlowNoise<Int<2000>>,
-				Int<18000>
-			>,
-			Int<0>,
-			Int<32768>
-		>,
-		BASECOLOR,
-		StripesX<
-			//12000,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<12000>, Int<8000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
-			//-800,
-			SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<-800>, Int<-1200>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 
-			BASECOLOR,
-			BASECOLOR,
-			COLOR_MIX<Int<7710>, BASECOLOR>,
-			BASECOLOR,
-			COLOR_MIX<Int<16448>, BASECOLOR>
-		>
-	>,
-	BASECOLOR
->;
 
 // TEST Survivor font, uses USER1 - 4 options to change colors.
 using BaseStyle_Survivor = ColorSelect<
