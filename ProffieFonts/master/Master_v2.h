@@ -234,7 +234,7 @@ using MasterStyle = Layers<
 		// Option 3: Blinking
 		//AltStyle_Blinking<ALTCOLOR2>,
 		// Option 4: Pusling (ALTCOLOR2)
-		AltStyle_Pulsing<ALTCOLOR2>,
+		AltStyle_Pulsing<ALTCOLOR2, SWING_SPEED_DEFAULT, Int<1200>, Int<600>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR2)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR2>,
 		// Option 6: HumpFlicker Random (ALTCOLOR2)
@@ -266,9 +266,9 @@ using MasterStyle = Layers<
 		// Option 2: RandomFlicker (ALTCOLOR3)
 		//AltStyle_RandomFlicker<ALTCOLOR3>,
 		// Option 3: Blinking
-		//AltStyle_Blinking<ALTCOLOR3, 250, Int<750>, Int<500>, Int<1200>>,
+		//AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<500>, Int<800>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
-		AltStyle_Pulsing<ALTCOLOR3, 250, Int<1400>, Int<2000>, Int<500>, Int<4000>>,
+		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<2500>, Int<3500>, Int<-1500>, Int<-2500>>,
 		// Option 6: HumpFlicker Random (ALTCOLOR3)
@@ -278,7 +278,7 @@ using MasterStyle = Layers<
 		// Option 8: Sparkles (ALTCOLOR3)
 		AltStyle_Sparkle<ALTCOLOR3>,
 		// Option 9: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR3)
-		AltStyle_SmokeBlade<ALTCOLOR3, 1>,
+		AltStyle_SmokeBlade<ALTCOLOR3, 2>,
 		// Option 10: Fire (ALTCOLOR2, ALTCOLOR3)
 		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3>,
 		// Option 11: Cylon (ALTCOLOR3)
@@ -393,7 +393,7 @@ using MasterStyle = Layers<
 	>,
 
 	// Special Abiltiies
-	Special_Rain<EFFECT_USER4>,
+	Special_Rain<EFFECT_USER4, 0>,
 	
 	// Multi blast effect
 	MultiTransitionEffectL<
@@ -561,7 +561,7 @@ using MasterStyle = Layers<
 			Ignition_Assemble,
 			// Option 11: Lightning Strike
 			Ignition_LightningStrike,
-			// Option 12: Photon
+			// Option 12: Photon Ignition
 			Ignition_Photon
 		>, 
 		// Retraction Options
@@ -599,7 +599,7 @@ using MasterStyle = Layers<
 			IntArg<PREON_OPTION_ARG, 0>, 
 			// Option 0: None
 			TrInstant, 
-			// Option 1:  Overload
+			// Option 1: Overload
 			PreOn_Overload,
 			// Option 2: Sparking
 			PreOn_Sparking,
@@ -630,6 +630,14 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_POSTOFF
 	>,
+
+	//Special_ToggleAudio<EFFECT_USER1, 1>,
+	//Special_ToggleAudio<EFFECT_USER2, 1>,
+	//Special_ToggleAudio<EFFECT_USER3, 1>,
+	Special_ToggleAudio<EFFECT_USER4, 1>,
+	//Special_ToggleAudio<EFFECT_USER5, 1>,
+	//Special_ToggleAudio<EFFECT_USER6, 1>,
+	//Special_ToggleAudio<EFFECT_USER7, 1>,
 	
 	// Battery Monitor on Boot
 	BatteryLevelOnBoot,
