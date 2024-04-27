@@ -9,7 +9,7 @@ using Swing_AudioFlicker = AlphaL<
 // Sparkle Swing
 using Swing_Sparkle = AlphaL<
 	SparkleL<SWINGCOLOR>,
-	SWING_SPEED_LESS_THAN<SWING_SPEED_DEFAULT>
+	SWING_SPEED_SCLAE<SWING_SPEED_DEFAULT, Int<0>, Int<32768>, Int<500>, Int<1000>, Int<4000>, Int<8000>>
 >;
 
 // Pulsing Swing
