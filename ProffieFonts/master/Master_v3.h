@@ -378,15 +378,15 @@ using MasterStyle = Layers<
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<2500>, Int<3500>, Int<-1500>, Int<-2500>>,
 		// Option 6: HumpFlicker Random (ALTCOLOR3)
-		AltStyle_HumpFlicker_Random<ALTCOLOR3>,
+		AltStyle_HumpFlicker_Random<ALTCOLOR3, 8, SWING_SPEED_DEFAULT, Int<512>, Int<4096>, Int<400>, Int<800>>,
 		// Option 7: Hump Waves (ALTCOLOR3)
-		AltStyle_HumpWave<ALTCOLOR2, ALTCOLOR3>,
+		AltStyle_HumpWave<ALTCOLOR2, ALTCOLOR3, SWING_SPEED_DEFAULT, Int<150>, Int<300>, Int<400>, Int<800>, Int<3000>, Int<7000>>,
 		// Option 8: Sparkles (ALTCOLOR3)
 		AltStyle_Sparkle<ALTCOLOR3>,
 		// Option 9: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR3)
 		AltStyle_SmokeBlade<ALTCOLOR3, 2>,
 		// Option 10: Fire (ALTCOLOR2, ALTCOLOR3)
-		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3>,
+		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3, 3>,
 		// Option 11: Cylon (ALTCOLOR3)
 		AltStyle_Cylon<ALTCOLOR3, 5, -20>,
 		// Option 12: Lightning Flash (ALTCOLOR3)
