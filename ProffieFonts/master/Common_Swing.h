@@ -115,10 +115,9 @@ using Swing_Bright_Edge = AlphaL<
 
 // Pixilate Swing
 using Swing_Pixilate = AlphaL<
-	RandomBlink<
-		10000,
-		SWINGCOLOR,
-		Black
+	RandomBlinkL<
+		Int<10000>,
+		SWINGCOLOR
 	>,
 	SWING_SPEED_LESS_THAN<SWING_SPEED_DEFAULT>
 >;
