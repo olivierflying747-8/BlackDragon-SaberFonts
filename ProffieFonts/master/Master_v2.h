@@ -134,7 +134,6 @@ Swing Effect Options (Swing Color):
 11: Clash Buildup, Lockup Release
 // Force Effects
 12: Interactive Power Buildup (Force Toggle)
-13: Force Pulse
 
 Preon Effect Options (PreOn Color): 
 0: Disabled
@@ -268,19 +267,19 @@ using MasterStyle = Layers<
 		// Option 3: Blinking
 		//AltStyle_Blinking<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<500>, Int<800>, Int<1200>>,
 		// Option 4: Pusling (ALTCOLOR3)
-		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>, Int<500>, Int<1000>, Int<4000>, Int<8000>>,
+		AltStyle_Pulsing<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<1400>, Int<2000>>,
 		// Option 5: BrownNoise Stripes (ALTCOLOR3)
 		AltStyle_BrownNoise_Stripes<ALTCOLOR3, SWING_SPEED_DEFAULT, Int<2500>, Int<3500>, Int<-1500>, Int<-2500>>,
 		// Option 6: HumpFlicker Random (ALTCOLOR3)
 		AltStyle_HumpFlicker_Random<ALTCOLOR3>,
 		// Option 7: Hump Waves (ALTCOLOR3)
-		AltStyle_HumpWave<ALTCOLOR2, ALTCOLOR3>,
+		AltStyle_HumpWave<ALTCOLOR2, ALTCOLOR3, SWING_SPEED_DEFAULT, Int<150>, Int<300>>,
 		// Option 8: Sparkles (ALTCOLOR3)
 		AltStyle_Sparkle<ALTCOLOR3>,
 		// Option 9: Underlying Fett263 Smoke Blade Fire layer (ALTCOLOR3)
 		AltStyle_SmokeBlade<ALTCOLOR3, 2>,
 		// Option 10: Fire (ALTCOLOR2, ALTCOLOR3)
-		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3>,
+		AltStyle_Fire<ALTCOLOR2, ALTCOLOR3, 3>,
 		// Option 11: Cylon (ALTCOLOR3)
 		AltStyle_Cylon<ALTCOLOR3, 5, -20>,
 		// Option 12: Lightning Flash (ALTCOLOR3)
@@ -337,11 +336,11 @@ using MasterStyle = Layers<
 		// Option 10: Clash Buildup
 		Swing_Clash_BuildUp,
 		// Option 11: Interactive Power Buildup (Force Toggle)
-		Swing_Interactive_Power_Buildup,
+		Swing_Interactive_Power_Buildup
 		// Option 12: Interactive Fireball (Force Toggle)
 	//	Swing_Interactive_Fireball,
 		// Option 13: Force Pulse
-		Swing_Force_Pulse
+		//Swing_Force_Pulse
 		// Option 14: Force Aura
 		//Swing_Force_Aura
 		// Option 15: Force Heat
