@@ -45,22 +45,22 @@ using LB_End = TrConcat<
 
 
 // Force Lightning
-using Lockup_Force_Lightning = Stripes<
-	3000,
-	-2000,
-	RandomBlink<
-		30000,
+using Lockup_Force_Lightning = StripesX<
+	Int<3000>,
+	Int<-2000>,
+	RandomBlinkX<
+		Int<30000>,
 		Strobe<
-			Rgb<125,125,225>,
-			RgbArg<LB_COLOR_ARG,Rgb<255,255,255>>,
+			COLOR_MIX_P<50, LBCOLOR, White>, //Rgb<125,125,225>>,
+			White,
 			50,
 			1
 		>,
-		Rgb<75,75,150>
+		COLOR_MIX_P<33, LBCOLOR, White> //Rgb<75,75,150>
 	>,
 	RandomPerLEDFlicker<
-		Rgb<20,20,100>,
-		Rgb<100,100,150>
+		COLOR_MIX_P<20, LBCOLOR, White>, //Rgb<20,20,100>,
+		COLOR_MIX_P<66, LBCOLOR, White> //Rgb<100,100,150>
 	>
 >;
 using Lockup_Force_Lightning_StartEnd = TrWipe<200>;
