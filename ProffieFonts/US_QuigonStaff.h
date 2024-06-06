@@ -206,7 +206,7 @@ Preset presets[] = {
 	},
 	// */
 
-	// /*
+//	 /*
 // Basic Fonts: 6 by Kyberphonic
 	{ "001_BLUE;;common","tracks/fates.wav",
 		StylePtr <MasterStyle>
@@ -701,6 +701,12 @@ Preset presets[] = {
 	{ "119_Sebulba;common", "tracks/",
 		StylePtr <MasterStyle>
 		() //, "sebulba"
+	},
+
+	// Silent Hill by me
+	{ "120_SilentHill;common", "tracks/",
+		StylePtr <MasterStyle>
+		() //, "silenthill"
 	},
 
 
