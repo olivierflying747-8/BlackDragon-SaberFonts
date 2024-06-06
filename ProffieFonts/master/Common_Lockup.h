@@ -553,3 +553,28 @@ using Lockup_End_Full_Absorb = TrConcat<
 
 // Lockup End Shield
 using Lockup_End_Shield = TrFade<400>;
+
+
+// Lockup Start Random
+using Lockup_Start_Random = TrRandom< //TrSequence<
+	// Real Clash v1
+	Lockup_Start_RealClash,
+	// Localized Flicker
+	Lockup_Start_Localized,
+	// Localized Flash/Fade
+	Lockup_Start_Localized_Flash,
+	// Full blade Flash/Fade
+	Lockup_Start_Full_Flash
+>;
+
+// Lockup End Random
+using Lockup_End_Random = TrRandom< //TrSequence<
+	// Real Clash Intensity
+	Lockup_End_Intensity,
+	// Power Burst Wave release
+	Lockup_End_Power_Burst,
+	// Localized Absorb Flash
+	Lockup_End_Localized_Absorb,
+	// Full blade flash
+	Lockup_End_Full_Absorb
+>;

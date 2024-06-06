@@ -67,7 +67,8 @@ STYLE_OPTION2_ARG options: // Secondary Blade Effects while on
 10: Fire (Alt Color, Alt Color 2)
 11: Cylon (Alt Color 2)
 12: Lightning flash (Alt Color 2)
-13: Emitter Tip Flame (Alt Color 2)
+13: Emitter Fade (Alt Color 2)
+14: Blade Tip Flame (Alt Color 2)
 
 STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 0: Disabled
@@ -175,9 +176,9 @@ Preon Effect Options (PreOn Color):
 3: Emitter Warm up
 4: Faulty Ignition
 5: Faulty Fire Ignition
-6: Sparking Absorb
-7: Force Drain
-8: Erratic
+6: Erratic
+7: Sparking Absorb
+8: Force Drain
 9: Glowstick
 10: Seismic Charge
 11: Blade Pre-Light up
@@ -190,8 +191,8 @@ PostOff Effect Options (PostOff Color):
 
 Special Abilities:
 USER1: Lockup Selection: 0 = Normal, 1 = Clash/Lockup Shield Toggle (DUNE Shield), 2 = Dual Lockup (Two Independent Lockup Humps)			//Hold PWR + Turn Right (parallel or up) = Special Ability 1 (USER1)
-USER2:																																		//Hold PWR + Turn Left (parallel or up) = Special Ability 2 (USER2)
-USER3: Force Lightning Toggle (Replaces Lightning Block)																					//Hold PWR + Turn Right (pointing down) = Special Ability 3 (USER3)
+USER2: Force Lightning Toggle (Replaces Lightning Block)																					//Hold PWR + Turn Left (parallel or up) = Special Ability 2 (USER2)
+USER3: Fireflies																															//Hold PWR + Turn Right (pointing down) = Special Ability 3 (USER3)
 USER4: Rain Toggle (Off Color)																												//Hold PWR + Turn Left (pointing down) = Special Ability 4 (USER4)
 USER5: Blaster mode?																														//Hold PWR + Turn Right (parallel or up) = Special Ability 5 (USER5)
 USER6:																																		//Hold PWR + Turn Left (parallel or up) = Special Ability 6 (USER6)
@@ -251,6 +252,7 @@ using MasterStyle = Layers<
 		IntArg<STYLE_OPTION_ARG, 0>, 
 		TrInstant, 
 
+		/*
 		BaseStyle_Static,
 
 		BaseStyle_Survivor,
@@ -259,7 +261,7 @@ using MasterStyle = Layers<
 		BaseStyle_FireTipBlade,
 		// Option 13: blablabla
 		BaseStyle_FireTipBase,
-
+		*/
 
 		// Option 0: Static Color (BASECOLOR)
 		BaseStyle_Static,
@@ -324,8 +326,10 @@ using MasterStyle = Layers<
 		// Option 0 Off
 		TRANSPARENT,
 		
+		/*
 		AltStyle_FireTEST<ALTCOLOR2>,
 		AltStyle_Fire<ALTCOLOR, ALTCOLOR2>,
+		*/
 
 		// Option 1: AudiFlicker (ALTCOLOR2)
 		AltStyle_AudioFilter<ALTCOLOR2>,
@@ -351,7 +355,9 @@ using MasterStyle = Layers<
 		AltStyle_Cylon<ALTCOLOR2, 5, 20>,
 		// Option 12: Lightning flash (ALTCOLOR2)
 		AltStyle_LightningFlash<ALTCOLOR2>,
-		// Option 13: Emitter tip Flame (ALTCOLOR2)
+		// Option 13: Emitter Fade
+		AltStyle_Emitter_Fade<ALTCOLOR2>,
+		// Option 14: Blade Tip Flame (ALTCOLOR2)
 		AltStyle_Blade_Tip_Flame<ALTCOLOR2>
 
 		// Option 4: Random LED Flicker (ALTCOLOR2)
@@ -520,7 +526,7 @@ using MasterStyle = Layers<
 
 	// Special Abiltiies
 	//EFFECT_USER1: Lockup Selection : 0 = Normal, 1 = Clash / Lockup Shield (DUNE Shield), 2 = Dual Lockup(Two Independent Lockup Humps)
-	//EFFECT_USER3: Force Lightning Toggle(Replaces Lightning Block)
+	//EFFECT_USER2: Force Lightning Toggle(Replaces Lightning Block)
 	Special_Rain<EFFECT_USER4, 0>,
 	Special_Fireflies<EFFECT_USER3>, // Uses SPECIAL 8 for effect triggers
 	Special_Phase_Next<EFFECT_USER7>,
@@ -556,30 +562,14 @@ using MasterStyle = Layers<
 	EffectSequence<
 		EFFECT_USER1,
 		// Normal Clash
-		EffectSequence <
-			EFFECT_CLASH,
-			// Real Clash V1
-			Mix<
-				IsLessThan<
-					ClashImpactF<>, 
-					Int<26000>
-				>,
-				// Mix A
-				Clash_RealV1_Base,
-				// Mix B
-				Clash_RealV1_Wave
-			>,
-			// Responsive Wave
-			Clash_RealV1_Wave,
-			// Responsive Ripple
-			Clash_Responsive_Ripple,
-			// Random Clash
-			Clash_Random
-		>,
+		Clash_Sequence,
 		// DUNE Shield
-		Clash_Dune_Shield
+		Clash_Dune_Shield,
+		// Normal Clash
+		Clash_Sequence
 	>,
 
+	/*
 	// Bright flash ripple on CLASH_UPDATE? TEST ME!
 	TransitionEffectL<
 		TrConcat<
@@ -603,7 +593,8 @@ using MasterStyle = Layers<
 		>,
 		EFFECT_CLASH_UPDATE
 	>,
-	
+	*/
+
 	// Lockup
 	LockupTrL<
 		EffectSequence<
@@ -617,6 +608,10 @@ using MasterStyle = Layers<
 			>,
 			TrInstant,
 			*/
+			// Dial Mode Lockup using USER1 Special Ability
+			Lockup_Color_Dual,
+			// Dune Shield Lockup
+			Lockup_Color_Shield,
 			// Normal Lockup, pick a random effect
 			EffectSequence<
 				EFFECT_LOCKUP_BEGIN,
@@ -628,60 +623,51 @@ using MasterStyle = Layers<
 				Lockup_Color_Full_Flicker,
 				// Original old Lockup, moves on it's own...
 				Lockup_Color_Cylon
-			>,
-			// Dune Shield Lockup
-			Lockup_Color_Shield,
-			// Dial Mode Lockup using USER1 Special Ability
-			Lockup_Color_Dual
+			>
 		>,
 		// EFFECT_LOCKUP_BEGIN
 		TrSelect<
 			// look for DUNE Shield using USER1 Special Ability
 			EffectIncrementF<
 				EFFECT_USER1,
-				Int<2>
+				Int<3>
 			>,
 			// Normal Lockup, pick a random effect
-			TrRandom< //TrSequence<
-				// Real Clash v1
-				Lockup_Start_RealClash,
-				// Localized Flicker
-				Lockup_Start_Localized,
-				// Localized Flash/Fade
-				Lockup_Start_Localized_Flash,
-				// Full blade Flash/Fade
-				Lockup_Start_Full_Flash
-			>,
+			Lockup_Start_Random,
 			// Dune Shield Lockup
-			Lockup_Start_Shield
+			Lockup_Start_Shield,
+			// Normal Lockup, pick a random effect
+			Lockup_Start_Random
 		>,
 		// EFFECT_LOCKUP_END
 		TrSelect<
 			// look for DUNE Shield using USER1 Special Ability
 			EffectIncrementF<
 				EFFECT_USER1,
-				Int<2>
+				Int<3>
 			>,
 			// Normal Lockup, pick a random effect
-			TrRandom< //TrSequence<
-				// Real Clash Intensity
-				Lockup_End_Intensity,
-				// Power Burst Wave release
-				Lockup_End_Power_Burst,
-				// Localized Absorb Flash
-				Lockup_End_Localized_Absorb,
-				// Full blade flash
-				Lockup_End_Full_Absorb
-			>,
+			Lockup_End_Random,
 			// Dune Shield Lockup
-			Lockup_End_Shield
+			Lockup_End_Shield,
+			// Normal Lockup, pick a random effect
+			Lockup_End_Random
 		>,
 		SaberBase::LOCKUP_NORMAL
 	>,
 	
 	// Lightning Block
 	EffectSequence<
-		EFFECT_USER3,
+		EFFECT_USER2,
+		// Force Lightning
+		LockupTrL<
+			Lockup_Force_Lightning,
+			// Force Lightning Start
+			Lockup_Force_Lightning_StartEnd,
+			// Force Lightning End
+			Lockup_Force_Lightning_StartEnd,
+			SaberBase::LOCKUP_LIGHTNING_BLOCK
+		>,
 		// Normal Lightning Block
 		LockupTrL<
 			AlphaL<
@@ -693,15 +679,6 @@ using MasterStyle = Layers<
 			LB_Start,
 			// End Transition
 			LB_End,
-			SaberBase::LOCKUP_LIGHTNING_BLOCK
-		>,
-		// Force Lightning
-		LockupTrL<
-			Lockup_Force_Lightning,
-			// Force Lightning Start
-			Lockup_Force_Lightning_StartEnd,
-			// Force Lightning End
-			Lockup_Force_Lightning_StartEnd,
 			SaberBase::LOCKUP_LIGHTNING_BLOCK
 		>
 	>,

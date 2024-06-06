@@ -269,3 +269,24 @@ using Clash_RealV3 = AlphaL<
 		Int<32768>
 	>
 >;
+
+using Clash_Sequence = EffectSequence <
+	EFFECT_CLASH,
+	// Real Clash V1
+	Mix<
+		IsLessThan<
+			ClashImpactF<>, 
+			Int<26000>
+		>,
+		// Mix A
+		Clash_RealV1_Base,
+		// Mix B
+		Clash_RealV1_Wave
+	>,
+	// Responsive Wave
+	Clash_RealV1_Wave,
+	// Responsive Ripple
+	Clash_Responsive_Ripple,
+	// Random Clash
+	Clash_Random
+>;
