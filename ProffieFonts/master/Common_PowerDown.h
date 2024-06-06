@@ -4,7 +4,7 @@
 using PowerDown_Flash = TrConcat<
 	TRANSITION_DELAY<RETRACTION_TIME, RETRACTION_DELAY>,
 	RETRACTIONCOLOR,
-	TrFade<1000>
+	TrFadeX<COOLDOWN_TIME>
 >;
 
 // Power Burst Reverse
@@ -20,7 +20,7 @@ using PowerDown_Burst_Reverse = TrConcat<
 		COLOR_MIX<Int<7710>, RETRACTIONCOLOR>, 
 		COLOR_MIX<Int<3855>, RETRACTIONCOLOR>
 	>, 
-	TrFade<800>
+	TrFadeX<COOLDOWN_TIME>
 >;
 
 // Unstable Cooldown Reverse
@@ -47,7 +47,7 @@ using PowerDown_Unstable_Reverse = TrConcat<
 			COLOR_MIX<Int<3855>, RETRACTIONCOLOR>
 		>
 	>, 
-	TrFade<800>
+	TrFadeX<COOLDOWN_TIME>
 >;
 
 // Bright Humpflicker
@@ -55,6 +55,6 @@ using PowerDown_Bright_Hump = TrConcat<
 	TRANSITION_DELAY<RETRACTION_TIME, RETRACTION_DELAY>,
 	HumpFlickerL<RETRACTIONCOLOR, 40>, 
 	TrFadeX<
-		Percentage<WavLen<EFFECT_RETRACTION>, 125>
+		Percentage<COOLDOWN_TIME, 125>
 	>
 >;

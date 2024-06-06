@@ -4,14 +4,14 @@
 using Powerup_Flash = TrConcat<
 	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
 	IGNITIONCOLOR,
-	TrFade<1000>
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Surge
 using Powerup_Surge = TrConcat<
 	TRANSITION_DELAY<IGNITION_TIME, IGNITION_DELAY>,
-	AudioFlickerL<RgbArg<IGNITION_COLOR_ARG, Rgb<255,255,255>>>,
-	TrFade<1200>
+	AudioFlickerL<IGNITIONCOLOR>,
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Emitter Flash Fade
@@ -27,7 +27,7 @@ using Powerup_Flash_Fade = TrConcat<
 			EMITTER_SIZE //Int<8000>
 		>
 	>,
-	TrFade<600>
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Power Burst Emitter
@@ -49,7 +49,7 @@ using Powerup_Burst_Emitter = TrConcat<
 			EMITTER_SIZE
 		>
 	>,
-	TrFade<500>
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Power Burst Forward
@@ -65,7 +65,7 @@ using Powerup_Burst_Forward = TrConcat<
 		COLOR_MIX<Int<7710>, IGNITIONCOLOR>, 
 		COLOR_MIX<Int<3855>, IGNITIONCOLOR>
 	>,
-	TrFade<800>
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Unstable Powerup Forward
@@ -92,7 +92,7 @@ using Powerup_Unstable_Forward = TrConcat<
 			COLOR_MIX<Int<3855>, IGNITIONCOLOR>
 		>
 	>, 
-	TrFade<800>
+	TrFadeX<POWERUP_TIME>
 >;
 
 // Unstable Powerup Bright Forward
@@ -120,7 +120,7 @@ using Powerup_Unstable_Bright_Forward = TrConcat<
 		>
 	>,
 	TrFadeX<
-		Percentage<WavLen<EFFECT_IGNITION>, 65>
+		Percentage<POWERUP_TIME, 65>
 	>
 >;
 
@@ -138,5 +138,5 @@ using Powerup_Stabalize = TrConcat<
 		>,
 		25
 	>,
-	TrFadeX<Percentage<IGNITION_TIME, 958>> //2875>
+	TrFadeX<Percentage<POWERUP_TIME, 300>> //2875>
 >;

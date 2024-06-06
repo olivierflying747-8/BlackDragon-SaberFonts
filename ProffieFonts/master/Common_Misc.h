@@ -15,8 +15,10 @@ using IGNITION_DELAY = IntArg<IGNITION_DELAY_ARG, 0>;
 using RETRACTION_DELAY = IntArg<RETRACTION_DELAY_ARG, 0>;
 
 // Default Ignition time = WavLen().
-using IGNITION_TIME = IgnitionTime<0>; //300
+using IGNITION_TIME = IgnitionTime<300>; //0
 using RETRACTION_TIME = RetractionTime<0>;
+using POWERUP_TIME = WavLen<EFFECT_IGNITION>;
+using COOLDOWN_TIME = WavLen<EFFECT_RETRACTION>;
 
 // Simple Percentage
 template<int PERCENT>
