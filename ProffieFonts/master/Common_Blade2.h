@@ -124,25 +124,25 @@ using AltStyle_SmokeBlade = AlphaL <
 template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_LightningFlash = TransitionLoopL<
 	TrConcat<
-		TrBoing<500, 3>,
+		TrBoing<800, 3>,
 		TrConcat<
-			TrFade<100>,
+			TrFadeX<Scale<RandomF, Int<100>, Int<200>>>,
 			AlphaL<
 				HumpFlickerL<COLOR, 10>,
 				Bump<
-					RandomF,
+					BrownNoiseF<Int<10>>, //RandomF,
 					//Int<20000>
 					SWING_SPEED_SCLAE<SWING_SPEED, Int<20000>, Int<10000>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 				>
 			>,
-			TrFade<100>
+			TrFadeX<Scale<RandomF, Int<100>, Int<200>>>
 		>,
 		TrDelayX< // Random Timer
 			Scale<
 				SlowNoise<Int<3000>>,
-				Int<100>,
+				Int<400>,
 				//Int<2000>
-				SWING_SPEED_SCLAE<SWING_SPEED, Int<2000>, Int<1000>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
+				SWING_SPEED_SCLAE<SWING_SPEED, Int<2500>, Int<1000>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 			>
 		>
 	>
