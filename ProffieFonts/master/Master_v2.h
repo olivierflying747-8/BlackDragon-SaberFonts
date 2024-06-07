@@ -71,7 +71,7 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 10: Lightning Flash (Alt Color 3)
 11: Emitter Flare (Emiter Color)
 12: Emitter Breathing (Emitter Color)
-13: Emitter Pulse (Alt Color 3)
+13: Emitter Pulse (Emitter Color)
 14: Emitter Flare (Alt Color 3)
 
 Ignition Effect Options (Ignition Color):
