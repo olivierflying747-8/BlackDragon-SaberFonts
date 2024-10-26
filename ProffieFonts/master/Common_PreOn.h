@@ -817,8 +817,8 @@ using PreOn_Dim_Blade = TrConcat<
 		COLOR_MIX_P<12, PREONCOLOR>, //Rgb<0, 31, 0>, // PREON COLOR / 8.226
 		AlphaL<
 			AudioFlicker<
-				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>>, //Rgb<0,31,0>
-				RotateColorsX<Variation, COLOR_MIX_P<12, PREONCOLOR>> //Rgb<0,15,0>
+				COLOR_MIX_P<12, PREONCOLOR>, //Rgb<0,31,0>
+				COLOR_MIX_P<12, PREONCOLOR> //Rgb<0,15,0>
 			>,
 			Int<100>
 		>

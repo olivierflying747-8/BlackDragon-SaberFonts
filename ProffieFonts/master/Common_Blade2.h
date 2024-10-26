@@ -4,7 +4,7 @@
 // Audio Flicker
 template<class COLOR>
 using AltStyle_AudioFilter = AudioFlickerL<
-	RotateColorsX<Variation, COLOR>
+	COLOR
 >;
 
 // Random Flicker
@@ -30,7 +30,7 @@ using AltStyle_Blinking = BlinkingL<
 // Pusling
 template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<1200>, class HOLD_TIME_MIN = Int<0>, class HOLD_TIME_MAX = Int<0>, class HOLD_SPEED_MIN = Int<0>, class HOLD_SPEED_MAX = Int<0>>
 using AltStyle_Pulsing = PulsingL<
-	RotateColorsX<Variation, COLOR>,
+	COLOR,
 	SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 >;
 
@@ -49,7 +49,7 @@ template<class COLORA, class COLORB, int SWING_SPEED = SWING_SPEED_DEFAULT, clas
 using AltStyle_HumpWave = Layers <
 	TransitionLoopL<
 		TrWaveX<
-			HumpFlickerL<RotateColorsX<Variation, COLORA>, 40>,
+			HumpFlickerL<COLORA, 40>,
 			Int<250>,
 			//Int<100>,
 			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
@@ -59,7 +59,7 @@ using AltStyle_HumpWave = Layers <
 	>,
 	TransitionLoopL<
 		TrWaveX<
-			HumpFlickerL<RotateColorsX<Variation, COLORB>, 40>,
+			HumpFlickerL<COLORB, 40>,
 			Int<350>,
 			//Int<100>,
 			SWING_SPEED_SCLAE<SWING_SPEED, WIDTH_MIN, WIDTH_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
@@ -106,11 +106,8 @@ using AltStyle_BrownNoise_Stripes = BrownNoiseFlickerL<
 template<class COLOR, int SPEED = 1, int BASE = 10, int RAND = 2000, int COOLING = 2>
 using AltStyle_SmokeBlade = AlphaL <
 	StaticFire<
-		RotateColorsX<Variation, COLOR>,
-		RotateColorsX<
-			Variation,
-			COLOR_MIX<Int<256>, COLOR> //Rgb<2,2,0> // ALT / 127.5
-		>,
+		COLOR,
+		COLOR_MIX<Int<256>, COLOR>, //Rgb<2,2,0> // ALT / 127.5
 		0,
 		SPEED,
 		BASE,
@@ -211,7 +208,7 @@ template<class COLOR>
 using AltStyle_Emitter_Breathe = Mix<
 	Sin<Int<8>>,
 	AlphaL<
-		RotateColorsX<Variation, COLOR>,
+		COLOR,
 		Bump<
 			Int<0>,
 			//Int<6000>
@@ -225,7 +222,7 @@ using AltStyle_Emitter_Breathe = Mix<
 		>
 	>,
 	AlphaL<
-		RotateColorsX<Variation, COLOR>,
+		COLOR,
 		Bump<
 			Int<0>,
 			//Int<22000>
@@ -263,18 +260,20 @@ using AltStyle_Emitter_Pulse = TransitionLoopL<
 template<class COLOR, int SWING_SPEED = SWING_SPEED_DEFAULT, class PULSE_MIN = Int<1200>, class PULSE_MAX = Int<600>, class HOLD_TIME_MIN = Int<500>, class HOLD_TIME_MAX = Int<1000>, class HOLD_SPEED_MIN = Int<4000>, class HOLD_SPEED_MAX = Int<8000>>
 using AltStyle_Emitter_Fade = AlphaMixL<
 	Bump<
-		Int<2048>, 
-		Int<131070>
+		//Int<2048>, 
+		//Int<131070>
+		Int<0>,
+		Percentage<EMITTER_SIZE, 300>
 	>, 
 	TRANSPARENT, 
 	PulsingX< //AudioFlicker<
 		COLOR_MIX<
 			SWING_SPEED_SCLAE<SWING_SPEED, Int<16384>, Int<32768>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
-			RotateColorsX<Variation, COLOR>
+			COLOR
 		>,
 		COLOR_MIX<
 			SWING_SPEED_SCLAE<SWING_SPEED, Int<12288>, Int<24576>, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>,
-			RotateColorsX<Variation, COLOR>
+			COLOR
 		>,
 		SWING_SPEED_SCLAE<SWING_SPEED, PULSE_MIN, PULSE_MAX, HOLD_TIME_MIN, HOLD_TIME_MAX, HOLD_SPEED_MIN, HOLD_SPEED_MAX>
 	>
@@ -286,10 +285,10 @@ using AltStyle_Spark_BladeAngle = AlphaL<
 	Mix<
 		BladeAngle<>,
 		AudioFlickerL<
-			RotateColorsX<Variation, COLOR>
+			COLOR
 		>,
 		PulsingL<
-			RotateColorsX<Variation, COLOR>,
+			COLOR,
 			Int<100>
 		>
 	>,
@@ -311,9 +310,9 @@ using AltStyle_StripesX_SlowNoise = AlphaL<
 			Int<-5000>
 		>,
 		Black,
-		COLOR_MIX<10280, RotateColorsX<Variation, COLOR>>, //33%
+		COLOR_MIX<10280, COLOR>, //33%
 		Black,
-		COLOR_MIX<2570,	RotateColorsX<Variation, COLOR>>,
+		COLOR_MIX<2570,	COLOR>,
 		Black
 	>,
 	PERCENTAGE_S<50> //Int<16384>

@@ -131,7 +131,7 @@ using Ignition_LightningStrike = TrConcat<
 			Percentage<IGNITION_TIME, 10000>, //30000,
 //			IGNITION_OPTION2
 //		>,
-		RotateColorsX<Variation, IGNITIONCOLOR>
+		IGNITIONCOLOR
 	>,
 	TrWipeInX<
 		BEND_TIME<
@@ -148,7 +148,7 @@ using Ignition_LightningStrike = TrConcat<
 			>,
 			Int<-3000>
 		>,
-		RotateColorsX<Variation, IGNITIONCOLOR>
+		IGNITIONCOLOR
 	>,
 	TrDelayX<
 		BEND_TIME<
