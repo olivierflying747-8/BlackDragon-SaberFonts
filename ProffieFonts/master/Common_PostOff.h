@@ -82,7 +82,7 @@ using PostOff_Emitter_Spark = TrConcat<
 			>
 		>
 	>,
-	TrDelayX<
+	TrSmoothFadeX< //TrDelayX<
 		Scale<
 			IsLessThan<
 				WavLen<EFFECT_POSTOFF>,
