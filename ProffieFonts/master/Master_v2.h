@@ -395,19 +395,18 @@ using MasterStyle = Layers<
 	Special_Rain<EFFECT_USER4, 0>,
 	
 	// Multi blast effect
-//	MultiTransitionEffectL<
-//		TrRandom<
-	TransitionEffectL<
+	MultiTransitionEffectL<
+		TrRandom<
 
 			// Blast Fade Random
-//			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
+			Blast_Fade<BLASTPOS_SCALE<>, BLASTFADE_SIZE<>>,
 
 			// Blast Wave Random
-			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>,
+			Blast_Wave<BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTWAVE_SCALE<>, BLASTPOS_SCALE<>>
 
 			// Blast Ripple Fade
 			//Blast_Ripple_Fade<BLASTRIPPLE_POS<>, Int<6000>, Int<320000>>
-//		>, 
+		>, 
 		EFFECT_BLAST
 	>, 
 	
@@ -643,7 +642,7 @@ using MasterStyle = Layers<
 	BatteryLevelOnBoot,
 
 	// Battery level on font change
-	BatteryLevelOnFontChange,
+//	BatteryLevelOnFontChange,
 
 	// Battery level
 	BatteryLevelOnDemand,

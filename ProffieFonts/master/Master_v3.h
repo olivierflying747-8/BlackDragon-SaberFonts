@@ -74,7 +74,7 @@ STYLE_OPTION3_ARG options: // Tirtiary Blade Effects while on
 0: Disabled
 1: Audio Flicker (Alt Color 3)
 2: Random Flicker (Alt Color 3)
-3: Blinking (Alt Color 3)
+3: Blinking (Alt Color 2)
 4: Pulsing (Alt Color 3)
 5: BrownNoise Stripes (Alt Color 3)
 6: HumpFlicker Random (Alt Color 3)
